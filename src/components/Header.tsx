@@ -33,7 +33,9 @@ const Header: React.FC<HeaderProps> = ({ withBack, questionCount }) => {
         </span>
       </div>
       {questionCount && (
-        <span className="absolute right-6 top-1/2 -translate-y-1/2 text-white text-base font-bold font-inter">{questionCount}</span>
+        <span className="absolute right-6 top-1/2 -translate-y-1/2 text-white text-base font-bold font-inter">
+          {questionCount}
+        </span>
       )}
     </header>
   );
