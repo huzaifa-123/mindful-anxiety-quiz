@@ -10,19 +10,37 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ withBack, questionCount }) => {
   const location = useLocation();
   const navigate = useNavigate();
-  const isLanding = location.pathname === "/";
+
+  // Detect if on /quiz/part1 for special back handling
+  const isQuizPart1 = location.pathname === "/quiz/part1";
+
+  // Always move back button hard left; use absolute positioning
   return (
     <header className="w-full bg-flourishgreen h-[64px] flex items-center px-4 md:px-10 mb-4 font-inter relative">
       {withBack ? (
         <button
-          onClick={() => navigate(-1)}
-          className="mr-3 rounded-full p-1 hover:bg-flourishmint/20 transition"
+          // Absolute positioning for left corner
+          style={{
+            position: "absolute",
+            left: "16px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            zIndex: 2,
+          }}
+          onClick={() => {
+            if (isQuizPart1) {
+              navigate("/");
+            } else {
+              navigate(-1);
+            }
+          }}
+          className="rounded-full p-1 hover:bg-flourishmint/20 transition"
           aria-label="Back"
         >
           <ArrowLeft size={28} color="white" />
         </button>
       ) : null}
-      <div className={`flex items-center gap-3 ${withBack ? "mx-auto" : ""}`}>
+      <div className={`flex items-center gap-3 w-full justify-center`}>
         <img
           src="/logo-placeholder.svg"
           alt="Mind Flourish logo"
@@ -42,3 +60,4 @@ const Header: React.FC<HeaderProps> = ({ withBack, questionCount }) => {
 };
 
 export default Header;
+
