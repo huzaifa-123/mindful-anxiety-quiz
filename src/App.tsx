@@ -10,6 +10,7 @@ import QuizPart1 from "./pages/QuizPart1";
 import QuizGender from "./pages/QuizGender";
 import QuizAge from "./pages/QuizAge";
 import QuizName from "./pages/QuizName";
+import QuizAnxietyStats from "./pages/QuizAnxietyStats";
 import { QuizAnswersProvider } from "./context/QuizAnswersContext";
 
 const queryClient = new QueryClient();
@@ -31,6 +32,7 @@ const App = () => (
           <Route path="/quiz/gender" element={<QuizWrapper><QuizGender /></QuizWrapper>} />
           <Route path="/quiz/age" element={<QuizWrapper><QuizAge /></QuizWrapper>} />
           <Route path="/quiz/name" element={<QuizWrapper><QuizName /></QuizWrapper>} />
+          <Route path="/quiz/anxiety-stats" element={<QuizAnxietyStats />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

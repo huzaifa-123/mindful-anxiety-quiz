@@ -1,18 +1,18 @@
-
 import Header from "../components/Header";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const QuizName = () => {
   const { answers, setAnswer } = useQuizAnswers();
+  const navigate = useNavigate();
   const [name, setName] = useState(answers.name ?? "");
   // Button should only enable if input isn't empty
   const isButtonDisabled = name.trim().length === 0;
 
   const handleContinue = () => {
     setAnswer("name", name.trim());
-    // TODO: Navigate to the next quiz step (not specified)
-    // For now, just stay here or you can use: navigate("/next/step");
+    navigate("/quiz/anxiety-stats");
   };
 
   return (
