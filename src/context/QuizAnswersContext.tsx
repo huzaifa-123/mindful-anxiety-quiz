@@ -3,6 +3,8 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 
 type QuizAnswer = {
   gender?: "male" | "female";
+  age?: string;
+  name?: string;
   // More fields will be added for additional questions
 };
 

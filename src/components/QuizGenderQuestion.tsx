@@ -2,6 +2,7 @@
 import React from "react";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 interface QuizGenderQuestionProps {
   onAnswered?: () => void;
@@ -22,9 +23,11 @@ const AVATARS = [
 
 const QuizGenderQuestion: React.FC<QuizGenderQuestionProps> = ({ onAnswered }) => {
   const { answers, setAnswer } = useQuizAnswers();
+  const navigate = useNavigate();
 
   const handleSelect = (gender: "male" | "female") => {
     setAnswer("gender", gender);
+    navigate("/quiz/age"); // Go to QuizAge page after selecting
     if (onAnswered) onAnswered();
   };
 
