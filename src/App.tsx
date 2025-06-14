@@ -14,6 +14,11 @@ import { QuizAnswersProvider } from "./context/QuizAnswersContext";
 
 const queryClient = new QueryClient();
 
+// Wrapper component for quiz pages that need the provider
+const QuizWrapper = ({ children }: { children: React.ReactNode }) => (
+  <QuizAnswersProvider>{children}</QuizAnswersProvider>
+);
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
@@ -23,21 +28,9 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/quiz/part1" element={<QuizPart1 />} />
-          {/* >>> Wrap all quiz questions in the same provider for answer persistence <<< */}
-          <Route
-            element={
-              <QuizAnswersProvider>
-                {/* This outlet will render all children below */}
-                {/* React Router 6.4+ nested layout pattern, or just direct elements */}
-                {/* We'll nest individual quiz steps below */}
-                <Routes>
-                  <Route path="/quiz/gender" element={<QuizGender />} />
-                  <Route path="/quiz/age" element={<QuizAge />} />
-                  <Route path="/quiz/name" element={<QuizName />} />
-                </Routes>
-              </QuizAnswersProvider>
-            }
-          />
+          <Route path="/quiz/gender" element={<QuizWrapper><QuizGender /></QuizWrapper>} />
+          <Route path="/quiz/age" element={<QuizWrapper><QuizAge /></QuizWrapper>} />
+          <Route path="/quiz/name" element={<QuizWrapper><QuizName /></QuizWrapper>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -47,4 +40,3 @@ const App = () => (
 );
 
 export default App;
-
