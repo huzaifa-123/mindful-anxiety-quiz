@@ -67,7 +67,7 @@ const QuizAnxietyProfile = () => {
       case "panic":
         return "You feel like you're always walking on eggshells, with your body reacting to stress with physical symptoms like rapid heartbeat, sweating, or feeling like you can't breathe. Your nervous system goes into overdrive, and you feel like you're losing control.";
       case "ruminator": 
-        return "Your mind feels like it never stops - you get stuck in endless loops of worry, replay past events, and spiral into "what if" scenarios. You feel like your brain is working against you, and you can't turn off the constant thinking about potential problems.";
+        return "Your mind feels like it never stops - you get stuck in endless loops of worry, replay past events, and spiral into \"what if\" scenarios. You feel like your brain is working against you, and you can't turn off the constant thinking about potential problems.";
       case "avoidant":
         return "You tend to shy away from situations that make you uncomfortable, which can make your world feel smaller and smaller. You might avoid social situations, new experiences, or challenging tasks because they feel too overwhelming.";
       default:
