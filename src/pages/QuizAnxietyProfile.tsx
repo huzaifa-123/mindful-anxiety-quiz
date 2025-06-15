@@ -142,22 +142,18 @@ const QuizAnxietyProfile = () => {
               <span>Moderate</span>
               <span>Severe</span>
             </div>
-            <div className="relative">
-              <Progress 
-                value={(results.severityScore / 40) * 100} 
-                className="h-3 bg-gray-200"
-              />
+            <div className="relative w-full h-4 bg-gradient-to-r from-green-300 via-yellow-300 to-red-400 rounded-full overflow-hidden">
               <div 
-                className={`absolute top-0 left-0 h-3 rounded-full transition-all ${typeStyles.progressColor}`}
-                style={{ width: `${(results.severityScore / 40) * 100}%` }}
+                className="absolute top-0 right-0 h-full bg-gray-300 rounded-r-full transition-all"
+                style={{ width: `${100 - ((results.severityScore / 40) * 100)}%` }}
               />
             </div>
           </div>
 
           {/* Main type card */}
           <Card className={`mb-6 ${typeStyles.bgColor} ${typeStyles.borderColor} border-2`}>
-            <CardContent className="p-4">
-              <h3 className={`font-bold text-lg mb-2 ${typeStyles.textColor}`}>
+            <CardContent className="p-6">
+              <h3 className={`font-bold text-lg mb-3 ${typeStyles.textColor}`}>
                 {getTypeTitle(results.dominantType).replace("THE ", "The ")}
               </h3>
               <p className={`text-sm leading-relaxed ${typeStyles.textColor}`}>
@@ -168,42 +164,42 @@ const QuizAnxietyProfile = () => {
 
           {/* Secondary style section */}
           {secondaryType && secondaryType.percentage >= 20 && (
-            <Card className="mb-6 bg-gray-50 border border-gray-200">
-              <CardContent className="p-4">
-                <h3 className="font-bold text-lg mb-2 text-gray-800">
+            <div className="mb-6">
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+                <h3 className="font-bold text-lg mb-2 text-gray-800 text-center">
                   Your Secondary Style
                 </h3>
-                <h4 className="font-semibold text-base mb-2 text-gray-700">
+                <h4 className="font-semibold text-base mb-3 text-gray-700 text-center">
                   {getTypeTitle(secondaryType.type).replace("THE ", "The ")} ({secondaryType.percentage}%)
                 </h4>
-                <p className="text-sm leading-relaxed text-gray-600">
+                <p className="text-sm leading-relaxed text-gray-600 text-center">
                   {getSecondaryTypeDescription(secondaryType.type, secondaryType.percentage)}
                 </p>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
           )}
 
           {/* Anxiety severity section */}
-          <Card className="mb-6 bg-white border border-gray-200">
-            <CardContent className="p-4">
-              <h3 className="font-bold text-lg mb-2 text-gray-800">
+          <div className="mb-6">
+            <div className="bg-white border border-gray-200 rounded-lg p-6">
+              <h3 className="font-bold text-lg mb-2 text-gray-800 text-center">
                 Your Anxiety Severity
               </h3>
-              <h4 className="font-semibold text-base mb-2 text-gray-700 capitalize">
+              <h4 className="font-semibold text-base mb-3 text-gray-700 text-center capitalize">
                 {results.severity}
               </h4>
-              <p className="text-sm leading-relaxed text-gray-600">
+              <p className="text-sm leading-relaxed text-gray-600 text-center">
                 {getSeverityDescription(results.severity)} Your anxiety affects your daily life and relationships, but there's hope. This is exactly where our proven methodology can help you gain control.
               </p>
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
           {/* Next steps section */}
           <div className="text-center mb-6">
             <h3 className="font-bold text-lg mb-2 text-gray-800">
               Next Step: Your Matched Therapeutic Tools
             </h3>
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-gray-600 mb-6">
               Click below to view the best-fit techniques for your profile.
             </p>
           </div>
@@ -211,7 +207,7 @@ const QuizAnxietyProfile = () => {
           {/* Continue button */}
           <div className="flex justify-center">
             <button
-              onClick={() => navigate("/quiz/final-step")} // Will be 404 for now as requested
+              onClick={() => navigate("/quiz/final-step")}
               className="bg-flourishmint text-white px-8 py-3 rounded-full font-semibold hover:bg-flourishmint/90 transition-colors"
             >
               Show My Best-Fit Techniques
