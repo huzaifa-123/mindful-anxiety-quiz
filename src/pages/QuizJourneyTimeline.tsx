@@ -1,3 +1,4 @@
+
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
@@ -115,38 +116,40 @@ const QuizJourneyTimeline = () => {
           </div>
           
           {/* Timeline visualization container */}
-          <div className="w-full max-w-lg mb-2 flex flex-col items-center">
+          <div className="w-full max-w-md mb-2 flex flex-col items-center">
             {/* GIF */}
-            <div className="w-full flex items-center justify-center mb-2">
+            <div className="w-full flex items-center justify-center mb-4">
               <img
                 src="/QuizDesign/Final_Quiz Section Design (2).gif"
                 alt="Progress timeline showing journey from current state to goal integration"
-                className="w-full h-auto object-contain max-h-40"
+                className="w-full h-auto object-contain max-h-32"
                 draggable={false}
               />
             </div>
             
-            {/* Progress stages labels - aligned with GIF width */}
-            <div className="flex justify-between items-center w-full text-xs text-gray-600">
-              <div className="flex flex-col items-center">
-                <span className="font-medium">Current</span>
-                <span>State</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="font-medium">Early</span>
-                <span>Shifts</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="font-medium">Ongoing</span>
-                <span>Shift</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="font-medium">Target</span>
-                <span>Relief</span>
-              </div>
-              <div className="flex flex-col items-center">
-                <span className="font-medium">Goal</span>
-                <span>Integration</span>
+            {/* Progress stages labels - properly aligned with chart elements */}
+            <div className="flex justify-center items-center w-full text-xs text-gray-600 px-2">
+              <div className="flex justify-between items-center w-full max-w-xs">
+                <div className="flex flex-col items-center text-center min-w-0">
+                  <span className="font-medium text-xs">Current</span>
+                  <span className="text-xs">State</span>
+                </div>
+                <div className="flex flex-col items-center text-center min-w-0">
+                  <span className="font-medium text-xs">Early</span>
+                  <span className="text-xs">Shifts</span>
+                </div>
+                <div className="flex flex-col items-center text-center min-w-0">
+                  <span className="font-medium text-xs">Ongoing</span>
+                  <span className="text-xs">Shift</span>
+                </div>
+                <div className="flex flex-col items-center text-center min-w-0">
+                  <span className="font-medium text-xs">Target</span>
+                  <span className="text-xs">Relief</span>
+                </div>
+                <div className="flex flex-col items-center text-center min-w-0">
+                  <span className="font-medium text-xs">Goal</span>
+                  <span className="text-xs">Integration</span>
+                </div>
               </div>
             </div>
           </div>
