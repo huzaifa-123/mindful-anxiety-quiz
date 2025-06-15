@@ -67,7 +67,7 @@ const QuizAnxietyProfile = () => {
       case "panic":
         return "You feel like you're always walking on eggshells, with your body reacting to stress with physical symptoms like rapid heartbeat, sweating, or feeling like you can't breathe. Your nervous system goes into overdrive, and you feel like you're losing control.";
       case "ruminator": 
-        return "Your mind feels like it never stops - you get stuck in endless loops of worry, replay past events, and spiral into \"what if\" scenarios. You feel like your brain is working against you, and you can't turn off the constant thinking about potential problems.";
+        return "Your mind feels like it never stops - you get stuck in endless loops of worry, replay past events, and spiral into 'what if' scenarios. You feel like your brain is working against you, and you can't turn off the constant thinking about potential problems.";
       case "avoidant":
         return "You tend to shy away from situations that make you uncomfortable, which can make your world feel smaller and smaller. You might avoid social situations, new experiences, or challenging tasks because they feel too overwhelming.";
       default:
@@ -142,10 +142,10 @@ const QuizAnxietyProfile = () => {
               <span>Moderate</span>
               <span>Severe</span>
             </div>
-            <div className="relative w-full h-4 bg-gradient-to-r from-green-300 via-yellow-300 to-red-400 rounded-full overflow-hidden">
+            <div className="relative w-full h-4 bg-gray-200 rounded-full overflow-hidden">
               <div 
-                className="absolute top-0 right-0 h-full bg-gray-300 rounded-r-full transition-all"
-                style={{ width: `${100 - ((results.severityScore / 40) * 100)}%` }}
+                className="absolute top-0 left-0 h-full bg-orange-400 rounded-full transition-all"
+                style={{ width: `${(results.severityScore / 40) * 100}%` }}
               />
             </div>
           </div>
@@ -165,14 +165,14 @@ const QuizAnxietyProfile = () => {
           {/* Secondary style section */}
           {secondaryType && secondaryType.percentage >= 20 && (
             <div className="mb-6">
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
-                <h3 className="font-bold text-lg mb-2 text-gray-800 text-center">
+              <div className="bg-green-100 border border-green-300 rounded-lg p-6">
+                <h3 className="font-bold text-lg mb-2 text-green-800 text-center">
                   Your Secondary Style
                 </h3>
-                <h4 className="font-semibold text-base mb-3 text-gray-700 text-center">
+                <h4 className="font-semibold text-base mb-3 text-green-700 text-center">
                   {getTypeTitle(secondaryType.type).replace("THE ", "The ")} ({secondaryType.percentage}%)
                 </h4>
-                <p className="text-sm leading-relaxed text-gray-600 text-center">
+                <p className="text-sm leading-relaxed text-green-600 text-center">
                   {getSecondaryTypeDescription(secondaryType.type, secondaryType.percentage)}
                 </p>
               </div>
