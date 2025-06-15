@@ -1,5 +1,5 @@
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
 type QuizAnswer = {
   gender?: "male" | "female";
@@ -49,8 +49,26 @@ export const useQuizAnswers = () => {
   return ctx;
 };
 
+const STORAGE_KEY = "quiz_answers";
+
 export const QuizAnswersProvider = ({ children }: { children: ReactNode }) => {
   const [answers, setAnswers] = useState<QuizAnswer>({});
+
+  // Load answers from localStorage on component mount
+  useEffect(() => {
+    try {
+      const savedAnswers = localStorage.getItem(STORAGE_KEY);
+      if (savedAnswers) {
+        const parsedAnswers = JSON.parse(savedAnswers);
+        console.log(`🟡 CONTEXT INIT: Loaded answers from localStorage:`, JSON.stringify(parsedAnswers, null, 2));
+        setAnswers(parsedAnswers);
+      } else {
+        console.log(`🟡 CONTEXT INIT: No saved answers found in localStorage`);
+      }
+    } catch (error) {
+      console.error(`🟡 CONTEXT ERROR: Failed to load answers from localStorage:`, error);
+    }
+  }, []);
 
   const setAnswer = (key: keyof QuizAnswer, value: any) => {
     console.log(`🟡 CONTEXT SETANSWER: Called with key: "${key}", value:`, value);
@@ -64,6 +82,15 @@ export const QuizAnswersProvider = ({ children }: { children: ReactNode }) => {
       console.log(`🟡 CONTEXT SETANSWER: Updated answers object for ${key}:`, newAnswers[key]);
       console.log(`🟡 CONTEXT SETANSWER: Full answers object after update:`, JSON.stringify(newAnswers, null, 2));
       console.log(`🟡 CONTEXT SETANSWER: Keys in answers object:`, Object.keys(newAnswers));
+      
+      // Save to localStorage
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(newAnswers));
+        console.log(`🟡 CONTEXT SETANSWER: Saved to localStorage successfully`);
+      } catch (error) {
+        console.error(`🟡 CONTEXT ERROR: Failed to save to localStorage:`, error);
+      }
+      
       return newAnswers;
     });
   };
@@ -71,6 +98,12 @@ export const QuizAnswersProvider = ({ children }: { children: ReactNode }) => {
   const resetAnswers = () => {
     console.log(`🟡 CONTEXT RESET: Resetting all answers`);
     setAnswers({});
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      console.log(`🟡 CONTEXT RESET: Cleared localStorage`);
+    } catch (error) {
+      console.error(`🟡 CONTEXT ERROR: Failed to clear localStorage:`, error);
+    }
   };
 
   // Log the current state whenever component re-renders
