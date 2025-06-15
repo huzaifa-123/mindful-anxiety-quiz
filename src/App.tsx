@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -36,6 +35,8 @@ import QuizQuestion19 from "./pages/QuizQuestion19";
 import QuizQuestion20 from "./pages/QuizQuestion20";
 import QuizQuestion21 from "./pages/QuizQuestion21";
 import { QuizAnswersProvider } from "./context/QuizAnswersContext";
+import QuizAnalysis from "./pages/QuizAnalysis";
+import QuizAnxietyGlobalStats from "./pages/QuizAnxietyGlobalStats";
 
 const queryClient = new QueryClient();
 
@@ -81,6 +82,8 @@ const App = () => (
           <Route path="/quiz/question19" element={<QuizWrapper><QuizQuestion19 /></QuizWrapper>} />
           <Route path="/quiz/question20" element={<QuizWrapper><QuizQuestion20 /></QuizWrapper>} />
           <Route path="/quiz/question21" element={<QuizWrapper><QuizQuestion21 /></QuizWrapper>} />
+          <Route path="/quiz/analysis" element={<QuizAnalysis />} />
+          <Route path="/quiz/anxiety-global-stats" element={<QuizAnxietyGlobalStats />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

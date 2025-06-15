@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import SingleSelectQuestion from "../components/SingleSelectQuestion";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
@@ -40,8 +39,7 @@ const QuizQuestion21 = () => {
 
   const handleSelect = (optionId: string) => {
     setAnswer("question21", optionId);
-    // TODO: Navigate to results page or completion
-    console.log("Quiz completed! All answers:", { question21: optionId });
+    navigate("/quiz/analysis");
   };
 
   return (
