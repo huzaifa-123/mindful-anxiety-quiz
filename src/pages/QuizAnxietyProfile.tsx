@@ -1,3 +1,4 @@
+
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
@@ -110,6 +111,34 @@ const QuizAnxietyProfile = () => {
     }
   };
 
+  // Get anxiety type specific image
+  const getAnxietyTypeImage = (type: string) => {
+    switch (type) {
+      case "panic":
+        return {
+          src: "/QuizDesign/panic-character.png",
+          alt: "Panic anxiety type character illustration"
+        };
+      case "ruminator":
+        return {
+          src: "/QuizDesign/ruminator-character.png", 
+          alt: "Ruminator anxiety type character illustration"
+        };
+      case "avoidant":
+        return {
+          src: "/QuizDesign/avoidant-character.png",
+          alt: "Avoidant anxiety type character illustration"
+        };
+      default:
+        return {
+          src: "/placeholder-anxiety-character.png",
+          alt: "Anxiety character illustration"
+        };
+    }
+  };
+
+  const anxietyImage = getAnxietyTypeImage(results.dominantType);
+
   // Find secondary type - this logic needs to be more robust
   const typePercentages = [
     { type: "panic", percentage: results.typePercentages.panic },
@@ -153,11 +182,11 @@ const QuizAnxietyProfile = () => {
             </h2>
           </div>
 
-          {/* Character illustration */}
+          {/* Character illustration - now anxiety type specific */}
           <div className="flex justify-center mb-6">
             <img 
-              src="/placeholder-anxiety-character.png" 
-              alt="Anxiety character illustration" 
+              src={anxietyImage.src}
+              alt={anxietyImage.alt}
               className="w-32 h-32 object-contain"
             />
           </div>
