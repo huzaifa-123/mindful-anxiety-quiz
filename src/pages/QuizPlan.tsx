@@ -285,78 +285,78 @@ const QuizPlan = () => {
           </div>
 
           {/* Current Experience and Calm Reset Vision Section */}
-          <div className="flex justify-center gap-8 mb-16">
+          <div className="flex justify-center gap-12 mb-16">
             {/* Current Experience */}
             <div className="w-full max-w-sm">
-              <div className="bg-gray-700 text-white px-6 py-3 rounded-lg text-center font-semibold mb-4">
+              <div className="bg-gray-700 text-white px-6 py-3 rounded-full text-center font-semibold mb-4">
                 Current Experience
               </div>
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-gray-700 text-sm font-medium mb-4 italic">
+              <div className="text-center mb-6">
+                <h3 className="text-gray-700 text-sm font-medium italic">
                   "What You're Navigating Now"
                 </h3>
-                
-                <div className="mb-6">
-                  <ul className="space-y-2">
-                    {content.currentExperience.mainPoints.map((point, index) => (
-                      <li key={index} className="flex items-start text-sm text-gray-700">
-                        <span className="text-gray-400 mr-2">•</span>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              </div>
+              
+              <div className="mb-6">
+                <ul className="space-y-3">
+                  {content.currentExperience.mainPoints.map((point, index) => (
+                    <li key={index} className="flex items-start text-sm text-gray-700">
+                      <span className="text-gray-400 mr-3">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-                <div className="border-t pt-4">
-                  <h4 className="text-flourishmint font-semibold text-sm mb-3">
-                    Focus Areas:
-                  </h4>
-                  <ul className="space-y-2">
-                    {content.currentExperience.focusAreas.map((area, index) => (
-                      <li key={index} className="flex items-start text-sm text-gray-700">
-                        <span className="text-gray-400 mr-2">•</span>
-                        <span>{area}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="mb-4">
+                <h4 className="text-flourishmint font-semibold text-sm mb-3">
+                  Focus Areas:
+                </h4>
+                <ul className="space-y-3">
+                  {content.currentExperience.focusAreas.map((area, index) => (
+                    <li key={index} className="flex items-start text-sm text-gray-700">
+                      <span className="text-gray-400 mr-3">•</span>
+                      <span>{area}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
 
             {/* Calm Reset Vision */}
             <div className="w-full max-w-sm">
-              <div className="bg-flourishgreen text-white px-6 py-3 rounded-lg text-center font-semibold mb-4">
+              <div className="bg-gray-700 text-white px-6 py-3 rounded-full text-center font-semibold mb-4">
                 Calm Reset Vision
               </div>
-              <div className="bg-white border border-gray-200 rounded-lg p-6">
-                <h3 className="text-gray-700 text-sm font-medium mb-4 italic">
+              <div className="text-center mb-6">
+                <h3 className="text-gray-700 text-sm font-medium italic">
                   "What We're Supporting You Toward"
                 </h3>
-                
-                <div className="mb-6">
-                  <ul className="space-y-2">
-                    {content.calmResetVision.mainPoints.map((point, index) => (
-                      <li key={index} className="flex items-start text-sm text-gray-700">
-                        <span className="text-gray-400 mr-2">•</span>
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              </div>
+              
+              <div className="mb-6">
+                <ul className="space-y-3">
+                  {content.calmResetVision.mainPoints.map((point, index) => (
+                    <li key={index} className="flex items-start text-sm text-gray-700">
+                      <span className="text-gray-400 mr-3">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-                <div className="border-t pt-4">
-                  <h4 className="text-flourishmint font-semibold text-sm mb-3">
-                    Focus Areas:
-                  </h4>
-                  <ul className="space-y-2">
-                    {content.calmResetVision.focusAreas.map((area, index) => (
-                      <li key={index} className="flex items-start text-sm text-gray-700">
-                        <span className="text-gray-400 mr-2">•</span>
-                        <span>{area}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+              <div className="mb-4">
+                <h4 className="text-flourishmint font-semibold text-sm mb-3">
+                  Focus Areas:
+                </h4>
+                <ul className="space-y-3">
+                  {content.calmResetVision.focusAreas.map((area, index) => (
+                    <li key={index} className="flex items-start text-sm text-gray-700">
+                      <span className="text-gray-400 mr-3">•</span>
+                      <span>{area}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
