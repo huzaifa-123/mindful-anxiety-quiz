@@ -142,10 +142,10 @@ const QuizAnxietyProfile = () => {
               <span>Moderate</span>
               <span>Severe</span>
             </div>
-            <div className="relative w-full h-4 bg-gray-200 rounded-full overflow-hidden">
+            <div className="relative w-full h-4 bg-gradient-to-r from-green-300 via-yellow-300 to-red-400 rounded-full overflow-hidden">
               <div 
-                className="absolute top-0 left-0 h-full bg-orange-400 rounded-full transition-all"
-                style={{ width: `${(results.severityScore / 40) * 100}%` }}
+                className="absolute top-0 left-0 h-full bg-white rounded-full transition-all"
+                style={{ width: `${100 - ((results.severityScore / 40) * 100)}%` }}
               />
             </div>
           </div>
@@ -165,14 +165,14 @@ const QuizAnxietyProfile = () => {
           {/* Secondary style section */}
           {secondaryType && secondaryType.percentage >= 20 && (
             <div className="mb-6">
-              <div className="bg-green-100 border border-green-300 rounded-lg p-6">
-                <h3 className="font-bold text-lg mb-2 text-green-800 text-center">
+              <div className="bg-gray-700 text-white rounded-lg p-6 text-center">
+                <h3 className="font-bold text-lg mb-2 text-white">
                   Your Secondary Style
                 </h3>
-                <h4 className="font-semibold text-base mb-3 text-green-700 text-center">
-                  {getTypeTitle(secondaryType.type).replace("THE ", "The ")} ({secondaryType.percentage}%)
+                <h4 className="font-semibold text-base mb-3 text-gray-200">
+                  {getTypeTitle(secondaryType.type)} ({secondaryType.percentage}%)
                 </h4>
-                <p className="text-sm leading-relaxed text-green-600 text-center">
+                <p className="text-sm leading-relaxed text-gray-300">
                   {getSecondaryTypeDescription(secondaryType.type, secondaryType.percentage)}
                 </p>
               </div>
@@ -181,14 +181,14 @@ const QuizAnxietyProfile = () => {
 
           {/* Anxiety severity section */}
           <div className="mb-6">
-            <div className="bg-white border border-gray-200 rounded-lg p-6">
-              <h3 className="font-bold text-lg mb-2 text-gray-800 text-center">
+            <div className="bg-white border border-gray-200 rounded-lg p-6 text-center">
+              <h3 className="font-bold text-lg mb-2 text-gray-800">
                 Your Anxiety Severity
               </h3>
-              <h4 className="font-semibold text-base mb-3 text-gray-700 text-center capitalize">
+              <h4 className="font-semibold text-base mb-3 text-gray-700 capitalize">
                 {results.severity}
               </h4>
-              <p className="text-sm leading-relaxed text-gray-600 text-center">
+              <p className="text-sm leading-relaxed text-gray-600">
                 {getSeverityDescription(results.severity)} Your anxiety affects your daily life and relationships, but there's hope. This is exactly where our proven methodology can help you gain control.
               </p>
             </div>
