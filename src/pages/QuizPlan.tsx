@@ -190,7 +190,7 @@ const QuizPlan = () => {
                   alt="Current anxious state" 
                   className="w-48 h-64 object-contain mb-4"
                 />
-                {/* Progress bars card */}
+                {/* Progress bars card - made horizontal */}
                 <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm max-w-xs">
                   <div className="space-y-4 text-left">
                     <div>
@@ -199,7 +199,7 @@ const QuizPlan = () => {
                       </div>
                       <div className="text-xs text-red-500 mb-2 font-medium">Low</div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-red-500 h-2 rounded-full w-1/4"></div>
+                        <div className="bg-red-500 h-2 rounded-full" style={{ width: '25%' }}></div>
                       </div>
                     </div>
                     
@@ -209,7 +209,7 @@ const QuizPlan = () => {
                       </div>
                       <div className="text-xs text-orange-500 mb-2 font-medium">Weak</div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-orange-500 h-2 rounded-full w-2/5"></div>
+                        <div className="bg-orange-500 h-2 rounded-full" style={{ width: '40%' }}></div>
                       </div>
                     </div>
                     
@@ -219,7 +219,7 @@ const QuizPlan = () => {
                       </div>
                       <div className="text-xs text-red-500 mb-2 font-medium">Low</div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-red-500 h-2 rounded-full w-1/4"></div>
+                        <div className="bg-red-500 h-2 rounded-full" style={{ width: '25%' }}></div>
                       </div>
                     </div>
                   </div>
@@ -247,7 +247,7 @@ const QuizPlan = () => {
                   alt="Goal confident state" 
                   className="w-48 h-64 object-contain mb-4"
                 />
-                {/* Progress bars card */}
+                {/* Progress bars card - made horizontal */}
                 <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm max-w-xs">
                   <div className="space-y-4 text-left">
                     <div>
@@ -256,7 +256,7 @@ const QuizPlan = () => {
                       </div>
                       <div className="text-xs text-green-600 mb-2 font-medium">High</div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-green-600 h-2 rounded-full w-5/6"></div>
+                        <div className="bg-green-600 h-2 rounded-full" style={{ width: '85%' }}></div>
                       </div>
                     </div>
                     
@@ -266,7 +266,7 @@ const QuizPlan = () => {
                       </div>
                       <div className="text-xs text-green-600 mb-2 font-medium">Strong</div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-green-600 h-2 rounded-full w-full"></div>
+                        <div className="bg-green-600 h-2 rounded-full" style={{ width: '100%' }}></div>
                       </div>
                     </div>
                     
@@ -276,7 +276,7 @@ const QuizPlan = () => {
                       </div>
                       <div className="text-xs text-green-600 mb-2 font-medium">High</div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-green-600 h-2 rounded-full w-5/6"></div>
+                        <div className="bg-green-600 h-2 rounded-full" style={{ width: '85%' }}></div>
                       </div>
                     </div>
                   </div>
@@ -619,44 +619,47 @@ const QuizPlan = () => {
             </div>
           </div>
 
-          {/* Testimonials Section */}
+          {/* Testimonials Section - Fixed layout to match reference */}
           <div className="text-center mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">
               Testimonials
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              <div className="bg-white border border-gray-200 rounded-lg p-6 text-left">
-                <div className="flex mb-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 text-left relative shadow-sm">
+                <div className="text-4xl text-flourishmint mb-4 leading-none">"</div>
+                <p className="text-gray-700 text-sm leading-relaxed mb-6">
+                  This is the first plan that actually matched how I think. It finally felt designed for someone like me.
+                </p>
+                <div className="flex mb-0">
                   {[...Array(5)].map((_, i) => (
                     <span key={i} className="text-flourishmint text-lg">★</span>
                   ))}
                 </div>
-                <p className="text-gray-700 text-sm leading-relaxed">
-                  "This is the first plan that actually matched how I think. It finally felt designed for someone like me."
-                </p>
               </div>
               
-              <div className="bg-white border border-gray-200 rounded-lg p-6 text-left">
-                <div className="flex mb-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 text-left relative shadow-sm">
+                <div className="text-4xl text-flourishmint mb-4 leading-none">"</div>
+                <p className="text-gray-700 text-sm leading-relaxed mb-6">
+                  I used to spiral every evening. Now I have a way to stop it before it starts.
+                </p>
+                <div className="flex mb-0">
                   {[...Array(5)].map((_, i) => (
                     <span key={i} className="text-flourishmint text-lg">★</span>
                   ))}
                 </div>
-                <p className="text-gray-700 text-sm leading-relaxed">
-                  "I used to spiral every evening. Now I have a way to stop it before it starts."
-                </p>
               </div>
               
-              <div className="bg-white border border-gray-200 rounded-lg p-6 text-left">
-                <div className="flex mb-4">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 text-left relative shadow-sm">
+                <div className="text-4xl text-flourishmint mb-4 leading-none">"</div>
+                <p className="text-gray-700 text-sm leading-relaxed mb-6">
+                  I didn't think I'd ever feel calm again but this gave me back hope.
+                </p>
+                <div className="flex mb-0">
                   {[...Array(5)].map((_, i) => (
                     <span key={i} className="text-flourishmint text-lg">★</span>
                   ))}
                 </div>
-                <p className="text-gray-700 text-sm leading-relaxed">
-                  "I didn't think I'd ever feel calm again but this gave me back hope."
-                </p>
               </div>
             </div>
           </div>
