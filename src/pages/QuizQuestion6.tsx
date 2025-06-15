@@ -14,43 +14,42 @@ const QuizQuestion6 = () => {
     {
       id: "panic4",
       text: "Fear of losing control or panicking",
-      type: "panic" as const,
       icon: "/dummy-control-icon.png"
     },
     {
       id: "avoidant4",
       text: "Fear of being judged or failing",
-      type: "avoidant" as const,
       icon: "/dummy-judged-icon.png"
     },
     {
       id: "ruminator4",
       text: "Fear of uncertainty or bad outcomes",
-      type: "ruminator" as const,
       icon: "/dummy-uncertainty-icon.png"
     },
     {
       id: "panic5",
       text: "No clear trigger, it just \"hits\" sometimes",
-      type: "panic" as const,
-      icon: "/dummy-hits-icon.png"
+      icon: "/dummy-sudden-icon.png"
     },
     {
       id: "avoidant5",
       text: "Fear of confrontation or having to express myself",
-      type: "avoidant" as const,
       icon: "/dummy-confrontation-icon.png"
     },
     {
       id: "ruminator5",
       text: "Fear of making the wrong decision or overthinking consequences",
-      type: "ruminator" as const,
       icon: "/dummy-decision-icon.png"
     }
   ];
 
-  const handleContinue = (selectedOptions: string[]) => {
-    setAnswer("question6", selectedOptions);
+  const handleSelect = (selectedIds: string[]) => {
+    console.log(`🟢 Q6 COMPONENT DEBUG: Selected IDs:`, selectedIds);
+    console.log(`🟢 Q6 COMPONENT DEBUG: Type:`, typeof selectedIds);
+    console.log(`🟢 Q6 COMPONENT DEBUG: Is array:`, Array.isArray(selectedIds));
+    
+    // Pass the array directly without any wrapping
+    setAnswer("question6", selectedIds);
     navigate("/quiz/question7");
   };
 
@@ -63,8 +62,9 @@ const QuizQuestion6 = () => {
         <MultiSelectQuestion
           question={question}
           options={options}
-          onContinue={handleContinue}
+          onSelect={handleSelect}
           questionNumber="6"
+          subtitle="(Select all that apply)"
         />
       </main>
     </div>

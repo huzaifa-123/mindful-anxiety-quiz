@@ -13,31 +13,28 @@ const QuizQuestion4 = () => {
   const options = [
     {
       id: "panic1",
-      text: "I feel a sudden, overwhelming panic that seems to come out of nowhere.",
-      type: "panic" as const,
+      text: "I feel a sudden, overwhelming panic that seems to come out of nowhere",
       icon: "/dummy-panic-icon.png"
     },
     {
-      id: "avoidant1",
-      text: "I often avoid situations because of anxiety and fear.",
-      type: "avoidant" as const,
-      icon: "/dummy-avoidant-icon.png"
+      id: "avoidant1", 
+      text: "I often avoid situations because of anxiety and fear",
+      icon: "/dummy-avoid-icon.png"
     },
     {
       id: "ruminator1",
-      text: "I get stuck in endless overthinking, doubts, and \"what if\" scenarios.",
-      type: "ruminator" as const,
-      icon: "/dummy-ruminator-icon.png"
+      text: "I get stuck in endless overthinking, doubts, and \"what if\" scenarios",
+      icon: "/dummy-overthink-icon.png"
     }
   ];
 
-  const handleContinue = (selectedOptions: string[]) => {
-    console.log(`🟡 Q4 DEBUG: Raw selectedOptions received:`, selectedOptions);
-    console.log(`🟡 Q4 DEBUG: selectedOptions type:`, typeof selectedOptions);
-    console.log(`🟡 Q4 DEBUG: selectedOptions isArray:`, Array.isArray(selectedOptions));
-    console.log(`🟡 Q4 DEBUG: JSON.stringify(selectedOptions):`, JSON.stringify(selectedOptions));
+  const handleSelect = (selectedIds: string[]) => {
+    console.log(`🟢 Q4 COMPONENT DEBUG: Selected IDs:`, selectedIds);
+    console.log(`🟢 Q4 COMPONENT DEBUG: Type:`, typeof selectedIds);
+    console.log(`🟢 Q4 COMPONENT DEBUG: Is array:`, Array.isArray(selectedIds));
     
-    setAnswer("question4", selectedOptions);
+    // Pass the array directly without any wrapping
+    setAnswer("question4", selectedIds);
     navigate("/quiz/question5");
   };
 
@@ -50,8 +47,9 @@ const QuizQuestion4 = () => {
         <MultiSelectQuestion
           question={question}
           options={options}
-          onContinue={handleContinue}
+          onSelect={handleSelect}
           questionNumber="4"
+          subtitle="(Select all that apply)"
         />
       </main>
     </div>

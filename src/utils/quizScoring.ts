@@ -62,62 +62,10 @@ const answerTypeMapping: Record<string, "panic" | "avoidant" | "ruminator"> = {
   "avoidant7": "avoidant",   // Shut down emotionally to avoid discomfort
 };
 
-// Simplified helper function to extract actual values from malformed data
-const extractValue = (value: any): any => {
-  console.log(`🔧 EXTRACT DEBUG: Input value:`, value);
-  console.log(`🔧 EXTRACT DEBUG: Type:`, typeof value);
-  console.log(`🔧 EXTRACT DEBUG: JSON:`, JSON.stringify(value));
-  
-  // Handle malformed objects with _type and value properties
-  if (value && typeof value === 'object' && value._type !== undefined && value.value !== undefined) {
-    console.log(`🔧 EXTRACT DEBUG: Found malformed object with _type:`, value._type, "and value:", value.value);
-    
-    // If the nested value is the string "undefined", return undefined
-    if (value.value === "undefined" || value.value === undefined) {
-      console.log(`🔧 EXTRACT DEBUG: Nested value is undefined, returning undefined`);
-      return undefined;
-    }
-    
-    console.log(`🔧 EXTRACT DEBUG: Extracting nested value:`, value.value);
-    return value.value;
-  }
-  
-  // If it's the string "undefined", return undefined
-  if (value === "undefined") {
-    console.log(`🔧 EXTRACT DEBUG: Value is string "undefined", returning undefined`);
-    return undefined;
-  }
-  
-  // If it's actually undefined or null, return undefined
-  if (value === undefined || value === null) {
-    console.log(`🔧 EXTRACT DEBUG: Value is undefined/null, returning undefined`);
-    return undefined;
-  }
-  
-  console.log(`🔧 EXTRACT DEBUG: Normal value, returning as is:`, value);
-  return value;
-};
-
 export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
-  console.log("🚀 SCORING DEBUG: Starting calculation with raw answers:", JSON.stringify(answers, null, 2));
+  console.log("🚀 SCORING DEBUG: Starting calculation with answers:", JSON.stringify(answers, null, 2));
   
-  // Step 1: Extract and clean the answers
-  const cleanedAnswers = {
-    question4: extractValue(answers.question4),
-    question5: extractValue(answers.question5),
-    question6: extractValue(answers.question6),
-    question7: extractValue(answers.question7),
-    question9: extractValue(answers.question9),
-    question10: extractValue(answers.question10),
-    question11: extractValue(answers.question11),
-    question12: extractValue(answers.question12),
-    question13: extractValue(answers.question13),
-    question17: extractValue(answers.question17),
-  };
-  
-  console.log("🧹 SCORING DEBUG: Cleaned answers:", JSON.stringify(cleanedAnswers, null, 2));
-  
-  // Step 2: Calculate anxiety type percentages
+  // Step 1: Calculate anxiety type percentages
   const typeCounts: AnxietyTypeCount = {
     panic: 0,
     avoidant: 0,
@@ -130,7 +78,7 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
   const typeQuestions = ['question4', 'question5', 'question6', 'question7'];
   
   typeQuestions.forEach(questionKey => {
-    const questionAnswers = cleanedAnswers[questionKey as keyof typeof cleanedAnswers];
+    const questionAnswers = answers[questionKey as keyof QuizAnswers];
     console.log(`🔍 SCORING DEBUG: Processing ${questionKey}:`, questionAnswers);
     console.log(`🔍 SCORING DEBUG: Type of ${questionKey}:`, typeof questionAnswers);
     console.log(`🔍 SCORING DEBUG: Is array:`, Array.isArray(questionAnswers));
@@ -200,12 +148,12 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
 
   console.log("🏆 SCORING DEBUG: Dominant type:", dominantType, "with count:", maxCount);
 
-  // Step 3: Calculate severity based on scale questions (9, 10, 11, 12)
+  // Step 2: Calculate severity based on scale questions (9, 10, 11, 12)
   const scaleQuestions = [
-    cleanedAnswers.question9 || 0,   // How effective have techniques been
-    cleanedAnswers.question10 || 0,  // How much anxiety affects daily life
-    cleanedAnswers.question11 || 0,  // How often experience anxiety symptoms
-    cleanedAnswers.question12 || 0   // How distressed when anxiety hits
+    answers.question9 || 0,   // How effective have techniques been
+    answers.question10 || 0,  // How much anxiety affects daily life
+    answers.question11 || 0,  // How often experience anxiety symptoms
+    answers.question12 || 0   // How distressed when anxiety hits
   ];
 
   console.log("📏 SCORING DEBUG: Scale question answers:", scaleQuestions);

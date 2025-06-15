@@ -14,43 +14,42 @@ const QuizQuestion5 = () => {
     {
       id: "ruminator2",
       text: "First thing in the morning",
-      type: "ruminator" as const,
       icon: "/dummy-morning-icon.png"
     },
     {
       id: "avoidant2",
       text: "Before tasks or challenges",
-      type: "avoidant" as const,
       icon: "/dummy-tasks-icon.png"
     },
     {
       id: "avoidant3",
       text: "In social situations",
-      type: "avoidant" as const,
       icon: "/dummy-social-icon.png"
     },
     {
       id: "panic2",
       text: "At random times without a clear cause",
-      type: "panic" as const,
       icon: "/dummy-random-icon.png"
     },
     {
       id: "ruminator3",
       text: "In the evening or before sleeping",
-      type: "ruminator" as const,
       icon: "/dummy-evening-icon.png"
     },
     {
       id: "panic3",
-      text: "When physical symptoms suddenly spike (like a racing heart or short breath)",
-      type: "panic" as const,
+      text: "When physical symptoms suddenly spike",
       icon: "/dummy-physical-icon.png"
     }
   ];
 
-  const handleContinue = (selectedOptions: string[]) => {
-    setAnswer("question5", selectedOptions);
+  const handleSelect = (selectedIds: string[]) => {
+    console.log(`🟢 Q5 COMPONENT DEBUG: Selected IDs:`, selectedIds);
+    console.log(`🟢 Q5 COMPONENT DEBUG: Type:`, typeof selectedIds);
+    console.log(`🟢 Q5 COMPONENT DEBUG: Is array:`, Array.isArray(selectedIds));
+    
+    // Pass the array directly without any wrapping
+    setAnswer("question5", selectedIds);
     navigate("/quiz/question6");
   };
 
@@ -63,8 +62,9 @@ const QuizQuestion5 = () => {
         <MultiSelectQuestion
           question={question}
           options={options}
-          onContinue={handleContinue}
+          onSelect={handleSelect}
           questionNumber="5"
+          subtitle="(Select all that apply)"
         />
       </main>
     </div>

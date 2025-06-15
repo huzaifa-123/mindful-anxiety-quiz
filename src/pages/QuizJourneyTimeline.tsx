@@ -14,38 +14,8 @@ const QuizJourneyTimeline = () => {
     const calculateEstimatedDate = () => {
       console.log("🗓️ TIMELINE DEBUG: All quiz answers:", JSON.stringify(answers, null, 2));
       
-      // Extract actual values from potentially malformed data
-      const extractValue = (value: any): any => {
-        console.log(`🔧 TIMELINE EXTRACT DEBUG: Input value:`, value);
-        console.log(`🔧 TIMELINE EXTRACT DEBUG: Type:`, typeof value);
-        console.log(`🔧 TIMELINE EXTRACT DEBUG: JSON:`, JSON.stringify(value));
-        
-        // If it's a malformed object with _type and value properties
-        if (value && typeof value === 'object' && '_type' in value && 'value' in value) {
-          console.log(`🔧 TIMELINE EXTRACT DEBUG: Found malformed object, checking value:`, value.value);
-          
-          // If the nested value is the string "undefined", return undefined
-          if (value.value === "undefined") {
-            console.log(`🔧 TIMELINE EXTRACT DEBUG: Nested value is string "undefined", returning undefined`);
-            return undefined;
-          }
-          
-          console.log(`🔧 TIMELINE EXTRACT DEBUG: Extracting nested value:`, value.value);
-          return value.value;
-        }
-        
-        // If it's the string "undefined", return undefined
-        if (value === "undefined") {
-          console.log(`🔧 TIMELINE EXTRACT DEBUG: Value is string "undefined", returning undefined`);
-          return undefined;
-        }
-        
-        console.log(`🔧 TIMELINE EXTRACT DEBUG: Normal value, returning as is:`, value);
-        return value;
-      };
-
-      const q13Value = extractValue(answers.question13);
-      const q17Value = extractValue(answers.question17);
+      const q13Value = answers.question13;
+      const q17Value = answers.question17;
       
       console.log("🗓️ TIMELINE DEBUG: Q13 answer (duration):", q13Value);
       console.log("🗓️ TIMELINE DEBUG: Q17 answer (time available):", q17Value);

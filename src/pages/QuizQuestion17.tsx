@@ -8,36 +8,36 @@ const QuizQuestion17 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "How much time can you realistically dedicate each day to your mental wellbeing?";
+  const question = "How much time can you realistically commit to your well-being each day?";
   
   const options = [
     {
       id: "5_minutes",
       text: "5 minutes",
-      icon: "/dummy-clock-icon.png"
+      icon: "/dummy-time-icon.png"
     },
     {
       id: "10_minutes",
       text: "10 minutes",
-      icon: "/dummy-clock-icon.png"
+      icon: "/dummy-time-icon.png"
     },
     {
       id: "15_minutes",
       text: "15 minutes",
-      icon: "/dummy-clock-icon.png"
+      icon: "/dummy-time-icon.png"
     },
     {
       id: "20_plus_minutes",
       text: "20+ minutes",
-      icon: "/dummy-clock-icon.png"
+      icon: "/dummy-time-icon.png"
     }
   ];
 
   const handleSelect = (optionId: string) => {
-    console.log(`🟡 Q17 DEBUG: Raw optionId received:`, optionId);
-    console.log(`🟡 Q17 DEBUG: optionId type:`, typeof optionId);
-    console.log(`🟡 Q17 DEBUG: JSON.stringify(optionId):`, JSON.stringify(optionId));
+    console.log(`🟢 Q17 COMPONENT DEBUG: Selected ID:`, optionId);
+    console.log(`🟢 Q17 COMPONENT DEBUG: Type:`, typeof optionId);
     
+    // Pass the string directly without any wrapping
     setAnswer("question17", optionId);
     navigate("/quiz/question18");
   };
