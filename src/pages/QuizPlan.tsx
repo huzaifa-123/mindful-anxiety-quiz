@@ -1,9 +1,9 @@
-
 import Header from "../components/Header";
 import { useState, useEffect } from "react";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { calculateQuizResults } from "../utils/quizScoring";
-import { Check } from "lucide-react";
+import { Check, ChevronDown } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 
 const QuizPlan = () => {
   // 15 minute countdown timer
@@ -483,6 +483,181 @@ const QuizPlan = () => {
                   <Check className="w-4 h-4 text-white" />
                 </div>
                 <span className="text-gray-700">Support you without overwhelm</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Therapy Results + Life Without vs. With Support Section */}
+          <div className="text-center mb-16">
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">
+              Therapy Results + 
+            </h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              "Life Without vs. With Support"
+            </h2>
+            
+            <p className="text-gray-700 text-sm mb-8">
+              Success rates from clinical methods:
+            </p>
+            
+            {/* Graphic representation */}
+            <div className="flex justify-center items-center mb-8">
+              <div className="relative w-80 h-40">
+                {/* Success rate bars */}
+                <div className="absolute bottom-0 left-8 w-24 bg-flourishmint opacity-60 rounded-t" style={{ height: '60%' }}>
+                  <div className="text-white text-xs font-bold pt-2">50%</div>
+                </div>
+                <div className="absolute bottom-0 right-8 w-24 bg-flourishmint rounded-t" style={{ height: '90%' }}>
+                  <div className="text-white text-xs font-bold pt-2">90%</div>
+                </div>
+                
+                {/* Illustration placeholders */}
+                <div className="absolute bottom-16 left-4 w-32 h-20 bg-gray-200 rounded flex items-center justify-center">
+                  <span className="text-xs text-gray-500">Person Illustration</span>
+                </div>
+                <div className="absolute bottom-20 right-4 w-32 h-24 bg-gray-200 rounded flex items-center justify-center">
+                  <span className="text-xs text-gray-500">Person Illustration</span>
+                </div>
+              </div>
+            </div>
+            
+            <p className="text-xs text-gray-600 mb-6 max-w-md mx-auto">
+              Research shows CBT can be effective for up to 70% of individuals. MCT and CBH have also demonstrated high success rates, especially when integrated. Our approach offers a more complete path with lasting results.
+            </p>
+            
+            <p className="text-sm font-semibold text-gray-800 mb-8">
+              Estimated combined approach success: up to 90%
+            </p>
+            
+            {/* Comparison columns */}
+            <div className="flex justify-center gap-8 max-w-2xl mx-auto">
+              <div className="flex-1">
+                <div className="bg-gray-600 text-white px-4 py-2 rounded mb-4">
+                  <span className="text-sm font-medium">Without Support:</span>
+                </div>
+                <ul className="space-y-2 text-left text-sm text-gray-700">
+                  <li>• You may continue battling the same cycles</li>
+                  <li>• Your nervous system stays reactive</li>
+                  <li>• Daily life feels heavier than it needs to</li>
+                </ul>
+              </div>
+              
+              <div className="flex-1">
+                <div className="bg-flourishgreen text-white px-4 py-2 rounded mb-4">
+                  <span className="text-sm font-medium">With Calm Reset:</span>
+                </div>
+                <ul className="space-y-2 text-left text-sm text-gray-700">
+                  <li>• Thought spirals become less intense</li>
+                  <li>• You feel cleaner, lighter, and more focused</li>
+                  <li>• You build emotional safety from within</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Frequently Asked Questions Section */}
+          <div className="mb-16">
+            <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
+              Frequently Asked Questions
+            </h2>
+            
+            <div className="max-w-2xl mx-auto">
+              <Accordion type="single" collapsible className="space-y-4">
+                <AccordionItem value="diagnosis" className="border border-gray-200 rounded-lg">
+                  <AccordionTrigger className="bg-flourishgreen text-white px-4 py-3 rounded-lg hover:no-underline">
+                    <span className="font-medium">Q: Do I need a diagnosis?</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 py-3 bg-white rounded-b-lg">
+                    <p className="text-gray-700">A: No. This quiz and plan are designed to support anyone experiencing anxiety symptoms.</p>
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="therapy" className="border border-gray-200 rounded-lg">
+                  <AccordionTrigger className="bg-flourishgreen text-white px-4 py-3 rounded-lg hover:no-underline">
+                    <span className="font-medium">Q: Is this therapy?</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 py-3 bg-white rounded-b-lg">
+                    <p className="text-gray-700">A: It's not formal therapy, but it is built on real clinical approaches used in therapy settings.</p>
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="cbt" className="border border-gray-200 rounded-lg">
+                  <AccordionTrigger className="bg-flourishgreen text-white px-4 py-3 rounded-lg hover:no-underline">
+                    <span className="font-medium">Q: What if I've already tried CBT?</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 py-3 bg-white rounded-b-lg">
+                    <p className="text-gray-700">A: This combines CBT with other tools that address overthinking and subconscious reactions.</p>
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="results" className="border border-gray-200 rounded-lg">
+                  <AccordionTrigger className="bg-flourishgreen text-white px-4 py-3 rounded-lg hover:no-underline">
+                    <span className="font-medium">Q: How fast can I feel results?</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 py-3 bg-white rounded-b-lg">
+                    <p className="text-gray-700">A: Some people feel a shift within 1–2 weeks. Most see significant change within 4–6 weeks.</p>
+                  </AccordionContent>
+                </AccordionItem>
+                
+                <AccordionItem value="daily" className="border border-gray-200 rounded-lg">
+                  <AccordionTrigger className="bg-flourishgreen text-white px-4 py-3 rounded-lg hover:no-underline">
+                    <span className="font-medium">Q: Do I have to use it every day?</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-4 py-3 bg-white rounded-b-lg">
+                    <p className="text-gray-700">A: No. You'll learn tools you can return to when needed. This is flexible, not rigid.</p>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
+            </div>
+          </div>
+
+          {/* Testimonials Section */}
+          <div className="text-center mb-16">
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">
+              Testimonials
+            </h2>
+            
+            <div className="flex justify-center gap-6 max-w-4xl mx-auto">
+              <div className="flex-1 max-w-sm">
+                <div className="bg-white border border-gray-200 rounded-lg p-6 relative">
+                  <div className="text-flourishmint text-4xl mb-4">"</div>
+                  <p className="text-gray-700 text-sm mb-4">
+                    "This is the first plan that actually matched how I think. It finally felt designed for someone like me."
+                  </p>
+                  <div className="flex justify-center space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-flourishmint text-lg">★</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex-1 max-w-sm">
+                <div className="bg-white border border-gray-200 rounded-lg p-6 relative">
+                  <div className="text-flourishmint text-4xl mb-4">"</div>
+                  <p className="text-gray-700 text-sm mb-4">
+                    "I used to spiral every evening. Now I have a way to stop it before it starts."
+                  </p>
+                  <div className="flex justify-center space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-flourishmint text-lg">★</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              
+              <div className="flex-1 max-w-sm">
+                <div className="bg-white border border-gray-200 rounded-lg p-6 relative">
+                  <div className="text-flourishmint text-4xl mb-4">"</div>
+                  <p className="text-gray-700 text-sm mb-4">
+                    "I didn't think I'd ever feel calm again but this gave me back hope."
+                  </p>
+                  <div className="flex justify-center space-x-1">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-flourishmint text-lg">★</span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
