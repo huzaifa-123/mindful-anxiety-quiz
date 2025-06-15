@@ -22,16 +22,16 @@ export default {
         inter: ['Inter', 'sans-serif'],
       },
       fontSize: {
-        'xs': ['1rem', { lineHeight: '1.5rem' }], // increased from 0.875rem
-        'sm': ['1.125rem', { lineHeight: '1.75rem' }], // increased from 1rem
-        'base': ['1.25rem', { lineHeight: '1.875rem' }], // increased from 1.125rem
-        'lg': ['1.375rem', { lineHeight: '2rem' }], // increased from 1.25rem
-        'xl': ['1.5rem', { lineHeight: '2.125rem' }], // increased from 1.375rem
-        '2xl': ['1.75rem', { lineHeight: '2.375rem' }], // increased from 1.625rem
-        '3xl': ['2.25rem', { lineHeight: '2.75rem' }], // increased from 2rem
-        '4xl': ['2.75rem', { lineHeight: '3.25rem' }], // increased from 2.5rem
-        '5xl': ['3.5rem', { lineHeight: '4rem' }], // increased from 3.25rem
-        '6xl': ['4.25rem', { lineHeight: '4.75rem' }], // increased from 4rem
+        'xs': ['1.125rem', { lineHeight: '1.75rem' }], // increased from 1rem
+        'sm': ['1.25rem', { lineHeight: '1.875rem' }], // increased from 1.125rem
+        'base': ['1.375rem', { lineHeight: '2rem' }], // increased from 1.25rem
+        'lg': ['1.5rem', { lineHeight: '2.125rem' }], // increased from 1.375rem
+        'xl': ['1.625rem', { lineHeight: '2.25rem' }], // increased from 1.5rem
+        '2xl': ['1.875rem', { lineHeight: '2.5rem' }], // increased from 1.75rem
+        '3xl': ['2.5rem', { lineHeight: '3rem' }], // increased from 2.25rem
+        '4xl': ['3rem', { lineHeight: '3.5rem' }], // increased from 2.75rem
+        '5xl': ['3.75rem', { lineHeight: '4.25rem' }], // increased from 3.5rem
+        '6xl': ['4.5rem', { lineHeight: '5rem' }], // increased from 4.25rem
       },
       colors: {
         flourishgreen: "#355945", // dark green header and button
