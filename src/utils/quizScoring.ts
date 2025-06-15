@@ -5,7 +5,11 @@ interface QuizAnswers {
   question6?: string[];
   question7?: string;
   question8?: string[];
-  // More questions will be added later
+  question9?: number;
+  question10?: number;
+  question11?: number;
+  question12?: number;
+  // Add other questions as needed
 }
 
 interface AnxietyTypeCount {
@@ -25,79 +29,80 @@ interface QuizResults {
   severityScore: number;
 }
 
-// Mapping of answer IDs to anxiety types
+// Complete mapping of answer IDs to anxiety types based on your specifications
 const answerTypeMapping: Record<string, "panic" | "avoidant" | "ruminator"> = {
-  // Question 4
-  "panic1": "panic",
-  "avoidant1": "avoidant",
-  "ruminator1": "ruminator",
+  // Question 4 - Which statement best describes your anxiety?
+  "panic1": "panic",        // I feel a sudden, overwhelming panic that seems to come out of nowhere
+  "avoidant1": "avoidant",  // I often avoid situations because of anxiety and fear
+  "ruminator1": "ruminator", // I get stuck in endless overthinking, doubts, and "what if" scenarios
   
-  // Question 5
-  "ruminator2": "ruminator",
-  "avoidant2": "avoidant",
-  "avoidant3": "avoidant",
-  "panic2": "panic",
-  "ruminator3": "ruminator",
-  "panic3": "panic",
+  // Question 5 - When does your anxiety feel worse?
+  "ruminator2": "ruminator", // First thing in the morning
+  "avoidant2": "avoidant",   // Before tasks or challenges
+  "avoidant3": "avoidant",   // In social situations
+  "panic2": "panic",         // At random times without a clear cause
+  "ruminator3": "ruminator", // In the evening or before sleeping
+  "panic3": "panic",         // When physical symptoms suddenly spike
   
-  // Question 6
-  "panic4": "panic",
-  "avoidant4": "avoidant",
-  "ruminator4": "ruminator",
-  "panic5": "panic",
-  "avoidant5": "avoidant",
-  "ruminator5": "ruminator",
+  // Question 6 - What triggers your anxiety most often?
+  "panic4": "panic",         // Fear of losing control or panicking
+  "avoidant4": "avoidant",   // Fear of being judged or failing
+  "ruminator4": "ruminator", // Fear of uncertainty or bad outcomes
+  "panic5": "panic",         // No clear trigger, it just "hits" sometimes
+  "avoidant5": "avoidant",   // Fear of confrontation or having to express myself
+  "ruminator5": "ruminator", // Fear of making the wrong decision or overthinking consequences
   
-  // Question 7
-  "avoidant6": "avoidant",
-  "ruminator6": "ruminator",
-  "panic6": "panic",
-  "panic7": "panic",
-  "avoidant7": "avoidant",
+  // Question 7 - What do you usually do when you feel anxious?
+  "avoidant6": "avoidant",   // Try to distract myself or escape the situation
+  "ruminator6": "ruminator", // Try to "think my way out" of the anxiety
+  "panic6": "panic",         // Fight against the anxious feelings
+  "panic7": "panic",         // Freeze due to overwhelming panic and fear
+  "avoidant7": "avoidant",   // Shut down emotionally to avoid discomfort
 };
 
 export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
+  // Step 1: Calculate anxiety type percentages
   const typeCounts: AnxietyTypeCount = {
     panic: 0,
     avoidant: 0,
     ruminator: 0
   };
 
-  let totalAnswers = 0;
+  let totalTypedAnswers = 0;
 
-  // Count answers for questions 4-7 (Question 8 is not scored)
-  const scoredQuestions = ['question4', 'question5', 'question6', 'question7'];
+  // Count answers for questions 4-7 (these determine anxiety type)
+  const typeQuestions = ['question4', 'question5', 'question6', 'question7'];
   
-  scoredQuestions.forEach(questionKey => {
+  typeQuestions.forEach(questionKey => {
     const questionAnswers = answers[questionKey as keyof QuizAnswers];
     
     if (Array.isArray(questionAnswers)) {
-      // Multi-select questions
+      // Multi-select questions (4, 5, 6)
       questionAnswers.forEach(answerId => {
         const type = answerTypeMapping[answerId];
         if (type) {
           typeCounts[type]++;
-          totalAnswers++;
+          totalTypedAnswers++;
         }
       });
     } else if (typeof questionAnswers === 'string') {
-      // Single-select questions
+      // Single-select questions (7)
       const type = answerTypeMapping[questionAnswers];
       if (type) {
         typeCounts[type]++;
-        totalAnswers++;
+        totalTypedAnswers++;
       }
     }
   });
 
-  // Calculate percentages
+  // Calculate percentages for anxiety types
   const typePercentages = {
-    panic: totalAnswers > 0 ? Math.round((typeCounts.panic / totalAnswers) * 100) : 0,
-    avoidant: totalAnswers > 0 ? Math.round((typeCounts.avoidant / totalAnswers) * 100) : 0,
-    ruminator: totalAnswers > 0 ? Math.round((typeCounts.ruminator / totalAnswers) * 100) : 0,
+    panic: totalTypedAnswers > 0 ? Math.round((typeCounts.panic / totalTypedAnswers) * 100) : 0,
+    avoidant: totalTypedAnswers > 0 ? Math.round((typeCounts.avoidant / totalTypedAnswers) * 100) : 0,
+    ruminator: totalTypedAnswers > 0 ? Math.round((typeCounts.ruminator / totalTypedAnswers) * 100) : 0,
   };
 
-  // Determine dominant type
+  // Determine dominant anxiety type
   let dominantType: "panic" | "avoidant" | "ruminator" = "panic";
   let maxCount = typeCounts.panic;
   
@@ -110,10 +115,26 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
     dominantType = "ruminator";
   }
 
-  // TODO: Calculate severity based on scale questions from Part 3
-  // For now, return placeholder values
-  const severityScore = 0;
-  const severity = "mild" as const;
+  // Step 2: Calculate severity based on scale questions (9, 10, 11, 12)
+  const scaleQuestions = [
+    answers.question9 || 0,   // Anxiety impact on daily life
+    answers.question10 || 0,  // How much anxiety affects daily life
+    answers.question11 || 0,  // How often experience anxiety symptoms
+    answers.question12 || 0   // How distressed when anxiety hits
+  ];
+
+  // Sum up all scale ratings (each question is rated 1-10)
+  const severityScore = scaleQuestions.reduce((sum, rating) => sum + rating, 0);
+
+  // Classify severity based on total score (out of 40 max)
+  let severity: "mild" | "moderate" | "severe";
+  if (severityScore <= 13) {
+    severity = "mild";
+  } else if (severityScore <= 26) {
+    severity = "moderate";
+  } else {
+    severity = "severe";
+  }
 
   return {
     dominantType,
@@ -121,4 +142,32 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
     severity,
     severityScore
   };
+};
+
+// Helper function to get anxiety type description
+export const getAnxietyTypeDescription = (type: "panic" | "avoidant" | "ruminator"): string => {
+  switch (type) {
+    case "panic":
+      return "You experience sudden, intense episodes of anxiety that can feel overwhelming and unpredictable.";
+    case "avoidant":
+      return "You tend to avoid situations or experiences that trigger your anxiety, often limiting your activities.";
+    case "ruminator":
+      return "You get caught in cycles of overthinking, worry, and 'what if' scenarios that are hard to break.";
+    default:
+      return "Your anxiety pattern is being analyzed.";
+  }
+};
+
+// Helper function to get severity description
+export const getSeverityDescription = (severity: "mild" | "moderate" | "severe"): string => {
+  switch (severity) {
+    case "mild":
+      return "Your anxiety has a manageable impact on your daily life.";
+    case "moderate":
+      return "Your anxiety significantly affects your daily activities and well-being.";
+    case "severe":
+      return "Your anxiety has a major impact on multiple areas of your life.";
+    default:
+      return "Your anxiety severity is being assessed.";
+  }
 };
