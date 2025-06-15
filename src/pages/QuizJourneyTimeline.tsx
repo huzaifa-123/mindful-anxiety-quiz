@@ -1,3 +1,4 @@
+
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
@@ -115,13 +116,37 @@ const QuizJourneyTimeline = () => {
           </div>
           
           {/* Timeline visualization with GIF */}
-          <div className="w-full max-w-lg h-64 mb-6 flex items-center justify-center">
+          <div className="w-full max-w-lg mb-4 flex items-center justify-center">
             <img
-              src="/placeholder-timeline.gif"
+              src="/QuizDesign/Final_Quiz Section Design (2).gif"
               alt="Progress timeline showing journey from current state to goal integration"
-              className="w-full h-full object-contain"
+              className="w-full h-auto object-contain"
               draggable={false}
             />
+          </div>
+          
+          {/* Progress stages labels */}
+          <div className="flex justify-between items-center w-full max-w-lg mb-6 text-xs text-gray-600">
+            <div className="flex flex-col items-center">
+              <span className="font-medium">Current</span>
+              <span>State</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="font-medium">Early</span>
+              <span>Shifts</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="font-medium">Ongoing</span>
+              <span>Shift</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="font-medium">Target</span>
+              <span>Relief</span>
+            </div>
+            <div className="flex flex-col items-center">
+              <span className="font-medium">Goal</span>
+              <span>Integration</span>
+            </div>
           </div>
           
           {/* Description paragraphs */}
