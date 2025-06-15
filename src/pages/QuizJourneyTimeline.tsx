@@ -12,6 +12,10 @@ const QuizJourneyTimeline = () => {
   useEffect(() => {
     // Calculate estimated date based on quiz answers
     const calculateEstimatedDate = () => {
+      console.log("All quiz answers:", answers);
+      console.log("Q4 answer:", answers.question4);
+      console.log("Q17 answer:", answers.question17);
+
       // Base days from Q4 (anxiety duration)
       const baseDaysMap: Record<string, number> = {
         "few_weeks": 10,
@@ -29,10 +33,19 @@ const QuizJourneyTimeline = () => {
         "20_plus_minutes": 0.85
       };
 
-      const baseDays = baseDaysMap[answers.question4?.[0] || "few_months"] || 14;
+      // Get Q4 answer (it's an array, so take first element)
+      const q4Answer = Array.isArray(answers.question4) ? answers.question4[0] : answers.question4;
+      const baseDays = baseDaysMap[q4Answer || "few_months"] || 14;
+      
+      // Get Q17 answer (it's a string)
       const timeMultiplier = timeMultiplierMap[answers.question17 || "15_minutes"] || 1;
       
+      console.log("Base days:", baseDays, "for answer:", q4Answer);
+      console.log("Time multiplier:", timeMultiplier, "for answer:", answers.question17);
+      
       const estimatedDays = Math.round(baseDays * timeMultiplier);
+      console.log("Estimated days:", estimatedDays);
+      
       const futureDate = new Date();
       futureDate.setDate(futureDate.getDate() + estimatedDays);
       
@@ -41,6 +54,7 @@ const QuizJourneyTimeline = () => {
         year: 'numeric' 
       });
       
+      console.log("Estimated date:", monthYear);
       setEstimatedDate(monthYear);
     };
 
