@@ -12,11 +12,12 @@ const QuizJourneyTimeline = () => {
   useEffect(() => {
     // Calculate estimated date based on quiz answers
     const calculateEstimatedDate = () => {
+      console.log("🗓️ TIMELINE DEBUG: Starting date calculation");
       console.log("🗓️ TIMELINE DEBUG: All quiz answers:", JSON.stringify(answers, null, 2));
       
       // Use question14 (duration) and question18 (time available) for calculation
-      const q14Value = answers.question14; // Duration of anxiety (formerly Q13)
-      const q18Value = answers.question18; // Time available daily (formerly Q17)
+      const q14Value = answers.question14; // Duration of anxiety 
+      const q18Value = answers.question18; // Time available daily 
       
       console.log("🗓️ TIMELINE DEBUG: Q14 answer (duration):", q14Value);
       console.log("🗓️ TIMELINE DEBUG: Q18 answer (time available):", q18Value);
@@ -45,23 +46,34 @@ const QuizJourneyTimeline = () => {
       
       console.log("🗓️ TIMELINE DEBUG: Base days:", baseDays, "for duration:", q14Value);
       console.log("🗓️ TIMELINE DEBUG: Time multiplier:", timeMultiplier, "for time:", q18Value);
+      console.log("🗓️ TIMELINE DEBUG: Available mappings for Q14:", Object.keys(baseDaysMap));
+      console.log("🗓️ TIMELINE DEBUG: Available mappings for Q18:", Object.keys(timeMultiplierMap));
       
       // Apply the correct formula: estimated_days = base_days × multiplier
       const estimatedDays = Math.round(baseDays * timeMultiplier);
-      console.log("🗓️ TIMELINE DEBUG: Estimated days:", estimatedDays);
+      console.log("🗓️ TIMELINE DEBUG: Estimated days calculation:", baseDays, "×", timeMultiplier, "=", estimatedDays);
       
       // Calculate future date: estimated_date = today + estimated_days
+      const today = new Date();
       const futureDate = new Date();
-      futureDate.setDate(futureDate.getDate() + estimatedDays);
+      futureDate.setDate(today.getDate() + estimatedDays);
       
       const monthYear = futureDate.toLocaleDateString('en-US', { 
         month: 'long', 
         year: 'numeric' 
       });
       
-      console.log("🗓️ TIMELINE DEBUG: Today:", new Date().toLocaleDateString());
+      console.log("🗓️ TIMELINE DEBUG: Today:", today.toLocaleDateString());
+      console.log("🗓️ TIMELINE DEBUG: Adding", estimatedDays, "days to today");
       console.log("🗓️ TIMELINE DEBUG: Future date:", futureDate.toLocaleDateString());
       console.log("🗓️ TIMELINE DEBUG: Estimated date string:", monthYear);
+      
+      // Validate that we're not getting a hardcoded value
+      if (monthYear.includes("June 2025")) {
+        console.log("🚨 TIMELINE DEBUG: WARNING! Getting hardcoded June 2025 - this suggests calculation error");
+        console.log("🚨 TIMELINE DEBUG: Check if Q14/Q18 values are undefined or incorrect");
+      }
+      
       setEstimatedDate(monthYear);
     };
 

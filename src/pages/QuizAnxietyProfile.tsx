@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
@@ -10,11 +9,18 @@ const QuizAnxietyProfile = () => {
   const navigate = useNavigate();
   const { answers } = useQuizAnswers();
   
+  // Debug: Log all answers before calculation
+  console.log("🔴 ANXIETY PROFILE DEBUG: All quiz answers:", JSON.stringify(answers, null, 2));
+  
   // Calculate results based on user's answers
   const results = calculateQuizResults(answers);
   
+  // Debug: Log calculated results
+  console.log("🔴 ANXIETY PROFILE DEBUG: Calculated results:", JSON.stringify(results, null, 2));
+  
   // Get colors and styling based on anxiety type
   const getTypeStyles = (type: string) => {
+    console.log("🔴 ANXIETY PROFILE DEBUG: Getting styles for type:", type);
     switch (type) {
       case "panic":
         return {
@@ -41,6 +47,7 @@ const QuizAnxietyProfile = () => {
           progressColor: "bg-green-400"
         };
       default:
+        console.log("🔴 ANXIETY PROFILE DEBUG: Unknown type, using default styles");
         return {
           bgColor: "bg-gray-100",
           borderColor: "border-gray-300",
@@ -54,6 +61,7 @@ const QuizAnxietyProfile = () => {
   const typeStyles = getTypeStyles(results.dominantType);
 
   const getTypeTitle = (type: string) => {
+    console.log("🔴 ANXIETY PROFILE DEBUG: Getting title for type:", type);
     switch (type) {
       case "panic": return "THE PANIC TYPE";
       case "ruminator": return "THE RUMINATOR";
@@ -63,6 +71,7 @@ const QuizAnxietyProfile = () => {
   };
 
   const getTypeDescription = (type: string) => {
+    console.log("🔴 ANXIETY PROFILE DEBUG: Getting description for type:", type);
     switch (type) {
       case "panic":
         return "It can feel like anxiety strikes suddenly, with your body reacting before your mind understands why. This response is your nervous system in protection mode but it's working too hard. The good news? This pattern can be softened and safely rewired.";
@@ -111,8 +120,12 @@ const QuizAnxietyProfile = () => {
 
   const secondaryType = typePercentages[0];
 
-  console.log("Secondary type data:", secondaryType);
-  console.log("Should show secondary:", secondaryType && secondaryType.percentage >= 20);
+  console.log("🔴 ANXIETY PROFILE DEBUG: Secondary type data:", secondaryType);
+  console.log("🔴 ANXIETY PROFILE DEBUG: Should show secondary:", secondaryType && secondaryType.percentage >= 20);
+  console.log("🔴 ANXIETY PROFILE DEBUG: Final display values:");
+  console.log("🔴 ANXIETY PROFILE DEBUG: - Dominant type:", results.dominantType);
+  console.log("🔴 ANXIETY PROFILE DEBUG: - Severity:", results.severity);
+  console.log("🔴 ANXIETY PROFILE DEBUG: - Severity score:", results.severityScore);
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite">
