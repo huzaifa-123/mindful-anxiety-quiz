@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import { useState, useEffect } from "react";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { calculateQuizResults } from "../utils/quizScoring";
+import { Check } from "lucide-react";
 
 const QuizPlan = () => {
   // 15 minute countdown timer
@@ -357,6 +358,131 @@ const QuizPlan = () => {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Pricing Section */}
+          <div className="mb-16">
+            <div className="max-w-md mx-auto space-y-4">
+              {/* One Time Payment Option */}
+              <div className="relative">
+                <div className="bg-flourishgreen text-white text-center py-2 rounded-t-lg">
+                  <span className="text-sm font-medium flex items-center justify-center gap-1">
+                    ★ Most Popular!
+                  </span>
+                </div>
+                <div className="bg-white border border-gray-200 rounded-b-lg p-4 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <input 
+                      type="radio" 
+                      name="payment" 
+                      className="w-4 h-4" 
+                      defaultChecked
+                    />
+                    <span className="font-semibold text-gray-900">ONE TIME PAYMENT</span>
+                  </div>
+                  <div className="text-right">
+                    <div className="bg-flourishmint text-white px-3 py-1 rounded text-sm font-bold">
+                      $70.00
+                    </div>
+                    <div className="text-xs text-gray-500 mt-1">
+                      <span className="line-through">$147.00</span>
+                    </div>
+                    <div className="text-xs text-flourishmint font-medium">
+                      52% Discount
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3x Installment Plan Option */}
+              <div className="bg-white border border-gray-200 rounded-lg p-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <input 
+                    type="radio" 
+                    name="payment" 
+                    className="w-4 h-4"
+                  />
+                  <span className="font-semibold text-gray-900">3X INSTALLMENT PLAN</span>
+                </div>
+                <div className="text-right">
+                  <div className="bg-flourishmint text-white px-3 py-1 rounded text-sm font-bold">
+                    $25.00
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1">
+                    <span className="line-through">$49.00</span>
+                  </div>
+                  <div className="text-xs text-flourishmint font-medium">
+                    49% Discount
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Free Trial Section */}
+          <div className="text-center mb-16">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              Try the 7-Day Anxiety Reset — Free
+            </h2>
+            <p className="text-gray-700 mb-2 font-medium">
+              Your Calm Reset Plan is ready.
+            </p>
+            <p className="text-gray-600 text-sm mb-6">
+              Access the first 7 days at no cost and start rewiring your anxiety response today.
+            </p>
+            
+            <div className="bg-gray-800 text-white px-4 py-2 rounded inline-block mb-6">
+              <span className="text-sm font-medium">You'll receive:</span>
+            </div>
+            
+            <div className="max-w-sm mx-auto space-y-2 mb-8">
+              <div className="text-sm text-gray-700 text-left">• Daily MCT tools for overthinking release</div>
+              <div className="text-sm text-gray-700 text-left">• CBT-based action steps to reduce avoidance</div>
+              <div className="text-sm text-gray-700 text-left">• Soothing CBH audio tracks to calm your system</div>
+            </div>
+            
+            <button className="bg-flourishmint hover:bg-green-400 text-white px-8 py-3 rounded-full font-semibold transition-colors">
+              Start Free Trial
+            </button>
+          </div>
+
+          {/* Our Goals for You Section */}
+          <div className="text-center mb-16">
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">
+              Our Goals for You
+            </h2>
+            <div className="max-w-sm mx-auto space-y-4">
+              <div className="flex items-center gap-3 text-left">
+                <div className="w-6 h-6 bg-flourishmint rounded-full flex items-center justify-center flex-shrink-0">
+                  <Check className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-gray-700">Help you feel calmer throughout your day</span>
+              </div>
+              <div className="flex items-center gap-3 text-left">
+                <div className="w-6 h-6 bg-flourishmint rounded-full flex items-center justify-center flex-shrink-0">
+                  <Check className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-gray-700">Stop the spiral before it begins</span>
+              </div>
+              <div className="flex items-center gap-3 text-left">
+                <div className="w-6 h-6 bg-flourishmint rounded-full flex items-center justify-center flex-shrink-0">
+                  <Check className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-gray-700">Improve clarity, energy, and sleep</span>
+              </div>
+              <div className="flex items-center gap-3 text-left">
+                <div className="w-6 h-6 bg-flourishmint rounded-full flex items-center justify-center flex-shrink-0">
+                  <Check className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-gray-700">Build emotional resilience with lasting strategies</span>
+              </div>
+              <div className="flex items-center gap-3 text-left">
+                <div className="w-6 h-6 bg-flourishmint rounded-full flex items-center justify-center flex-shrink-0">
+                  <Check className="w-4 h-4 text-white" />
+                </div>
+                <span className="text-gray-700">Support you without overwhelm</span>
               </div>
             </div>
           </div>
