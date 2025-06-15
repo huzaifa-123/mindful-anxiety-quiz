@@ -5,8 +5,10 @@ import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
 const QuizQuestion4 = () => {
-  const { setAnswer } = useQuizAnswers();
+  const { setAnswer, answers } = useQuizAnswers();
   const navigate = useNavigate();
+
+  console.log(`🟢 Q4 COMPONENT MOUNT: Component mounted with current answers:`, JSON.stringify(answers, null, 2));
 
   const question = "Which statement best describes your anxiety?";
   
@@ -29,11 +31,14 @@ const QuizQuestion4 = () => {
   ];
 
   const handleContinue = (selectedIds: string[]) => {
-    console.log(`🟢 Q4 COMPONENT DEBUG: Selected IDs:`, selectedIds);
-    console.log(`🟢 Q4 COMPONENT DEBUG: Type:`, typeof selectedIds);
-    console.log(`🟢 Q4 COMPONENT DEBUG: Is array:`, Array.isArray(selectedIds));
+    console.log(`🟢 Q4 HANDLE CONTINUE: Called with selectedIds:`, selectedIds);
+    console.log(`🟢 Q4 HANDLE CONTINUE: Type:`, typeof selectedIds);
+    console.log(`🟢 Q4 HANDLE CONTINUE: Is array:`, Array.isArray(selectedIds));
+    console.log(`🟢 Q4 HANDLE CONTINUE: About to call setAnswer("question4", selectedIds)`);
     
     setAnswer("question4", selectedIds);
+    
+    console.log(`🟢 Q4 HANDLE CONTINUE: setAnswer called, now navigating to question5`);
     navigate("/quiz/question5");
   };
 

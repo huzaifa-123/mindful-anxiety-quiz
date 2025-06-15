@@ -5,8 +5,10 @@ import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
 const QuizQuestion7 = () => {
-  const { setAnswer } = useQuizAnswers();
+  const { setAnswer, answers } = useQuizAnswers();
   const navigate = useNavigate();
+
+  console.log(`🟢 Q7 COMPONENT MOUNT: Component mounted with current answers:`, JSON.stringify(answers, null, 2));
 
   const question = "What do you usually do when you feel anxious?";
   
@@ -39,11 +41,13 @@ const QuizQuestion7 = () => {
   ];
 
   const handleSelect = (optionId: string) => {
-    console.log(`🟢 Q7 COMPONENT DEBUG: Selected ID:`, optionId);
-    console.log(`🟢 Q7 COMPONENT DEBUG: Type:`, typeof optionId);
+    console.log(`🟢 Q7 HANDLE SELECT: Called with optionId:`, optionId);
+    console.log(`🟢 Q7 HANDLE SELECT: Type:`, typeof optionId);
+    console.log(`🟢 Q7 HANDLE SELECT: About to call setAnswer("question7", optionId)`);
     
-    // Pass the string directly without any wrapping
     setAnswer("question7", optionId);
+    
+    console.log(`🟢 Q7 HANDLE SELECT: setAnswer called, now navigating to question8`);
     navigate("/quiz/question8");
   };
 

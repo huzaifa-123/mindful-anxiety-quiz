@@ -53,20 +53,29 @@ export const QuizAnswersProvider = ({ children }: { children: ReactNode }) => {
   const [answers, setAnswers] = useState<QuizAnswer>({});
 
   const setAnswer = (key: keyof QuizAnswer, value: any) => {
-    console.log(`🔴 CONTEXT DEBUG: Setting answer for ${key}:`, value);
-    console.log(`🔴 CONTEXT DEBUG: Value type:`, typeof value);
-    console.log(`🔴 CONTEXT DEBUG: Is array:`, Array.isArray(value));
-    console.log(`🔴 CONTEXT DEBUG: JSON stringified value:`, JSON.stringify(value));
+    console.log(`🟡 CONTEXT SETANSWER: Called with key: "${key}", value:`, value);
+    console.log(`🟡 CONTEXT SETANSWER: Value type:`, typeof value);
+    console.log(`🟡 CONTEXT SETANSWER: Is array:`, Array.isArray(value));
+    console.log(`🟡 CONTEXT SETANSWER: JSON stringified value:`, JSON.stringify(value));
+    console.log(`🟡 CONTEXT SETANSWER: Current answers before update:`, JSON.stringify(answers, null, 2));
     
     setAnswers((prev) => {
       const newAnswers = { ...prev, [key]: value };
-      console.log(`🔴 CONTEXT DEBUG: Updated answers object for ${key}:`, newAnswers[key]);
-      console.log(`🔴 CONTEXT DEBUG: Full answers object:`, newAnswers);
+      console.log(`🟡 CONTEXT SETANSWER: Updated answers object for ${key}:`, newAnswers[key]);
+      console.log(`🟡 CONTEXT SETANSWER: Full answers object after update:`, JSON.stringify(newAnswers, null, 2));
+      console.log(`🟡 CONTEXT SETANSWER: Keys in answers object:`, Object.keys(newAnswers));
       return newAnswers;
     });
   };
 
-  const resetAnswers = () => setAnswers({});
+  const resetAnswers = () => {
+    console.log(`🟡 CONTEXT RESET: Resetting all answers`);
+    setAnswers({});
+  };
+
+  // Log the current state whenever component re-renders
+  console.log(`🟡 CONTEXT RENDER: QuizAnswersProvider rendered with answers:`, JSON.stringify(answers, null, 2));
+  console.log(`🟡 CONTEXT RENDER: Available answer keys:`, Object.keys(answers));
 
   return (
     <QuizAnswersContext.Provider value={{ answers, setAnswer, resetAnswers }}>
