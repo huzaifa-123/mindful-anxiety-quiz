@@ -69,8 +69,22 @@ const extractValue = (value: any): any => {
   
   // If it's a malformed object with _type and value properties
   if (value && typeof value === 'object' && '_type' in value && 'value' in value) {
-    console.log(`🔧 EXTRACT DEBUG: Found malformed object, extracting value:`, value.value);
+    console.log(`🔧 EXTRACT DEBUG: Found malformed object, checking value:`, value.value);
+    
+    // If the nested value is the string "undefined", return undefined
+    if (value.value === "undefined") {
+      console.log(`🔧 EXTRACT DEBUG: Nested value is string "undefined", returning undefined`);
+      return undefined;
+    }
+    
+    console.log(`🔧 EXTRACT DEBUG: Extracting nested value:`, value.value);
     return value.value;
+  }
+  
+  // If it's the string "undefined", return undefined
+  if (value === "undefined") {
+    console.log(`🔧 EXTRACT DEBUG: Value is string "undefined", returning undefined`);
+    return undefined;
   }
   
   // If it's a normal value, return as is
@@ -113,6 +127,12 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
     const questionAnswers = cleanedAnswers[questionKey as keyof typeof cleanedAnswers];
     console.log(`🔍 SCORING DEBUG: Processing ${questionKey}:`, questionAnswers);
     
+    // Skip if the answer is undefined or null
+    if (questionAnswers === undefined || questionAnswers === null) {
+      console.log(`⚠️ SCORING DEBUG: ${questionKey} is undefined/null, skipping`);
+      return;
+    }
+    
     if (Array.isArray(questionAnswers)) {
       // Multi-select questions (4, 5, 6)
       console.log(`📝 SCORING DEBUG: ${questionKey} is array with ${questionAnswers.length} items`);
@@ -128,7 +148,7 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
           console.log(`🗺️ SCORING DEBUG: Available mappings:`, Object.keys(answerTypeMapping));
         }
       });
-    } else if (typeof questionAnswers === 'string' && questionAnswers !== 'undefined') {
+    } else if (typeof questionAnswers === 'string' && questionAnswers !== '') {
       // Single-select questions (7)
       console.log(`📝 SCORING DEBUG: ${questionKey} is string: "${questionAnswers}"`);
       const type = answerTypeMapping[questionAnswers];
