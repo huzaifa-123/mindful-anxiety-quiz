@@ -246,7 +246,7 @@ const QuizAnxietyProfile = () => {
           {/* Continue button */}
           <div className="flex justify-center">
             <button
-              onClick={() => navigate("/quiz/final-step")}
+              onClick={() => navigate("/quiz/plan")}
               className="bg-flourishmint text-white px-8 py-3 rounded-full font-semibold hover:bg-flourishmint/90 transition-colors"
             >
               Show My Best-Fit Techniques
