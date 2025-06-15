@@ -5,6 +5,11 @@ type QuizAnswer = {
   gender?: "male" | "female";
   age?: string;
   name?: string;
+  question4?: string[];
+  question5?: string[];
+  question6?: string[];
+  question7?: string;
+  question8?: string[];
   // More fields will be added for additional questions
 };
 
