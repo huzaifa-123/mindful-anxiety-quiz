@@ -28,12 +28,11 @@ const QuizQuestion4 = () => {
     }
   ];
 
-  const handleSelect = (selectedIds: string[]) => {
+  const handleContinue = (selectedIds: string[]) => {
     console.log(`🟢 Q4 COMPONENT DEBUG: Selected IDs:`, selectedIds);
     console.log(`🟢 Q4 COMPONENT DEBUG: Type:`, typeof selectedIds);
     console.log(`🟢 Q4 COMPONENT DEBUG: Is array:`, Array.isArray(selectedIds));
     
-    // Pass the array directly without any wrapping
     setAnswer("question4", selectedIds);
     navigate("/quiz/question5");
   };
@@ -47,9 +46,8 @@ const QuizQuestion4 = () => {
         <MultiSelectQuestion
           question={question}
           options={options}
-          onSelect={handleSelect}
+          onContinue={handleContinue}
           questionNumber="4"
-          subtitle="(Select all that apply)"
         />
       </main>
     </div>
