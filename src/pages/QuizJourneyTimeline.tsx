@@ -1,4 +1,5 @@
 
+
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
@@ -116,17 +117,17 @@ const QuizJourneyTimeline = () => {
           </div>
           
           {/* Timeline visualization with GIF */}
-          <div className="w-full max-w-lg mb-4 flex items-center justify-center">
+          <div className="w-full max-w-md mb-4 flex items-center justify-center">
             <img
               src="/QuizDesign/Final_Quiz Section Design (2).gif"
               alt="Progress timeline showing journey from current state to goal integration"
-              className="w-full h-auto object-contain"
+              className="w-full h-auto object-contain max-h-32"
               draggable={false}
             />
           </div>
           
           {/* Progress stages labels */}
-          <div className="flex justify-between items-center w-full max-w-lg mb-6 text-xs text-gray-600">
+          <div className="flex justify-between items-center w-full max-w-md mb-6 text-xs text-gray-600">
             <div className="flex flex-col items-center">
               <span className="font-medium">Current</span>
               <span>State</span>
@@ -171,3 +172,4 @@ const QuizJourneyTimeline = () => {
 };
 
 export default QuizJourneyTimeline;
+
