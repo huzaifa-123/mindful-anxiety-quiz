@@ -1,4 +1,3 @@
-
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 type QuizAnswer = {
@@ -31,6 +30,7 @@ type QuizAnswer = {
   plan_journaling?: string;
   plan_tools?: string;
   plan_support_style?: string;
+  email_preference?: string;
   // More fields will be added for additional questions
 };
 

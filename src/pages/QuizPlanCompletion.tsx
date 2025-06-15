@@ -73,7 +73,7 @@ const QuizPlanCompletion = () => {
           
           {/* Continue button */}
           <button
-            onClick={() => navigate("/quiz/next-step")}
+            onClick={() => navigate("/quiz/email-preference")}
             className="bg-flourishmint text-white px-8 py-3 rounded-full font-semibold hover:bg-flourishmint/90 transition-colors"
           >
             Continue
