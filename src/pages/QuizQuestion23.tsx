@@ -40,8 +40,7 @@ const QuizQuestion23 = () => {
 
   const handleSelect = (optionId: string) => {
     setAnswer("question23", optionId);
-    // TODO: Navigate to final results or next step
-    console.log("Quiz completed! All answers:", { question23: optionId });
+    navigate("/quiz/journey-timeline");
   };
 
   return (
