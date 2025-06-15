@@ -34,6 +34,10 @@ const QuizQuestion17 = () => {
   ];
 
   const handleSelect = (optionId: string) => {
+    console.log(`🟡 Q17 DEBUG: Raw optionId received:`, optionId);
+    console.log(`🟡 Q17 DEBUG: optionId type:`, typeof optionId);
+    console.log(`🟡 Q17 DEBUG: JSON.stringify(optionId):`, JSON.stringify(optionId));
+    
     setAnswer("question17", optionId);
     navigate("/quiz/question18");
   };

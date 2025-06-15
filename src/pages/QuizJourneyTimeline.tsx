@@ -12,11 +12,24 @@ const QuizJourneyTimeline = () => {
   useEffect(() => {
     // Calculate estimated date based on quiz answers
     const calculateEstimatedDate = () => {
-      console.log("All quiz answers:", answers);
-      console.log("Q13 answer (duration):", answers.question13);
-      console.log("Q17 answer (time available):", answers.question17);
+      console.log("🗓️ TIMELINE DEBUG: All quiz answers:", JSON.stringify(answers, null, 2));
+      
+      // Extract actual values from potentially malformed data
+      const extractValue = (value: any): any => {
+        if (value && typeof value === 'object' && '_type' in value && 'value' in value) {
+          console.log(`🔧 TIMELINE DEBUG: Found malformed object for value, extracting:`, value.value);
+          return value.value;
+        }
+        return value;
+      };
 
-      // Base days from Q13 (anxiety duration) - FIXED: was using Q4 before
+      const q13Value = extractValue(answers.question13);
+      const q17Value = extractValue(answers.question17);
+      
+      console.log("🗓️ TIMELINE DEBUG: Q13 answer (duration):", q13Value);
+      console.log("🗓️ TIMELINE DEBUG: Q17 answer (time available):", q17Value);
+
+      // Base days from Q13 (anxiety duration)
       const baseDaysMap: Record<string, number> = {
         "few_weeks": 10,
         "few_months": 14,
@@ -32,17 +45,17 @@ const QuizJourneyTimeline = () => {
         "20_plus_minutes": 0.85
       };
 
-      // Get Q13 answer (anxiety duration) - FIXED: was using Q4 before
-      const baseDays = baseDaysMap[answers.question13 || "few_months"] || 14;
+      // Get Q13 answer (anxiety duration)
+      const baseDays = baseDaysMap[q13Value] || 14;
       
       // Get Q17 answer (daily time available)
-      const timeMultiplier = timeMultiplierMap[answers.question17 || "15_minutes"] || 1;
+      const timeMultiplier = timeMultiplierMap[q17Value] || 1;
       
-      console.log("Base days:", baseDays, "for duration:", answers.question13);
-      console.log("Time multiplier:", timeMultiplier, "for time:", answers.question17);
+      console.log("🗓️ TIMELINE DEBUG: Base days:", baseDays, "for duration:", q13Value);
+      console.log("🗓️ TIMELINE DEBUG: Time multiplier:", timeMultiplier, "for time:", q17Value);
       
       const estimatedDays = Math.round(baseDays * timeMultiplier);
-      console.log("Estimated days:", estimatedDays);
+      console.log("🗓️ TIMELINE DEBUG: Estimated days:", estimatedDays);
       
       const futureDate = new Date();
       futureDate.setDate(futureDate.getDate() + estimatedDays);
@@ -52,7 +65,7 @@ const QuizJourneyTimeline = () => {
         year: 'numeric' 
       });
       
-      console.log("Estimated date:", monthYear);
+      console.log("🗓️ TIMELINE DEBUG: Estimated date:", monthYear);
       setEstimatedDate(monthYear);
     };
 

@@ -1,15 +1,15 @@
-
 interface QuizAnswers {
-  question4?: string[];
-  question5?: string[];
-  question6?: string[];
-  question7?: string;
-  question8?: string[];
-  question9?: number;
-  question10?: number;
-  question11?: number;
-  question12?: number;
-  question13?: string;
+  question4?: string[] | any;
+  question5?: string[] | any;
+  question6?: string[] | any;
+  question7?: string | any;
+  question8?: string[] | any;
+  question9?: number | any;
+  question10?: number | any;
+  question11?: number | any;
+  question12?: number | any;
+  question13?: string | any;
+  question17?: string | any;
   // Add other questions as needed
 }
 
@@ -61,10 +61,43 @@ const answerTypeMapping: Record<string, "panic" | "avoidant" | "ruminator"> = {
   "avoidant7": "avoidant",   // Shut down emotionally to avoid discomfort
 };
 
-export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
-  console.log("Calculating quiz results with answers:", answers);
+// Helper function to extract actual values from malformed data
+const extractValue = (value: any): any => {
+  console.log(`🔧 EXTRACT DEBUG: Input value:`, value);
+  console.log(`🔧 EXTRACT DEBUG: Type:`, typeof value);
+  console.log(`🔧 EXTRACT DEBUG: JSON:`, JSON.stringify(value));
   
-  // Step 1: Calculate anxiety type percentages
+  // If it's a malformed object with _type and value properties
+  if (value && typeof value === 'object' && '_type' in value && 'value' in value) {
+    console.log(`🔧 EXTRACT DEBUG: Found malformed object, extracting value:`, value.value);
+    return value.value;
+  }
+  
+  // If it's a normal value, return as is
+  console.log(`🔧 EXTRACT DEBUG: Normal value, returning as is:`, value);
+  return value;
+};
+
+export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
+  console.log("🚀 SCORING DEBUG: Starting calculation with raw answers:", JSON.stringify(answers, null, 2));
+  
+  // Step 1: Extract and clean the answers
+  const cleanedAnswers = {
+    question4: extractValue(answers.question4),
+    question5: extractValue(answers.question5),
+    question6: extractValue(answers.question6),
+    question7: extractValue(answers.question7),
+    question9: extractValue(answers.question9),
+    question10: extractValue(answers.question10),
+    question11: extractValue(answers.question11),
+    question12: extractValue(answers.question12),
+    question13: extractValue(answers.question13),
+    question17: extractValue(answers.question17),
+  };
+  
+  console.log("🧹 SCORING DEBUG: Cleaned answers:", JSON.stringify(cleanedAnswers, null, 2));
+  
+  // Step 2: Calculate anxiety type percentages
   const typeCounts: AnxietyTypeCount = {
     panic: 0,
     avoidant: 0,
@@ -77,38 +110,43 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
   const typeQuestions = ['question4', 'question5', 'question6', 'question7'];
   
   typeQuestions.forEach(questionKey => {
-    const questionAnswers = answers[questionKey as keyof QuizAnswers];
-    console.log(`Processing ${questionKey}:`, questionAnswers);
+    const questionAnswers = cleanedAnswers[questionKey as keyof typeof cleanedAnswers];
+    console.log(`🔍 SCORING DEBUG: Processing ${questionKey}:`, questionAnswers);
     
     if (Array.isArray(questionAnswers)) {
       // Multi-select questions (4, 5, 6)
+      console.log(`📝 SCORING DEBUG: ${questionKey} is array with ${questionAnswers.length} items`);
       questionAnswers.forEach(answerId => {
-        console.log(`Looking up answer ID: ${answerId}`);
+        console.log(`🎯 SCORING DEBUG: Looking up answer ID: "${answerId}"`);
         const type = answerTypeMapping[answerId];
         if (type) {
           typeCounts[type]++;
           totalTypedAnswers++;
-          console.log(`Mapped ${answerId} to ${type}. New count: ${typeCounts[type]}`);
+          console.log(`✅ SCORING DEBUG: Mapped "${answerId}" to "${type}". New count: ${typeCounts[type]}`);
         } else {
-          console.log(`No mapping found for answer ID: ${answerId}`);
+          console.log(`❌ SCORING DEBUG: No mapping found for answer ID: "${answerId}"`);
+          console.log(`🗺️ SCORING DEBUG: Available mappings:`, Object.keys(answerTypeMapping));
         }
       });
-    } else if (typeof questionAnswers === 'string') {
+    } else if (typeof questionAnswers === 'string' && questionAnswers !== 'undefined') {
       // Single-select questions (7)
-      console.log(`Looking up single answer ID: ${questionAnswers}`);
+      console.log(`📝 SCORING DEBUG: ${questionKey} is string: "${questionAnswers}"`);
       const type = answerTypeMapping[questionAnswers];
       if (type) {
         typeCounts[type]++;
         totalTypedAnswers++;
-        console.log(`Mapped ${questionAnswers} to ${type}. New count: ${typeCounts[type]}`);
+        console.log(`✅ SCORING DEBUG: Mapped "${questionAnswers}" to "${type}". New count: ${typeCounts[type]}`);
       } else {
-        console.log(`No mapping found for single answer ID: ${questionAnswers}`);
+        console.log(`❌ SCORING DEBUG: No mapping found for single answer ID: "${questionAnswers}"`);
+        console.log(`🗺️ SCORING DEBUG: Available mappings:`, Object.keys(answerTypeMapping));
       }
+    } else {
+      console.log(`⚠️ SCORING DEBUG: ${questionKey} is not a valid format:`, typeof questionAnswers, questionAnswers);
     }
   });
 
-  console.log("Final type counts:", typeCounts);
-  console.log("Total typed answers:", totalTypedAnswers);
+  console.log("📊 SCORING DEBUG: Final type counts:", typeCounts);
+  console.log("🔢 SCORING DEBUG: Total typed answers:", totalTypedAnswers);
 
   // Calculate percentages for anxiety types
   const typePercentages = {
@@ -117,7 +155,7 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
     ruminator: totalTypedAnswers > 0 ? Math.round((typeCounts.ruminator / totalTypedAnswers) * 100) : 0,
   };
 
-  console.log("Type percentages:", typePercentages);
+  console.log("📈 SCORING DEBUG: Type percentages:", typePercentages);
 
   // Determine dominant anxiety type
   let dominantType: "panic" | "avoidant" | "ruminator" = "panic";
@@ -132,21 +170,28 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
     dominantType = "ruminator";
   }
 
-  console.log("Dominant type:", dominantType);
+  console.log("🏆 SCORING DEBUG: Dominant type:", dominantType, "with count:", maxCount);
 
-  // Step 2: Calculate severity based on scale questions (9, 10, 11, 12)
+  // Step 3: Calculate severity based on scale questions (9, 10, 11, 12)
   const scaleQuestions = [
-    answers.question9 || 0,   // How effective have techniques been
-    answers.question10 || 0,  // How much anxiety affects daily life
-    answers.question11 || 0,  // How often experience anxiety symptoms
-    answers.question12 || 0   // How distressed when anxiety hits
+    cleanedAnswers.question9 || 0,   // How effective have techniques been
+    cleanedAnswers.question10 || 0,  // How much anxiety affects daily life
+    cleanedAnswers.question11 || 0,  // How often experience anxiety symptoms
+    cleanedAnswers.question12 || 0   // How distressed when anxiety hits
   ];
 
-  console.log("Scale question answers:", scaleQuestions);
+  console.log("📏 SCORING DEBUG: Scale question answers:", scaleQuestions);
+
+  // Convert any non-numeric values to 0
+  const numericScaleQuestions = scaleQuestions.map(val => {
+    const num = typeof val === 'number' ? val : parseInt(val) || 0;
+    console.log(`🔢 SCORING DEBUG: Converting scale value ${val} to ${num}`);
+    return num;
+  });
 
   // Sum up all scale ratings (each question is rated 1-10)
-  const severityScore = scaleQuestions.reduce((sum, rating) => sum + rating, 0);
-  console.log("Severity score:", severityScore);
+  const severityScore = numericScaleQuestions.reduce((sum, rating) => sum + rating, 0);
+  console.log("🎯 SCORING DEBUG: Severity score:", severityScore);
 
   // Classify severity based on total score (out of 40 max)
   let severity: "mild" | "moderate" | "severe";
@@ -158,14 +203,18 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
     severity = "severe";
   }
 
-  console.log("Final severity:", severity);
+  console.log("🎨 SCORING DEBUG: Final severity:", severity);
 
-  return {
+  const results = {
     dominantType,
     typePercentages,
     severity,
     severityScore
   };
+
+  console.log("🏁 SCORING DEBUG: Final results:", JSON.stringify(results, null, 2));
+
+  return results;
 };
 
 // Helper function to get anxiety type description

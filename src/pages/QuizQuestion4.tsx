@@ -32,6 +32,11 @@ const QuizQuestion4 = () => {
   ];
 
   const handleContinue = (selectedOptions: string[]) => {
+    console.log(`🟡 Q4 DEBUG: Raw selectedOptions received:`, selectedOptions);
+    console.log(`🟡 Q4 DEBUG: selectedOptions type:`, typeof selectedOptions);
+    console.log(`🟡 Q4 DEBUG: selectedOptions isArray:`, Array.isArray(selectedOptions));
+    console.log(`🟡 Q4 DEBUG: JSON.stringify(selectedOptions):`, JSON.stringify(selectedOptions));
+    
     setAnswer("question4", selectedOptions);
     navigate("/quiz/question5");
   };

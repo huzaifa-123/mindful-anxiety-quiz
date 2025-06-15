@@ -1,3 +1,4 @@
+
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 type QuizAnswer = {
@@ -51,8 +52,18 @@ export const useQuizAnswers = () => {
 export const QuizAnswersProvider = ({ children }: { children: ReactNode }) => {
   const [answers, setAnswers] = useState<QuizAnswer>({});
 
-  const setAnswer = (key: keyof QuizAnswer, value: any) =>
-    setAnswers((prev) => ({ ...prev, [key]: value }));
+  const setAnswer = (key: keyof QuizAnswer, value: any) => {
+    console.log(`🔴 CONTEXT DEBUG: Setting answer for ${key}:`, value);
+    console.log(`🔴 CONTEXT DEBUG: Value type:`, typeof value);
+    console.log(`🔴 CONTEXT DEBUG: Is array:`, Array.isArray(value));
+    console.log(`🔴 CONTEXT DEBUG: JSON stringified value:`, JSON.stringify(value));
+    
+    setAnswers((prev) => {
+      const newAnswers = { ...prev, [key]: value };
+      console.log(`🔴 CONTEXT DEBUG: Updated answers object:`, newAnswers);
+      return newAnswers;
+    });
+  };
 
   const resetAnswers = () => setAnswers({});
 
