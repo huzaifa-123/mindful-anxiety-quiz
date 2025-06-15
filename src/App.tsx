@@ -1,4 +1,3 @@
-
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -45,6 +44,7 @@ import QuizJourneyTimeline from "./pages/QuizJourneyTimeline";
 import QuizCalmResetPlanBuilder from "./pages/QuizCalmResetPlanBuilder";
 import QuizPlanCompletion from "./pages/QuizPlanCompletion";
 import QuizEmailPreference from "./pages/QuizEmailPreference";
+import QuizAnxietyProfile from "./pages/QuizAnxietyProfile";
 
 const queryClient = new QueryClient();
 
@@ -99,6 +99,7 @@ const App = () => (
           <Route path="/quiz/calm-reset-plan-builder" element={<QuizWrapper><QuizCalmResetPlanBuilder /></QuizWrapper>} />
           <Route path="/quiz/plan-completion" element={<QuizPlanCompletion />} />
           <Route path="/quiz/email-preference" element={<QuizWrapper><QuizEmailPreference /></QuizWrapper>} />
+          <Route path="/quiz/anxiety-profile" element={<QuizWrapper><QuizAnxietyProfile /></QuizWrapper>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -13,9 +13,9 @@ const QuizEmailPreference = () => {
     setSelectedOption(optionId);
     setAnswer("email_preference", optionId);
     
-    // Navigate to blank screen for now (can be updated later)
+    // Navigate to anxiety profile page
     setTimeout(() => {
-      navigate("/quiz/final-step"); // This will be a 404 for now as requested
+      navigate("/quiz/anxiety-profile");
     }, 300);
   };
 
