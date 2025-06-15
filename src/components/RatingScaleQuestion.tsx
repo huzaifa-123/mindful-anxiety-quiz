@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { Slider } from "./ui/slider";
 
 interface RatingScaleQuestionProps {
   question: string;
@@ -18,14 +19,19 @@ const RatingScaleQuestion = ({
   onRatingSelect, 
   questionNumber 
 }: RatingScaleQuestionProps) => {
-  const [selectedRating, setSelectedRating] = useState<number | null>(null);
+  const [selectedRating, setSelectedRating] = useState<number>(5);
 
-  const handleRatingClick = (rating: number) => {
+  const handleSliderChange = (value: number[]) => {
+    const rating = value[0];
     setSelectedRating(rating);
-    // Auto-navigate after selection
+  };
+
+  const handleSliderCommit = (value: number[]) => {
+    const rating = value[0];
+    // Auto-navigate after selection with slight delay
     setTimeout(() => {
       onRatingSelect(rating);
-    }, 200);
+    }, 300);
   };
 
   return (
@@ -42,27 +48,32 @@ const RatingScaleQuestion = ({
       
       {/* Rating scale */}
       <div className="w-full max-w-lg mb-8">
-        {/* Scale background */}
-        <div className="relative mb-6">
-          <div className="h-2 bg-flourishmint/30 rounded-full"></div>
-          <div className="absolute top-0 left-0 h-2 bg-flourishmint rounded-full transition-all duration-300"
-               style={{ width: selectedRating ? `${(selectedRating / 10) * 100}%` : '0%' }}></div>
+        {/* Slider component */}
+        <div className="mb-6">
+          <Slider
+            value={[selectedRating]}
+            onValueChange={handleSliderChange}
+            onValueCommit={handleSliderCommit}
+            max={10}
+            min={1}
+            step={1}
+            className="w-full"
+          />
         </div>
         
-        {/* Number buttons */}
-        <div className="flex justify-between items-center mb-6">
+        {/* Number labels */}
+        <div className="flex justify-between items-center mb-6 px-1">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((rating) => (
-            <button
+            <span
               key={rating}
-              onClick={() => handleRatingClick(rating)}
-              className={`w-8 h-8 rounded-full border-2 font-semibold text-sm transition-all ${
+              className={`text-sm font-medium transition-all ${
                 selectedRating === rating
-                  ? "bg-flourishmint border-flourishgreen text-flourishgreen"
-                  : "bg-white border-gray-300 text-gray-600 hover:border-flourishmint"
+                  ? "text-flourishgreen font-bold scale-110"
+                  : "text-gray-500"
               }`}
             >
               {rating}
-            </button>
+            </span>
           ))}
         </div>
         
