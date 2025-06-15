@@ -1,3 +1,4 @@
+
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -101,7 +102,7 @@ const App = () => (
           <Route path="/quiz/plan-completion" element={<QuizPlanCompletion />} />
           <Route path="/quiz/email-preference" element={<QuizWrapper><QuizEmailPreference /></QuizWrapper>} />
           <Route path="/quiz/anxiety-profile" element={<QuizWrapper><QuizAnxietyProfile /></QuizWrapper>} />
-          <Route path="/quiz/plan" element={<QuizPlan />} />
+          <Route path="/quiz/plan" element={<QuizWrapper><QuizPlan /></QuizWrapper>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
