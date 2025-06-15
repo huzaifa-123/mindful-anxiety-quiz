@@ -511,12 +511,20 @@ const QuizPlan = () => {
                   <div className="text-white text-xs font-bold pt-2">90%</div>
                 </div>
                 
-                {/* Illustration placeholders */}
-                <div className="absolute bottom-16 left-4 w-32 h-20 bg-gray-200 rounded flex items-center justify-center">
-                  <span className="text-xs text-gray-500">Person Illustration</span>
+                {/* Image placeholders */}
+                <div className="absolute bottom-16 left-4 w-32 h-20">
+                  <img 
+                    src="/dummy-without-support.png" 
+                    alt="Without support illustration" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
-                <div className="absolute bottom-20 right-4 w-32 h-24 bg-gray-200 rounded flex items-center justify-center">
-                  <span className="text-xs text-gray-500">Person Illustration</span>
+                <div className="absolute bottom-20 right-4 w-32 h-24">
+                  <img 
+                    src="/dummy-with-support.png" 
+                    alt="With support illustration" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
             </div>
@@ -532,7 +540,7 @@ const QuizPlan = () => {
             {/* Comparison columns */}
             <div className="flex justify-center gap-8 max-w-2xl mx-auto">
               <div className="flex-1">
-                <div className="bg-gray-600 text-white px-4 py-2 rounded mb-4">
+                <div className="bg-flourishgreen text-white px-4 py-2 rounded mb-4">
                   <span className="text-sm font-medium">Without Support:</span>
                 </div>
                 <ul className="space-y-2 text-left text-sm text-gray-700">
@@ -617,47 +625,38 @@ const QuizPlan = () => {
               Testimonials
             </h2>
             
-            <div className="flex justify-center gap-6 max-w-4xl mx-auto">
-              <div className="flex-1 max-w-sm">
-                <div className="bg-white border border-gray-200 rounded-lg p-6 relative">
-                  <div className="text-flourishmint text-4xl mb-4">"</div>
-                  <p className="text-gray-700 text-sm mb-4">
-                    "This is the first plan that actually matched how I think. It finally felt designed for someone like me."
-                  </p>
-                  <div className="flex justify-center space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-flourishmint text-lg">★</span>
-                    ))}
-                  </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+              <div className="bg-white border border-gray-200 rounded-lg p-6 text-left">
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-flourishmint text-lg">★</span>
+                  ))}
                 </div>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  "This is the first plan that actually matched how I think. It finally felt designed for someone like me."
+                </p>
               </div>
               
-              <div className="flex-1 max-w-sm">
-                <div className="bg-white border border-gray-200 rounded-lg p-6 relative">
-                  <div className="text-flourishmint text-4xl mb-4">"</div>
-                  <p className="text-gray-700 text-sm mb-4">
-                    "I used to spiral every evening. Now I have a way to stop it before it starts."
-                  </p>
-                  <div className="flex justify-center space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-flourishmint text-lg">★</span>
-                    ))}
-                  </div>
+              <div className="bg-white border border-gray-200 rounded-lg p-6 text-left">
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-flourishmint text-lg">★</span>
+                  ))}
                 </div>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  "I used to spiral every evening. Now I have a way to stop it before it starts."
+                </p>
               </div>
               
-              <div className="flex-1 max-w-sm">
-                <div className="bg-white border border-gray-200 rounded-lg p-6 relative">
-                  <div className="text-flourishmint text-4xl mb-4">"</div>
-                  <p className="text-gray-700 text-sm mb-4">
-                    "I didn't think I'd ever feel calm again but this gave me back hope."
-                  </p>
-                  <div className="flex justify-center space-x-1">
-                    {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-flourishmint text-lg">★</span>
-                    ))}
-                  </div>
+              <div className="bg-white border border-gray-200 rounded-lg p-6 text-left">
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <span key={i} className="text-flourishmint text-lg">★</span>
+                  ))}
                 </div>
+                <p className="text-gray-700 text-sm leading-relaxed">
+                  "I didn't think I'd ever feel calm again but this gave me back hope."
+                </p>
               </div>
             </div>
           </div>
