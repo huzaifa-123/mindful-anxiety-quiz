@@ -15,38 +15,39 @@ const QuizJourneyTimeline = () => {
       console.log("🗓️ TIMELINE DEBUG: Starting date calculation");
       console.log("🗓️ TIMELINE DEBUG: All quiz answers:", JSON.stringify(answers, null, 2));
       
-      // Use question14 (duration) and question18 (time available) for calculation
-      const q14Value = answers.question14; // Duration of anxiety 
+      // Use question22 (when anxiety started) and question18 (time available daily)
+      const q22Value = answers.question22; // When anxiety started affecting daily life
       const q18Value = answers.question18; // Time available daily 
       
-      console.log("🗓️ TIMELINE DEBUG: Q14 answer (duration):", q14Value);
+      console.log("🗓️ TIMELINE DEBUG: Q22 answer (when anxiety started):", q22Value);
       console.log("🗓️ TIMELINE DEBUG: Q18 answer (time available):", q18Value);
 
-      // Base days from Q14 (anxiety duration) - CORRECTED MAPPING
+      // Base days from Q22 (when anxiety started) - CORRECTED MAPPING
       const baseDaysMap: Record<string, number> = {
-        "few_weeks": 10,
-        "few_months": 14,
-        "over_year": 21,
-        "several_years": 28,
+        "past_month": 10,      // Recent onset - faster progress
+        "few_months": 14,      // Building up - moderate timeline  
+        "years": 21,          // Long-term - more time needed
+        "cant_remember": 28,   // Very long-term - longest timeline
+        "just_realized": 12,   // Just realized - moderate-fast timeline
       };
 
       // Time multiplier from Q18 (daily time available) - CORRECTED MAPPING
       const timeMultiplierMap: Record<string, number> = {
-        "5_minutes": 1.5,
-        "10_minutes": 1.2,
-        "15_minutes": 1,
-        "20_plus_minutes": 0.85
+        "5_minutes": 1.5,      // Less time = longer timeline
+        "10_minutes": 1.2,     // Moderate time = slight longer
+        "15_minutes": 1,       // Good time = baseline
+        "20_plus_minutes": 0.85 // More time = faster progress
       };
 
-      // Get Q14 answer (anxiety duration) - use default if undefined
-      const baseDays = q14Value ? baseDaysMap[q14Value] || 14 : 14;
+      // Get Q22 answer (when anxiety started) - use default if undefined
+      const baseDays = q22Value ? baseDaysMap[q22Value] || 14 : 14;
       
       // Get Q18 answer (daily time available) - use default if undefined
       const timeMultiplier = q18Value ? timeMultiplierMap[q18Value] || 1 : 1;
       
-      console.log("🗓️ TIMELINE DEBUG: Base days:", baseDays, "for duration:", q14Value);
+      console.log("🗓️ TIMELINE DEBUG: Base days:", baseDays, "for when started:", q22Value);
       console.log("🗓️ TIMELINE DEBUG: Time multiplier:", timeMultiplier, "for time:", q18Value);
-      console.log("🗓️ TIMELINE DEBUG: Available mappings for Q14:", Object.keys(baseDaysMap));
+      console.log("🗓️ TIMELINE DEBUG: Available mappings for Q22:", Object.keys(baseDaysMap));
       console.log("🗓️ TIMELINE DEBUG: Available mappings for Q18:", Object.keys(timeMultiplierMap));
       
       // Apply the correct formula: estimated_days = base_days × multiplier
@@ -68,10 +69,13 @@ const QuizJourneyTimeline = () => {
       console.log("🗓️ TIMELINE DEBUG: Future date:", futureDate.toLocaleDateString());
       console.log("🗓️ TIMELINE DEBUG: Estimated date string:", monthYear);
       
-      // Validate that we're not getting a hardcoded value
-      if (monthYear.includes("June 2025")) {
-        console.log("🚨 TIMELINE DEBUG: WARNING! Getting hardcoded June 2025 - this suggests calculation error");
-        console.log("🚨 TIMELINE DEBUG: Check if Q14/Q18 values are undefined or incorrect");
+      // Check if calculation is working correctly
+      if (monthYear === "June 2025" && estimatedDays === 14) {
+        console.log("🚨 TIMELINE DEBUG: Still getting default calculation - check Q22/Q18 values");
+        console.log("🚨 TIMELINE DEBUG: Q22 exists in answers?", q22Value !== undefined);
+        console.log("🚨 TIMELINE DEBUG: Q18 exists in answers?", q18Value !== undefined);
+      } else {
+        console.log("✅ TIMELINE DEBUG: Calculation appears to be working correctly");
       }
       
       setEstimatedDate(monthYear);
@@ -107,7 +111,7 @@ const QuizJourneyTimeline = () => {
               {estimatedDate || "Calculating..."}
             </p>
             <p className="text-gray-600 text-sm mt-1">
-              (based on anxiety duration and available daily time)
+              (based on when anxiety started and available daily time)
             </p>
           </div>
           
@@ -123,7 +127,7 @@ const QuizJourneyTimeline = () => {
           
           {/* Description paragraphs */}
           <p className="text-gray-700 text-base mb-4 max-w-xl leading-relaxed">
-            This timeline is based on how long anxiety has been affecting you and how much time you can commit to your well-being each day. With consistent, intentional support, even small shifts create real momentum.
+            This timeline is based on when anxiety started affecting you and how much time you can commit to your well-being each day. With consistent, intentional support, even small shifts create real momentum.
           </p>
           
           <p className="text-gray-700 text-base mb-8 max-w-xl leading-relaxed">
