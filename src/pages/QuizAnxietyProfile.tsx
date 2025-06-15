@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
@@ -166,30 +165,38 @@ const QuizAnxietyProfile = () => {
             </CardContent>
           </Card>
 
-          {/* Secondary style section - only show if exists and significant */}
+          {/* Secondary style section with styled heading */}
           {secondaryType && secondaryType.percentage >= 20 && (
             <div className="mb-6">
-              <div className="bg-green-600 text-white rounded-lg p-6 text-center">
-                <h3 className="font-bold text-lg mb-2 text-white">
-                  Your Secondary Style
-                </h3>
-                <h4 className="font-semibold text-base mb-3 text-green-100">
-                  {getTypeTitle(secondaryType.type)} ({secondaryType.percentage}%)
+              {/* Styled heading for Secondary Style */}
+              <div className="flex justify-center mb-4">
+                <div className="bg-flourishgreen text-white px-6 py-2 rounded-full">
+                  <span className="font-semibold text-sm">Your Secondary Style</span>
+                </div>
+              </div>
+              
+              <div className="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                <h4 className="font-semibold text-lg mb-3 text-gray-800">
+                  {getTypeTitle(secondaryType.type).replace("THE ", "The ")} ({secondaryType.percentage}%)
                 </h4>
-                <p className="text-sm leading-relaxed text-green-50">
+                <p className="text-sm leading-relaxed text-gray-600">
                   {getSecondaryTypeDescription(secondaryType.type, secondaryType.percentage)}
                 </p>
               </div>
             </div>
           )}
 
-          {/* Anxiety severity section */}
+          {/* Anxiety severity section with styled heading */}
           <div className="mb-6">
+            {/* Styled heading for Anxiety Severity */}
+            <div className="flex justify-center mb-4">
+              <div className="bg-flourishgreen text-white px-6 py-2 rounded-full">
+                <span className="font-semibold text-sm">Your Anxiety Severity</span>
+              </div>
+            </div>
+            
             <div className="bg-white border border-gray-200 rounded-lg p-6 text-center">
-              <h3 className="font-bold text-lg mb-2 text-gray-800">
-                Your Anxiety Severity
-              </h3>
-              <h4 className="font-semibold text-base mb-3 text-gray-700 capitalize">
+              <h4 className="font-semibold text-lg mb-3 text-gray-800 capitalize">
                 {results.severity}
               </h4>
               <p className="text-sm leading-relaxed text-gray-600">
