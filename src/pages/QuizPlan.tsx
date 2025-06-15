@@ -62,7 +62,7 @@ const QuizPlan = () => {
               </div>
               <div className="relative">
                 <img 
-                  src="/lovable-uploads/98ef91d6-131a-4a86-99b7-6fbb29dc3f45.png" 
+                  src="/dummy-now-image.png" 
                   alt="Current anxious state" 
                   className="w-48 h-64 object-contain mb-4"
                 />
@@ -73,9 +73,9 @@ const QuizPlan = () => {
                       <div className="flex justify-between text-sm text-gray-700 mb-1">
                         <span>Energy Level</span>
                       </div>
-                      <div className="text-xs text-gray-500 mb-2">Low</div>
+                      <div className="text-xs text-red-500 mb-2 font-medium">Low</div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-red-400 h-2 rounded-full w-1/4"></div>
+                        <div className="bg-red-500 h-2 rounded-full w-1/4"></div>
                       </div>
                     </div>
                     
@@ -83,9 +83,9 @@ const QuizPlan = () => {
                       <div className="flex justify-between text-sm text-gray-700 mb-1">
                         <span>Well-being Level</span>
                       </div>
-                      <div className="text-xs text-gray-500 mb-2">Weak</div>
+                      <div className="text-xs text-orange-500 mb-2 font-medium">Weak</div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-orange-400 h-2 rounded-full w-2/5"></div>
+                        <div className="bg-orange-500 h-2 rounded-full w-2/5"></div>
                       </div>
                     </div>
                     
@@ -93,9 +93,9 @@ const QuizPlan = () => {
                       <div className="flex justify-between text-sm text-gray-700 mb-1">
                         <span>Self-esteem Level</span>
                       </div>
-                      <div className="text-xs text-gray-500 mb-2">Low</div>
+                      <div className="text-xs text-red-500 mb-2 font-medium">Low</div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-red-400 h-2 rounded-full w-1/4"></div>
+                        <div className="bg-red-500 h-2 rounded-full w-1/4"></div>
                       </div>
                     </div>
                   </div>
@@ -106,9 +106,9 @@ const QuizPlan = () => {
             {/* Arrow */}
             <div className="flex items-center">
               <div className="flex">
-                <div className="w-8 h-8 bg-flourishgreen transform rotate-45 mr-2"></div>
-                <div className="w-8 h-8 bg-flourishgreen transform rotate-45 mr-2"></div>
-                <div className="w-8 h-8 bg-flourishgreen transform rotate-45"></div>
+                <div className="w-6 h-6 bg-flourishgreen transform rotate-45 mr-1"></div>
+                <div className="w-6 h-6 bg-flourishgreen transform rotate-45 mr-1"></div>
+                <div className="w-6 h-6 bg-flourishgreen transform rotate-45"></div>
               </div>
             </div>
 
@@ -119,7 +119,7 @@ const QuizPlan = () => {
               </div>
               <div className="relative">
                 <img 
-                  src="/lovable-uploads/98ef91d6-131a-4a86-99b7-6fbb29dc3f45.png" 
+                  src="/dummy-goal-image.png" 
                   alt="Goal confident state" 
                   className="w-48 h-64 object-contain mb-4"
                 />
@@ -130,9 +130,9 @@ const QuizPlan = () => {
                       <div className="flex justify-between text-sm text-gray-700 mb-1">
                         <span>Energy Level</span>
                       </div>
-                      <div className="text-xs text-gray-500 mb-2">High</div>
+                      <div className="text-xs text-green-600 mb-2 font-medium">High</div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-green-500 h-2 rounded-full w-5/6"></div>
+                        <div className="bg-green-600 h-2 rounded-full w-5/6"></div>
                       </div>
                     </div>
                     
@@ -140,9 +140,9 @@ const QuizPlan = () => {
                       <div className="flex justify-between text-sm text-gray-700 mb-1">
                         <span>Well-being Level</span>
                       </div>
-                      <div className="text-xs text-gray-500 mb-2">Strong</div>
+                      <div className="text-xs text-green-600 mb-2 font-medium">Strong</div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-green-500 h-2 rounded-full w-full"></div>
+                        <div className="bg-green-600 h-2 rounded-full w-full"></div>
                       </div>
                     </div>
                     
@@ -150,9 +150,9 @@ const QuizPlan = () => {
                       <div className="flex justify-between text-sm text-gray-700 mb-1">
                         <span>Self-esteem Level</span>
                       </div>
-                      <div className="text-xs text-gray-500 mb-2">High</div>
+                      <div className="text-xs text-green-600 mb-2 font-medium">High</div>
                       <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-green-500 h-2 rounded-full w-5/6"></div>
+                        <div className="bg-green-600 h-2 rounded-full w-5/6"></div>
                       </div>
                     </div>
                   </div>
