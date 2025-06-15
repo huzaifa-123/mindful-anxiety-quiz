@@ -35,10 +35,7 @@ const QuizAnxietyStats = () => {
               draggable={false}
             />
           </div>
-        </div>
-        
-        {/* Continue button fixed at bottom */}
-        <div className="w-full flex flex-col items-center absolute bottom-12">
+          
           <button
             onClick={handleContinue}
             className="rounded-full bg-flourishmint text-flourishgreen text-base font-semibold px-10 py-2 shadow-md transition duration-150 hover:scale-105 hover:brightness-110"

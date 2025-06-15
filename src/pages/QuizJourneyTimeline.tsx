@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
@@ -133,10 +132,7 @@ const QuizJourneyTimeline = () => {
           <p className="text-gray-700 text-base mb-8 max-w-xl leading-relaxed">
             This isn't a rigid schedule, it's an encouraging estimate that honors where you are and where you're headed.
           </p>
-        </div>
-        
-        {/* Continue button */}
-        <div className="w-full flex flex-col items-center absolute bottom-12">
+          
           <button
             onClick={handleContinue}
             className="rounded-full bg-flourishmint text-flourishgreen text-base font-semibold px-10 py-2 shadow-md transition duration-150 hover:scale-105 hover:brightness-110"

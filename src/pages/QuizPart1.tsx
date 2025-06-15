@@ -22,11 +22,11 @@ const QuizPart1 = () => {
           />
           {/* Heading */}
           <h1 className="font-semibold text-xl md:text-2xl text-flourishgreen mb-2 text-center tracking-tight">
-            LET’S START WITH YOU
+            LET'S START WITH YOU
           </h1>
           {/* Subtitle */}
           <p className="text-gray-700 mb-8 text-base text-center">
-            Let’s get to know you better.
+            Let's get to know you better.
           </p>
           <button
             onClick={() => navigate("/quiz/gender")}

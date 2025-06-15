@@ -1,3 +1,4 @@
+
 import Header from "../components/Header";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useState } from "react";
@@ -20,7 +21,7 @@ const QuizName = () => {
       <div className="w-full sticky top-0 z-10">
         <Header withBack questionCount="3 / 22" />
       </div>
-      <main className="flex-1 flex flex-col items-center justify-center">
+      <main className="flex-1 flex flex-col items-center justify-center px-4">
         <div className="w-full max-w-md mx-auto flex flex-col items-center justify-center">
           <h1 className="font-semibold text-xl md:text-2xl text-flourishgreen mb-10 text-center tracking-tight mt-8">
             What is your first name?
@@ -34,13 +35,10 @@ const QuizName = () => {
             autoFocus
             maxLength={30}
           />
-        </div>
-        {/* Continue button fixed/aligned at bottom */}
-        <div className="w-full flex flex-col items-center absolute bottom-12">
           <button
             disabled={isButtonDisabled}
             onClick={handleContinue}
-            className="rounded-full bg-flourishmint text-flourishgreen text-base font-semibold px-10 py-2 shadow-md mt-2 transition duration-150 disabled:opacity-60"
+            className="rounded-full bg-flourishmint text-flourishgreen text-base font-semibold px-10 py-2 shadow-md transition duration-150 disabled:opacity-60 hover:scale-105 hover:brightness-110"
           >
             Continue
           </button>

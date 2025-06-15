@@ -40,10 +40,7 @@ const QuizAnalysis = () => {
           <p className="text-gray-700 text-base mb-8 font-medium">
             Aligning your next steps for deeper calm...
           </p>
-        </div>
-        
-        {/* Continue button */}
-        <div className="w-full flex flex-col items-center absolute bottom-12">
+          
           <button
             onClick={handleContinue}
             className="rounded-full bg-flourishmint text-flourishgreen text-base font-semibold px-10 py-2 shadow-md transition duration-150 hover:scale-105 hover:brightness-110"

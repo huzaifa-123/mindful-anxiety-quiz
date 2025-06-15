@@ -35,10 +35,7 @@ const QuizPart3Intro = () => {
           <p className="text-gray-600 text-base mb-8 max-w-xl">
             Let's gently explore how anxiety affects your energy, focus, and well-being.
           </p>
-        </div>
-        
-        {/* Continue button fixed at bottom */}
-        <div className="w-full flex flex-col items-center absolute bottom-12">
+          
           <button
             onClick={handleContinue}
             className="rounded-full bg-flourishmint text-flourishgreen text-base font-semibold px-10 py-2 shadow-md transition duration-150 hover:scale-105 hover:brightness-110"
