@@ -1,3 +1,4 @@
+
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
@@ -11,12 +12,12 @@ const QuizJourneyTimeline = () => {
   useEffect(() => {
     // Calculate estimated date based on quiz answers
     const calculateEstimatedDate = () => {
-      // Base days from Q22 (anxiety duration)
+      // Base days from Q4 (anxiety duration)
       const baseDaysMap: Record<string, number> = {
-        "started_recently": 10,
-        "building_months": 14,
-        "years_part_life": 21,
-        "cant_remember": 28,
+        "few_weeks": 10,
+        "few_months": 14,
+        "over_year": 21,
+        "several_years": 28,
         "just_realized": 18
       };
 
@@ -28,7 +29,7 @@ const QuizJourneyTimeline = () => {
         "20_plus_minutes": 0.85
       };
 
-      const baseDays = baseDaysMap[answers.question22 || "building_months"] || 14;
+      const baseDays = baseDaysMap[answers.question4?.[0] || "few_months"] || 14;
       const timeMultiplier = timeMultiplierMap[answers.question17 || "15_minutes"] || 1;
       
       const estimatedDays = Math.round(baseDays * timeMultiplier);
