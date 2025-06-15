@@ -20,16 +20,25 @@ const MultiSelectQuestion = ({ question, options, onContinue, questionNumber }: 
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   const handleOptionToggle = (optionId: string) => {
-    setSelectedOptions(prev => 
-      prev.includes(optionId) 
+    console.log(`🔵 MULTI-SELECT DEBUG: Toggling option ${optionId}`);
+    setSelectedOptions(prev => {
+      const newSelection = prev.includes(optionId) 
         ? prev.filter(id => id !== optionId)
-        : [...prev, optionId]
-    );
+        : [...prev, optionId];
+      console.log(`🔵 MULTI-SELECT DEBUG: New selection:`, newSelection);
+      return newSelection;
+    });
   };
 
   const handleContinue = () => {
+    console.log(`🔵 MULTI-SELECT DEBUG: Continue button clicked with selections:`, selectedOptions);
+    console.log(`🔵 MULTI-SELECT DEBUG: Selected options length:`, selectedOptions.length);
+    console.log(`🔵 MULTI-SELECT DEBUG: About to call onContinue with:`, selectedOptions);
     onContinue(selectedOptions);
   };
+
+  console.log(`🔵 MULTI-SELECT DEBUG: Component rendered for question ${questionNumber}`);
+  console.log(`🔵 MULTI-SELECT DEBUG: Current selected options:`, selectedOptions);
 
   return (
     <div className="w-full max-w-2xl mx-auto flex flex-col items-center px-4">
