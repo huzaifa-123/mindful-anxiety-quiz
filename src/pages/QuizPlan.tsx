@@ -190,8 +190,8 @@ const QuizPlan = () => {
                   alt="Current anxious state" 
                   className="w-48 h-64 object-contain mb-4"
                 />
-                {/* Progress bars card - made horizontal */}
-                <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm max-w-xs">
+                {/* Progress bars card - increased width to match heading below */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm w-80">
                   <div className="space-y-4 text-left">
                     <div>
                       <div className="flex justify-between text-sm text-gray-700 mb-1">
@@ -247,8 +247,8 @@ const QuizPlan = () => {
                   alt="Goal confident state" 
                   className="w-48 h-64 object-contain mb-4"
                 />
-                {/* Progress bars card - made horizontal */}
-                <div className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm max-w-xs">
+                {/* Progress bars card - increased width to match heading below */}
+                <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm w-80">
                   <div className="space-y-4 text-left">
                     <div>
                       <div className="flex justify-between text-sm text-gray-700 mb-1">
@@ -619,15 +619,15 @@ const QuizPlan = () => {
             </div>
           </div>
 
-          {/* Testimonials Section - Fixed layout to match reference */}
+          {/* Testimonials Section */}
           <div className="text-center mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">
               Testimonials
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              <div className="bg-white border border-gray-200 rounded-lg p-6 text-left relative shadow-sm">
-                <div className="text-4xl text-flourishmint mb-4 leading-none">"</div>
+              <div className="bg-white border border-gray-200 rounded-lg p-8 text-left relative shadow-sm">
+                <div className="text-6xl text-flourishmint mb-4 leading-none font-serif">"</div>
                 <p className="text-gray-700 text-sm leading-relaxed mb-6">
                   This is the first plan that actually matched how I think. It finally felt designed for someone like me.
                 </p>
@@ -638,8 +638,8 @@ const QuizPlan = () => {
                 </div>
               </div>
               
-              <div className="bg-white border border-gray-200 rounded-lg p-6 text-left relative shadow-sm">
-                <div className="text-4xl text-flourishmint mb-4 leading-none">"</div>
+              <div className="bg-white border border-gray-200 rounded-lg p-8 text-left relative shadow-sm">
+                <div className="text-6xl text-flourishmint mb-4 leading-none font-serif">"</div>
                 <p className="text-gray-700 text-sm leading-relaxed mb-6">
                   I used to spiral every evening. Now I have a way to stop it before it starts.
                 </p>
@@ -650,8 +650,8 @@ const QuizPlan = () => {
                 </div>
               </div>
               
-              <div className="bg-white border border-gray-200 rounded-lg p-6 text-left relative shadow-sm">
-                <div className="text-4xl text-flourishmint mb-4 leading-none">"</div>
+              <div className="bg-white border border-gray-200 rounded-lg p-8 text-left relative shadow-sm">
+                <div className="text-6xl text-flourishmint mb-4 leading-none font-serif">"</div>
                 <p className="text-gray-700 text-sm leading-relaxed mb-6">
                   I didn't think I'd ever feel calm again but this gave me back hope.
                 </p>
@@ -662,13 +662,6 @@ const QuizPlan = () => {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Mid-Funnel Invitation Button */}
-          <div className="flex justify-center">
-            <button className="bg-flourishmint hover:bg-green-400 text-white px-8 py-3 rounded-full font-semibold transition-colors">
-              Mid-Funnel Invitation
-            </button>
           </div>
 
           {/* Final Pricing Section */}
