@@ -1,19 +1,9 @@
 
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 const QuizAnalysis = () => {
   const navigate = useNavigate();
-
-  useEffect(() => {
-    // Auto-navigate after 3 seconds to simulate processing
-    const timer = setTimeout(() => {
-      navigate("/quiz/anxiety-global-stats");
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, [navigate]);
 
   const handleContinue = () => {
     navigate("/quiz/anxiety-global-stats");
@@ -38,15 +28,12 @@ const QuizAnalysis = () => {
           
           {/* Illustration of person with laptop */}
           <div className="w-full max-w-sm h-48 mb-8 flex items-center justify-center">
-            <div className="w-64 h-40 bg-gradient-to-br from-flourishgreen to-flourishmint rounded-lg flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-white rounded-full mx-auto mb-2 flex items-center justify-center">
-                  <div className="w-8 h-8 bg-flourishgreen rounded-full"></div>
-                </div>
-                <div className="w-20 h-12 bg-gray-700 rounded mx-auto mb-2"></div>
-                <div className="w-24 h-2 bg-gray-600 rounded mx-auto"></div>
-              </div>
-            </div>
+            <img
+              src="/analysis-illustration.png"
+              alt="Person analyzing data on laptop"
+              className="w-full h-full object-contain"
+              draggable={false}
+            />
           </div>
           
           {/* Status text */}
