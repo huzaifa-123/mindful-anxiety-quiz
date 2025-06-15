@@ -62,8 +62,7 @@ const QuizJourneyTimeline = () => {
   }, [answers]);
 
   const handleContinue = () => {
-    // Navigate to next step - you can update this destination
-    console.log("Journey timeline completed!");
+    navigate("/quiz/calm-reset-plan-builder");
   };
 
   return (
