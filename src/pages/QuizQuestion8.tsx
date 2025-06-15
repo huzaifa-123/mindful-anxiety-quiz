@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import MultiSelectQuestion from "../components/MultiSelectQuestion";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
@@ -60,8 +59,7 @@ const QuizQuestion8 = () => {
 
   const handleContinue = (selectedOptions: string[]) => {
     setAnswer("question8", selectedOptions);
-    // TODO: Navigate to part 3 or results calculation
-    console.log("Quiz Part 2 completed, moving to part 3");
+    navigate("/quiz/part3-intro");
   };
 
   return (

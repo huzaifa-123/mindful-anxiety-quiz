@@ -10,6 +10,13 @@ type QuizAnswer = {
   question6?: string[];
   question7?: string;
   question8?: string[];
+  question9?: number;
+  question10?: number;
+  question11?: number;
+  question12?: number;
+  question13_cbt?: string;
+  question13_mct?: string;
+  question13_cbh?: string;
   // More fields will be added for additional questions
 };
 

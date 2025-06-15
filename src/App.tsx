@@ -17,6 +17,14 @@ import QuizQuestion5 from "./pages/QuizQuestion5";
 import QuizQuestion6 from "./pages/QuizQuestion6";
 import QuizQuestion7 from "./pages/QuizQuestion7";
 import QuizQuestion8 from "./pages/QuizQuestion8";
+import QuizPart3Intro from "./pages/QuizPart3Intro";
+import QuizQuestion9 from "./pages/QuizQuestion9";
+import QuizQuestion10 from "./pages/QuizQuestion10";
+import QuizQuestion11 from "./pages/QuizQuestion11";
+import QuizQuestion12 from "./pages/QuizQuestion12";
+import QuizQuestion13CBT from "./pages/QuizQuestion13CBT";
+import QuizQuestion13MCT from "./pages/QuizQuestion13MCT";
+import QuizQuestion13CBH from "./pages/QuizQuestion13CBH";
 import { QuizAnswersProvider } from "./context/QuizAnswersContext";
 
 const queryClient = new QueryClient();
@@ -45,6 +53,14 @@ const App = () => (
           <Route path="/quiz/question6" element={<QuizWrapper><QuizQuestion6 /></QuizWrapper>} />
           <Route path="/quiz/question7" element={<QuizWrapper><QuizQuestion7 /></QuizWrapper>} />
           <Route path="/quiz/question8" element={<QuizWrapper><QuizQuestion8 /></QuizWrapper>} />
+          <Route path="/quiz/part3-intro" element={<QuizPart3Intro />} />
+          <Route path="/quiz/question9" element={<QuizWrapper><QuizQuestion9 /></QuizWrapper>} />
+          <Route path="/quiz/question10" element={<QuizWrapper><QuizQuestion10 /></QuizWrapper>} />
+          <Route path="/quiz/question11" element={<QuizWrapper><QuizQuestion11 /></QuizWrapper>} />
+          <Route path="/quiz/question12" element={<QuizWrapper><QuizQuestion12 /></QuizWrapper>} />
+          <Route path="/quiz/question13-cbt" element={<QuizWrapper><QuizQuestion13CBT /></QuizWrapper>} />
+          <Route path="/quiz/question13-mct" element={<QuizWrapper><QuizQuestion13MCT /></QuizWrapper>} />
+          <Route path="/quiz/question13-cbh" element={<QuizWrapper><QuizQuestion13CBH /></QuizWrapper>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
