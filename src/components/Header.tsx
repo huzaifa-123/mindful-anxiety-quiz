@@ -15,12 +15,10 @@ const Header: React.FC<HeaderProps> = ({ withBack, questionCount, timer }) => {
   // Detect if on /quiz/part1 for special back handling
   const isQuizPart1 = location.pathname === "/quiz/part1";
 
-  // Always move back button hard left; use absolute positioning
   return (
     <header className="w-full bg-flourishgreen h-[64px] flex items-center px-4 md:px-10 mb-4 font-inter relative">
       {withBack ? (
         <button
-          // Absolute positioning for left corner
           style={{
             position: "absolute",
             left: "16px",
@@ -41,7 +39,8 @@ const Header: React.FC<HeaderProps> = ({ withBack, questionCount, timer }) => {
           <ArrowLeft size={28} color="white" />
         </button>
       ) : null}
-      <div className={`flex items-center gap-3 w-full justify-center`}>
+      
+      <div className="flex items-center gap-3">
         <img
           src="/logo-placeholder.svg"
           alt="Mind Flourish logo"
@@ -51,15 +50,15 @@ const Header: React.FC<HeaderProps> = ({ withBack, questionCount, timer }) => {
           Mind Flourish
         </span>
       </div>
+      
+      <div className="flex-1 flex justify-end">
+        {timer && timer}
+      </div>
+      
       {questionCount && (
         <span className="absolute right-6 top-1/2 -translate-y-1/2 text-white text-base font-bold font-inter">
           {questionCount}
         </span>
-      )}
-      {timer && (
-        <div className="absolute right-6 top-1/2 -translate-y-1/2">
-          {timer}
-        </div>
       )}
     </header>
   );
