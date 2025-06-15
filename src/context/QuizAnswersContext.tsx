@@ -58,9 +58,13 @@ export const QuizAnswersProvider = ({ children }: { children: ReactNode }) => {
     console.log(`🔴 CONTEXT DEBUG: Is array:`, Array.isArray(value));
     console.log(`🔴 CONTEXT DEBUG: JSON stringified value:`, JSON.stringify(value));
     
+    // Store the value directly without any wrapping or transformation
+    const cleanValue = value;
+    
     setAnswers((prev) => {
-      const newAnswers = { ...prev, [key]: value };
-      console.log(`🔴 CONTEXT DEBUG: Updated answers object:`, newAnswers);
+      const newAnswers = { ...prev, [key]: cleanValue };
+      console.log(`🔴 CONTEXT DEBUG: Updated answers object for ${key}:`, newAnswers[key]);
+      console.log(`🔴 CONTEXT DEBUG: Full answers object:`, newAnswers);
       return newAnswers;
     });
   };

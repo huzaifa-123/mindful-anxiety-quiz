@@ -1,3 +1,4 @@
+
 interface QuizAnswers {
   question4?: string[] | any;
   question5?: string[] | any;
@@ -61,19 +62,19 @@ const answerTypeMapping: Record<string, "panic" | "avoidant" | "ruminator"> = {
   "avoidant7": "avoidant",   // Shut down emotionally to avoid discomfort
 };
 
-// Helper function to extract actual values from malformed data
+// Simplified helper function to extract actual values from malformed data
 const extractValue = (value: any): any => {
   console.log(`🔧 EXTRACT DEBUG: Input value:`, value);
   console.log(`🔧 EXTRACT DEBUG: Type:`, typeof value);
   console.log(`🔧 EXTRACT DEBUG: JSON:`, JSON.stringify(value));
   
-  // If it's a malformed object with _type and value properties
-  if (value && typeof value === 'object' && '_type' in value && 'value' in value) {
-    console.log(`🔧 EXTRACT DEBUG: Found malformed object, checking value:`, value.value);
+  // Handle malformed objects with _type and value properties
+  if (value && typeof value === 'object' && value._type !== undefined && value.value !== undefined) {
+    console.log(`🔧 EXTRACT DEBUG: Found malformed object with _type:`, value._type, "and value:", value.value);
     
     // If the nested value is the string "undefined", return undefined
-    if (value.value === "undefined") {
-      console.log(`🔧 EXTRACT DEBUG: Nested value is string "undefined", returning undefined`);
+    if (value.value === "undefined" || value.value === undefined) {
+      console.log(`🔧 EXTRACT DEBUG: Nested value is undefined, returning undefined`);
       return undefined;
     }
     
@@ -87,7 +88,12 @@ const extractValue = (value: any): any => {
     return undefined;
   }
   
-  // If it's a normal value, return as is
+  // If it's actually undefined or null, return undefined
+  if (value === undefined || value === null) {
+    console.log(`🔧 EXTRACT DEBUG: Value is undefined/null, returning undefined`);
+    return undefined;
+  }
+  
   console.log(`🔧 EXTRACT DEBUG: Normal value, returning as is:`, value);
   return value;
 };
@@ -126,10 +132,12 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
   typeQuestions.forEach(questionKey => {
     const questionAnswers = cleanedAnswers[questionKey as keyof typeof cleanedAnswers];
     console.log(`🔍 SCORING DEBUG: Processing ${questionKey}:`, questionAnswers);
+    console.log(`🔍 SCORING DEBUG: Type of ${questionKey}:`, typeof questionAnswers);
+    console.log(`🔍 SCORING DEBUG: Is array:`, Array.isArray(questionAnswers));
     
-    // Skip if the answer is undefined or null
-    if (questionAnswers === undefined || questionAnswers === null) {
-      console.log(`⚠️ SCORING DEBUG: ${questionKey} is undefined/null, skipping`);
+    // Skip if the answer is undefined, null, or empty
+    if (questionAnswers === undefined || questionAnswers === null || questionAnswers === '') {
+      console.log(`⚠️ SCORING DEBUG: ${questionKey} is undefined/null/empty, skipping`);
       return;
     }
     
