@@ -26,6 +26,8 @@ type QuizAnswer = {
   question19?: string;
   question20?: string[];
   question21?: string;
+  question22?: string;
+  question23?: string;
   // More fields will be added for additional questions
 };
 

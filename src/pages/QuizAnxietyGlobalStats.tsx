@@ -6,8 +6,7 @@ const QuizAnxietyGlobalStats = () => {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    // TODO: Navigate to results page
-    console.log("Moving to results...");
+    navigate("/quiz/results");
   };
 
   return (

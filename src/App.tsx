@@ -37,6 +37,9 @@ import QuizQuestion21 from "./pages/QuizQuestion21";
 import { QuizAnswersProvider } from "./context/QuizAnswersContext";
 import QuizAnalysis from "./pages/QuizAnalysis";
 import QuizAnxietyGlobalStats from "./pages/QuizAnxietyGlobalStats";
+import QuizResults from "./pages/QuizResults";
+import QuizQuestion22 from "./pages/QuizQuestion22";
+import QuizQuestion23 from "./pages/QuizQuestion23";
 
 const queryClient = new QueryClient();
 
@@ -84,6 +87,9 @@ const App = () => (
           <Route path="/quiz/question21" element={<QuizWrapper><QuizQuestion21 /></QuizWrapper>} />
           <Route path="/quiz/analysis" element={<QuizAnalysis />} />
           <Route path="/quiz/anxiety-global-stats" element={<QuizAnxietyGlobalStats />} />
+          <Route path="/quiz/results" element={<QuizResults />} />
+          <Route path="/quiz/question22" element={<QuizWrapper><QuizQuestion22 /></QuizWrapper>} />
+          <Route path="/quiz/question23" element={<QuizWrapper><QuizQuestion23 /></QuizWrapper>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
