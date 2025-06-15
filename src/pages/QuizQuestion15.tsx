@@ -1,57 +1,58 @@
+
 import Header from "../components/Header";
 import SingleSelectQuestion from "../components/SingleSelectQuestion";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
-const QuizQuestion13CBH = () => {
+const QuizQuestion15 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "How familiar are you with Cognitive Behavioral Hypnotherapy (CBH)?";
+  const question = "What's your biggest motivation for taking this quiz today?";
   
   const options = [
     {
-      id: "never_heard_cbh",
-      text: "I've never heard of it",
-      icon: "/dummy-therapy-icon.png"
+      id: "understand_whats_going_on",
+      text: "I want to understand what's really going on",
+      icon: "/dummy-understand-icon.png"
     },
     {
-      id: "heard_not_sure_cbh",
-      text: "I've heard of it but not sure how it works",
-      icon: "/dummy-therapy-icon.png"
+      id: "want_tools",
+      text: "I want tools to help me in anxious moments",
+      icon: "/dummy-tools-icon.png"
     },
     {
-      id: "understand_cbh",
-      text: "I understand it",
-      icon: "/dummy-therapy-icon.png"
+      id: "stop_overthinking",
+      text: "I want to stop overthinking and feel more calm",
+      icon: "/dummy-calm-icon.png"
     },
     {
-      id: "tried_cbh",
-      text: "I've tried it before",
-      icon: "/dummy-therapy-icon.png"
+      id: "take_control",
+      text: "I want to take control of my anxiety for good",
+      icon: "/dummy-control-icon.png"
     }
   ];
 
   const handleSelect = (optionId: string) => {
-    setAnswer("question13_cbh", optionId);
-    navigate("/quiz/part4-intro");
+    setAnswer("question15", optionId);
+    navigate("/quiz/question16");
   };
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="13 / 22" />
+        <Header withBack questionCount="15 / 22" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center py-8">
         <SingleSelectQuestion
           question={question}
           options={options}
           onSelect={handleSelect}
-          questionNumber="13"
+          questionNumber="15"
         />
       </main>
     </div>
   );
 };
 
-export default QuizQuestion13CBH;
+export default QuizQuestion15;

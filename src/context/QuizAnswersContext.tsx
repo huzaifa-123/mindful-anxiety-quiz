@@ -17,6 +17,15 @@ type QuizAnswer = {
   question13_cbt?: string;
   question13_mct?: string;
   question13_cbh?: string;
+  question13?: string;
+  question14?: string[];
+  question15?: string;
+  question16?: string[];
+  question17?: string;
+  question18?: string;
+  question19?: string;
+  question20?: string[];
+  question21?: string;
   // More fields will be added for additional questions
 };
 

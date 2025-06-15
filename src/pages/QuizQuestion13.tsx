@@ -1,40 +1,41 @@
+
 import Header from "../components/Header";
 import SingleSelectQuestion from "../components/SingleSelectQuestion";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
-const QuizQuestion13CBH = () => {
+const QuizQuestion13 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "How familiar are you with Cognitive Behavioral Hypnotherapy (CBH)?";
+  const question = "How long have you been dealing with anxiety?";
   
   const options = [
     {
-      id: "never_heard_cbh",
-      text: "I've never heard of it",
-      icon: "/dummy-therapy-icon.png"
+      id: "few_weeks",
+      text: "A few weeks",
+      icon: "/dummy-time-icon.png"
     },
     {
-      id: "heard_not_sure_cbh",
-      text: "I've heard of it but not sure how it works",
-      icon: "/dummy-therapy-icon.png"
+      id: "few_months",
+      text: "A few months",
+      icon: "/dummy-time-icon.png"
     },
     {
-      id: "understand_cbh",
-      text: "I understand it",
-      icon: "/dummy-therapy-icon.png"
+      id: "over_year",
+      text: "Over a year",
+      icon: "/dummy-time-icon.png"
     },
     {
-      id: "tried_cbh",
-      text: "I've tried it before",
-      icon: "/dummy-therapy-icon.png"
+      id: "several_years",
+      text: "Several years",
+      icon: "/dummy-time-icon.png"
     }
   ];
 
   const handleSelect = (optionId: string) => {
-    setAnswer("question13_cbh", optionId);
-    navigate("/quiz/part4-intro");
+    setAnswer("question13", optionId);
+    navigate("/quiz/question14");
   };
 
   return (
@@ -54,4 +55,4 @@ const QuizQuestion13CBH = () => {
   );
 };
 
-export default QuizQuestion13CBH;
+export default QuizQuestion13;
