@@ -670,6 +670,93 @@ const QuizPlan = () => {
               Mid-Funnel Invitation
             </button>
           </div>
+
+          {/* Final Pricing Section */}
+          <div className="text-center mb-16">
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">
+              Begin Your Calm Reset Plan
+            </h2>
+            
+            <div className="max-w-md mx-auto space-y-4">
+              {/* One Time Payment Option */}
+              <div className="relative">
+                <div className="bg-flourishgreen text-white text-center py-2 rounded-t-lg">
+                  <span className="text-sm font-medium flex items-center justify-center gap-1">
+                    ★ Most Popular!
+                  </span>
+                </div>
+                <div className="bg-white border border-gray-200 rounded-b-lg p-4 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <input 
+                      type="radio" 
+                      name="finalPayment" 
+                      className="w-4 h-4" 
+                      defaultChecked
+                    />
+                    <span className="font-semibold text-gray-900">ONE TIME PAYMENT</span>
+                  </div>
+                  <div className="text-right relative">
+                    <div className="bg-flourishmint text-white px-4 py-2 rounded-full text-lg font-bold relative">
+                      $70.00
+                      <div className="absolute -top-1 -right-1 bg-flourishmint text-white text-xs px-2 py-1 rounded-full">
+                        Discounted Price
+                      </div>
+                    </div>
+                    <div className="text-xs text-gray-500 mt-1">
+                      <span className="line-through">$147.00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* 3x Installment Plan Option */}
+              <div className="bg-white border border-gray-200 rounded-lg p-4 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <input 
+                    type="radio" 
+                    name="finalPayment" 
+                    className="w-4 h-4"
+                  />
+                  <span className="font-semibold text-gray-900">3X INSTALLMENT PLAN</span>
+                </div>
+                <div className="text-right relative">
+                  <div className="bg-flourishmint text-white px-4 py-2 rounded-full text-lg font-bold relative">
+                    $25.00
+                    <div className="absolute -top-1 -right-1 bg-flourishmint text-white text-xs px-2 py-1 rounded-full">
+                      Discounted Price
+                    </div>
+                  </div>
+                  <div className="text-xs text-gray-500 mt-1">
+                    <span className="line-through">$49.00</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Completion Message */}
+            <div className="mt-8 mb-6">
+              <p className="text-gray-800 font-semibold mb-2">
+                You've completed your anxiety profile.
+              </p>
+              <p className="text-gray-600 text-sm mb-1">
+                Your path to clarity, calm, and confidence begins right here.
+              </p>
+              <p className="text-gray-600 text-sm">
+                We've prepared your tools, based on what your system truly needs.
+              </p>
+            </div>
+
+            {/* Start My Plan Button */}
+            <button 
+              className="bg-flourishmint hover:bg-green-400 text-white px-8 py-3 rounded-full font-semibold text-lg transition-colors"
+              onClick={() => {
+                // Does nothing for now as requested
+                console.log("Start My Plan Now clicked");
+              }}
+            >
+              Start My Plan Now
+            </button>
+          </div>
         </div>
       </main>
     </div>
