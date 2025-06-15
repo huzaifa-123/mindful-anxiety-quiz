@@ -1,3 +1,4 @@
+
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
@@ -64,32 +65,43 @@ const QuizAnxietyProfile = () => {
   const getTypeDescription = (type: string) => {
     switch (type) {
       case "panic":
-        return "You feel like you're always walking on eggshells, with your body reacting to stress with physical symptoms like rapid heartbeat, sweating, or feeling like you can't breathe. Your nervous system goes into overdrive, and you feel like you're losing control.";
+        return "It can feel like anxiety strikes suddenly, with your body reacting before your mind understands why. This response is your nervous system in protection mode but it's working too hard. The good news? This pattern can be softened and safely rewired.";
       case "ruminator": 
-        return "Your mind feels like it never stops - you get stuck in endless loops of worry, replay past events, and spiral into 'what if' scenarios. You feel like your brain is working against you, and you can't turn off the constant thinking about potential problems.";
+        return "Your mind tends to loop, analyze, and overthink especially when things feel uncertain. It's not just mental noise. It's your system trying to gain control through thinking. But thinking harder doesn't bring peace, calming the system does.";
       case "avoidant":
-        return "You tend to shy away from situations that make you uncomfortable, which can make your world feel smaller and smaller. You might avoid social situations, new experiences, or challenging tasks because they feel too overwhelming.";
+        return "You tend to pull back when things feel intense avoiding confrontation, delaying action, or isolating when overwhelmed. This is your nervous system's way of keeping you safe. But over time, it can make life feel smaller than it needs to be.";
       default:
         return "Your anxiety pattern is being analyzed.";
     }
   };
 
   const getSecondaryTypeDescription = (type: string, percentage: number) => {
-    if (percentage < 20) return null;
-    
     switch (type) {
       case "panic":
-        return `There's also a tendency to experience panic-like symptoms or emotional outbursts, which can make situations feel more overwhelming or unpredictable.`;
+        return `There are signs of panic-driven anxiety as well sudden emotional surges, physical tension, or fear that seems to come out of nowhere.`;
       case "ruminator":
-        return `You also tend to overthink and get caught up in mental loops, which can make decision-making and moving forward more challenging.`;
+        return `There's also a mental loop pattern constantly replaying, predicting, or analyzing things in your mind, especially during stress.`;
       case "avoidant":
-        return `There's also a pattern of avoidance, where you might step back from challenging situations, which can limit your growth and experiences.`;
+        return `There's also a tendency to pull away, delay, or avoid uncomfortable situations. This can create a loop where fear builds and action feels harder.`;
       default:
         return null;
     }
   };
 
-  // Find secondary type
+  const getSeverityDescriptionExtended = (severity: string) => {
+    switch (severity) {
+      case "mild":
+        return "Your answers suggest anxiety is present but still manageable. This is a powerful place to begin making gentle changes before patterns deepen and energy drains further.";
+      case "moderate":
+        return "Your answers show that anxiety is impacting how you think, feel, and function. It's not overwhelming every moment but it is present enough to affect your energy and clarity. This is the perfect window to begin resetting these patterns gently and effectively.";
+      case "severe":
+        return "Your quiz responses show a high-impact level. Anxiety may be affecting sleep, focus, decisions, and even your sense of self. This isn't permanent but it's a sign your system needs support now, not later.";
+      default:
+        return "Your anxiety severity is being assessed.";
+    }
+  };
+
+  // Find secondary type - this logic needs to be more robust
   const typePercentages = [
     { type: "panic", percentage: results.typePercentages.panic },
     { type: "ruminator", percentage: results.typePercentages.ruminator },
@@ -165,7 +177,7 @@ const QuizAnxietyProfile = () => {
             </CardContent>
           </Card>
 
-          {/* Secondary style section with styled heading */}
+          {/* Secondary style section - ALWAYS show if there's a secondary type with >= 20% */}
           {secondaryType && secondaryType.percentage >= 20 && (
             <div className="mb-6">
               {/* Styled heading for Secondary Style */}
@@ -200,7 +212,7 @@ const QuizAnxietyProfile = () => {
                 {results.severity}
               </h4>
               <p className="text-sm leading-relaxed text-gray-600">
-                {getSeverityDescription(results.severity)} Your anxiety affects your daily life and relationships, but there's hope. This is exactly where our proven methodology can help you gain control.
+                {getSeverityDescriptionExtended(results.severity)}
               </p>
             </div>
           </div>
