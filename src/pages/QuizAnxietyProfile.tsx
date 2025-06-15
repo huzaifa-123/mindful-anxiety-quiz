@@ -78,9 +78,9 @@ const QuizAnxietyProfile = () => {
   const getSecondaryTypeDescription = (type: string, percentage: number) => {
     switch (type) {
       case "panic":
-        return `There are signs of panic-driven anxiety as well sudden emotional surges, physical tension, or fear that seems to come out of nowhere.`;
+        return `There are signs of panic-driven anxiety as well — sudden emotional surges, physical tension, or fear that seems to come out of nowhere.`;
       case "ruminator":
-        return `There's also a mental loop pattern constantly replaying, predicting, or analyzing things in your mind, especially during stress.`;
+        return `There's also a mental loop pattern — constantly replaying, predicting, or analyzing things in your mind, especially during stress.`;
       case "avoidant":
         return `There's also a tendency to pull away, delay, or avoid uncomfortable situations. This can create a loop where fear builds and action feels harder.`;
       default:
@@ -110,6 +110,9 @@ const QuizAnxietyProfile = () => {
    .sort((a, b) => b.percentage - a.percentage);
 
   const secondaryType = typePercentages[0];
+
+  console.log("Secondary type data:", secondaryType);
+  console.log("Should show secondary:", secondaryType && secondaryType.percentage >= 20);
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite">
