@@ -180,7 +180,7 @@ const QuizPlan = () => {
           <div className="flex justify-center items-center gap-8 mb-16">
             {/* Now Section */}
             <div className="text-center">
-              <div className="bg-gray-800 text-white px-4 py-1 rounded text-sm font-medium mb-4 inline-block">
+              <div className="bg-flourishgreen text-white px-4 py-1 rounded text-sm font-medium mb-4 inline-block">
                 Now
               </div>
               <div className="relative">
@@ -237,7 +237,7 @@ const QuizPlan = () => {
 
             {/* Goal Section */}
             <div className="text-center">
-              <div className="bg-flourishmint text-white px-4 py-1 rounded text-sm font-medium mb-4 inline-block">
+              <div className="bg-flourishgreen text-white px-4 py-1 rounded text-sm font-medium mb-4 inline-block">
                 Your Goal
               </div>
               <div className="relative">
@@ -288,7 +288,7 @@ const QuizPlan = () => {
           <div className="flex justify-center gap-12 mb-16">
             {/* Current Experience */}
             <div className="w-full max-w-sm">
-              <div className="bg-gray-700 text-white px-6 py-3 rounded-full text-center font-semibold mb-4">
+              <div className="bg-flourishgreen text-white px-6 py-3 rounded-full text-center font-semibold mb-4">
                 Current Experience
               </div>
               <div className="text-center mb-6">
@@ -325,7 +325,7 @@ const QuizPlan = () => {
 
             {/* Calm Reset Vision */}
             <div className="w-full max-w-sm">
-              <div className="bg-gray-700 text-white px-6 py-3 rounded-full text-center font-semibold mb-4">
+              <div className="bg-flourishgreen text-white px-6 py-3 rounded-full text-center font-semibold mb-4">
                 Calm Reset Vision
               </div>
               <div className="text-center mb-6">
