@@ -14,13 +14,13 @@ const QuizJourneyTimeline = () => {
     const calculateEstimatedDate = () => {
       console.log("🗓️ TIMELINE DEBUG: All quiz answers:", JSON.stringify(answers, null, 2));
       
-      const q13Value = answers.question13;
-      const q17Value = answers.question17;
+      const q13Value = answers.question13; // Duration of anxiety
+      const q17Value = answers.question17; // Time available daily
       
       console.log("🗓️ TIMELINE DEBUG: Q13 answer (duration):", q13Value);
       console.log("🗓️ TIMELINE DEBUG: Q17 answer (time available):", q17Value);
 
-      // Base days from Q13 (anxiety duration)
+      // Base days from Q13 (anxiety duration) - CORRECTED MAPPING
       const baseDaysMap: Record<string, number> = {
         "few_weeks": 10,
         "few_months": 14,
@@ -28,7 +28,7 @@ const QuizJourneyTimeline = () => {
         "several_years": 28,
       };
 
-      // Time multiplier from Q17 (daily time available)
+      // Time multiplier from Q17 (daily time available) - CORRECTED MAPPING
       const timeMultiplierMap: Record<string, number> = {
         "5_minutes": 1.5,
         "10_minutes": 1.2,
@@ -45,9 +45,11 @@ const QuizJourneyTimeline = () => {
       console.log("🗓️ TIMELINE DEBUG: Base days:", baseDays, "for duration:", q13Value);
       console.log("🗓️ TIMELINE DEBUG: Time multiplier:", timeMultiplier, "for time:", q17Value);
       
+      // Apply the correct formula: estimated_days = base_days × multiplier
       const estimatedDays = Math.round(baseDays * timeMultiplier);
       console.log("🗓️ TIMELINE DEBUG: Estimated days:", estimatedDays);
       
+      // Calculate future date: estimated_date = today + estimated_days
       const futureDate = new Date();
       futureDate.setDate(futureDate.getDate() + estimatedDays);
       
@@ -56,7 +58,9 @@ const QuizJourneyTimeline = () => {
         year: 'numeric' 
       });
       
-      console.log("🗓️ TIMELINE DEBUG: Estimated date:", monthYear);
+      console.log("🗓️ TIMELINE DEBUG: Today:", new Date().toLocaleDateString());
+      console.log("🗓️ TIMELINE DEBUG: Future date:", futureDate.toLocaleDateString());
+      console.log("🗓️ TIMELINE DEBUG: Estimated date string:", monthYear);
       setEstimatedDate(monthYear);
     };
 
@@ -87,7 +91,7 @@ const QuizJourneyTimeline = () => {
           {/* Estimated Date */}
           <div className="mb-6">
             <p className="text-gray-800 text-lg font-semibold">
-              {estimatedDate}
+              {estimatedDate || "Calculating..."}
             </p>
             <p className="text-gray-600 text-sm mt-1">
               (based on anxiety duration and available daily time)

@@ -80,12 +80,9 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
   typeQuestions.forEach(questionKey => {
     const questionAnswers = answers[questionKey as keyof QuizAnswers];
     console.log(`🔍 SCORING DEBUG: Processing ${questionKey}:`, questionAnswers);
-    console.log(`🔍 SCORING DEBUG: Type of ${questionKey}:`, typeof questionAnswers);
-    console.log(`🔍 SCORING DEBUG: Is array:`, Array.isArray(questionAnswers));
     
-    // Skip if the answer is undefined, null, or empty
-    if (questionAnswers === undefined || questionAnswers === null || questionAnswers === '') {
-      console.log(`⚠️ SCORING DEBUG: ${questionKey} is undefined/null/empty, skipping`);
+    if (!questionAnswers) {
+      console.log(`⚠️ SCORING DEBUG: ${questionKey} is undefined/null, skipping`);
       return;
     }
     
@@ -101,10 +98,9 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
           console.log(`✅ SCORING DEBUG: Mapped "${answerId}" to "${type}". New count: ${typeCounts[type]}`);
         } else {
           console.log(`❌ SCORING DEBUG: No mapping found for answer ID: "${answerId}"`);
-          console.log(`🗺️ SCORING DEBUG: Available mappings:`, Object.keys(answerTypeMapping));
         }
       });
-    } else if (typeof questionAnswers === 'string' && questionAnswers !== '') {
+    } else if (typeof questionAnswers === 'string') {
       // Single-select questions (7)
       console.log(`📝 SCORING DEBUG: ${questionKey} is string: "${questionAnswers}"`);
       const type = answerTypeMapping[questionAnswers];
@@ -114,10 +110,7 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
         console.log(`✅ SCORING DEBUG: Mapped "${questionAnswers}" to "${type}". New count: ${typeCounts[type]}`);
       } else {
         console.log(`❌ SCORING DEBUG: No mapping found for single answer ID: "${questionAnswers}"`);
-        console.log(`🗺️ SCORING DEBUG: Available mappings:`, Object.keys(answerTypeMapping));
       }
-    } else {
-      console.log(`⚠️ SCORING DEBUG: ${questionKey} is not a valid format:`, typeof questionAnswers, questionAnswers);
     }
   });
 
