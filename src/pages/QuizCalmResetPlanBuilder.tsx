@@ -7,11 +7,9 @@ import { useState, useEffect } from "react";
 const QuizCalmResetPlanBuilder = () => {
   const navigate = useNavigate();
   const { setAnswer } = useQuizAnswers();
-  const [currentStep, setCurrentStep] = useState(0);
   const [progressValues, setProgressValues] = useState([0, 0, 0]);
   const [showPopup, setShowPopup] = useState(false);
   const [currentPopup, setCurrentPopup] = useState(0);
-  const [showCompletion, setShowCompletion] = useState(false);
 
   const steps = [
     {
@@ -111,42 +109,12 @@ const QuizCalmResetPlanBuilder = () => {
         }, 50);
       }, 500);
     } else {
-      // Show completion
+      // Navigate to completion page
       setTimeout(() => {
-        setShowCompletion(true);
-        setTimeout(() => {
-          navigate("/quiz/next-step");
-        }, 3000);
+        navigate("/quiz/plan-completion");
       }, 500);
     }
   };
-
-  if (showCompletion) {
-    return (
-      <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
-        <div className="w-full sticky top-0 z-10">
-          <Header withBack />
-        </div>
-        <main className="flex-1 flex flex-col items-center justify-center px-4">
-          <div className="w-full max-w-2xl mx-auto flex flex-col items-center justify-center text-center">
-            <div className="mb-8">
-              <div className="w-16 h-16 mx-auto mb-4 bg-flourishmint rounded-full flex items-center justify-center">
-                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="text-flourishgreen">
-                  <polyline points="20,6 9,17 4,12"></polyline>
-                </svg>
-              </div>
-              <h1 className="font-semibold text-2xl text-flourishgreen mb-4">
-                Your Personalized Plan is Ready!
-              </h1>
-              <p className="text-gray-700 text-base leading-relaxed max-w-xl">
-                Based on your responses, we've created a tailored approach that combines proven methodologies with your personal preferences. Your journey toward lasting calm begins with understanding that anxiety isn't something to fight, but rather something to work with through gentle, consistent practices that honor your unique needs and lifestyle.
-              </p>
-            </div>
-          </div>
-        </main>
-      </div>
-    );
-  }
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
@@ -156,26 +124,22 @@ const QuizCalmResetPlanBuilder = () => {
       <main className="flex-1 flex flex-col items-center justify-center px-4 relative">
         <div className="w-full max-w-5xl mx-auto">
           
-          {/* Progress Cards */}
+          {/* Progress Cards - Perfectly aligned */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
             {steps.map((step, index) => (
-              <div key={index} className="rounded-xl border-2 border-gray-200 overflow-hidden bg-white">
-                {/* Header section with green background */}
-                <div className={`p-6 transition-all duration-500 ${
-                  progressValues[index] === 100
-                    ? 'bg-flourishgreen text-white'
-                    : 'bg-flourishgreen text-white'
-                }`}>
-                  <h3 className="font-semibold text-lg mb-1 text-white">
+              <div key={index} className="rounded-xl border-2 border-gray-200 overflow-hidden bg-white h-40">
+                {/* Header section with green background - Fixed height for alignment */}
+                <div className="h-20 p-4 bg-flourishgreen text-white flex flex-col justify-center">
+                  <h3 className="font-semibold text-lg mb-1 text-white leading-tight">
                     {step.title}
                   </h3>
-                  <h4 className="font-semibold text-lg text-flourishmint">
+                  <h4 className="font-semibold text-lg text-flourishmint leading-tight">
                     {step.subtitle}
                   </h4>
                 </div>
 
-                {/* Progress section with white background */}
-                <div className="p-6 bg-white">
+                {/* Progress section with white background - Fixed height for alignment */}
+                <div className="h-20 p-4 bg-white flex flex-col justify-center">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm text-gray-600">
                       {step.progressText}
