@@ -23,9 +23,9 @@ type QuizAnswer = {
   question16?: string;
   question17?: string[];
   question18?: string; // Time available daily (formerly question17)
-  question19?: string;
+  question19?: string; // Worry control (formerly question18)
   question20?: string;
-  question21?: string[];
+  question21?: string;
   question22?: string;
   question23?: string;
   plan_journaling?: string;

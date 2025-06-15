@@ -34,7 +34,7 @@ const QuizQuestion18 = () => {
   ];
 
   const handleSelect = (optionId: string) => {
-    setAnswer("question18", optionId);
+    setAnswer("question19", optionId);
     navigate("/quiz/question19");
   };
 
