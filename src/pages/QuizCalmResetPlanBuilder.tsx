@@ -3,12 +3,11 @@ import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useState, useEffect } from "react";
-import { Progress } from "../components/ui/progress";
 
 const QuizCalmResetPlanBuilder = () => {
   const navigate = useNavigate();
   const { setAnswer } = useQuizAnswers();
-  const [currentStep, setCurrentStep] = useState(0); // 0 = showing progress bars, 1-3 = popup questions
+  const [currentStep, setCurrentStep] = useState(0);
   const [progressValues, setProgressValues] = useState([0, 0, 0]);
   const [showPopup, setShowPopup] = useState(false);
   const [currentPopup, setCurrentPopup] = useState(0);
@@ -24,7 +23,7 @@ const QuizCalmResetPlanBuilder = () => {
         { id: "yes_used_before", text: "Yes, I've used it before" },
         { id: "no_open_to_it", text: "No, but I'm open to it" }
       ],
-      answerKey: "plan_journaling" as keyof import("../context/QuizAnswersContext").QuizAnswer
+      answerKey: "plan_journaling"
     },
     {
       title: "Customizing your",
@@ -35,7 +34,7 @@ const QuizCalmResetPlanBuilder = () => {
         { id: "yes_respond_well", text: "Yes, I respond well to them" },
         { id: "mentally_focused", text: "I'm more mentally focused" }
       ],
-      answerKey: "plan_tools" as keyof import("../context/QuizAnswersContext").QuizAnswer
+      answerKey: "plan_tools"
     },
     {
       title: "Finalizing your",
@@ -46,55 +45,77 @@ const QuizCalmResetPlanBuilder = () => {
         { id: "prefer_guidance", text: "I prefer guidance and structure" },
         { id: "own_pace", text: "I like to go at my own pace" }
       ],
-      answerKey: "plan_support_style" as keyof import("../context/QuizAnswersContext").QuizAnswer
+      answerKey: "plan_support_style"
     }
   ];
 
   useEffect(() => {
-    // Start the progress bar animations
-    const animateProgressBars = () => {
-      // First progress bar
-      setTimeout(() => {
-        setProgressValues([100, 0, 0]);
-        setTimeout(() => {
-          setShowPopup(true);
-          setCurrentPopup(0);
-        }, 500);
-      }, 800);
+    // Start the first progress bar animation (slower, 2-3 seconds)
+    const animateFirstProgress = () => {
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 2;
+        setProgressValues([progress, 0, 0]);
+        
+        if (progress >= 100) {
+          clearInterval(interval);
+          // Show first popup after progress completes
+          setTimeout(() => {
+            setShowPopup(true);
+            setCurrentPopup(0);
+          }, 300);
+        }
+      }, 50); // 50ms * 50 iterations = 2.5 seconds
     };
 
-    animateProgressBars();
+    animateFirstProgress();
   }, []);
 
   const handlePopupAnswer = (optionId: string) => {
     const currentStepData = steps[currentPopup];
-    setAnswer(currentStepData.answerKey, optionId);
+    setAnswer(currentStepData.answerKey as keyof typeof setAnswer, optionId);
     setShowPopup(false);
 
     if (currentPopup === 0) {
-      // Move to second progress bar
+      // Animate second progress bar
       setTimeout(() => {
-        setProgressValues([100, 100, 0]);
-        setTimeout(() => {
-          setShowPopup(true);
-          setCurrentPopup(1);
-        }, 500);
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += 2;
+          setProgressValues([100, progress, 0]);
+          
+          if (progress >= 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+              setShowPopup(true);
+              setCurrentPopup(1);
+            }, 300);
+          }
+        }, 50);
       }, 500);
     } else if (currentPopup === 1) {
-      // Move to third progress bar
+      // Animate third progress bar
       setTimeout(() => {
-        setProgressValues([100, 100, 100]);
-        setTimeout(() => {
-          setShowPopup(true);
-          setCurrentPopup(2);
-        }, 500);
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += 2;
+          setProgressValues([100, 100, progress]);
+          
+          if (progress >= 100) {
+            clearInterval(interval);
+            setTimeout(() => {
+              setShowPopup(true);
+              setCurrentPopup(2);
+            }, 300);
+          }
+        }, 50);
       }, 500);
     } else {
       // Show completion
       setTimeout(() => {
         setShowCompletion(true);
         setTimeout(() => {
-          navigate("/quiz/next-step"); // Update this to your next route
+          navigate("/quiz/next-step");
         }, 3000);
       }, 500);
     }
@@ -138,71 +159,37 @@ const QuizCalmResetPlanBuilder = () => {
           {/* Progress Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
             {steps.map((step, index) => (
-              <div
-                key={index}
-                className={`relative p-6 rounded-xl border-2 transition-all duration-500 ${
+              <div key={index} className="rounded-xl border-2 border-gray-200 overflow-hidden bg-white">
+                {/* Header section with green background */}
+                <div className={`p-6 transition-all duration-500 ${
                   progressValues[index] === 100
-                    ? 'bg-flourishgreen text-white border-flourishgreen'
-                    : 'bg-white text-gray-700 border-gray-200'
-                }`}
-              >
-                <div className="mb-4">
-                  <h3 className={`font-semibold text-lg mb-1 ${
-                    progressValues[index] === 100 ? 'text-white' : 'text-flourishgreen'
-                  }`}>
+                    ? 'bg-flourishgreen text-white'
+                    : 'bg-flourishgreen text-white'
+                }`}>
+                  <h3 className="font-semibold text-lg mb-1 text-white">
                     {step.title}
                   </h3>
-                  <h4 className={`font-semibold text-lg ${
-                    progressValues[index] === 100 ? 'text-flourishmint' : 'text-flourishgreen'
-                  }`}>
+                  <h4 className="font-semibold text-lg text-flourishmint">
                     {step.subtitle}
                   </h4>
                 </div>
 
-                {/* Progress Bar */}
-                <div className="mb-3">
+                {/* Progress section with white background */}
+                <div className="p-6 bg-white">
                   <div className="flex justify-between items-center mb-2">
-                    <span className={`text-sm ${
-                      progressValues[index] === 100 ? 'text-flourishmint' : 'text-gray-600'
-                    }`}>
+                    <span className="text-sm text-gray-600">
                       {step.progressText}
                     </span>
-                    <span className={`text-sm ${
-                      progressValues[index] === 100 ? 'text-flourishmint' : 'text-gray-600'
-                    }`}>
-                      {progressValues[index]}%
+                    <span className="text-sm text-gray-600">
+                      {Math.round(progressValues[index])}%
                     </span>
                   </div>
-                  <div className={`w-full h-2 rounded-full ${
-                    progressValues[index] === 100 ? 'bg-white/20' : 'bg-gray-200'
-                  }`}>
+                  <div className="w-full h-2 rounded-full bg-gray-200">
                     <div
-                      className={`h-full rounded-full transition-all duration-1000 ease-out ${
-                        progressValues[index] === 100 ? 'bg-flourishmint' : 'bg-flourishgreen'
-                      }`}
+                      className="h-full rounded-full transition-all duration-300 ease-out bg-flourishmint"
                       style={{ width: `${progressValues[index]}%` }}
                     />
                   </div>
-                </div>
-
-                <div className="text-sm opacity-80">
-                  {step.question}
-                </div>
-
-                {/* Buttons placeholder */}
-                <div className="mt-4 space-y-2">
-                  {step.options.map((option, optionIndex) => (
-                    <div
-                      key={optionIndex}
-                      className={`p-2 rounded-lg border text-xs text-center ${
-                        progressValues[index] === 100
-                          ? 'border-white/30 text-white/70'
-                          : 'border-gray-300 text-gray-500'
-                      }`}
-                    >
-                      {option.text}
-                    </div>
-                  ))}
                 </div>
               </div>
             ))}
