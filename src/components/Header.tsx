@@ -14,6 +14,9 @@ const Header: React.FC<HeaderProps> = ({ withBack, questionCount, timer }) => {
 
   // Detect if on /quiz/part1 for special back handling
   const isQuizPart1 = location.pathname === "/quiz/part1";
+  
+  // Show full logo + name only on first page (/) and last page (/quiz/plan)
+  const showFullBranding = location.pathname === "/" || location.pathname === "/quiz/plan";
 
   return (
     <header className="w-full bg-flourishgreen h-[64px] flex items-center px-4 md:px-10 mb-4 font-inter relative">
@@ -46,9 +49,11 @@ const Header: React.FC<HeaderProps> = ({ withBack, questionCount, timer }) => {
           alt="Mind Flourish logo"
           className="h-8 w-8 object-contain"
         />
-        <span className="text-flourishwhite text-2xl font-bold tracking-tight select-none leading-tight font-inter">
-          Mind Flourish
-        </span>
+        {showFullBranding && (
+          <span className="text-flourishwhite text-2xl font-bold tracking-tight select-none leading-tight font-inter">
+            Mind Flourish
+          </span>
+        )}
       </div>
       
       <div className="flex-1 flex justify-end">
@@ -56,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ withBack, questionCount, timer }) => {
       </div>
       
       {questionCount && (
-        <span className="absolute right-6 top-1/2 -translate-y-1/2 text-white text-base font-bold font-inter">
+        <span className="absolute right-6 top-1/2 -translate-y-1/2 text-white text-lg font-bold font-inter">
           {questionCount}
         </span>
       )}
