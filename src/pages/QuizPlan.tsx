@@ -64,29 +64,24 @@ const QuizPlan = () => {
 
   const therapyDescriptions = getTherapyDescriptions(results.dominantType);
 
+  // Timer component for header
+  const TimerDisplay = () => (
+    <div className="bg-orange-100 border border-orange-300 rounded-lg px-3 py-1">
+      <div className="flex items-center gap-2">
+        <span className="text-orange-600 font-semibold text-sm">⏰</span>
+        <div className="text-orange-700 font-bold">{formatTime(timeLeft)}</div>
+      </div>
+    </div>
+  );
+
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack />
+        <Header withBack timer={<TimerDisplay />} />
       </div>
       
       <main className="flex-1 px-4 py-8">
         <div className="w-full max-w-4xl mx-auto">
-          
-          {/* Timer Header */}
-          <div className="text-center mb-8">
-            <div className="bg-orange-100 border border-orange-300 rounded-lg p-4 mb-6">
-              <div className="flex items-center justify-center gap-2 mb-2">
-                <span className="text-orange-600 font-semibold">⏰ Limited Time Offer</span>
-              </div>
-              <div className="text-2xl font-bold text-orange-700">
-                {formatTime(timeLeft)}
-              </div>
-              <p className="text-sm text-orange-600 mt-1">
-                This personalized plan expires soon
-              </p>
-            </div>
-          </div>
 
           {/* Main Heading */}
           <div className="text-center mb-8">
@@ -95,22 +90,25 @@ const QuizPlan = () => {
             </h1>
           </div>
 
-          {/* Therapy Cards */}
-          <div className="grid md:grid-cols-2 gap-6 mb-12">
+          {/* Therapy Cards - Two column layout */}
+          <div className="grid md:grid-cols-2 gap-6 mb-8">
             
             {/* CBT Card */}
             <Card className="border-2 border-green-200 bg-green-50">
               <CardContent className="p-6">
                 <div className="flex items-start gap-4 mb-4">
                   <img 
-                    src="/placeholder-therapist-1.png" 
+                    src="/placeholder-therapist-cbt.png" 
                     alt="CBT illustration" 
-                    className="w-16 h-16 object-contain"
+                    className="w-16 h-16 object-contain rounded-full"
                   />
                   <div>
                     <h3 className="font-bold text-lg text-green-800 mb-1">
-                      Cognitive Behavioral Therapy
+                      Cognitive Behavioral
                     </h3>
+                    <h4 className="font-bold text-lg text-green-800 mb-1">
+                      Therapy
+                    </h4>
                     <span className="text-sm bg-green-200 text-green-800 px-2 py-1 rounded">
                       Your Match: 85%
                     </span>
@@ -119,7 +117,7 @@ const QuizPlan = () => {
                 <p className="text-sm text-green-700 mb-4">
                   {therapyDescriptions.cbt}
                 </p>
-                <div className="space-y-2 text-xs text-green-600">
+                <div className="space-y-1 text-xs text-green-600">
                   <div>• Thought record exercises</div>
                   <div>• Behavioral experiments</div> 
                   <div>• Cognitive restructuring</div>
@@ -133,14 +131,17 @@ const QuizPlan = () => {
               <CardContent className="p-6">
                 <div className="flex items-start gap-4 mb-4">
                   <img 
-                    src="/placeholder-therapist-2.png" 
+                    src="/placeholder-therapist-mct.png" 
                     alt="MCT illustration" 
-                    className="w-16 h-16 object-contain"
+                    className="w-16 h-16 object-contain rounded-full"
                   />
                   <div>
                     <h3 className="font-bold text-lg text-blue-800 mb-1">
-                      Metacognitive Therapy
+                      Metacognitive
                     </h3>
+                    <h4 className="font-bold text-lg text-blue-800 mb-1">
+                      Therapy
+                    </h4>
                     <span className="text-sm bg-blue-200 text-blue-800 px-2 py-1 rounded">
                       Your Match: 78%
                     </span>
@@ -149,7 +150,7 @@ const QuizPlan = () => {
                 <p className="text-sm text-blue-700 mb-4">
                   {therapyDescriptions.mct}
                 </p>
-                <div className="space-y-2 text-xs text-blue-600">
+                <div className="space-y-1 text-xs text-blue-600">
                   <div>• Attention training techniques</div>
                   <div>• Worry postponement</div>
                   <div>• Detached mindfulness</div>
@@ -160,13 +161,13 @@ const QuizPlan = () => {
           </div>
 
           {/* CBH Full Width Card */}
-          <Card className="border-2 border-purple-200 bg-purple-50 mb-12">
+          <Card className="border-2 border-purple-200 bg-purple-50 mb-8">
             <CardContent className="p-6">
               <div className="flex items-start gap-4 mb-4">
                 <img 
-                  src="/placeholder-therapist-3.png" 
+                  src="/placeholder-therapist-cbh.png" 
                   alt="CBH illustration" 
-                  className="w-16 h-16 object-contain"
+                  className="w-16 h-16 object-contain rounded-full"
                 />
                 <div>
                   <h3 className="font-bold text-lg text-purple-800 mb-1">
@@ -189,10 +190,45 @@ const QuizPlan = () => {
             </CardContent>
           </Card>
 
-          {/* CTA Section */}
-          <div className="bg-flourishgreen text-white rounded-xl p-8 text-center mb-12">
-            <h2 className="text-2xl font-bold mb-4">Get The Method</h2>
-            <p className="text-lg mb-6">Try the 7-Day Activity Reset - Free</p>
+          {/* Now vs Goal Section */}
+          <div className="bg-gray-50 rounded-xl p-8 mb-8">
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+              <div className="text-center">
+                <img 
+                  src="/placeholder-now-image.png" 
+                  alt="Current state illustration" 
+                  className="w-32 h-32 mx-auto mb-4 object-contain"
+                />
+                <h3 className="font-bold text-lg text-gray-800 mb-2">NOW</h3>
+                <p className="text-sm text-gray-600">
+                  Feeling overwhelmed by anxiety, stuck in mental loops, avoiding situations
+                </p>
+              </div>
+              <div className="text-center">
+                <img 
+                  src="/placeholder-goal-image.png" 
+                  alt="Goal state illustration" 
+                  className="w-32 h-32 mx-auto mb-4 object-contain"
+                />
+                <h3 className="font-bold text-lg text-gray-800 mb-2">GOAL</h3>
+                <p className="text-sm text-gray-600">
+                  Calm, confident, and in control of your thoughts and responses
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* GET THE METHOD Section */}
+          <div className="bg-flourishgreen text-white rounded-xl p-8 text-center mb-8">
+            <div className="flex justify-center gap-4 mb-4">
+              <div className="bg-white text-flourishgreen px-4 py-2 rounded-full text-sm font-bold">
+                GET THE METHOD
+              </div>
+              <div className="bg-flourishmint text-white px-4 py-2 rounded-full text-sm font-bold">
+                7 DAY INSTALLMENT PLAN
+              </div>
+            </div>
+            <h2 className="text-xl font-bold mb-4">Try the 7-Day Activity Reset - Free</h2>
             <p className="text-sm mb-6 max-w-2xl mx-auto">
               Start with the first 7 days of your personalized plan. If it works for you, 
               continue with the full method. If not, you've lost nothing.
@@ -208,7 +244,7 @@ const QuizPlan = () => {
           </div>
 
           {/* Our Goals Section */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">Our Goals For You</h2>
             <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
               <div className="text-center">
@@ -236,15 +272,22 @@ const QuizPlan = () => {
           </div>
 
           {/* Therapy Results Section */}
-          <div className="bg-gray-50 rounded-xl p-8 text-center mb-12">
+          <div className="bg-gray-50 rounded-xl p-8 text-center mb-8">
             <h2 className="text-2xl font-bold text-gray-800 mb-6">
               Therapy Results + "Life Without Ix" With Support
             </h2>
+            <div className="flex justify-center mb-6">
+              <img 
+                src="/placeholder-support-image.png" 
+                alt="Support illustration" 
+                className="w-48 h-32 object-contain"
+              />
+            </div>
             <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
               When you combine proven therapeutic techniques with ongoing support, 
               you get faster results that actually last.
             </p>
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-4 max-w-md mx-auto">
               <button className="bg-gray-800 text-white px-6 py-3 rounded-full font-semibold hover:bg-gray-700 transition-colors">
                 Start Free Trial
               </button>
@@ -255,53 +298,53 @@ const QuizPlan = () => {
           </div>
 
           {/* FAQ Section */}
-          <div className="mb-12">
+          <div className="mb-8">
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">
               Frequently Asked Questions
             </h2>
             <div className="max-w-3xl mx-auto">
               <Accordion type="single" collapsible className="space-y-4">
-                <AccordionItem value="diagnosis" className="bg-white border border-gray-200 rounded-lg px-6">
-                  <AccordionTrigger className="text-left font-semibold">
+                <AccordionItem value="diagnosis" className="bg-flourishgreen text-white border-0 rounded-lg px-6">
+                  <AccordionTrigger className="text-left font-semibold text-white hover:no-underline">
                     Do I need a diagnosis?
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-600">
+                  <AccordionContent className="text-white">
                     No. This quiz and plan are designed to support anyone experiencing anxiety symptoms.
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="therapy" className="bg-white border border-gray-200 rounded-lg px-6">
-                  <AccordionTrigger className="text-left font-semibold">
+                <AccordionItem value="therapy" className="bg-flourishgreen text-white border-0 rounded-lg px-6">
+                  <AccordionTrigger className="text-left font-semibold text-white hover:no-underline">
                     Is this therapy?
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-600">
+                  <AccordionContent className="text-white">
                     It's not formal therapy, but it is built on real clinical approaches used in therapy settings.
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="cbt" className="bg-white border border-gray-200 rounded-lg px-6">
-                  <AccordionTrigger className="text-left font-semibold">
+                <AccordionItem value="cbt" className="bg-flourishgreen text-white border-0 rounded-lg px-6">
+                  <AccordionTrigger className="text-left font-semibold text-white hover:no-underline">
                     What if I've already tried CBT?
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-600">
+                  <AccordionContent className="text-white">
                     This combines CBT with other tools that address overthinking and subconscious reactions.
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="results" className="bg-white border border-gray-200 rounded-lg px-6">
-                  <AccordionTrigger className="text-left font-semibold">
+                <AccordionItem value="results" className="bg-flourishgreen text-white border-0 rounded-lg px-6">
+                  <AccordionTrigger className="text-left font-semibold text-white hover:no-underline">
                     How fast can I feel results?
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-600">
+                  <AccordionContent className="text-white">
                     Some people feel a shift within 1–2 weeks. Most see significant change within 4–6 weeks.
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="daily" className="bg-white border border-gray-200 rounded-lg px-6">
-                  <AccordionTrigger className="text-left font-semibold">
+                <AccordionItem value="daily" className="bg-flourishgreen text-white border-0 rounded-lg px-6">
+                  <AccordionTrigger className="text-left font-semibold text-white hover:no-underline">
                     Do I have to use it every day?
                   </AccordionTrigger>
-                  <AccordionContent className="text-gray-600">
+                  <AccordionContent className="text-white">
                     No. You'll learn tools you can return to when needed. This is flexible, not rigid.
                   </AccordionContent>
                 </AccordionItem>
@@ -310,7 +353,7 @@ const QuizPlan = () => {
           </div>
 
           {/* Testimonials Section */}
-          <div className="mb-12">
+          <div className="mb-8">
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">
               Testimonials
             </h2>

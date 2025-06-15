@@ -5,9 +5,10 @@ import { useLocation, useNavigate } from "react-router-dom";
 interface HeaderProps {
   withBack?: boolean;
   questionCount?: string; // e.g. "1/22"
+  timer?: React.ReactNode; // For displaying timer
 }
 
-const Header: React.FC<HeaderProps> = ({ withBack, questionCount }) => {
+const Header: React.FC<HeaderProps> = ({ withBack, questionCount, timer }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -55,9 +56,13 @@ const Header: React.FC<HeaderProps> = ({ withBack, questionCount }) => {
           {questionCount}
         </span>
       )}
+      {timer && (
+        <div className="absolute right-6 top-1/2 -translate-y-1/2">
+          {timer}
+        </div>
+      )}
     </header>
   );
 };
 
 export default Header;
-
