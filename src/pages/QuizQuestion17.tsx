@@ -37,22 +37,22 @@ const QuizQuestion17 = () => {
     console.log(`🟢 Q17 COMPONENT DEBUG: Selected ID:`, optionId);
     console.log(`🟢 Q17 COMPONENT DEBUG: Type:`, typeof optionId);
     
-    // Pass the string directly without any wrapping
-    setAnswer("question17", optionId);
+    // Store as question18 since this will become question 18 in the sequence
+    setAnswer("question18", optionId);
     navigate("/quiz/question18");
   };
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="17 / 22" />
+        <Header withBack questionCount="18 / 23" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center py-8">
         <SingleSelectQuestion
           question={question}
           options={options}
           onSelect={handleSelect}
-          questionNumber="17"
+          questionNumber="18"
         />
       </main>
     </div>

@@ -14,13 +14,14 @@ const QuizJourneyTimeline = () => {
     const calculateEstimatedDate = () => {
       console.log("🗓️ TIMELINE DEBUG: All quiz answers:", JSON.stringify(answers, null, 2));
       
-      const q13Value = answers.question13; // Duration of anxiety
-      const q17Value = answers.question17; // Time available daily
+      // Use question14 (duration) and question18 (time available) for calculation
+      const q14Value = answers.question14; // Duration of anxiety (formerly Q13)
+      const q18Value = answers.question18; // Time available daily (formerly Q17)
       
-      console.log("🗓️ TIMELINE DEBUG: Q13 answer (duration):", q13Value);
-      console.log("🗓️ TIMELINE DEBUG: Q17 answer (time available):", q17Value);
+      console.log("🗓️ TIMELINE DEBUG: Q14 answer (duration):", q14Value);
+      console.log("🗓️ TIMELINE DEBUG: Q18 answer (time available):", q18Value);
 
-      // Base days from Q13 (anxiety duration) - CORRECTED MAPPING
+      // Base days from Q14 (anxiety duration) - CORRECTED MAPPING
       const baseDaysMap: Record<string, number> = {
         "few_weeks": 10,
         "few_months": 14,
@@ -28,7 +29,7 @@ const QuizJourneyTimeline = () => {
         "several_years": 28,
       };
 
-      // Time multiplier from Q17 (daily time available) - CORRECTED MAPPING
+      // Time multiplier from Q18 (daily time available) - CORRECTED MAPPING
       const timeMultiplierMap: Record<string, number> = {
         "5_minutes": 1.5,
         "10_minutes": 1.2,
@@ -36,14 +37,14 @@ const QuizJourneyTimeline = () => {
         "20_plus_minutes": 0.85
       };
 
-      // Get Q13 answer (anxiety duration) - use default if undefined
-      const baseDays = q13Value ? baseDaysMap[q13Value] || 14 : 14;
+      // Get Q14 answer (anxiety duration) - use default if undefined
+      const baseDays = q14Value ? baseDaysMap[q14Value] || 14 : 14;
       
-      // Get Q17 answer (daily time available) - use default if undefined
-      const timeMultiplier = q17Value ? timeMultiplierMap[q17Value] || 1 : 1;
+      // Get Q18 answer (daily time available) - use default if undefined
+      const timeMultiplier = q18Value ? timeMultiplierMap[q18Value] || 1 : 1;
       
-      console.log("🗓️ TIMELINE DEBUG: Base days:", baseDays, "for duration:", q13Value);
-      console.log("🗓️ TIMELINE DEBUG: Time multiplier:", timeMultiplier, "for time:", q17Value);
+      console.log("🗓️ TIMELINE DEBUG: Base days:", baseDays, "for duration:", q14Value);
+      console.log("🗓️ TIMELINE DEBUG: Time multiplier:", timeMultiplier, "for time:", q18Value);
       
       // Apply the correct formula: estimated_days = base_days × multiplier
       const estimatedDays = Math.round(baseDays * timeMultiplier);
