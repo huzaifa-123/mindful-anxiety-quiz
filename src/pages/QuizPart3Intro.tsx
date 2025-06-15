@@ -19,7 +19,7 @@ const QuizPart3Intro = () => {
           {/* Illustration */}
           <div className="w-48 h-48 mb-8 flex items-center justify-center">
             <img
-              src="/anxiety-illustration.png"
+              src="/Icons/4.png"
               alt="Person with anxiety illustration"
               className="w-full h-full object-contain"
               draggable={false}

@@ -19,7 +19,7 @@ const QuizPart2Intro = () => {
           {/* Brain icon with sparkles */}
           <div className="w-32 h-32 mb-8 flex items-center justify-center">
             <img
-              src="/brain-icon.png"
+              src="/Icons/3.png"
               alt="Brain with sparkles"
               className="w-full h-full object-contain"
               draggable={false}

@@ -21,7 +21,7 @@ const Index = () => {
             Feel calmer, clearer, and more in control.
           </h2>
           <img
-            src="/images/landing-mindflourish.png"
+            src="/Icons/5.png"
             alt="MindFlourish Tree"
             className="h-32 md:h-40 mx-auto mb-3"
             style={{ objectFit: "contain" }}
@@ -35,7 +35,7 @@ const Index = () => {
               className="rounded-full bg-flourishmint text-flourishgreen text-base font-semibold px-8 py-2 shadow-md hover:scale-105 hover:brightness-110 transition mt-1"
               style={{ minWidth: "170px" }}
             >
-              Yes, I’m ready
+              Yes, I'm ready
             </button>
           </div>
         </div>

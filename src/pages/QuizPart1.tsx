@@ -15,7 +15,7 @@ const QuizPart1 = () => {
         <div className="w-full max-w-md mx-auto flex flex-col items-center">
           {/* Illustration */}
           <img
-            src="/images/profile-illustration.svg" // dummy path
+            src="/Icons/2.png"
             alt=""
             className="w-40 h-40 object-contain mb-6 mt-8"
             draggable={false}
