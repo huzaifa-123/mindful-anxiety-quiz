@@ -13,16 +13,15 @@ const QuizJourneyTimeline = () => {
     // Calculate estimated date based on quiz answers
     const calculateEstimatedDate = () => {
       console.log("All quiz answers:", answers);
-      console.log("Q4 answer:", answers.question4);
-      console.log("Q17 answer:", answers.question17);
+      console.log("Q13 answer (duration):", answers.question13);
+      console.log("Q17 answer (time available):", answers.question17);
 
-      // Base days from Q4 (anxiety duration)
+      // Base days from Q13 (anxiety duration) - FIXED: was using Q4 before
       const baseDaysMap: Record<string, number> = {
         "few_weeks": 10,
         "few_months": 14,
         "over_year": 21,
         "several_years": 28,
-        "just_realized": 18
       };
 
       // Time multiplier from Q17 (daily time available)
@@ -33,15 +32,14 @@ const QuizJourneyTimeline = () => {
         "20_plus_minutes": 0.85
       };
 
-      // Get Q4 answer (it's an array, so take first element)
-      const q4Answer = Array.isArray(answers.question4) ? answers.question4[0] : answers.question4;
-      const baseDays = baseDaysMap[q4Answer || "few_months"] || 14;
+      // Get Q13 answer (anxiety duration) - FIXED: was using Q4 before
+      const baseDays = baseDaysMap[answers.question13 || "few_months"] || 14;
       
-      // Get Q17 answer (it's a string)
+      // Get Q17 answer (daily time available)
       const timeMultiplier = timeMultiplierMap[answers.question17 || "15_minutes"] || 1;
       
-      console.log("Base days:", baseDays, "for answer:", q4Answer);
-      console.log("Time multiplier:", timeMultiplier, "for answer:", answers.question17);
+      console.log("Base days:", baseDays, "for duration:", answers.question13);
+      console.log("Time multiplier:", timeMultiplier, "for time:", answers.question17);
       
       const estimatedDays = Math.round(baseDays * timeMultiplier);
       console.log("Estimated days:", estimatedDays);

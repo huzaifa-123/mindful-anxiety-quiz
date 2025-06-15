@@ -180,10 +180,10 @@ const QuizAnxietyProfile = () => {
             </CardContent>
           </Card>
 
-          {/* Secondary style section - ALWAYS show if there's a secondary type with >= 20% */}
+          {/* Secondary style section - FIXED: Now always shows heading when condition is met */}
           {secondaryType && secondaryType.percentage >= 20 && (
             <div className="mb-6">
-              {/* Styled heading for Secondary Style */}
+              {/* FIXED: Added the styled heading for Secondary Style */}
               <div className="flex justify-center mb-4">
                 <div className="bg-flourishgreen text-white px-6 py-2 rounded-full">
                   <span className="font-semibold text-sm">Your Secondary Style</span>

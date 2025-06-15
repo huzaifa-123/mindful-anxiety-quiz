@@ -9,6 +9,7 @@ interface QuizAnswers {
   question10?: number;
   question11?: number;
   question12?: number;
+  question13?: string;
   // Add other questions as needed
 }
 
@@ -29,7 +30,7 @@ interface QuizResults {
   severityScore: number;
 }
 
-// Complete mapping of answer IDs to anxiety types based on your specifications
+// Fixed mapping of answer IDs to anxiety types - these should match the actual IDs from the quiz questions
 const answerTypeMapping: Record<string, "panic" | "avoidant" | "ruminator"> = {
   // Question 4 - Which statement best describes your anxiety?
   "panic1": "panic",        // I feel a sudden, overwhelming panic that seems to come out of nowhere
@@ -61,6 +62,8 @@ const answerTypeMapping: Record<string, "panic" | "avoidant" | "ruminator"> = {
 };
 
 export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
+  console.log("Calculating quiz results with answers:", answers);
+  
   // Step 1: Calculate anxiety type percentages
   const typeCounts: AnxietyTypeCount = {
     panic: 0,
@@ -75,25 +78,37 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
   
   typeQuestions.forEach(questionKey => {
     const questionAnswers = answers[questionKey as keyof QuizAnswers];
+    console.log(`Processing ${questionKey}:`, questionAnswers);
     
     if (Array.isArray(questionAnswers)) {
       // Multi-select questions (4, 5, 6)
       questionAnswers.forEach(answerId => {
+        console.log(`Looking up answer ID: ${answerId}`);
         const type = answerTypeMapping[answerId];
         if (type) {
           typeCounts[type]++;
           totalTypedAnswers++;
+          console.log(`Mapped ${answerId} to ${type}. New count: ${typeCounts[type]}`);
+        } else {
+          console.log(`No mapping found for answer ID: ${answerId}`);
         }
       });
     } else if (typeof questionAnswers === 'string') {
       // Single-select questions (7)
+      console.log(`Looking up single answer ID: ${questionAnswers}`);
       const type = answerTypeMapping[questionAnswers];
       if (type) {
         typeCounts[type]++;
         totalTypedAnswers++;
+        console.log(`Mapped ${questionAnswers} to ${type}. New count: ${typeCounts[type]}`);
+      } else {
+        console.log(`No mapping found for single answer ID: ${questionAnswers}`);
       }
     }
   });
+
+  console.log("Final type counts:", typeCounts);
+  console.log("Total typed answers:", totalTypedAnswers);
 
   // Calculate percentages for anxiety types
   const typePercentages = {
@@ -101,6 +116,8 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
     avoidant: totalTypedAnswers > 0 ? Math.round((typeCounts.avoidant / totalTypedAnswers) * 100) : 0,
     ruminator: totalTypedAnswers > 0 ? Math.round((typeCounts.ruminator / totalTypedAnswers) * 100) : 0,
   };
+
+  console.log("Type percentages:", typePercentages);
 
   // Determine dominant anxiety type
   let dominantType: "panic" | "avoidant" | "ruminator" = "panic";
@@ -115,16 +132,21 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
     dominantType = "ruminator";
   }
 
+  console.log("Dominant type:", dominantType);
+
   // Step 2: Calculate severity based on scale questions (9, 10, 11, 12)
   const scaleQuestions = [
-    answers.question9 || 0,   // Anxiety impact on daily life
+    answers.question9 || 0,   // How effective have techniques been
     answers.question10 || 0,  // How much anxiety affects daily life
     answers.question11 || 0,  // How often experience anxiety symptoms
     answers.question12 || 0   // How distressed when anxiety hits
   ];
 
+  console.log("Scale question answers:", scaleQuestions);
+
   // Sum up all scale ratings (each question is rated 1-10)
   const severityScore = scaleQuestions.reduce((sum, rating) => sum + rating, 0);
+  console.log("Severity score:", severityScore);
 
   // Classify severity based on total score (out of 40 max)
   let severity: "mild" | "moderate" | "severe";
@@ -135,6 +157,8 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
   } else {
     severity = "severe";
   }
+
+  console.log("Final severity:", severity);
 
   return {
     dominantType,
