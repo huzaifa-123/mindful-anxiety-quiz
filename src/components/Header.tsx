@@ -43,7 +43,7 @@ const Header: React.FC<HeaderProps> = ({ withBack, questionCount, timer }) => {
         </button>
       ) : null}
       
-      <div className="flex items-center gap-3">
+      <div className={`flex items-center gap-3 ${showFullBranding ? '' : 'absolute left-1/2 transform -translate-x-1/2'}`}>
         <img
           src="/logo-placeholder.svg"
           alt="Mind Flourish logo"
