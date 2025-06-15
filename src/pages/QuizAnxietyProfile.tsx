@@ -135,17 +135,21 @@ const QuizAnxietyProfile = () => {
             />
           </div>
 
-          {/* Progress bar */}
+          {/* Progress bar with proper visualization */}
           <div className="mb-6">
             <div className="flex justify-between text-sm text-gray-600 mb-2">
               <span>Mild</span>
               <span>Moderate</span>
               <span>Severe</span>
             </div>
-            <div className="relative w-full h-4 bg-gradient-to-r from-green-300 via-yellow-300 to-red-400 rounded-full overflow-hidden">
+            <div className="relative w-full h-4 rounded-full overflow-hidden bg-gradient-to-r from-green-400 via-yellow-400 to-red-500">
+              {/* Progress indicator circle */}
               <div 
-                className="absolute top-0 left-0 h-full bg-white rounded-full transition-all"
-                style={{ width: `${100 - ((results.severityScore / 40) * 100)}%` }}
+                className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-white border-4 border-gray-600 rounded-full shadow-lg transition-all duration-300"
+                style={{ 
+                  left: `calc(${(results.severityScore / 40) * 100}% - 12px)`,
+                  zIndex: 10
+                }}
               />
             </div>
           </div>
@@ -154,7 +158,7 @@ const QuizAnxietyProfile = () => {
           <Card className={`mb-6 ${typeStyles.bgColor} ${typeStyles.borderColor} border-2`}>
             <CardContent className="p-6">
               <h3 className={`font-bold text-lg mb-3 ${typeStyles.textColor}`}>
-                {getTypeTitle(results.dominantType).replace("THE ", "The ")}
+                {getTypeTitle(results.dominantType)}
               </h3>
               <p className={`text-sm leading-relaxed ${typeStyles.textColor}`}>
                 {getTypeDescription(results.dominantType)}
@@ -162,17 +166,17 @@ const QuizAnxietyProfile = () => {
             </CardContent>
           </Card>
 
-          {/* Secondary style section */}
+          {/* Secondary style section - only show if exists and significant */}
           {secondaryType && secondaryType.percentage >= 20 && (
             <div className="mb-6">
-              <div className="bg-gray-700 text-white rounded-lg p-6 text-center">
+              <div className="bg-green-600 text-white rounded-lg p-6 text-center">
                 <h3 className="font-bold text-lg mb-2 text-white">
                   Your Secondary Style
                 </h3>
-                <h4 className="font-semibold text-base mb-3 text-gray-200">
+                <h4 className="font-semibold text-base mb-3 text-green-100">
                   {getTypeTitle(secondaryType.type)} ({secondaryType.percentage}%)
                 </h4>
-                <p className="text-sm leading-relaxed text-gray-300">
+                <p className="text-sm leading-relaxed text-green-50">
                   {getSecondaryTypeDescription(secondaryType.type, secondaryType.percentage)}
                 </p>
               </div>
