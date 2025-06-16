@@ -21,7 +21,7 @@ const Index = () => {
             Feel calmer, clearer, and more in control.
           </h2>
           <img
-            src="public\QuizDesign\WELCOME.png"
+            src="/QuizDesign/WELCOME.png"
             alt="MindFlourish Tree"
             className="h-32 md:h-40 mx-auto mb-3"
             style={{ objectFit: "contain" }}
