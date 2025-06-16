@@ -46,11 +46,7 @@ const QuizQuestion13CBT = () => {
           {/* Image and therapy name */}
           <div className="flex flex-col items-center mb-8">
             <img
-<<<<<<< HEAD
               src="/QuizDesign/P3 - CBT.png"
-=======
-              src="/lovable-uploads/acbdbad4-7ee9-409c-8c56-a9bf88d8dcdd.png"
->>>>>>> cb7ce3b161fbd11c9b89ff1f7fb9de35267ad61f
               alt="Therapy illustration"
               className="w-32 h-32 object-contain mb-4"
             />
