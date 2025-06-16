@@ -8,33 +8,35 @@ const QuizQuestion18 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "Do you find it difficult to stop or control worrying?";
+  const question = "How much time can you realistically commit to your well-being each day?";
   
   const options = [
     {
-      id: "almost_always",
-      text: "Almost always",
-      icon: "/dummy-worry-icon.png"
+      id: "5_minutes",
+      text: "5 minutes",
+      icon: "/Icons/49.png"
     },
     {
-      id: "often",
-      text: "Often",
-      icon: "/dummy-worry-icon.png"
+      id: "10_minutes",
+      text: "10 minutes",
+      icon: "/Icons/50.png"
     },
     {
-      id: "sometimes",
-      text: "Sometimes",
-      icon: "/dummy-worry-icon.png"
+      id: "15_minutes",
+      text: "15 minutes",
+      icon: "/Icons/51.png"
     },
     {
-      id: "almost_never",
-      text: "Almost never",
-      icon: "/dummy-worry-icon.png"
+      id: "20_plus_minutes",
+      text: "20+ minutes",
+      icon: "/Icons/52.png"
     }
   ];
 
   const handleSelect = (optionId: string) => {
-    setAnswer("question19", optionId);
+    
+    // Store as question18 since this will become question 18 in the sequence
+    setAnswer("question18", optionId);
     navigate("/quiz/question19");
   };
 

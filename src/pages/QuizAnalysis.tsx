@@ -29,7 +29,7 @@ const QuizAnalysis = () => {
           {/* Illustration of person with laptop */}
           <div className="w-full max-w-sm h-48 mb-8 flex items-center justify-center">
             <img
-              src="/analysis-illustration.png"
+              src="/QuizDesign/Tuning in (2).png"
               alt="Person analyzing data on laptop"
               className="w-full h-full object-contain"
               draggable={false}

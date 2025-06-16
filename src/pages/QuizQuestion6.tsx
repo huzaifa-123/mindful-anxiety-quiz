@@ -14,32 +14,32 @@ const QuizQuestion6 = () => {
     {
       id: "panic4",
       text: "Fear of losing control or panicking",
-      icon: "/dummy-control-icon.png"
+      icon: "/Icons/11.png"
     },
     {
       id: "avoidant4",
       text: "Fear of being judged or failing",
-      icon: "/dummy-judged-icon.png"
+      icon: "/Icons/12.png"
     },
     {
       id: "ruminator4",
       text: "Fear of uncertainty or bad outcomes",
-      icon: "/dummy-uncertainty-icon.png"
+      icon: "/Icons/13.png"
     },
     {
       id: "panic5",
       text: "No clear trigger, it just \"hits\" sometimes",
-      icon: "/dummy-sudden-icon.png"
+      icon: "/Icons/14.png"
     },
     {
       id: "avoidant5",
       text: "Fear of confrontation or having to express myself",
-      icon: "/dummy-confrontation-icon.png"
+      icon: "/Icons/15.png"
     },
     {
       id: "ruminator5",
       text: "Fear of making the wrong decision or overthinking consequences",
-      icon: "/dummy-decision-icon.png"
+      icon: "/Icons/16.png"
     }
   ];
 

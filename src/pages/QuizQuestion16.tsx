@@ -1,6 +1,6 @@
 
 import Header from "../components/Header";
-import MultiSelectQuestion from "../components/MultiSelectQuestion";
+import SingleSelectQuestion from "../components/SingleSelectQuestion";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
@@ -8,38 +8,33 @@ const QuizQuestion16 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "How do you want to feel 30 days from now?";
+  const question = "What's your biggest motivation for taking this quiz today?";
   
   const options = [
     {
-      id: "clear_headed_control",
-      text: "Clear-headed and in control",
-      icon: "/dummy-clear-icon.png"
+      id: "understand_whats_going_on",
+      text: "I want to understand what's really going on",
+      icon: "/Icons/40.png"
     },
     {
-      id: "less_reactive",
-      text: "Less reactive to stress",
-      icon: "/dummy-reactive-icon.png"
+      id: "want_tools",
+      text: "I want tools to help me in anxious moments",
+      icon: "/Icons/41.png"
     },
     {
-      id: "more_confident",
-      text: "More confident in everyday situations",
-      icon: "/dummy-confident-icon.png"
+      id: "stop_overthinking",
+      text: "I want to stop overthinking and feel more calm",
+      icon: "/Icons/42.png"
     },
     {
-      id: "more_present",
-      text: "More present and less in my head",
-      icon: "/dummy-present-icon.png"
-    },
-    {
-      id: "calmer_busy",
-      text: "Calmer, even when life gets busy",
-      icon: "/dummy-calm-busy-icon.png"
+      id: "take_control",
+      text: "I want to take control of my anxiety for good",
+      icon: "/Icons/43.png"
     }
   ];
 
-  const handleContinue = (selectedOptions: string[]) => {
-    setAnswer("question16", selectedOptions);
+  const handleSelect = (optionId: string) => {
+    setAnswer("question16", optionId);
     navigate("/quiz/question17");
   };
 
@@ -49,10 +44,10 @@ const QuizQuestion16 = () => {
         <Header withBack questionCount="16 / 22" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center py-8">
-        <MultiSelectQuestion
+        <SingleSelectQuestion
           question={question}
           options={options}
-          onContinue={handleContinue}
+          onSelect={handleSelect}
           questionNumber="16"
         />
       </main>

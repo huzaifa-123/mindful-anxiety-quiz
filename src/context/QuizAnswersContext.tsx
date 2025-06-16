@@ -28,6 +28,7 @@ type QuizAnswer = {
   question21?: string;
   question22?: string;
   question23?: string;
+  question24?: string;
   plan_journaling?: string;
   plan_tools?: string;
   plan_support_style?: string;

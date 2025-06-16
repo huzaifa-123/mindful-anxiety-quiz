@@ -26,7 +26,7 @@ const QuizPlanCompletion = () => {
           {/* Illustration placeholder */}
           <div className="mb-8 flex justify-center">
             <img 
-              src="/placeholder-therapist.png" 
+              src="/QuizDesign/Personalized Plan.png" 
               alt="Therapist illustration" 
               className="w-48 h-48 object-contain"
             />

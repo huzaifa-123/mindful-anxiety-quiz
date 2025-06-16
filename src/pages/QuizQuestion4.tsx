@@ -16,17 +16,17 @@ const QuizQuestion4 = () => {
     {
       id: "panic1",
       text: "I feel a sudden, overwhelming panic that seems to come out of nowhere",
-      icon: "/dummy-panic-icon.png"
+      icon: "/Icons/2.png"
     },
     {
       id: "avoidant1", 
       text: "I often avoid situations because of anxiety and fear",
-      icon: "/dummy-avoid-icon.png"
+      icon: "/Icons/3.png"
     },
     {
       id: "ruminator1",
       text: "I get stuck in endless overthinking, doubts, and \"what if\" scenarios",
-      icon: "/dummy-overthink-icon.png"
+      icon: "/Icons/4.png"
     }
   ];
 

@@ -1,6 +1,6 @@
 
 import Header from "../components/Header";
-import SingleSelectQuestion from "../components/SingleSelectQuestion";
+import MultiSelectQuestion from "../components/MultiSelectQuestion";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
@@ -8,33 +8,38 @@ const QuizQuestion15 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "What's your biggest motivation for taking this quiz today?";
+  const question = "What has held you back from managing your anxiety in the past?";
   
   const options = [
     {
-      id: "understand_whats_going_on",
-      text: "I want to understand what's really going on",
-      icon: "/dummy-understand-icon.png"
+      id: "didnt_know_what_works",
+      text: "I didn't know what would work",
+      icon: "/Icons/35.png"
     },
     {
-      id: "want_tools",
-      text: "I want tools to help me in anxious moments",
-      icon: "/dummy-tools-icon.png"
+      id: "didnt_need_help",
+      text: "I didn't feel I needed outside help",
+      icon: "/Icons/36.png"
     },
     {
-      id: "stop_overthinking",
-      text: "I want to stop overthinking and feel more calm",
-      icon: "/dummy-calm-icon.png"
+      id: "things_didnt_stick",
+      text: "I tried things before but they didn't stick",
+      icon: "/Icons/37.png"
     },
     {
-      id: "take_control",
-      text: "I want to take control of my anxiety for good",
-      icon: "/dummy-control-icon.png"
+      id: "manage_myself",
+      text: "I thought I could manage it myself",
+      icon: "/Icons/38.png"
+    },
+    {
+      id: "afraid_root",
+      text: "I was afraid to face the root of it",
+      icon: "/Icons/39.png"
     }
   ];
 
-  const handleSelect = (optionId: string) => {
-    setAnswer("question15", optionId);
+  const handleContinue = (selectedOptions: string[]) => {
+    setAnswer("question15", selectedOptions);
     navigate("/quiz/question16");
   };
 
@@ -44,10 +49,10 @@ const QuizQuestion15 = () => {
         <Header withBack questionCount="15 / 22" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center py-8">
-        <SingleSelectQuestion
+        <MultiSelectQuestion
           question={question}
           options={options}
-          onSelect={handleSelect}
+          onContinue={handleContinue}
           questionNumber="15"
         />
       </main>

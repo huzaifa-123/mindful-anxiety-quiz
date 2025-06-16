@@ -21,16 +21,14 @@ const QuizAnxietyGlobalStats = () => {
             Anxiety is more common and more solvable than you think.
           </h1>
           
-          {/* World map with location pins - using GIF */}
-          <div className="w-full max-w-lg h-64 mb-6 flex items-center justify-center">
+           <div className="w-full flex justify-center items-center px-2">
             <img
-              src="/placeholder-world-map.gif"
+              src="/QuizDesign/Final_Quiz Section Design.gif" 
               alt="World map showing anxiety statistics with location pins"
-              className="w-full h-full object-contain"
+              className="w-full max-w-2xl object-contain"
               draggable={false}
             />
           </div>
-          
           {/* Statistics text */}
           <p className="text-gray-700 text-base mb-2">
             Over <span className="font-semibold">280 million people</span> around the world experience anxiety.

@@ -14,6 +14,9 @@ const QuizPlan = () => {
   const results = calculateQuizResults(answers);
   const anxietyType = results.dominantType;
 
+  // Centralized image path for before/after comparison
+  const beforeAfterImage = "/QuizDesign/female - now_goal.png";
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => {
@@ -178,19 +181,24 @@ const QuizPlan = () => {
           </div>
 
           {/* Now vs Goal Section */}
-          <div className="flex justify-center items-center gap-8 mb-16">
-            {/* Now Section */}
-            <div className="text-center">
-              <div className="bg-flourishgreen text-white px-4 py-1 rounded text-sm font-medium mb-4 inline-block">
-                Now
-              </div>
-              <div className="relative">
-                <img 
-                  src="/dummy-now-image.png" 
-                  alt="Current anxious state" 
-                  className="w-48 h-64 object-contain mb-4"
-                />
-                {/* Progress bars card - increased width to match heading below */}
+          <div className="mb-16">
+            {/* Single centered image above both cards */}
+            <div className="flex justify-center mb-8">
+              <img 
+                src={beforeAfterImage}
+                alt="Before and after transformation comparison" 
+                className="w-[700px] h-[400px] object-contain"
+              />
+            </div>
+
+            {/* Now and Goal cards below the image */}
+            <div className="flex justify-center items-start gap-8">
+              {/* Now Section */}
+              <div className="text-center">
+                <div className="bg-flourishgreen text-white px-4 py-1 rounded text-sm font-medium mb-4 inline-block">
+                  Now
+                </div>
+                {/* Progress bars card */}
                 <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm w-80">
                   <div className="space-y-4 text-left">
                     <div>
@@ -225,29 +233,13 @@ const QuizPlan = () => {
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Arrow */}
-            <div className="flex items-center">
-              <div className="flex">
-                <div className="w-6 h-6 bg-flourishgreen transform rotate-45 mr-1"></div>
-                <div className="w-6 h-6 bg-flourishgreen transform rotate-45 mr-1"></div>
-                <div className="w-6 h-6 bg-flourishgreen transform rotate-45"></div>
-              </div>
-            </div>
-
-            {/* Goal Section */}
-            <div className="text-center">
-              <div className="bg-flourishgreen text-white px-4 py-1 rounded text-sm font-medium mb-4 inline-block">
-                Your Goal
-              </div>
-              <div className="relative">
-                <img 
-                  src="/dummy-goal-image.png" 
-                  alt="Goal confident state" 
-                  className="w-48 h-64 object-contain mb-4"
-                />
-                {/* Progress bars card - increased width to match heading below */}
+              {/* Goal Section */}
+              <div className="text-center">
+                <div className="bg-green-300 text-white px-4 py-1 rounded text-sm font-medium mb-4 inline-block">
+                  Your Goal
+                </div>
+                {/* Progress bars card */}
                 <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm w-80">
                   <div className="space-y-4 text-left">
                     <div>
@@ -503,26 +495,11 @@ const QuizPlan = () => {
             {/* Graphic representation */}
             <div className="flex justify-center items-center mb-8">
               <div className="relative w-80 h-40">
-                {/* Success rate bars */}
-                <div className="absolute bottom-0 left-8 w-24 bg-flourishmint opacity-60 rounded-t" style={{ height: '60%' }}>
-                  <div className="text-white text-xs font-bold pt-2">50%</div>
-                </div>
-                <div className="absolute bottom-0 right-8 w-24 bg-flourishmint rounded-t" style={{ height: '90%' }}>
-                  <div className="text-white text-xs font-bold pt-2">90%</div>
-                </div>
-                
                 {/* Image placeholders */}
-                <div className="absolute bottom-16 left-4 w-32 h-20">
+                <div className="absolute top-1/2 left-1/2 w-96 h-64 transform -translate-x-1/2 -translate-y-1/2">
                   <img 
-                    src="/dummy-without-support.png" 
+                    src="/QuizDesign/with_without support (2).png" 
                     alt="Without support illustration" 
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <div className="absolute bottom-20 right-4 w-32 h-24">
-                  <img 
-                    src="/dummy-with-support.png" 
-                    alt="With support illustration" 
                     className="w-full h-full object-contain"
                   />
                 </div>

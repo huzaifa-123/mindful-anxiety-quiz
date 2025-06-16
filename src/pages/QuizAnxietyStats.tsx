@@ -27,14 +27,15 @@ const QuizAnxietyStats = () => {
           </p>
           
           {/* World map with location pins - placeholder for GIF */}
-          <div className="w-full max-w-lg h-64 mb-8 flex items-center justify-center bg-gray-100 rounded-lg">
+          <div className="w-full max-w-lg mb-8 flex items-center justify-center bg-gray-100 rounded-lg">
             <img
-              src="/placeholder-world-map.gif"
+              src="/QuizDesign/Final_Quiz Section Design.gif"
               alt="World map showing anxiety statistics"
-              className="w-full h-full object-contain rounded-lg"
+              className="w-full h-36 object-cover rounded-lg"
               draggable={false}
             />
           </div>
+
           
           <button
             onClick={handleContinue}

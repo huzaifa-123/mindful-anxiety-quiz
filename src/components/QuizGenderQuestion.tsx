@@ -12,12 +12,12 @@ const AVATARS = [
   {
     label: "I'm Male",
     value: "male",
-    img: "/images/avatar-male.png",
+    img: "/QuizDesign/P1 - Male.png",
   },
   {
     label: "I'm Female",
     value: "female",
-    img: "/images/avatar-female.png",
+    img: "/QuizDesign/P1 - Female.png",
   },
 ];
 
@@ -48,7 +48,7 @@ const QuizGenderQuestion: React.FC<QuizGenderQuestionProps> = ({ onAnswered }) =
             <img
               src={a.img}
               alt={a.label}
-              className="h-24 w-24 object-contain mb-4"
+              className="h-30 w-30 object-contain mb-4"
             />
             <button
               onClick={() => handleSelect(a.value as "male" | "female")}

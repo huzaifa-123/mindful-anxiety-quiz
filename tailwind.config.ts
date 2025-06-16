@@ -35,7 +35,7 @@ export default {
         '6xl': ['3.75rem', { lineHeight: '1' }], 
       },
       colors: {
-        flourishgreen: "#355945", // dark green header and button
+        flourishgreen: "#304f40", // dark green header and button
         flourishmint: "#6EE7B7", // button/mint
         flourishwhite: "#F8FAFC",
         border: 'hsl(var(--border))',

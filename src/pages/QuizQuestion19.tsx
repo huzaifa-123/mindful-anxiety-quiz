@@ -8,28 +8,28 @@ const QuizQuestion19 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "How often do you have trouble relaxing?";
+  const question = "Do you find it difficult to stop or control worrying?";
   
   const options = [
     {
       id: "almost_always",
       text: "Almost always",
-      icon: "/dummy-relax-icon.png"
+      icon: "/Icons/53.png"
     },
     {
       id: "often",
       text: "Often",
-      icon: "/dummy-relax-icon.png"
+      icon: "/Icons/54.png"
     },
     {
       id: "sometimes",
       text: "Sometimes",
-      icon: "/dummy-relax-icon.png"
+      icon: "/Icons/55.png"
     },
     {
       id: "almost_never",
       text: "Almost never",
-      icon: "/dummy-relax-icon.png"
+      icon: "/Icons/56.png"
     }
   ];
 

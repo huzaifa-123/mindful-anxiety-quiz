@@ -13,47 +13,47 @@ const QuizQuestion8 = () => {
     {
       id: "racing_thoughts",
       text: "Racing thoughts or mental overwhelm",
-      icon: "/dummy-racing-icon.png"
+      icon: "/Icons/22.png"
     },
     {
       id: "chest_tightness",
       text: "Chest tightness or shallow breathing",
-      icon: "/dummy-chest-icon.png"
+      icon: "/Icons/23.png"
     },
     {
       id: "dread",
       text: "Dread or a sense of impending doom",
-      icon: "/dummy-dread-icon.png"
+      icon: "/Icons/24.png"
     },
     {
       id: "numbness",
       text: "Numbness or disconnection from the body",
-      icon: "/dummy-numbness-icon.png"
+      icon: "/Icons/25.png"
     },
     {
       id: "difficulty_concentrating",
       text: "Difficulty concentrating or making decisions",
-      icon: "/dummy-concentration-icon.png"
+      icon: "/Icons/26.png"
     },
     {
       id: "urge_escape",
       text: "Urge to escape or avoid the situation",
-      icon: "/dummy-escape-icon.png"
+      icon: "/Icons/27.png"
     },
     {
       id: "irritability",
       text: "Irritability or emotional sensitivity",
-      icon: "/dummy-irritability-icon.png"
+      icon: "/Icons/28.png"
     },
     {
       id: "freeze",
       text: "I freeze or feel stuck",
-      icon: "/dummy-stuck-icon.png"
+      icon: "/Icons/29.png"
     },
     {
       id: "not_sure",
       text: "I'm not sure",
-      icon: "/dummy-unsure-icon.png"
+      icon: "/Icons/30.png"
     }
   ];
 

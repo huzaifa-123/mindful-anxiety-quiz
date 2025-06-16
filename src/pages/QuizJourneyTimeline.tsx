@@ -1,3 +1,4 @@
+
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
@@ -114,18 +115,45 @@ const QuizJourneyTimeline = () => {
             </p>
           </div>
           
-          {/* Timeline visualization with GIF */}
-          <div className="w-full max-w-lg h-64 mb-6 flex items-center justify-center">
-            <img
-              src="/placeholder-timeline.gif"
-              alt="Progress timeline showing journey from current state to goal integration"
-              className="w-full h-full object-contain"
-              draggable={false}
-            />
+          {/* Timeline visualization container */}
+          <div className="w-full max-w-md mb-2 flex flex-col items-center">
+            <div className="w-full flex items-center justify-center mb-4">
+              <img
+                src="/QuizDesign/Final_Quiz Section Design (2).gif"
+                alt="Progress timeline showing journey from current state to goal integration"
+                className="w-full h-auto object-contain max-h-64"  // Increased from max-h-32 to max-h-64
+                draggable={false}
+              />
+            </div>
+            {/* Progress stages labels - properly aligned with chart elements */}
+            <div className="flex justify-center items-center w-full text-xs text-gray-600 px-2">
+              <div className="flex justify-between items-center w-full max-w-xs">
+                <div className="flex flex-col items-center text-center min-w-0">
+                  <span className="font-medium text-xs">Current</span>
+                  <span className="text-xs">State</span>
+                </div>
+                <div className="flex flex-col items-center text-center min-w-0">
+                  <span className="font-medium text-xs">Early</span>
+                  <span className="text-xs">Shifts</span>
+                </div>
+                <div className="flex flex-col items-center text-center min-w-0">
+                  <span className="font-medium text-xs">Ongoing</span>
+                  <span className="text-xs">Shift</span>
+                </div>
+                <div className="flex flex-col items-center text-center min-w-0">
+                  <span className="font-medium text-xs">Target</span>
+                  <span className="text-xs">Relief</span>
+                </div>
+                <div className="flex flex-col items-center text-center min-w-0">
+                  <span className="font-medium text-xs">Goal</span>
+                  <span className="text-xs">Integration</span>
+                </div>
+              </div>
+            </div>
           </div>
           
           {/* Description paragraphs */}
-          <p className="text-gray-700 text-base mb-4 max-w-xl leading-relaxed">
+          <p className="text-gray-700 text-base mb-4 max-w-xl leading-relaxed mt-6">
             This timeline is based on when anxiety started affecting you and how much time you can commit to your well-being each day. With consistent, intentional support, even small shifts create real momentum.
           </p>
           

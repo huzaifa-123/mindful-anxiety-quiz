@@ -14,32 +14,32 @@ const QuizQuestion5 = () => {
     {
       id: "ruminator2",
       text: "First thing in the morning",
-      icon: "/dummy-morning-icon.png"
+      icon: "/Icons/5.png"
     },
     {
       id: "avoidant2",
       text: "Before tasks or challenges",
-      icon: "/dummy-tasks-icon.png"
+      icon: "/Icons/6.png"
     },
     {
       id: "avoidant3",
       text: "In social situations",
-      icon: "/dummy-social-icon.png"
+      icon: "/Icons/7.png"
     },
     {
       id: "panic2",
       text: "At random times without a clear cause",
-      icon: "/dummy-random-icon.png"
+      icon: "/Icons/8.png"
     },
     {
       id: "ruminator3",
       text: "In the evening or before sleeping",
-      icon: "/dummy-evening-icon.png"
+      icon: "/Icons/9.png"
     },
     {
       id: "panic3",
       text: "When physical symptoms suddenly spike",
-      icon: "/dummy-physical-icon.png"
+      icon: "/Icons/10.png"
     }
   ];
 

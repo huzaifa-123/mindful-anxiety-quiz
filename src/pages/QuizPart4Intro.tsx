@@ -6,7 +6,7 @@ const QuizPart4Intro = () => {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    navigate("/quiz/question13");
+    navigate("/quiz/question14");
   };
 
   return (
@@ -19,7 +19,7 @@ const QuizPart4Intro = () => {
           {/* Meditation figure illustration */}
           <div className="mb-8">
             <img
-              src="/dummy-meditation-figure.png"
+              src="/QuizDesign/PART 4.png"
               alt="Personal Resonance Mapping"
               className="w-48 h-48 object-contain"
             />

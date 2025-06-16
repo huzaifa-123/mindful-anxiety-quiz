@@ -1,3 +1,4 @@
+
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
@@ -110,6 +111,29 @@ const QuizAnxietyProfile = () => {
     }
   };
 
+  // Get anxiety type specific image
+  const getAnxietyTypeImage = (type: string) => {
+    switch (type) {
+      case "panic":
+        return {
+          src: "/QuizDesign/Female - moderate.png",
+          alt: "Panic anxiety type character illustration"
+        };
+      case "ruminator":
+        return {
+          src: "/QuizDesign/Female - Before.png", 
+          alt: "Ruminator anxiety type character illustration"
+        };
+      case "avoidant":
+        return {
+          src: "/QuizDesign/Female - mild.png",
+          alt: "Avoidant anxiety type character illustration"
+        };
+    }
+  };
+
+  const anxietyImage = getAnxietyTypeImage(results.dominantType);
+
   // Find secondary type - this logic needs to be more robust
   const typePercentages = [
     { type: "panic", percentage: results.typePercentages.panic },
@@ -120,12 +144,6 @@ const QuizAnxietyProfile = () => {
 
   const secondaryType = typePercentages[0];
 
-  console.log("🔴 ANXIETY PROFILE DEBUG: Secondary type data:", secondaryType);
-  console.log("🔴 ANXIETY PROFILE DEBUG: Should show secondary:", secondaryType && secondaryType.percentage >= 20);
-  console.log("🔴 ANXIETY PROFILE DEBUG: Final display values:");
-  console.log("🔴 ANXIETY PROFILE DEBUG: - Dominant type:", results.dominantType);
-  console.log("🔴 ANXIETY PROFILE DEBUG: - Severity:", results.severity);
-  console.log("🔴 ANXIETY PROFILE DEBUG: - Severity score:", results.severityScore);
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite">
@@ -153,11 +171,11 @@ const QuizAnxietyProfile = () => {
             </h2>
           </div>
 
-          {/* Character illustration */}
+          {/* Character illustration - now anxiety type specific */}
           <div className="flex justify-center mb-6">
             <img 
-              src="/placeholder-anxiety-character.png" 
-              alt="Anxiety character illustration" 
+              src={anxietyImage.src}
+              alt={anxietyImage.alt}
               className="w-32 h-32 object-contain"
             />
           </div>

@@ -16,27 +16,27 @@ const QuizQuestion7 = () => {
     {
       id: "avoidant6",
       text: "Try to distract myself or escape the situation",
-      icon: "/dummy-distract-icon.png"
+      icon: "/Icons/17.png"
     },
     {
       id: "ruminator6",
       text: "Try to \"think my way out\" of the anxiety",
-      icon: "/dummy-think-icon.png"
+      icon: "/Icons/18.png"
     },
     {
       id: "panic6",
       text: "Fight against the anxious feelings",
-      icon: "/dummy-fight-icon.png"
+      icon: "/Icons/19.png"
     },
     {
       id: "panic7",
       text: "Freeze due to overwhelming panic and fear",
-      icon: "/dummy-freeze-icon.png"
+      icon: "/Icons/20.png"
     },
     {
       id: "avoidant7",
       text: "Shut down emotionally to avoid discomfort",
-      icon: "/dummy-shutdown-icon.png"
+      icon: "/Icons/21.png"
     }
   ];
 

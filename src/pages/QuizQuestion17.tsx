@@ -1,6 +1,6 @@
 
 import Header from "../components/Header";
-import SingleSelectQuestion from "../components/SingleSelectQuestion";
+import MultiSelectQuestion from "../components/MultiSelectQuestion";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
@@ -8,51 +8,52 @@ const QuizQuestion17 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "How much time can you realistically commit to your well-being each day?";
+  const question = "How do you want to feel 30 days from now?";
   
   const options = [
     {
-      id: "5_minutes",
-      text: "5 minutes",
-      icon: "/dummy-time-icon.png"
+      id: "clear_headed_control",
+      text: "Clear-headed and in control",
+      icon: "/Icons/44.png"
     },
     {
-      id: "10_minutes",
-      text: "10 minutes",
-      icon: "/dummy-time-icon.png"
+      id: "less_reactive",
+      text: "Less reactive to stress",
+      icon: "/Icons/45.png"
     },
     {
-      id: "15_minutes",
-      text: "15 minutes",
-      icon: "/dummy-time-icon.png"
+      id: "more_confident",
+      text: "More confident in everyday situations",
+      icon: "/Icons/46.png"
     },
     {
-      id: "20_plus_minutes",
-      text: "20+ minutes",
-      icon: "/dummy-time-icon.png"
+      id: "more_present",
+      text: "More present and less in my head",
+      icon: "/Icons/47.png"
+    },
+    {
+      id: "calmer_busy",
+      text: "Calmer, even when life gets busy",
+      icon: "/Icons/48.png"
     }
   ];
 
-  const handleSelect = (optionId: string) => {
-    console.log(`🟢 Q17 COMPONENT DEBUG: Selected ID:`, optionId);
-    console.log(`🟢 Q17 COMPONENT DEBUG: Type:`, typeof optionId);
-    
-    // Store as question18 since this will become question 18 in the sequence
-    setAnswer("question18", optionId);
+  const handleContinue = (selectedOptions: string[]) => {
+    setAnswer("question17", selectedOptions);
     navigate("/quiz/question18");
   };
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="18 / 23" />
+        <Header withBack questionCount="17 / 22" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center py-8">
-        <SingleSelectQuestion
+        <MultiSelectQuestion
           question={question}
           options={options}
-          onSelect={handleSelect}
-          questionNumber="18"
+          onContinue={handleContinue}
+          questionNumber="17"
         />
       </main>
     </div>

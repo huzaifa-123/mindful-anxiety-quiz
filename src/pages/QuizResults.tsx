@@ -6,7 +6,7 @@ const QuizResults = () => {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    navigate("/quiz/question22");
+    navigate("/quiz/question23");
   };
 
   return (
@@ -21,33 +21,13 @@ const QuizResults = () => {
             What you're feeling isn't failure. It's your nervous system in protection mode.
           </h1>
           
-          {/* Brain illustration with cycle */}
-          <div className="w-full max-w-sm h-48 mb-6 flex items-center justify-center">
-            <div className="relative">
-              {/* Brain silhouette */}
-              <div className="w-32 h-32 bg-flourishgreen rounded-full flex items-center justify-center relative">
-                <div className="w-20 h-20 bg-flourishmint rounded-full opacity-80"></div>
-              </div>
-              
-              {/* Cycle arrows and labels */}
-              <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 text-sm font-medium text-flourishgreen">
-                Fight
-              </div>
-              <div className="absolute -right-8 top-1/2 transform -translate-y-1/2 text-sm font-medium text-flourishgreen">
-                Flight
-              </div>
-              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-sm font-medium text-flourishgreen">
-                Fawn
-              </div>
-              <div className="absolute -left-8 top-1/2 transform -translate-y-1/2 text-sm font-medium text-flourishgreen">
-                Freeze
-              </div>
-              
-              {/* Circular arrow indicators */}
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-2">
-                <div className="w-4 h-4 border-2 border-flourishgreen border-t-transparent rounded-full"></div>
-              </div>
-            </div>
+          <div className="w-full max-w-sm h-48 mb-8 flex items-center justify-center">
+            <img
+              src="/QuizDesign/Nervous system.png"
+              alt="Person analyzing data on laptop"
+              className="w-full h-full object-contain"
+              draggable={false}
+            />
           </div>
           
           {/* Description paragraphs */}
@@ -65,7 +45,7 @@ const QuizResults = () => {
         </div>
         
         {/* Continue button */}
-        <div className="w-full flex flex-col items-center absolute bottom-12">
+        <div className="w-full flex flex-col items-center">
           <button
             onClick={handleContinue}
             className="rounded-full bg-flourishmint text-flourishgreen text-base font-semibold px-10 py-2 shadow-md transition duration-150 hover:scale-105 hover:brightness-110"
