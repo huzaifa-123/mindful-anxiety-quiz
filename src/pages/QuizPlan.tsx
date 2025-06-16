@@ -178,7 +178,7 @@ const QuizPlan = () => {
           </div>
 
           {/* Now vs Goal Section */}
-          <div className="flex justify-center items-center gap-8 mb-16">
+          <div className="flex justify-center items-center gap-4 mb-16">
             {/* Now Section */}
             <div className="text-center">
               <div className="bg-flourishgreen text-white px-4 py-1 rounded text-sm font-medium mb-4 inline-block">
@@ -186,9 +186,9 @@ const QuizPlan = () => {
               </div>
               <div className="relative">
                 <img 
-                  src="/dummy-now-image.png" 
-                  alt="Current anxious state" 
-                  className="w-48 h-64 object-contain mb-4"
+                  src="/dummy-before-after-transformation.png" 
+                  alt="Before and after transformation" 
+                  className="w-48 h-32 object-contain mb-4"
                 />
                 {/* Progress bars card - increased width to match heading below */}
                 <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm w-80">
@@ -227,25 +227,16 @@ const QuizPlan = () => {
               </div>
             </div>
 
-            {/* Arrow */}
-            <div className="flex items-center">
-              <div className="flex">
-                <div className="w-6 h-6 bg-flourishgreen transform rotate-45 mr-1"></div>
-                <div className="w-6 h-6 bg-flourishgreen transform rotate-45 mr-1"></div>
-                <div className="w-6 h-6 bg-flourishgreen transform rotate-45"></div>
-              </div>
-            </div>
-
             {/* Goal Section */}
             <div className="text-center">
-              <div className="bg-flourishgreen text-white px-4 py-1 rounded text-sm font-medium mb-4 inline-block">
+              <div className="bg-flourishmint text-white px-4 py-1 rounded text-sm font-medium mb-4 inline-block">
                 Your Goal
               </div>
               <div className="relative">
                 <img 
-                  src="/dummy-goal-image.png" 
-                  alt="Goal confident state" 
-                  className="w-48 h-64 object-contain mb-4"
+                  src="/dummy-before-after-transformation.png" 
+                  alt="Before and after transformation" 
+                  className="w-48 h-32 object-contain mb-4"
                 />
                 {/* Progress bars card - increased width to match heading below */}
                 <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm w-80">
