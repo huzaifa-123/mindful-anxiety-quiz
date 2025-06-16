@@ -14,6 +14,9 @@ const QuizPlan = () => {
   const results = calculateQuizResults(answers);
   const anxietyType = results.dominantType;
 
+  // Centralized image path for before/after comparison
+  const beforeAfterImage = "/dummy-before-after-comparison.png";
+
   useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => {
@@ -186,7 +189,7 @@ const QuizPlan = () => {
               </div>
               <div className="relative">
                 <img 
-                  src="/dummy-before-after-transformation.png" 
+                  src={beforeAfterImage}
                   alt="Before and after transformation" 
                   className="w-48 h-32 object-contain mb-4"
                 />
@@ -234,7 +237,7 @@ const QuizPlan = () => {
               </div>
               <div className="relative">
                 <img 
-                  src="/dummy-before-after-transformation.png" 
+                  src={beforeAfterImage}
                   alt="Before and after transformation" 
                   className="w-48 h-32 object-contain mb-4"
                 />
