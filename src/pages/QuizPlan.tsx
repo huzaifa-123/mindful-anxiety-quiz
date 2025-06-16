@@ -15,7 +15,11 @@ const QuizPlan = () => {
   const anxietyType = results.dominantType;
 
   // Centralized image path for before/after comparison
+<<<<<<< HEAD
   const beforeAfterImage = "/QuizDesign/female - now_goal.png";
+=======
+  const beforeAfterImage = "/dummy-before-after-comparison.png";
+>>>>>>> cb7ce3b161fbd11c9b89ff1f7fb9de35267ad61f
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -187,7 +191,11 @@ const QuizPlan = () => {
               <img 
                 src={beforeAfterImage}
                 alt="Before and after transformation comparison" 
+<<<<<<< HEAD
                 className="w-[700px] h-[400px] object-contain"
+=======
+                className="w-96 h-48 object-contain"
+>>>>>>> cb7ce3b161fbd11c9b89ff1f7fb9de35267ad61f
               />
             </div>
 

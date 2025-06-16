@@ -117,14 +117,26 @@ const QuizJourneyTimeline = () => {
           
           {/* Timeline visualization container */}
           <div className="w-full max-w-md mb-2 flex flex-col items-center">
+<<<<<<< HEAD
+=======
+            {/* GIF */}
+>>>>>>> cb7ce3b161fbd11c9b89ff1f7fb9de35267ad61f
             <div className="w-full flex items-center justify-center mb-4">
               <img
                 src="/QuizDesign/Final_Quiz Section Design (2).gif"
                 alt="Progress timeline showing journey from current state to goal integration"
+<<<<<<< HEAD
                 className="w-full h-auto object-contain max-h-64"  // Increased from max-h-32 to max-h-64
                 draggable={false}
               />
             </div>
+=======
+                className="w-full h-auto object-contain max-h-32"
+                draggable={false}
+              />
+            </div>
+            
+>>>>>>> cb7ce3b161fbd11c9b89ff1f7fb9de35267ad61f
             {/* Progress stages labels - properly aligned with chart elements */}
             <div className="flex justify-center items-center w-full text-xs text-gray-600 px-2">
               <div className="flex justify-between items-center w-full max-w-xs">

@@ -116,19 +116,38 @@ const QuizAnxietyProfile = () => {
     switch (type) {
       case "panic":
         return {
+<<<<<<< HEAD
           src: "/QuizDesign/Female - moderate.png",
+=======
+          src: "/QuizDesign/panic-character.png",
+>>>>>>> cb7ce3b161fbd11c9b89ff1f7fb9de35267ad61f
           alt: "Panic anxiety type character illustration"
         };
       case "ruminator":
         return {
+<<<<<<< HEAD
           src: "/QuizDesign/Female - Before.png", 
+=======
+          src: "/QuizDesign/ruminator-character.png", 
+>>>>>>> cb7ce3b161fbd11c9b89ff1f7fb9de35267ad61f
           alt: "Ruminator anxiety type character illustration"
         };
       case "avoidant":
         return {
+<<<<<<< HEAD
           src: "/QuizDesign/Female - mild.png",
           alt: "Avoidant anxiety type character illustration"
         };
+=======
+          src: "/QuizDesign/avoidant-character.png",
+          alt: "Avoidant anxiety type character illustration"
+        };
+      default:
+        return {
+          src: "/placeholder-anxiety-character.png",
+          alt: "Anxiety character illustration"
+        };
+>>>>>>> cb7ce3b161fbd11c9b89ff1f7fb9de35267ad61f
     }
   };
 
