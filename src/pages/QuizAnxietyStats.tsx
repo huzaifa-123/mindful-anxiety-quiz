@@ -31,7 +31,7 @@ const QuizAnxietyStats = () => {
             <img
               src="/QuizDesign/Final_Quiz Section Design.gif"
               alt="World map showing anxiety statistics"
-              className="w-full h-36 object-cover rounded-lg"
+              className="w-full h-40 object-cover rounded-lg"
               draggable={false}
             />
           </div>

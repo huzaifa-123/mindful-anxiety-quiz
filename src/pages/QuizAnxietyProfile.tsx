@@ -182,20 +182,21 @@ const QuizAnxietyProfile = () => {
 
           {/* Progress bar with proper visualization */}
           <div className="mb-6">
-            <div className="flex justify-between text-sm text-gray-600 mb-2">
-              <span>Mild</span>
-              <span>Moderate</span>
-              <span>Severe</span>
-            </div>
-            <div className="relative w-full h-4 rounded-full overflow-hidden bg-gradient-to-r from-green-400 via-yellow-400 to-red-500">
+            <div className="relative w-full h-4 rounded-full  bg-gradient-to-r from-green-400 via-yellow-400 to-red-500 mb-4">
+              
               {/* Progress indicator circle */}
               <div 
-                className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-white border-4 border-gray-600 rounded-full shadow-lg transition-all duration-300"
+                className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-white border border-gray-600 rounded-full shadow-lg transition-all duration-300"
                 style={{ 
                   left: `calc(${(results.severityScore / 40) * 100}% - 12px)`,
                   zIndex: 10
                 }}
               />
+            </div>
+            <div className="flex justify-between text-sm text-gray-600 mb-4">
+              <span>Mild</span>
+              <span>Moderate</span>
+              <span>Severe</span>
             </div>
           </div>
 

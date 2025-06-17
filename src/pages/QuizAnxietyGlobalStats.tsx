@@ -20,8 +20,7 @@ const QuizAnxietyGlobalStats = () => {
           <h1 className="font-semibold text-xl md:text-2xl text-gray-800 mb-6 tracking-tight">
             Anxiety is more common and more solvable than you think.
           </h1>
-          
-           <div className="w-full flex justify-center items-center px-2">
+           <div className="w-full flex justify-center items-center px-6">
             <img
               src="/QuizDesign/Final_Quiz Section Design.gif" 
               alt="World map showing anxiety statistics with location pins"

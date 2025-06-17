@@ -36,7 +36,7 @@ const QuizAge = () => {
             {AGE_OPTIONS.map(option => (
               <button
                 key={option}
-                className={`w-full py-2 px-3 border-2 rounded-md text-flourishgreen font-medium bg-white
+                className={`w-full py-2 px-3 border rounded-md text-flourishgreen font-medium bg-white
                   border-flourishmint hover:bg-flourishmint/10 transition
                 `}
                 onClick={() => handleSelect(option)}

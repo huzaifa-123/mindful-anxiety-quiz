@@ -1,5 +1,5 @@
 import Header from "../components/Header";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { calculateQuizResults } from "../utils/quizScoring";
 import { Check, ChevronDown } from "lucide-react";
@@ -9,6 +9,8 @@ const QuizPlan = () => {
   // 15 minute countdown timer
   const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutes in seconds
   const { answers } = useQuizAnswers();
+  const paymentRef = useRef(null);
+
   
   // Calculate user's anxiety type
   const results = calculateQuizResults(answers);
@@ -16,6 +18,36 @@ const QuizPlan = () => {
 
   // Centralized image path for before/after comparison
   const beforeAfterImage = "/QuizDesign/female - now_goal.png";
+  const [selectedPayment, setSelectedPayment] = useState('one-time');
+
+  const paymentOptions = [
+    {
+      id: 'one-time',
+      label: 'ONE TIME PAYMENT',
+      price: '$70.00',
+      originalPrice: '$147.00',
+      discount: '52% Discount',
+      popular: true,
+      url: 'https://facebook.com', // Replace with real URL
+    },
+    {
+      id: 'installment',
+      label: '3X INSTALLMENT PLAN',
+      price: '$25.00',
+      originalPrice: '$49.00',
+      discount: '49% Discount',
+      popular: false,
+      url: 'https://google.com', // Replace with real URL
+    },
+  ];
+
+  // Continue button handler
+  const handleContinue = () => {
+    const selectedOption = paymentOptions.find(opt => opt.id === selectedPayment);
+    if (selectedOption && selectedOption.url) {
+      window.open(selectedOption.url, '_blank');
+    }
+  };
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -43,7 +75,7 @@ const QuizPlan = () => {
       <span className="text-white text-sm font-medium">
         Discount is reserved for: {formatTime(timeLeft)}
       </span>
-      <button className="bg-flourishmint hover:bg-green-400 text-white px-6 py-2 rounded-full text-sm font-semibold transition-colors">
+      <button className="bg-flourishmint hover:bg-green-400 text-white px-6 py-2 rounded-full text-sm font-semibold transition-colors" onClick={() => paymentRef.current?.scrollIntoView({ behavior: 'smooth' })}>
         GET MY PLAN
       </button>
     </div>
@@ -355,63 +387,54 @@ const QuizPlan = () => {
           </div>
 
           {/* Pricing Section */}
-          <div className="mb-16">
-            <div className="max-w-md mx-auto space-y-4">
-              {/* One Time Payment Option */}
-              <div className="relative">
-                <div className="bg-flourishgreen text-white text-center py-2 rounded-t-lg">
-                  <span className="text-sm font-medium flex items-center justify-center gap-1">
-                    ★ Most Popular!
-                  </span>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-b-lg p-4 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <input 
-                      type="radio" 
-                      name="payment" 
-                      className="w-4 h-4" 
-                      defaultChecked
-                    />
-                    <span className="font-semibold text-gray-900">ONE TIME PAYMENT</span>
-                  </div>
-                  <div className="text-right">
-                    <div className="bg-flourishmint text-white px-3 py-1 rounded text-sm font-bold">
-                      $70.00
-                    </div>
-                    <div className="text-xs text-gray-500 mt-1">
-                      <span className="line-through">$147.00</span>
-                    </div>
-                    <div className="text-xs text-flourishmint font-medium">
-                      52% Discount
-                    </div>
-                  </div>
-                </div>
+          <div ref={paymentRef} className="mb-16 max-w-md mx-auto space-y-4">
+        {paymentOptions.map((option) => (
+          <div key={option.id} className="relative">
+            {option.popular && (
+              <div className="bg-flourishgreen text-white text-center py-2 rounded-t-lg">
+                <span className="text-sm font-medium flex items-center justify-center gap-1">
+                  ★ Most Popular!
+                </span>
               </div>
-
-              {/* 3x Installment Plan Option */}
-              <div className="bg-white border border-gray-200 rounded-lg p-4 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <input 
-                    type="radio" 
-                    name="payment" 
-                    className="w-4 h-4"
-                  />
-                  <span className="font-semibold text-gray-900">3X INSTALLMENT PLAN</span>
-                </div>
-                <div className="text-right">
-                  <div className="bg-flourishmint text-white px-3 py-1 rounded text-sm font-bold">
-                    $25.00
-                  </div>
-                  <div className="text-xs text-gray-500 mt-1">
-                    <span className="line-through">$49.00</span>
-                  </div>
-                  <div className="text-xs text-flourishmint font-medium">
-                    49% Discount
-                  </div>
-                </div>
+            )}
+            <label
+              htmlFor={option.id}
+              className={`bg-white border border-gray-200 rounded-b-lg p-4 flex items-center justify-between cursor-pointer ${
+                selectedPayment === option.id ? 'ring-2 ring-flourishmint' : ''
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <input
+                  type="radio"
+                  id={option.id}
+                  name="payment"
+                  className="w-4 h-4"
+                  checked={selectedPayment === option.id}
+                  onChange={() => setSelectedPayment(option.id)}
+                />
+                <span className="font-semibold text-gray-900">{option.label}</span>
               </div>
-            </div>
+              <div className="text-right">
+                <div className="bg-flourishmint text-white px-3 py-1 rounded text-sm font-bold">
+                  {option.price}
+                </div>
+                <div className="text-xs text-gray-500 mt-1">
+                  <span className="line-through">{option.originalPrice}</span>
+                </div>
+                <div className="text-xs text-flourishmint font-medium">{option.discount}</div>
+              </div>
+            </label>
           </div>
+        ))}
+
+        {/* Continue button */}
+        <button
+          onClick={handleContinue}
+          className="w-full bg-flourishmint hover:bg-green-400 text-white py-3 rounded-full text-base font-semibold shadow-md transition duration-150 hover:scale-105 hover:brightness-110"
+        >
+          Continue
+        </button>
+      </div>
 
           {/* Free Trial Section */}
           <div className="text-center mb-16">
@@ -603,10 +626,20 @@ const QuizPlan = () => {
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              <div className="bg-white border border-gray-200 rounded-lg p-8 text-left relative shadow-sm">
-                <div className="text-6xl text-flourishmint mb-4 leading-none font-serif">"</div>
+            {[ 
+              "This is the first plan that actually matched how I think. It finally felt designed for someone like me.",
+              "I used to spiral every evening. Now I have a way to stop it before it starts.",
+              "I didn't think I'd ever feel calm again but this gave me back hope."
+            ].map((text, idx) => (
+              <div key={idx} className="bg-white border border-gray-200 rounded-lg p-8 text-left relative shadow-sm">
+                {/* Comma image positioned half inside/outside top-left */}
+                <img
+                  src="/Icons/85.png"
+                  alt="Quotation mark"
+                  className="absolute top-0 left-9 -translate-x-1/2 -translate-y-1/2 w-10 h-10 opacity-70 pointer-events-none"
+                />
                 <p className="text-gray-700 text-sm leading-relaxed mb-6">
-                  This is the first plan that actually matched how I think. It finally felt designed for someone like me.
+                  {text}
                 </p>
                 <div className="flex mb-0">
                   {[...Array(5)].map((_, i) => (
@@ -614,31 +647,9 @@ const QuizPlan = () => {
                   ))}
                 </div>
               </div>
-              
-              <div className="bg-white border border-gray-200 rounded-lg p-8 text-left relative shadow-sm">
-                <div className="text-6xl text-flourishmint mb-4 leading-none font-serif">"</div>
-                <p className="text-gray-700 text-sm leading-relaxed mb-6">
-                  I used to spiral every evening. Now I have a way to stop it before it starts.
-                </p>
-                <div className="flex mb-0">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-flourishmint text-lg">★</span>
-                  ))}
-                </div>
-              </div>
-              
-              <div className="bg-white border border-gray-200 rounded-lg p-8 text-left relative shadow-sm">
-                <div className="text-6xl text-flourishmint mb-4 leading-none font-serif">"</div>
-                <p className="text-gray-700 text-sm leading-relaxed mb-6">
-                  I didn't think I'd ever feel calm again but this gave me back hope.
-                </p>
-                <div className="flex mb-0">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-flourishmint text-lg">★</span>
-                  ))}
-                </div>
-              </div>
-            </div>
+            ))}
+          </div>
+
           </div>
 
           {/* Final Pricing Section */}
@@ -647,62 +658,46 @@ const QuizPlan = () => {
               Begin Your Calm Reset Plan
             </h2>
             
-            <div className="max-w-md mx-auto space-y-4">
-              {/* One Time Payment Option */}
-              <div className="relative">
-                <div className="bg-flourishgreen text-white text-center py-2 rounded-t-lg">
-                  <span className="text-sm font-medium flex items-center justify-center gap-1">
-                    ★ Most Popular!
-                  </span>
-                </div>
-                <div className="bg-white border border-gray-200 rounded-b-lg p-4 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <input 
-                      type="radio" 
-                      name="finalPayment" 
-                      className="w-4 h-4" 
-                      defaultChecked
-                    />
-                    <span className="font-semibold text-gray-900">ONE TIME PAYMENT</span>
+            <div className="mb-16 max-w-md mx-auto space-y-4">
+            {paymentOptions.map((option) => (
+              <div key={option.id} className="relative">
+                {option.popular && (
+                  <div className="bg-flourishgreen text-white text-center py-2 rounded-t-lg">
+                    <span className="text-sm font-medium flex items-center justify-center gap-1">
+                      ★ Most Popular!
+                    </span>
                   </div>
-                  <div className="text-right relative">
-                    <div className="bg-flourishmint text-white px-4 py-2 rounded-full text-lg font-bold relative">
-                      $70.00
-                      <div className="absolute -top-1 -right-1 bg-flourishmint text-white text-xs px-2 py-1 rounded-full">
-                        Discounted Price
-                      </div>
+                )}
+                <label
+                  htmlFor={option.id}
+                  className={`bg-white border border-gray-200 rounded-b-lg p-4 flex items-center justify-between cursor-pointer ${
+                    selectedPayment === option.id ? 'ring-2 ring-flourishmint' : ''
+                  }`}
+                >
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="radio"
+                      id={option.id}
+                      name="payment"
+                      className="w-4 h-4"
+                      checked={selectedPayment === option.id}
+                      onChange={() => setSelectedPayment(option.id)}
+                    />
+                    <span className="font-semibold text-gray-900">{option.label}</span>
+                  </div>
+                  <div className="text-right">
+                    <div className="bg-flourishmint text-white px-3 py-1 rounded text-sm font-bold">
+                      {option.price}
                     </div>
                     <div className="text-xs text-gray-500 mt-1">
-                      <span className="line-through">$147.00</span>
+                      <span className="line-through">{option.originalPrice}</span>
                     </div>
+                    <div className="text-xs text-flourishmint font-medium">{option.discount}</div>
                   </div>
-                </div>
+                </label>
               </div>
-
-              {/* 3x Installment Plan Option */}
-              <div className="bg-white border border-gray-200 rounded-lg p-4 flex items-center justify-between">
-                <div className="flex items-center gap-3">
-                  <input 
-                    type="radio" 
-                    name="finalPayment" 
-                    className="w-4 h-4"
-                  />
-                  <span className="font-semibold text-gray-900">3X INSTALLMENT PLAN</span>
-                </div>
-                <div className="text-right relative">
-                  <div className="bg-flourishmint text-white px-4 py-2 rounded-full text-lg font-bold relative">
-                    $25.00
-                    <div className="absolute -top-1 -right-1 bg-flourishmint text-white text-xs px-2 py-1 rounded-full">
-                      Discounted Price
-                    </div>
-                  </div>
-                  <div className="text-xs text-gray-500 mt-1">
-                    <span className="line-through">$49.00</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+            ))}
+          </div>
             {/* Completion Message */}
             <div className="mt-8 mb-6">
               <p className="text-gray-800 font-semibold mb-2">
@@ -719,10 +714,7 @@ const QuizPlan = () => {
             {/* Start My Plan Button */}
             <button 
               className="bg-flourishmint hover:bg-green-400 text-white px-8 py-3 rounded-full font-semibold text-lg transition-colors"
-              onClick={() => {
-                // Does nothing for now as requested
-                console.log("Start My Plan Now clicked");
-              }}
+              onClick={handleContinue}
             >
               Start My Plan Now
             </button>

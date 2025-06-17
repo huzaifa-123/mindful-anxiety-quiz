@@ -20,7 +20,7 @@ const QuizPlanCompletion = () => {
           
           {/* Subheading */}
           <p className="text-gray-600 text-base mb-8 max-w-md mx-auto">
-            Tayyaba AI's method combines three clinically proven therapies to help you move forward faster and stay well longer.
+            Tayyaba Ali’s unique method brings together three clinically validated therapies, offering you a multi-angle solution designed to help you move forward faster and stay well longer.
           </p>
           
           {/* Illustration placeholder */}
@@ -66,7 +66,10 @@ const QuizPlanCompletion = () => {
             
             <div className="mt-4 pt-4 border-t border-gray-200">
               <p className="text-gray-700">
-                Tayyaba AI's unique method combines these for faster and more lasting results.
+                Tayyaba Ali’s unique method combines these for faster and more lasting results.
+                By working on your thoughts, beliefs, and subconscious patterns at the same time, this method helps unlock deeper healing and sustained change.
+                While exact studies on the combined approach are ongoing, early evidence suggests it brings people closer to 100% success offering a more comprehensive and transformative path to well-being.
+
               </p>
             </div>
           </div>
