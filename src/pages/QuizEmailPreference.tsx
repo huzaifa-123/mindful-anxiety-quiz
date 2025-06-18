@@ -5,7 +5,7 @@ import { useState } from "react";
 
 const QuizEmailPreference = () => {
   const navigate = useNavigate();
-  const { setAnswer } = useQuizAnswers();
+  const { setAnswer,readableAnswers} = useQuizAnswers();
 
   // Form state
   const [email, setEmail] = useState("");
@@ -37,7 +37,9 @@ const QuizEmailPreference = () => {
       phone: phone.trim() || null,
       smsOptIn,
     });
-
+    console.log("🟢 READABLE ANSWERS FOR SUBMISSION:");
+    console.log(JSON.stringify(readableAnswers, null, 2));
+  
     // Navigate after short delay
     setTimeout(() => {
       navigate("/quiz/anxiety-profile");
