@@ -8,7 +8,7 @@ import { Card, CardContent } from "../components/ui/card";
 
 const QuizAnxietyProfile = () => {
   const navigate = useNavigate();
-  const { answers } = useQuizAnswers();
+  const { answers,resetAnswers } = useQuizAnswers();
   
   // Debug: Log all answers before calculation
   console.log("🔴 ANXIETY PROFILE DEBUG: All quiz answers:", JSON.stringify(answers, null, 2));
@@ -176,7 +176,7 @@ const QuizAnxietyProfile = () => {
             <img 
               src={anxietyImage.src}
               alt={anxietyImage.alt}
-              className="w-32 h-32 object-contain"
+              className="w-52 h-52 object-contain"
             />
           </div>
 
@@ -265,7 +265,10 @@ const QuizAnxietyProfile = () => {
           {/* Continue button */}
           <div className="flex justify-center">
             <button
-              onClick={() => navigate("/quiz/plan")}
+              onClick={() => {
+                resetAnswers();
+                navigate("/quiz/plan");
+              }}
               className="bg-flourishmint text-white px-8 py-3 rounded-full font-semibold hover:bg-flourishmint/90 transition-colors"
             >
               Show My Best-Fit Techniques

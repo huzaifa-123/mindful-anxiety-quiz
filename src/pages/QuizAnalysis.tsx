@@ -37,13 +37,13 @@ const QuizAnalysis = () => {
           </div>
           
           {/* Status text */}
-          <p className="text-gray-700 text-base mb-8 font-medium">
+          <p className="text-gray-700 text-base mb-8 font-bold">
             Aligning your next steps for deeper calm...
           </p>
           
           <button
             onClick={handleContinue}
-            className="rounded-full bg-flourishmint text-flourishgreen text-base font-semibold px-10 py-2 shadow-md transition duration-150 hover:scale-105 hover:brightness-110"
+            className="rounded-full bg-flourishmint text-white text-base font-semibold px-10 py-2 shadow-md transition duration-150 hover:scale-105 hover:brightness-110"
           >
             Continue
           </button>

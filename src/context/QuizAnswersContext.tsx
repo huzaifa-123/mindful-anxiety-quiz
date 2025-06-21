@@ -208,6 +208,7 @@ type QuizAnswersContextType = {
   setAnswer: (key: keyof QuizAnswer, value: any) => void;
   resetAnswers: () => void;
    readableAnswers: Record<string, { question: string; answer: string }>;
+  sendAnswersToAPI: () => Promise<void>;
 };
 
 const QuizAnswersContext = createContext<QuizAnswersContextType | undefined>(undefined);
@@ -301,14 +302,37 @@ export const QuizAnswersProvider = ({ children }: { children: ReactNode }) => {
       answer: answerString,
     };
   });
+  const sendAnswersToAPI = async () => {
+    try {
+      const response = await fetch("https://services.leadconnectorhq.com/hooks/eowSraffPUqh7LbVROw5/webhook-trigger/smCWSOp0FkuqsIoWx9f3", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(readableAnswers),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to submit: ${response.statusText}`);
+      }
+
+      const result = await response.json();
+      console.log("✅ Submission successful:", result);
+    } catch (error) {
+      console.error("❌ Submission failed:", error);
+    }
+  };
+
 
 
   // Log the current state whenever component re-renders
   console.log(`🟡 CONTEXT RENDER: QuizAnswersProvider rendered with answers:`, JSON.stringify(answers, null, 2));
   console.log(`🟡 CONTEXT RENDER: Available answer keys:`, Object.keys(answers));
+  console.log("🟢 READABLE ANSWERS FOR SUBMISSION:");
+  console.log(JSON.stringify(readableAnswers, null, 2));
 
   return (
-    <QuizAnswersContext.Provider value={{ answers, setAnswer, resetAnswers,readableAnswers }}>
+    <QuizAnswersContext.Provider value={{ answers, setAnswer, resetAnswers,readableAnswers,sendAnswersToAPI  }}>
       {children}
     </QuizAnswersContext.Provider>
   );

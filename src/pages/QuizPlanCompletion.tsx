@@ -33,11 +33,11 @@ const QuizPlanCompletion = () => {
           </div>
           
           {/* Plan details box */}
-          <div className="bg-white rounded-xl border border-gray-200 p-6 mb-8 text-left">
+          <div className="bg-white rounded-xl border border-gray-400 p-6 mb-8 text-left shadow-2xl">
             <p className="text-gray-700 font-medium mb-4">
               This plan is built using three proven therapies:
             </p>
-            
+             <hr className="my-2 border-gray-300 border-t-4 mb-8" />
             <div className="space-y-3">
               <div className="flex items-start">
                 <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>

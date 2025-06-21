@@ -30,7 +30,7 @@ const QuizPart1 = () => {
           </p>
           <button
             onClick={() => navigate("/quiz/gender")}
-            className="rounded-full bg-flourishmint text-flourishgreen text-base font-semibold px-8 py-2 shadow-md hover:scale-105 hover:brightness-110 transition duration-150"
+            className="rounded-full bg-flourishmint text-white text-base font-semibold px-8 py-2 shadow-md hover:scale-105 hover:brightness-110 transition duration-150"
           >
             Continue
           </button>

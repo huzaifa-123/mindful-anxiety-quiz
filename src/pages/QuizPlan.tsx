@@ -215,51 +215,78 @@ const QuizPlan = () => {
           {/* Now vs Goal Section */}
           <div className="mb-16">
             {/* Single centered image above both cards */}
-            <div className="flex justify-center mb-8">
-              <img 
-                src={beforeAfterImage}
-                alt="Before and after transformation comparison" 
-                className="w-[700px] h-[400px] object-contain"
-              />
+            <div className="relative w-[600px] mx-auto flex justify-center mb-8">
+            {/* Headings container */}
+            <div className="absolute w-full px-16" style={{ top: '-28px' }}>
+              {/* Now label */}
+              <div className="absolute" style={{ left: '115px' }}>
+                <div className="relative flex flex-col items-center">
+                  <span className="bg-gray-800 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow">
+                    Now
+                  </span>
+                  <span className="absolute left-1/2 -bottom-2 transform -translate-x-1/2 w-0 h-0 border-x-8 border-x-transparent border-t-8 border-t-gray-800"></span>
+                </div>
+              </div>
+
+              {/* Your Goal label */}
+              <div className="absolute" style={{ left: '400px' }}>
+                <div className="relative flex flex-col items-center">
+                  <span className="bg-emerald-400 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow">
+                    Your Goal
+                  </span>
+                  <span className="absolute left-1/2 -bottom-2 transform -translate-x-1/2 w-0 h-0 border-x-8 border-x-transparent border-t-8 border-t-emerald-400"></span>
+                </div>
+              </div>
             </div>
+
+            {/* Image */}
+            <img 
+              src={beforeAfterImage}
+              alt="Before and after transformation comparison" 
+              className="w-[600px] h-[300px] object-contain"
+            />
+          </div>
 
             {/* Now and Goal cards below the image */}
             <div className="flex justify-center items-start gap-8">
               {/* Now Section */}
               <div className="text-center">
-                <div className="bg-flourishgreen text-white px-4 py-1 rounded text-sm font-medium mb-4 inline-block">
-                  Now
-                </div>
                 {/* Progress bars card */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm w-80">
+                <div className="bg-white border border-gray-500 rounded-lg p-6 shadow-sm w-80 h-64 flex flex-col justify-between">
                   <div className="space-y-4 text-left">
+                    {/* Energy Level */}
                     <div>
-                      <div className="flex justify-between text-sm text-gray-700 mb-1">
-                        <span>Energy Level</span>
+                      <div className="text-sm text-gray-800 mb-1 font-semibold">
+                        Energy Level
                       </div>
-                      <div className="text-xs text-red-500 mb-2 font-medium">Low</div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-red-500 h-2 rounded-full" style={{ width: '25%' }}></div>
-                      </div>
+                      <div className="text-xs text-green-600 mb-2 font-medium">Low</div>
+                      <hr className="my-2 border-gray-200" />
                     </div>
-                    
+
+                    {/* Well-being Level */}
                     <div>
-                      <div className="flex justify-between text-sm text-gray-700 mb-1">
-                        <span>Well-being Level</span>
+                      <div className="text-sm text-gray-800 mb-1 font-semibold">
+                        Well-being Level
                       </div>
-                      <div className="text-xs text-orange-500 mb-2 font-medium">Weak</div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-orange-500 h-2 rounded-full" style={{ width: '40%' }}></div>
+                      <div className="text-xs text-green-600 mb-2 font-medium">Weak</div>
+                      <div className="flex space-x-2 my-2">
+                        <div className="h-2 w-1/4 rounded bg-emerald-400"></div>
+                        <div className="h-2 w-1/4 rounded bg-emerald-200"></div>
+                        <div className="h-2 w-1/4 rounded bg-gray-200"></div>
+                        <div className="h-2 w-1/4 rounded bg-gray-200"></div>
                       </div>
+                      <hr className="my-2 border-gray-200" />
                     </div>
-                    
+
+                    {/* Self-esteem Level */}
                     <div>
-                      <div className="flex justify-between text-sm text-gray-700 mb-1">
-                        <span>Self-esteem Level</span>
+                      <div className="text-sm text-gray-800 mb-1 font-semibold">
+                        Self-esteem Level
                       </div>
-                      <div className="text-xs text-red-500 mb-2 font-medium">Low</div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-red-500 h-2 rounded-full" style={{ width: '25%' }}></div>
+                      <div className="text-xs text-green-600 mb-2 font-medium">Low</div>
+                      <div className="relative w-full h-3 bg-gray-200 rounded-full mt-3 mb-1">
+                        <div className="absolute left-0 top-0 h-3 bg-emerald-400 rounded-full" style={{ width: '25%' }}></div>
+                        <div className="absolute top-1/2 left-[25%] transform -translate-y-1/2 -translate-x-1/2 w-4 h-4 bg-white border-2 border-emerald-400 rounded-full shadow"></div>
                       </div>
                     </div>
                   </div>
@@ -268,39 +295,40 @@ const QuizPlan = () => {
 
               {/* Goal Section */}
               <div className="text-center">
-                <div className="bg-green-300 text-white px-4 py-1 rounded text-sm font-medium mb-4 inline-block">
-                  Your Goal
-                </div>
                 {/* Progress bars card */}
-                <div className="bg-white border border-gray-200 rounded-lg p-6 shadow-sm w-80">
+                <div className="bg-white border border-gray-500 rounded-lg p-6 shadow-sm w-80 h-64 flex flex-col justify-between">
                   <div className="space-y-4 text-left">
+                    {/* Energy Level */}
                     <div>
-                      <div className="flex justify-between text-sm text-gray-700 mb-1">
+                      <div className="flex justify-between items-center text-sm text-gray-800 mb-1 font-semibold">
                         <span>Energy Level</span>
                       </div>
                       <div className="text-xs text-green-600 mb-2 font-medium">High</div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-green-600 h-2 rounded-full" style={{ width: '85%' }}></div>
-                      </div>
+                      <hr className="my-2 border-gray-200" />
                     </div>
-                    
+                    {/* Well-being Level */}
                     <div>
-                      <div className="flex justify-between text-sm text-gray-700 mb-1">
+                      <div className="flex justify-between items-center text-sm text-gray-800 mb-1 font-semibold">
                         <span>Well-being Level</span>
                       </div>
                       <div className="text-xs text-green-600 mb-2 font-medium">Strong</div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-green-600 h-2 rounded-full" style={{ width: '100%' }}></div>
+                      <div className="flex space-x-2 my-2">
+                        <div className="h-2 w-1/4 rounded bg-emerald-400"></div>
+                        <div className="h-2 w-1/4 rounded bg-emerald-400"></div>
+                        <div className="h-2 w-1/4 rounded bg-emerald-400"></div>
+                        <div className="h-2 w-1/4 rounded bg-emerald-400"></div>
                       </div>
+                      <hr className="my-2 border-gray-200" />
                     </div>
-                    
+                    {/* Self-esteem Level */}
                     <div>
-                      <div className="flex justify-between text-sm text-gray-700 mb-1">
+                      <div className="flex justify-between items-center text-sm text-gray-800 mb-1 font-semibold">
                         <span>Self-esteem Level</span>
                       </div>
                       <div className="text-xs text-green-600 mb-2 font-medium">High</div>
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div className="bg-green-600 h-2 rounded-full" style={{ width: '85%' }}></div>
+                      <div className="relative w-full h-3 bg-gray-200 rounded-full mt-3 mb-1">
+                        <div className="absolute left-0 top-0 h-3 bg-emerald-400 rounded-full" style={{ width: '85%' }}></div>
+                        <div className="absolute top-1/2 left-[85%] transform -translate-y-1/2 -translate-x-1/2 w-4 h-4 bg-white border-2 border-emerald-400 rounded-full shadow"></div>
                       </div>
                     </div>
                   </div>
@@ -408,7 +436,7 @@ const QuizPlan = () => {
                   type="radio"
                   id={option.id}
                   name="payment"
-                  className="w-4 h-4"
+                  className="w-4 h-4 accent-green-700"
                   checked={selectedPayment === option.id}
                   onChange={() => setSelectedPayment(option.id)}
                 />
@@ -448,7 +476,7 @@ const QuizPlan = () => {
               Access the first 7 days at no cost and start rewiring your anxiety response today.
             </p>
             
-            <div className="bg-gray-800 text-white px-4 py-2 rounded inline-block mb-6">
+            <div className="bg-gray-800 text-white px-4 py-2 rounded-full inline-block mb-6">
               <span className="text-sm font-medium">You'll receive:</span>
             </div>
             
@@ -459,10 +487,10 @@ const QuizPlan = () => {
             </div>
             
             <button className="bg-flourishmint hover:bg-green-400 text-white px-8 py-3 rounded-full font-semibold transition-colors">
-              Start Free Trial
+              Start My Free 7 Day Trial
             </button>
           </div>
-
+          <hr className="my-2 border-gray-300 border-t-4 mb-8" />
           {/* Our Goals for You Section */}
           <div className="text-center mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">
@@ -501,7 +529,7 @@ const QuizPlan = () => {
               </div>
             </div>
           </div>
-
+           <hr className="my-2 border-gray-300 border-t-4 mb-8" />
           {/* Therapy Results + Life Without vs. With Support Section */}
           <div className="text-center mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -540,7 +568,7 @@ const QuizPlan = () => {
             {/* Comparison columns */}
             <div className="flex justify-center gap-8 max-w-2xl mx-auto">
               <div className="flex-1">
-                <div className="bg-flourishgreen text-white px-4 py-2 rounded mb-4">
+                <div className="bg-flourishgreen text-white  px-4 py-2 rounded-full mb-4">
                   <span className="text-sm font-medium">Without Support:</span>
                 </div>
                 <ul className="space-y-2 text-left text-sm text-gray-700">
@@ -551,7 +579,7 @@ const QuizPlan = () => {
               </div>
               
               <div className="flex-1">
-                <div className="bg-flourishgreen text-white px-4 py-2 rounded mb-4">
+                <div className="bg-flourishgreen text-white px-4 py-2 rounded-full mb-4">
                   <span className="text-sm font-medium">With Calm Reset:</span>
                 </div>
                 <ul className="space-y-2 text-left text-sm text-gray-700">
@@ -562,6 +590,7 @@ const QuizPlan = () => {
               </div>
             </div>
           </div>
+          <hr className="my-2 border-gray-300 border-t-4 mb-8" />
 
           {/* Frequently Asked Questions Section */}
           <div className="mb-16">
@@ -618,6 +647,7 @@ const QuizPlan = () => {
               </Accordion>
             </div>
           </div>
+          <hr className="my-2 border-gray-300 border-t-4 mb-8" />
 
           {/* Testimonials Section */}
           <div className="text-center mb-16">
@@ -631,7 +661,7 @@ const QuizPlan = () => {
               "I used to spiral every evening. Now I have a way to stop it before it starts.",
               "I didn't think I'd ever feel calm again but this gave me back hope."
             ].map((text, idx) => (
-              <div key={idx} className="bg-white border border-gray-200 rounded-lg p-8 text-left relative shadow-sm">
+              <div key={idx} className="bg-white border border-gray-400 rounded-lg p-8 text-left relative shadow-2xl">
                 {/* Comma image positioned half inside/outside top-left */}
                 <img
                   src="/Icons/85.png"
@@ -641,6 +671,7 @@ const QuizPlan = () => {
                 <p className="text-gray-700 text-sm leading-relaxed mb-6">
                   {text}
                 </p>
+                 <hr className="my-2 border-gray-500" />
                 <div className="flex mb-0">
                   {[...Array(5)].map((_, i) => (
                     <span key={i} className="text-flourishmint text-lg">★</span>
@@ -651,7 +682,8 @@ const QuizPlan = () => {
           </div>
 
           </div>
-
+          
+           <hr className="my-2 border-gray-300 border-t-4 mb-8" />
           {/* Final Pricing Section */}
           <div className="text-center mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">
@@ -679,7 +711,7 @@ const QuizPlan = () => {
                       type="radio"
                       id={option.id}
                       name="payment"
-                      className="w-4 h-4"
+                     className="w-4 h-4 accent-green-700"
                       checked={selectedPayment === option.id}
                       onChange={() => setSelectedPayment(option.id)}
                     />

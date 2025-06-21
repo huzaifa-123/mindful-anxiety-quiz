@@ -1,6 +1,6 @@
 
 import { ArrowLeft } from "lucide-react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate,Link } from "react-router-dom";
 
 interface HeaderProps {
   withBack?: boolean;
@@ -11,7 +11,6 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ withBack, questionCount, timer }) => {
   const location = useLocation();
   const navigate = useNavigate();
-
   // Detect if on /quiz/part1 for special back handling
   const isQuizPart1 = location.pathname === "/quiz/part1";
   
@@ -44,11 +43,13 @@ const Header: React.FC<HeaderProps> = ({ withBack, questionCount, timer }) => {
       ) : null}
       
       <div className={`flex items-center gap-3 ${showFullBranding ? '' : 'absolute left-1/2 transform -translate-x-1/2'}`}>
-        <img
-          src="/Icons/1.png"
-          alt="Mind Flourish logo"
-          className="h-8 w-8 object-contain"
-        />
+        <Link to="/">
+          <img
+            src="/Icons/1.png"
+            alt="Mind Flourish logo"
+            className="h-8 w-8 object-contain cursor-pointer"
+          />
+        </Link>
         {showFullBranding && (
           <span className="text-flourishwhite text-2xl font-bold tracking-tight select-none leading-tight font-inter">
             Mind Flourish

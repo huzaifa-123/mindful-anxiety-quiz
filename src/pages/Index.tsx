@@ -27,12 +27,12 @@ const Index = () => {
             style={{ objectFit: "contain" }}
           />
           <div className="flex flex-col items-center w-full">
-            <p className="text-sm md:text-base text-gray-600 mt-0 mb-7 max-w-md font-inter">
+            <p className="text-sm md:text-base text-gray-600 mt-0 mb-7 max-w-2xl font-inter ">
               Take our 60-second anxiety pattern quiz designed by Clinical Psychologist Tayyaba Ali. Discover how your system reacts under pressure and the personalized strategy that actually fits your life.
             </p>
             <button
               onClick={() => navigate("/quiz/part1")}
-              className="rounded-full bg-flourishmint text-flourishgreen text-base font-semibold px-8 py-2 shadow-md hover:scale-105 hover:brightness-110 transition mt-1"
+              className="rounded-full bg-flourishmint text-white text-base font-semibold px-8 py-2 shadow-md hover:scale-105 hover:brightness-110 transition mt-1"
               style={{ minWidth: "170px" }}
             >
               Yes, I'm ready

@@ -47,6 +47,7 @@ import QuizPlanCompletion from "./pages/QuizPlanCompletion";
 import QuizEmailPreference from "./pages/QuizEmailPreference";
 import QuizAnxietyProfile from "./pages/QuizAnxietyProfile";
 import QuizPlan from "./pages/QuizPlan";
+import QuizPhoneNumber from "./pages/QuizPhoneNumber";
 
 const queryClient = new QueryClient();
 
@@ -103,6 +104,7 @@ const App = () => (
           <Route path="/quiz/email-preference" element={<QuizWrapper><QuizEmailPreference /></QuizWrapper>} />
           <Route path="/quiz/anxiety-profile" element={<QuizWrapper><QuizAnxietyProfile /></QuizWrapper>} />
           <Route path="/quiz/plan" element={<QuizWrapper><QuizPlan /></QuizWrapper>} />
+          <Route path="/quiz/phone-number" element={<QuizWrapper><QuizPhoneNumber /></QuizWrapper>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
