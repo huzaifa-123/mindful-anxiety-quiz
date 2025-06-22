@@ -1,6 +1,7 @@
 
 import React, { createContext, useContext, useState, useEffect, ReactNode } from "react";
 
+
 type QuizAnswer = {
   gender?: "male" | "female";
   age?: string;
@@ -32,7 +33,10 @@ type QuizAnswer = {
   plan_journaling?: string;
   plan_tools?: string;
   plan_support_style?: string;
-  email_preference?: string;
+  email_preference?: {
+  email: string;
+  phone?: string | null;
+};
   // More fields will be added for additional questions
 };
 const questionTextMap: Record<keyof QuizAnswer, string> = {

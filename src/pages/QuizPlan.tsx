@@ -5,20 +5,39 @@ import { calculateQuizResults } from "../utils/quizScoring";
 import { Check, ChevronDown } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 
+
 const QuizPlan = () => {
   // 15 minute countdown timer
   const [timeLeft, setTimeLeft] = useState(15 * 60); // 15 minutes in seconds
   const { answers } = useQuizAnswers();
+  const quizResults = calculateQuizResults(answers);
   const paymentRef = useRef(null);
 
   
   // Calculate user's anxiety type
   const results = calculateQuizResults(answers);
-  const anxietyType = results.dominantType;
+ 
 
   // Centralized image path for before/after comparison
   const beforeAfterImage = "/QuizDesign/female - now_goal.png";
   const [selectedPayment, setSelectedPayment] = useState('one-time');
+  const name = answers.name || "";
+  const gender = answers.gender || "";
+  const email = answers.email_preference?.email || "";
+  const phone = answers.email_preference?.phone || "";
+  const anxietyType = results.dominantType;
+  const severity = results.severity;
+  const buildPaymentUrl = (baseUrl: string): string => {
+  const params = new URLSearchParams({
+      name,
+      gender,
+      email,
+      phone,
+      anxietyType,
+      severity,
+    });
+    return `${baseUrl}?${params.toString()}`;
+  };
 
   const paymentOptions = [
     {
@@ -28,7 +47,7 @@ const QuizPlan = () => {
       originalPrice: '$147.00',
       discount: '52% Discount',
       popular: true,
-      url: 'https://facebook.com', // Replace with real URL
+      url: buildPaymentUrl('https://facebook.com'), // Replace with real URL
     },
     {
       id: 'installment',
@@ -37,7 +56,7 @@ const QuizPlan = () => {
       originalPrice: '$49.00',
       discount: '49% Discount',
       popular: false,
-      url: 'https://google.com', // Replace with real URL
+      url: buildPaymentUrl('https://google.com'), // Replace with real URL
     },
   ];
 
@@ -486,7 +505,10 @@ const QuizPlan = () => {
               <div className="text-sm text-gray-700 text-left">• Soothing CBH audio tracks to calm your system</div>
             </div>
             
-            <button className="bg-flourishmint hover:bg-green-400 text-white px-8 py-3 rounded-full font-semibold transition-colors">
+            <button
+              onClick={() => window.open(buildPaymentUrl("https://www.linkedin.com"), "_blank")}
+              className="bg-flourishmint hover:bg-green-400 text-white px-8 py-3 rounded-full font-semibold transition-colors"
+            >
               Start My Free 7 Day Trial
             </button>
           </div>
