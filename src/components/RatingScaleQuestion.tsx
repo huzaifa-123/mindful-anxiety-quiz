@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Slider } from "./ui/slider";
 
@@ -35,19 +34,19 @@ const RatingScaleQuestion = ({
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto flex flex-col items-center px-4">
-      <h1 className="font-semibold text-xl md:text-2xl text-flourishgreen mb-2 text-center tracking-tight">
+    <div className="w-full max-w-2xl mx-auto flex flex-col items-center px-2 sm:px-4">
+      <h1 className="font-semibold text-lg sm:text-xl md:text-2xl text-flourishgreen mb-2 text-center tracking-tight">
         {question}
       </h1>
       
       {subtitle && (
-        <p className="text-gray-600 text-sm mb-8 text-center italic">
+        <p className="text-gray-600 text-xs sm:text-sm mb-8 text-center italic">
           {subtitle}
         </p>
       )}
       
       {/* Rating scale */}
-      <div className="w-full max-w-lg mb-8">
+      <div className="w-full max-w-xs sm:max-w-lg mb-8">
         {/* Slider component */}
         <div className="mb-6">
           <Slider
@@ -66,11 +65,12 @@ const RatingScaleQuestion = ({
           {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((rating) => (
             <span
               key={rating}
-              className={`text-sm font-medium transition-all ${
+              className={`text-xs sm:text-sm font-medium transition-all ${
                 selectedRating === rating
                   ? "text-flourishgreen font-bold scale-110"
                   : "text-gray-500"
               }`}
+              style={{ minWidth: '1.5rem', textAlign: 'center' }}
             >
               {rating}
             </span>
@@ -78,7 +78,7 @@ const RatingScaleQuestion = ({
         </div>
         
         {/* Labels */}
-        <div className="flex justify-between text-sm text-gray-600">
+        <div className="flex justify-between text-xs sm:text-sm text-gray-600">
           <span>{lowLabel}</span>
           <span>{highLabel}</span>
         </div>

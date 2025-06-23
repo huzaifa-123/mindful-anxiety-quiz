@@ -90,11 +90,14 @@ const QuizPlan = () => {
 
   // Timer component for header
   const TimerDisplay = () => (
-    <div className="flex items-center gap-4">
-      <span className="text-white text-sm font-medium">
-        Discount is reserved for: {formatTime(timeLeft)}
+    <div className="flex flex-col items-center gap-2 w-full sm:flex-row sm:justify-end sm:items-center sm:gap-4">
+      <span className="text-white text-xs sm:text-sm font-medium text-center sm:text-right w-full sm:w-auto whitespace-nowrap overflow-hidden text-ellipsis">
+        Discount ends in {formatTime(timeLeft)}
       </span>
-      <button className="bg-flourishmint hover:bg-green-400 text-white px-6 py-2 rounded-full text-sm font-semibold transition-colors" onClick={() => paymentRef.current?.scrollIntoView({ behavior: 'smooth' })}>
+      <button
+        className="bg-flourishmint hover:bg-green-400 text-white w-full sm:w-auto px-4 sm:px-6 py-2 rounded-full text-sm font-semibold transition-colors"
+        onClick={() => paymentRef.current?.scrollIntoView({ behavior: 'smooth' })}
+      >
         GET MY PLAN
       </button>
     </div>
