@@ -77,7 +77,7 @@ const QuizPlanCompletion = () => {
           {/* Continue button */}
           <button
             onClick={() => navigate("/quiz/email-preference")}
-            className="bg-flourishmint text-white px-8 py-3 rounded-full font-semibold hover:bg-flourishmint/90 transition-colors"
+            className="bg-flourishmint text-white px-8 py-3 rounded-full  mb-4 font-semibold hover:bg-flourishmint/90 transition-colors"
           >
             Continue
           </button>

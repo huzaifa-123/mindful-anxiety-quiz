@@ -222,57 +222,54 @@ const QuizPlan = () => {
         <Header timer={<TimerDisplay />} />
       </div>
       
-      <main className="flex-1 px-4 py-12">
+      <main className="flex-1 px-2 sm:px-4 py-8 sm:py-12">
         <div className="w-full max-w-4xl mx-auto">
           {/* Main Heading */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl font-bold text-gray-900 mb-2">
+          <div className="text-center mb-10 sm:mb-16">
+            <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 mb-2">
               Best-Fit Therapeutic Techniques for You:
             </h1>
           </div>
 
           {/* Now vs Goal Section */}
-          <div className="mb-16">
-            {/* Single centered image above both cards */}
-            <div className="relative w-[600px] mx-auto flex justify-center mb-8">
-            {/* Headings container */}
-            <div className="absolute w-full px-16" style={{ top: '-28px' }}>
-              {/* Now label */}
-              <div className="absolute" style={{ left: '115px' }}>
-                <div className="relative flex flex-col items-center">
-                  <span className="bg-gray-800 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow">
-                    Now
-                  </span>
+          <div className="mb-10 sm:mb-16">
+            {/* Image with absolutely positioned headings */}
+            <div className="relative w-full sm:w-[600px] mx-auto mb-6 sm:mb-8 flex justify-center">
+              {/* Headings for desktop */}
+              <span className="hidden sm:block absolute top-[-32px] left-[18%] z-10">
+                <span className="bg-gray-800 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow relative">
+                  Now
                   <span className="absolute left-1/2 -bottom-2 transform -translate-x-1/2 w-0 h-0 border-x-8 border-x-transparent border-t-8 border-t-gray-800"></span>
-                </div>
-              </div>
-
-              {/* Your Goal label */}
-              <div className="absolute" style={{ left: '400px' }}>
-                <div className="relative flex flex-col items-center">
-                  <span className="bg-emerald-400 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow">
-                    Your Goal
-                  </span>
+                </span>
+              </span>
+              <span className="hidden sm:block absolute top-[-32px] left-[68%] z-10">
+                <span className="bg-emerald-400 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow relative">
+                  Your Goal
                   <span className="absolute left-1/2 -bottom-2 transform -translate-x-1/2 w-0 h-0 border-x-8 border-x-transparent border-t-8 border-t-emerald-400"></span>
-                </div>
+                </span>
+              </span>
+              {/* Headings for mobile */}
+              <div className="flex sm:hidden w-full justify-between absolute top-[-32px] left-0 px-4">
+                <span className="bg-gray-800 text-white text-xs font-semibold px-2 py-1 rounded-lg shadow">
+                  Now
+                </span>
+                <span className="bg-emerald-400 text-white text-xs font-semibold px-2 py-1 rounded-lg shadow">
+                  Your Goal
+                </span>
               </div>
+              <img 
+                src={beforeAfterImage}
+                alt="Before and after transformation comparison" 
+                className="w-full sm:w-[600px] h-40 sm:h-[300px] object-contain mx-auto"
+              />
             </div>
-
-            {/* Image */}
-            <img 
-              src={beforeAfterImage}
-              alt="Before and after transformation comparison" 
-              className="w-[600px] h-[300px] object-contain"
-            />
-          </div>
-
             {/* Now and Goal cards below the image */}
-            <div className="flex justify-center items-start gap-8">
+            <div className="flex flex-col sm:flex-row justify-center items-start gap-4 sm:gap-8">
               {/* Now Section */}
-              <div className="text-center">
+              <div className="text-center w-full sm:w-auto">
                 {/* Progress bars card */}
-                <div className="bg-white border border-gray-500 rounded-lg p-6 shadow-sm w-80 h-64 flex flex-col justify-between">
-                  <div className="space-y-4 text-left">
+                <div className="bg-white border border-gray-500 rounded-lg p-4 sm:p-6 shadow-sm w-full sm:w-80 h-56 sm:h-64 flex flex-col justify-between">
+                  <div className="space-y-3 sm:space-y-4 text-left">
                     {/* Energy Level */}
                     <div>
                       <div className="text-sm text-gray-800 mb-1 font-semibold">
@@ -288,7 +285,7 @@ const QuizPlan = () => {
                         Well-being Level
                       </div>
                       <div className="text-xs text-green-600 mb-2 font-medium">Weak</div>
-                      <div className="flex space-x-2 my-2">
+                      <div className="flex space-x-1 sm:space-x-2 my-2">
                         <div className="h-2 w-1/4 rounded bg-emerald-400"></div>
                         <div className="h-2 w-1/4 rounded bg-emerald-200"></div>
                         <div className="h-2 w-1/4 rounded bg-gray-200"></div>
@@ -313,10 +310,10 @@ const QuizPlan = () => {
               </div>
 
               {/* Goal Section */}
-              <div className="text-center">
+              <div className="text-center w-full sm:w-auto mt-4 sm:mt-0">
                 {/* Progress bars card */}
-                <div className="bg-white border border-gray-500 rounded-lg p-6 shadow-sm w-80 h-64 flex flex-col justify-between">
-                  <div className="space-y-4 text-left">
+                <div className="bg-white border border-gray-500 rounded-lg p-4 sm:p-6 shadow-sm w-full sm:w-80 h-56 sm:h-64 flex flex-col justify-between">
+                  <div className="space-y-3 sm:space-y-4 text-left">
                     {/* Energy Level */}
                     <div>
                       <div className="flex justify-between items-center text-sm text-gray-800 mb-1 font-semibold">
@@ -331,7 +328,7 @@ const QuizPlan = () => {
                         <span>Well-being Level</span>
                       </div>
                       <div className="text-xs text-green-600 mb-2 font-medium">Strong</div>
-                      <div className="flex space-x-2 my-2">
+                      <div className="flex space-x-1 sm:space-x-2 my-2">
                         <div className="h-2 w-1/4 rounded bg-emerald-400"></div>
                         <div className="h-2 w-1/4 rounded bg-emerald-400"></div>
                         <div className="h-2 w-1/4 rounded bg-emerald-400"></div>
@@ -357,37 +354,37 @@ const QuizPlan = () => {
           </div>
 
           {/* Current Experience and Calm Reset Vision Section */}
-          <div className="flex justify-center gap-12 mb-16">
+          <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-12 mb-10 sm:mb-16">
             {/* Current Experience */}
-            <div className="w-full max-w-sm">
-              <div className="bg-flourishgreen text-white px-6 py-3 rounded-full text-center font-semibold mb-4">
+            <div className="w-full max-w-xs sm:max-w-sm mx-auto sm:mx-0 mb-6 sm:mb-0">
+              <div className="bg-flourishgreen text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-center font-semibold mb-4">
                 Current Experience
               </div>
-              <div className="text-center mb-6">
-                <h3 className="text-gray-700 text-sm font-medium italic">
+              <div className="text-center mb-4 sm:mb-6">
+                <h3 className="text-gray-700 text-xs sm:text-sm font-medium italic">
                   "What You're Navigating Now"
                 </h3>
               </div>
               
-              <div className="mb-6">
-                <ul className="space-y-3">
+              <div className="mb-4 sm:mb-6">
+                <ul className="space-y-2 sm:space-y-3">
                   {content.currentExperience.mainPoints.map((point, index) => (
-                    <li key={index} className="flex items-start text-sm text-gray-700">
-                      <span className="text-gray-400 mr-3">•</span>
+                    <li key={index} className="flex items-start text-xs sm:text-sm text-gray-700">
+                      <span className="text-gray-400 mr-2 sm:mr-3">•</span>
                       <span>{point}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mb-4">
-                <h4 className="text-flourishmint font-semibold text-sm mb-3">
+              <div className="mb-2 sm:mb-4">
+                <h4 className="text-flourishmint font-semibold text-xs sm:text-sm mb-2 sm:mb-3">
                   Focus Areas:
                 </h4>
-                <ul className="space-y-3">
+                <ul className="space-y-2 sm:space-y-3">
                   {content.currentExperience.focusAreas.map((area, index) => (
-                    <li key={index} className="flex items-start text-sm text-gray-700">
-                      <span className="text-gray-400 mr-3">•</span>
+                    <li key={index} className="flex items-start text-xs sm:text-sm text-gray-700">
+                      <span className="text-gray-400 mr-2 sm:mr-3">•</span>
                       <span>{area}</span>
                     </li>
                   ))}
@@ -396,35 +393,35 @@ const QuizPlan = () => {
             </div>
 
             {/* Calm Reset Vision */}
-            <div className="w-full max-w-sm">
-              <div className="bg-flourishgreen text-white px-6 py-3 rounded-full text-center font-semibold mb-4">
+            <div className="w-full max-w-xs sm:max-w-sm mx-auto sm:mx-0">
+              <div className="bg-flourishgreen text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-center font-semibold mb-4">
                 Calm Reset Vision
               </div>
-              <div className="text-center mb-6">
-                <h3 className="text-gray-700 text-sm font-medium italic">
+              <div className="text-center mb-4 sm:mb-6">
+                <h3 className="text-gray-700 text-xs sm:text-sm font-medium italic">
                   "What We're Supporting You Toward"
                 </h3>
               </div>
               
-              <div className="mb-6">
-                <ul className="space-y-3">
+              <div className="mb-4 sm:mb-6">
+                <ul className="space-y-2 sm:space-y-3">
                   {content.calmResetVision.mainPoints.map((point, index) => (
-                    <li key={index} className="flex items-start text-sm text-gray-700">
-                      <span className="text-gray-400 mr-3">•</span>
+                    <li key={index} className="flex items-start text-xs sm:text-sm text-gray-700">
+                      <span className="text-gray-400 mr-2 sm:mr-3">•</span>
                       <span>{point}</span>
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="mb-4">
-                <h4 className="text-flourishmint font-semibold text-sm mb-3">
+              <div className="mb-2 sm:mb-4">
+                <h4 className="text-flourishmint font-semibold text-xs sm:text-sm mb-2 sm:mb-3">
                   Focus Areas:
                 </h4>
-                <ul className="space-y-3">
+                <ul className="space-y-2 sm:space-y-3">
                   {content.calmResetVision.focusAreas.map((area, index) => (
-                    <li key={index} className="flex items-start text-sm text-gray-700">
-                      <span className="text-gray-400 mr-3">•</span>
+                    <li key={index} className="flex items-start text-xs sm:text-sm text-gray-700">
+                      <span className="text-gray-400 mr-2 sm:mr-3">•</span>
                       <span>{area}</span>
                     </li>
                   ))}

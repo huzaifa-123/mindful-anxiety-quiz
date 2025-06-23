@@ -43,13 +43,12 @@ const Header: React.FC<HeaderProps> = ({ withBack, questionCount, timer }) => {
       ) : null}
       
       <div className={`flex items-center gap-3 ${showFullBranding ? '' : 'absolute left-1/2 transform -translate-x-1/2'}`}>
-        <Link to="/">
           <img
             src="/Icons/1.png"
             alt="Mind Flourish logo"
             className="h-8 w-8 object-contain cursor-pointer"
+            onClick={() => window.open("https://www.linkedin.com", "_blank")}
           />
-        </Link>
         {showFullBranding && (
           <span className="text-flourishwhite text-2xl font-bold tracking-tight select-none leading-tight font-inter">
             Mind Flourish

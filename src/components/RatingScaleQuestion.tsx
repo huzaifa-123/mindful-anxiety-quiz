@@ -19,7 +19,7 @@ const RatingScaleQuestion = ({
   onRatingSelect, 
   questionNumber 
 }: RatingScaleQuestionProps) => {
-  const [selectedRating, setSelectedRating] = useState<number>(5);
+  const [selectedRating, setSelectedRating] = useState<number>(0);
 
   const handleSliderChange = (value: number[]) => {
     const rating = value[0];
@@ -63,7 +63,7 @@ const RatingScaleQuestion = ({
         
         {/* Number labels */}
         <div className="flex justify-between items-center mb-6 px-1">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((rating) => (
+          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((rating) => (
             <span
               key={rating}
               className={`text-sm font-medium transition-all ${

@@ -15,14 +15,14 @@ const QuizJourneyTimeline = () => {
       console.log("🗓️ TIMELINE DEBUG: Starting date calculation");
       console.log("🗓️ TIMELINE DEBUG: All quiz answers:", JSON.stringify(answers, null, 2));
       
-      // Use question22 (when anxiety started) and question18 (time available daily)
-      const q22Value = answers.question22; // When anxiety started affecting daily life
+      // Use question23 (when anxiety started) and question18 (time available daily)
+      const q23Value = answers.question23; // When anxiety started affecting daily life
       const q18Value = answers.question18; // Time available daily 
       
-      console.log("🗓️ TIMELINE DEBUG: Q22 answer (when anxiety started):", q22Value);
+      console.log("🗓️ TIMELINE DEBUG: Q23 answer (when anxiety started):", q23Value);
       console.log("🗓️ TIMELINE DEBUG: Q18 answer (time available):", q18Value);
 
-      // Base days from Q22 (when anxiety started) - CORRECTED MAPPING
+      // Base days from Q23 (when anxiety started) - CORRECTED MAPPING
       const baseDaysMap: Record<string, number> = {
         "past_month": 10,      // Recent onset - faster progress
         "few_months": 14,      // Building up - moderate timeline  
@@ -39,15 +39,15 @@ const QuizJourneyTimeline = () => {
         "20_plus_minutes": 0.85 // More time = faster progress
       };
 
-      // Get Q22 answer (when anxiety started) - use default if undefined
-      const baseDays = q22Value ? baseDaysMap[q22Value] || 14 : 14;
+      // Get Q23 answer (when anxiety started) - use default if undefined
+      const baseDays = q23Value ? baseDaysMap[q23Value] || 14 : 14;
       
       // Get Q18 answer (daily time available) - use default if undefined
       const timeMultiplier = q18Value ? timeMultiplierMap[q18Value] || 1 : 1;
       
-      console.log("🗓️ TIMELINE DEBUG: Base days:", baseDays, "for when started:", q22Value);
+      console.log("🗓️ TIMELINE DEBUG: Base days:", baseDays, "for when started:", q23Value);
       console.log("🗓️ TIMELINE DEBUG: Time multiplier:", timeMultiplier, "for time:", q18Value);
-      console.log("🗓️ TIMELINE DEBUG: Available mappings for Q22:", Object.keys(baseDaysMap));
+      console.log("🗓️ TIMELINE DEBUG: Available mappings for Q23:", Object.keys(baseDaysMap));
       console.log("🗓️ TIMELINE DEBUG: Available mappings for Q18:", Object.keys(timeMultiplierMap));
       
       // Apply the correct formula: estimated_days = base_days × multiplier
@@ -71,8 +71,8 @@ const QuizJourneyTimeline = () => {
       
       // Check if calculation is working correctly
       if (monthYear === "June 2025" && estimatedDays === 14) {
-        console.log("🚨 TIMELINE DEBUG: Still getting default calculation - check Q22/Q18 values");
-        console.log("🚨 TIMELINE DEBUG: Q22 exists in answers?", q22Value !== undefined);
+        console.log("🚨 TIMELINE DEBUG: Still getting default calculation - check Q23/Q18 values");
+        console.log("🚨 TIMELINE DEBUG: Q23 exists in answers?", q23Value !== undefined);
         console.log("🚨 TIMELINE DEBUG: Q18 exists in answers?", q18Value !== undefined);
       } else {
         console.log("✅ TIMELINE DEBUG: Calculation appears to be working correctly");
@@ -163,7 +163,7 @@ const QuizJourneyTimeline = () => {
           
           <button
             onClick={handleContinue}
-            className="rounded-full bg-flourishmint text-white text-base font-semibold px-10 py-2 shadow-md transition duration-150 hover:scale-105 hover:brightness-110"
+            className="rounded-full bg-flourishmint text-white text-base font-semibold px-10 py-2 mb-6 shadow-md transition duration-150 hover:scale-105 hover:brightness-110"
           >
             Continue
           </button>

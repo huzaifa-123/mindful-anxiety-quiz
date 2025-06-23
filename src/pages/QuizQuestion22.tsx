@@ -47,13 +47,15 @@ const QuizQuestion22 = () => {
       <div className="w-full sticky top-0 z-10">
         <Header withBack questionCount="22 / 22" />
       </div>
-      <main className="flex-1 flex flex-col items-center justify-center py-8">
-        <SingleSelectQuestion
-          question={question}
-          options={options}
-          onSelect={handleSelect}
-          questionNumber="22"
-        />
+      <main className="flex-1 flex flex-col items-center justify-center py-6 px-3 sm:px-0">
+        <div className="w-full text-base sm:text-lg">
+          <SingleSelectQuestion
+            question={question}
+            options={options}
+            onSelect={handleSelect}
+            questionNumber="22"
+          />
+        </div>
       </main>
     </div>
   );

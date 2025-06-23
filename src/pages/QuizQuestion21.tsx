@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import { useState } from "react";
 import { Checkbox } from "../components/ui/checkbox";
@@ -61,13 +60,13 @@ const QuizQuestion21 = () => {
       <div className="w-full sticky top-0 z-10">
         <Header withBack questionCount="21 / 22" />
       </div>
-      <main className="flex-1 flex flex-col items-center justify-center py-8">
-        <div className="w-full max-w-2xl mx-auto flex flex-col items-center px-4">
-          <h1 className="font-semibold text-xl md:text-2xl text-flourishgreen mb-2 text-center tracking-tight">
+      <main className="flex-1 flex flex-col items-center justify-center py-6 px-3 sm:px-0">
+        <div className="w-full max-w-2xl mx-auto flex flex-col items-center px-2">
+          <h1 className="font-semibold text-base sm:text-2xl text-flourishgreen mb-2 text-center tracking-tight">
             {question}
           </h1>
           
-          <p className="text-gray-600 text-sm mb-8 text-center">
+          <p className="text-gray-600 text-xs sm:text-sm mb-8 text-center">
             (Select up to 3)
           </p>
           
@@ -75,7 +74,7 @@ const QuizQuestion21 = () => {
             {options.map((option) => (
               <div
                 key={option.id}
-                className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-colors ${
+                className={`flex items-center p-3 sm:p-4 border-2 rounded-lg cursor-pointer transition-colors ${
                   selectedOptions.includes(option.id)
                     ? "border-flourishmint bg-flourishmint/10"
                     : "border-gray-200 bg-white hover:border-flourishmint/50"
@@ -89,7 +88,7 @@ const QuizQuestion21 = () => {
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <span className="flex-1 text-gray-700 text-base">
+                <span className="flex-1 text-gray-700 text-sm sm:text-base">
                   {option.text}
                 </span>
                 <Checkbox

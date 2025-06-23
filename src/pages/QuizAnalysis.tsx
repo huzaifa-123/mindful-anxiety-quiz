@@ -43,7 +43,7 @@ const QuizAnalysis = () => {
           
           <button
             onClick={handleContinue}
-            className="rounded-full bg-flourishmint text-white text-base font-semibold px-10 py-2 shadow-md transition duration-150 hover:scale-105 hover:brightness-110"
+            className="rounded-full bg-flourishmint text-white text-base font-semibold px-10 py-2 mb-6 shadow-md transition duration-150 hover:scale-105 hover:brightness-110"
           >
             Continue
           </button>

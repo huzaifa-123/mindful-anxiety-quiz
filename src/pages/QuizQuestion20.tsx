@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import SingleSelectQuestion from "../components/SingleSelectQuestion";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
@@ -43,13 +42,15 @@ const QuizQuestion20 = () => {
       <div className="w-full sticky top-0 z-10">
         <Header withBack questionCount="20 / 22" />
       </div>
-      <main className="flex-1 flex flex-col items-center justify-center py-8">
-        <SingleSelectQuestion
-          question={question}
-          options={options}
-          onSelect={handleSelect}
-          questionNumber="20"
-        />
+      <main className="flex-1 flex flex-col items-center justify-center py-6 px-3 sm:px-0">
+        <div className="w-full text-base sm:text-lg">
+          <SingleSelectQuestion
+            question={question}
+            options={options}
+            onSelect={handleSelect}
+            questionNumber="20"
+          />
+        </div>
       </main>
     </div>
   );

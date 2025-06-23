@@ -27,11 +27,11 @@ const QuizAnxietyStats = () => {
           </p>
           
           {/* World map with location pins - placeholder for GIF */}
-          <div className="w-full max-w-lg mb-8 flex items-center justify-center bg-gray-100 rounded-lg">
+          <div className="w-full max-w-lg mb-8 flex items-center justify-center rounded-lg">
             <img
               src="/QuizDesign/Final_Quiz Section Design.gif"
               alt="World map showing anxiety statistics"
-              className="w-full h-full object-cover rounded-lg"
+              className="w-[320px] h-[320px]  object-cover rounded-lg"
               draggable={false}
             />
           </div>
@@ -39,7 +39,7 @@ const QuizAnxietyStats = () => {
           
           <button
             onClick={handleContinue}
-            className="rounded-full bg-flourishmint text-white text-base font-semibold px-10 py-2 shadow-md transition duration-150 hover:scale-105 hover:brightness-110"
+            className="rounded-full bg-flourishmint text-white mb-6 text-base font-semibold px-10 py-2 shadow-md transition duration-150 hover:scale-105 hover:brightness-110"
           >
             Continue
           </button>
