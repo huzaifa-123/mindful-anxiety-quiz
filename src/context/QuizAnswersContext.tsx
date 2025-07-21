@@ -153,12 +153,19 @@ const answerTextMap: Record<string, string> = {
   want_stop_overthinking: "I want to stop overthinking and feel more calm",
   take_control: "I want to take control of my anxiety for good",
 
-  // Q17 — How do you want to feel 30 days from now?
-  clear_control: "Clear-headed and in control",
-  less_reactive: "Less reactive to stress",
-  more_confident: "More confident in everyday situations",
-  more_present: "More present and less in my head",
-  calmer_busy: "Calmer, even when life gets busy",
+  // Q21 — Where You Are Now (per type)
+  // PANICKER
+  panic_attacks: "Panic attacks — FREQUENT (Bar: 90%)",
+  breathing_stuck: "Breathing feels stuck — INTENSE (Bar: 85%)",
+  racing_thoughts_panic: "Racing thoughts — HIGH (Bar: 80%)",
+  // RUMINATOR
+  overthinking_racing: "Racing thoughts — HIGH (Bar: 85%)",
+  overthinking: "Overthinking — FREQUENT (Bar: 80%)",
+  mentally_stuck: "Mentally stuck — INTENSE (Bar: 80%)",
+  // AVOIDER
+  avoidance: "Avoiding situations — SEVERE (Bar: 90%)",
+  fear_rejection: "Fear of rejection — INTENSE (Bar: 85%)",
+  low_self_esteem: "Low self-esteem — LOW (Bar: 35%)",
 
   // Q18 — Time available daily
   five_min: "5 minutes",
@@ -177,13 +184,6 @@ const answerTextMap: Record<string, string> = {
   trouble_often: "Often",
   trouble_sometimes: "Sometimes",
   trouble_never: "Almost never",
-
-  // Q21 — Consequences of anxiety
-  overthinking_racing: "Overthinking and racing thoughts",
-  panic_attacks: "Panic attacks",
-  avoidance: "Avoidance",
-  fear_rejection: "Fear of rejection",
-  low_self_esteem: "Low self-esteem",
 
   // Q22 — What needs improvement?
   willpower: "My willpower",

@@ -19,7 +19,6 @@ const QuizPlan = () => {
  
 
   // Centralized image path for before/after comparison
-  const beforeAfterImage = "/QuizDesign/female - now_goal.png";
   const [selectedPayment, setSelectedPayment] = useState('one-time');
   const name = answers.name || "";
   const gender = answers.gender || "";
@@ -27,6 +26,114 @@ const QuizPlan = () => {
   const phone = answers.email_preference?.phone || "";
   const anxietyType = results.dominantType;
   const severity = results.severity;
+
+  // Dynamic before/after image based on anxiety type
+  let beforeAfterImage = '';
+  if (anxietyType === 'panic') {
+    beforeAfterImage = '/QuizDesign/PANICKER CHECKOUT SECTION.png';
+  } else if (anxietyType === 'avoidant') {
+    beforeAfterImage = '/QuizDesign/AVOIDER CHECKOUT SECTION.png';
+  } else if (anxietyType === 'ruminator') {
+    beforeAfterImage = '/QuizDesign/RUMINATOR CHECKOUT SECTION.png';
+  }
+  console.log('[PLAN] Calculated anxiety type:', anxietyType);
+  console.log('[PLAN] Selected before/after image:', beforeAfterImage);
+
+  // Q17/Q21 answer keys for the user
+  const q17Answers = answers.question17 || [];
+  const q21Answers = answers.question21 || [];
+  const q17Arr = Array.isArray(q17Answers) ? q17Answers : [q17Answers];
+  const q21Arr = Array.isArray(q21Answers) ? q21Answers : [q21Answers];
+  console.log('[PLAN] Q17 selected answers:', q17Arr);
+  console.log('[PLAN] Q21 selected answers:', q21Arr);
+
+  // Mapping for bar/label data (should match answerTextMap keys and requirement doc)
+  const barDataMap = {
+    // PANICKER
+    panic_attacks: { label: 'FREQUENT', percent: 90 },
+    breathing_stuck: { label: 'INTENSE', percent: 85 },
+    racing_thoughts_panic: { label: 'HIGH', percent: 80 },
+    grounded_steady: { label: 'HIGH CONTROL', percent: 90 },
+    body_calm: { label: 'CALM', percent: 80 },
+    confidence_daily: { label: 'HIGH CONFIDENCE', percent: 85 },
+    // RUMINATOR
+    overthinking_racing: { label: 'HIGH', percent: 85 },
+    overthinking: { label: 'FREQUENT', percent: 80 },
+    mentally_stuck: { label: 'INTENSE', percent: 80 },
+    thoughts_calmer: { label: 'HIGH CONTROL', percent: 90 },
+    able_pause: { label: 'CALM', percent: 80 },
+    mentally_clear: { label: 'HIGH CONFIDENCE', percent: 85 },
+    // AVOIDER
+    avoidance: { label: 'SEVERE', percent: 90 },
+    fear_rejection: { label: 'INTENSE', percent: 85 },
+    low_self_esteem: { label: 'LOW', percent: 35 },
+    empowered_action: { label: 'HIGH CONTROL', percent: 90 },
+    safe_body: { label: 'CALM', percent: 80 },
+    trust_decisions: { label: 'HIGH CONFIDENCE', percent: 90 },
+  };
+
+  // Add this mapping at the top of the file or before the component
+  const barTextMap = {
+    // PANICKER
+    panic_attacks: { label: 'Racing thoughts', level: 'HIGH', percent: 85 },
+    breathing_stuck: { label: 'Overthinking', level: 'FREQUENT', percent: 80 },
+    racing_thoughts_panic: { label: 'Mentally stuck', level: 'INTENSE', percent: 80 },
+    grounded_steady: { label: 'Thoughts feel calmer', level: 'HIGH CONTROL', percent: 90 },
+    body_calm: { label: 'Able to pause', level: 'CALM', percent: 80 },
+    confidence_daily: { label: 'Mentally clear', level: 'HIGH CONFIDENCE', percent: 85 },
+    // RUMINATOR
+    overthinking_racing: { label: 'Racing thoughts', level: 'HIGH', percent: 85 },
+    overthinking: { label: 'Overthinking', level: 'FREQUENT', percent: 80 },
+    mentally_stuck: { label: 'Mentally stuck', level: 'INTENSE', percent: 80 },
+    thoughts_calmer: { label: 'Thoughts feel calmer', level: 'HIGH CONTROL', percent: 90 },
+    able_pause: { label: 'Able to pause', level: 'CALM', percent: 80 },
+    mentally_clear: { label: 'Mentally clear', level: 'HIGH CONFIDENCE', percent: 85 },
+    // AVOIDER
+    avoidance: { label: 'Avoiding situations', level: 'SEVERE', percent: 90 },
+    fear_rejection: { label: 'Fear of rejection', level: 'INTENSE', percent: 85 },
+    low_self_esteem: { label: 'Low self-esteem', level: 'LOW', percent: 35 },
+    empowered_action: { label: 'Taking empowered action', level: 'HIGH CONTROL', percent: 90 },
+    safe_body: { label: 'Safe in your body', level: 'CALM', percent: 80 },
+    trust_decisions: { label: 'Trust in decisions', level: 'HIGH CONFIDENCE', percent: 90 },
+  };
+
+  // Add this mapping above the component or near the barTextMap
+  const barKeyToType = {
+    // PANICKER
+    panic_attacks: 'panic',
+    breathing_stuck: 'panic',
+    racing_thoughts_panic: 'panic',
+    grounded_steady: 'panic',
+    body_calm: 'panic',
+    confidence_daily: 'panic',
+    // RUMINATOR
+    overthinking_racing: 'ruminator',
+    overthinking: 'ruminator',
+    mentally_stuck: 'ruminator',
+    thoughts_calmer: 'ruminator',
+    able_pause: 'ruminator',
+    mentally_clear: 'ruminator',
+    // AVOIDER
+    avoidance: 'avoidant',
+    fear_rejection: 'avoidant',
+    low_self_esteem: 'avoidant',
+    empowered_action: 'avoidant',
+    safe_body: 'avoidant',
+    trust_decisions: 'avoidant',
+  };
+
+  // Gather bar data for Q21 and Q17, filtered by anxiety type
+  const barsQ21 = q21Arr
+    .filter(key => barKeyToType[key] === anxietyType)
+    .map(key => ({ key, ...barDataMap[key] }))
+    .filter(b => b.label);
+  const barsQ17 = q17Arr
+    .filter(key => barKeyToType[key] === anxietyType)
+    .map(key => ({ key, ...barDataMap[key] }))
+    .filter(b => b.label);
+  console.log('[PLAN] Q21 bar data:', barsQ21);
+  console.log('[PLAN] Q17 bar data:', barsQ17);
+
   const buildPaymentUrl = (baseUrl: string): string => {
   const params = new URLSearchParams({
       name,
@@ -237,321 +344,153 @@ const QuizPlan = () => {
           {/* Now vs Goal Section */}
           <div className="mb-10 sm:mb-16">
             {/* Image with absolutely positioned headings */}
-            <div className="relative w-full sm:w-[600px] mx-auto mb-6 sm:mb-8 flex justify-center">
+            <div className="relative w-full sm:w-[900px] mx-auto mb-6 sm:mb-8 flex justify-center">
               {/* Headings for desktop */}
               <span className="hidden sm:block absolute top-[-32px] left-[18%] z-10">
                 <span className="bg-gray-800 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow relative">
-                  Now
+                  Where You Are Now
                   <span className="absolute left-1/2 -bottom-2 transform -translate-x-1/2 w-0 h-0 border-x-8 border-x-transparent border-t-8 border-t-gray-800"></span>
                 </span>
               </span>
               <span className="hidden sm:block absolute top-[-32px] left-[68%] z-10">
                 <span className="bg-emerald-400 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow relative">
-                  Your Goal
+                  30 Days From Now
                   <span className="absolute left-1/2 -bottom-2 transform -translate-x-1/2 w-0 h-0 border-x-8 border-x-transparent border-t-8 border-t-emerald-400"></span>
                 </span>
               </span>
               {/* Headings for mobile */}
               <div className="flex sm:hidden w-full justify-between absolute top-[-32px] left-0 px-4">
                 <span className="bg-gray-800 text-white text-xs font-semibold px-2 py-1 rounded-lg shadow">
-                  Now
+                  Where You Are Now
                 </span>
                 <span className="bg-emerald-400 text-white text-xs font-semibold px-2 py-1 rounded-lg shadow">
-                  Your Goal
+                  30 Days From Now
                 </span>
               </div>
               <img 
                 src={beforeAfterImage}
                 alt="Before and after transformation comparison" 
-                className="w-full sm:w-[600px] h-40 sm:h-[300px] object-contain mx-auto"
+                className="w-full sm:w-[900px] h-40 sm:h-[400px] object-contain mx-auto"
               />
             </div>
-            {/* Now and Goal cards below the image */}
-            <div className="flex flex-col sm:flex-row justify-center items-start gap-4 sm:gap-8">
-              {/* Now Section */}
-              <div className="text-center w-full sm:w-auto">
-                {/* Progress bars card */}
-                <div className="bg-white border border-gray-500 rounded-lg p-4 sm:p-6 shadow-sm w-full sm:w-80 h-56 sm:h-64 flex flex-col justify-between">
-                  <div className="space-y-3 sm:space-y-4 text-left">
-                    {/* Energy Level */}
-                    <div>
-                      <div className="text-sm text-gray-800 mb-1 font-semibold">
-                        Energy Level
-                      </div>
-                      <div className="text-xs text-green-600 mb-2 font-medium">Low</div>
-                      <hr className="my-2 border-gray-200" />
+            {/* Dynamic Bars Section */}
+            <div className="flex flex-col sm:flex-row justify-center items-start gap-4 sm:gap-8 mt-6 w-full">
+              {/* Q21: Where You Are Now (Grey Card) */}
+              <div className="w-full sm:w-96 bg-gradient-to-br from-gray-400 to-gray-700 rounded-xl p-6 shadow-md mb-4 sm:mb-0 min-h-[80px] overflow-visible">
+                {barsQ21.length > 0 ? (
+                  barsQ21.map((bar, idx) => (
+                  <div key={bar.key} className="mb-6 last:mb-0">
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-white font-semibold text-base">{barTextMap[bar.key]?.label || ''}</span>
+                      <span className="text-xs text-gray-200 font-medium italic">{barTextMap[bar.key]?.level || ''}</span>
                     </div>
-
-                    {/* Well-being Level */}
-                    <div>
-                      <div className="text-sm text-gray-800 mb-1 font-semibold">
-                        Well-being Level
-                      </div>
-                      <div className="text-xs text-green-600 mb-2 font-medium">Weak</div>
-                      <div className="flex space-x-1 sm:space-x-2 my-2">
-                        <div className="h-2 w-1/4 rounded bg-emerald-400"></div>
-                        <div className="h-2 w-1/4 rounded bg-emerald-200"></div>
-                        <div className="h-2 w-1/4 rounded bg-gray-200"></div>
-                        <div className="h-2 w-1/4 rounded bg-gray-200"></div>
-                      </div>
-                      <hr className="my-2 border-gray-200" />
-                    </div>
-
-                    {/* Self-esteem Level */}
-                    <div>
-                      <div className="text-sm text-gray-800 mb-1 font-semibold">
-                        Self-esteem Level
-                      </div>
-                      <div className="text-xs text-green-600 mb-2 font-medium">Low</div>
-                      <div className="relative w-full h-3 bg-gray-200 rounded-full mt-3 mb-1">
-                        <div className="absolute left-0 top-0 h-3 bg-emerald-400 rounded-full" style={{ width: '25%' }}></div>
-                        <div className="absolute top-1/2 left-[25%] transform -translate-y-1/2 -translate-x-1/2 w-4 h-4 bg-white border-2 border-emerald-400 rounded-full shadow"></div>
+                    <div className="relative w-full h-2 bg-gray-300 rounded-full">
+                      <div className="absolute left-0 top-0 h-2 rounded-full" style={{ width: `${barTextMap[bar.key]?.percent || 0}%`, background: 'linear-gradient(90deg, #fbbf24 0%, #f87171 100%)' }}></div>
+                      <div className="absolute top-1/2" style={{ left: `calc(${barTextMap[bar.key]?.percent || 0}% - 10px)` }}>
+                        <div className="w-5 h-5 bg-white border-2 border-orange-400 rounded-full shadow -translate-y-1/2"></div>
                       </div>
                     </div>
                   </div>
-                </div>
+                ))
+                ) : (
+                  <div className="h-8"></div>
+                )}
               </div>
-
-              {/* Goal Section */}
-              <div className="text-center w-full sm:w-auto mt-4 sm:mt-0">
-                {/* Progress bars card */}
-                <div className="bg-white border border-gray-500 rounded-lg p-4 sm:p-6 shadow-sm w-full sm:w-80 h-56 sm:h-64 flex flex-col justify-between">
-                  <div className="space-y-3 sm:space-y-4 text-left">
-                    {/* Energy Level */}
-                    <div>
-                      <div className="flex justify-between items-center text-sm text-gray-800 mb-1 font-semibold">
-                        <span>Energy Level</span>
-                      </div>
-                      <div className="text-xs text-green-600 mb-2 font-medium">High</div>
-                      <hr className="my-2 border-gray-200" />
+              {/* Q17: 30 Days From Now (White Card) */}
+              <div className="w-full sm:w-96 bg-white rounded-xl p-6 shadow-md min-h-[80px] overflow-visible">
+                {barsQ17.length > 0 ? (
+                  barsQ17.map((bar, idx) => (
+                  <div key={bar.key} className="mb-6 last:mb-0">
+                    <div className="flex justify-between items-center mb-1">
+                      <span className="text-gray-800 font-semibold text-base">{barTextMap[bar.key]?.label || ''}</span>
+                      <span className="text-xs text-emerald-500 font-medium italic">{barTextMap[bar.key]?.level || ''}</span>
                     </div>
-                    {/* Well-being Level */}
-                    <div>
-                      <div className="flex justify-between items-center text-sm text-gray-800 mb-1 font-semibold">
-                        <span>Well-being Level</span>
-                      </div>
-                      <div className="text-xs text-green-600 mb-2 font-medium">Strong</div>
-                      <div className="flex space-x-1 sm:space-x-2 my-2">
-                        <div className="h-2 w-1/4 rounded bg-emerald-400"></div>
-                        <div className="h-2 w-1/4 rounded bg-emerald-400"></div>
-                        <div className="h-2 w-1/4 rounded bg-emerald-400"></div>
-                        <div className="h-2 w-1/4 rounded bg-emerald-400"></div>
-                      </div>
-                      <hr className="my-2 border-gray-200" />
-                    </div>
-                    {/* Self-esteem Level */}
-                    <div>
-                      <div className="flex justify-between items-center text-sm text-gray-800 mb-1 font-semibold">
-                        <span>Self-esteem Level</span>
-                      </div>
-                      <div className="text-xs text-green-600 mb-2 font-medium">High</div>
-                      <div className="relative w-full h-3 bg-gray-200 rounded-full mt-3 mb-1">
-                        <div className="absolute left-0 top-0 h-3 bg-emerald-400 rounded-full" style={{ width: '85%' }}></div>
-                        <div className="absolute top-1/2 left-[85%] transform -translate-y-1/2 -translate-x-1/2 w-4 h-4 bg-white border-2 border-emerald-400 rounded-full shadow"></div>
+                    <div className="relative w-full h-2 bg-gray-200 rounded-full">
+                      <div className="absolute left-0 top-0 h-2 rounded-full bg-emerald-400" style={{ width: `${barTextMap[bar.key]?.percent || 0}%` }}></div>
+                      <div className="absolute top-1/2" style={{ left: `calc(${barTextMap[bar.key]?.percent || 0}% - 10px)` }}>
+                        <div className="w-5 h-5 bg-white border-2 border-emerald-400 rounded-full shadow -translate-y-1/2"></div>
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
+                ))
+                ) : (
+                  <div className="h-8"></div>
+                )}
             </div>
           </div>
+          
+          <hr className="my-8 border-gray-300 border-t-4 mb-8" />
 
-          {/* Current Experience and Calm Reset Vision Section */}
-          <div className="flex flex-col sm:flex-row justify-center gap-6 sm:gap-12 mb-10 sm:mb-16">
-            {/* Current Experience */}
-            <div className="w-full max-w-xs sm:max-w-sm mx-auto sm:mx-0 mb-6 sm:mb-0">
-              <div className="bg-flourishgreen text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-center font-semibold mb-4">
-                Current Experience
-              </div>
-              <div className="text-center mb-4 sm:mb-6">
-                <h3 className="text-gray-700 text-xs sm:text-sm font-medium italic">
-                  "What You're Navigating Now"
-                </h3>
-              </div>
-              
-              <div className="mb-4 sm:mb-6">
-                <ul className="space-y-2 sm:space-y-3">
-                  {content.currentExperience.mainPoints.map((point, index) => (
-                    <li key={index} className="flex items-start text-xs sm:text-sm text-gray-700">
-                      <span className="text-gray-400 mr-2 sm:mr-3">•</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mb-2 sm:mb-4">
-                <h4 className="text-flourishmint font-semibold text-xs sm:text-sm mb-2 sm:mb-3">
-                  Focus Areas:
-                </h4>
-                <ul className="space-y-2 sm:space-y-3">
-                  {content.currentExperience.focusAreas.map((area, index) => (
-                    <li key={index} className="flex items-start text-xs sm:text-sm text-gray-700">
-                      <span className="text-gray-400 mr-2 sm:mr-3">•</span>
-                      <span>{area}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Calm Reset Vision */}
-            <div className="w-full max-w-xs sm:max-w-sm mx-auto sm:mx-0">
-              <div className="bg-flourishgreen text-white px-4 sm:px-6 py-2 sm:py-3 rounded-full text-center font-semibold mb-4">
-                Calm Reset Vision
-              </div>
-              <div className="text-center mb-4 sm:mb-6">
-                <h3 className="text-gray-700 text-xs sm:text-sm font-medium italic">
-                  "What We're Supporting You Toward"
-                </h3>
-              </div>
-              
-              <div className="mb-4 sm:mb-6">
-                <ul className="space-y-2 sm:space-y-3">
-                  {content.calmResetVision.mainPoints.map((point, index) => (
-                    <li key={index} className="flex items-start text-xs sm:text-sm text-gray-700">
-                      <span className="text-gray-400 mr-2 sm:mr-3">•</span>
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="mb-2 sm:mb-4">
-                <h4 className="text-flourishmint font-semibold text-xs sm:text-sm mb-2 sm:mb-3">
-                  Focus Areas:
-                </h4>
-                <ul className="space-y-2 sm:space-y-3">
-                  {content.calmResetVision.focusAreas.map((area, index) => (
-                    <li key={index} className="flex items-start text-xs sm:text-sm text-gray-700">
-                      <span className="text-gray-400 mr-2 sm:mr-3">•</span>
-                      <span>{area}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Pricing Section */}
-          <div ref={paymentRef} className="mb-16 max-w-md mx-auto space-y-4">
-        {paymentOptions.map((option) => (
-          <div key={option.id} className="relative">
-            {option.popular && (
-              <div className="bg-flourishgreen text-white text-center py-2 rounded-t-lg">
-                <span className="text-sm font-medium flex items-center justify-center gap-1">
-                  ★ Most Popular!
-                </span>
-              </div>
-            )}
-            <label
-              htmlFor={option.id}
-              className={`bg-white border border-gray-200 rounded-b-lg p-4 flex items-center justify-between cursor-pointer ${
-                selectedPayment === option.id ? 'ring-2 ring-flourishmint' : ''
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <input
-                  type="radio"
-                  id={option.id}
-                  name="payment"
-                  className="w-4 h-4 accent-green-700"
-                  checked={selectedPayment === option.id}
-                  onChange={() => setSelectedPayment(option.id)}
-                />
-                <span className="font-semibold text-gray-900">{option.label}</span>
-              </div>
-              <div className="text-right">
-                <div className="bg-flourishmint text-white px-3 py-1 rounded text-sm font-bold">
-                  {option.price}
-                </div>
-                <div className="text-xs text-gray-500 mt-1">
-                  <span className="line-through">{option.originalPrice}</span>
-                </div>
-                <div className="text-xs text-flourishmint font-medium">{option.discount}</div>
-              </div>
-            </label>
-          </div>
-        ))}
-
-        {/* Continue button */}
-        <button
-          onClick={handleContinue}
-          className="w-full bg-flourishmint hover:bg-green-400 text-white py-3 rounded-full text-base font-semibold shadow-md transition duration-150 hover:scale-105 hover:brightness-110"
-        >
-          Continue
-        </button>
-      </div>
-
-          {/* Free Trial Section */}
-          <div className="text-center mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Try the 7-Day Anxiety Reset — Free
-            </h2>
-            <p className="text-gray-700 mb-2 font-medium">
-              Your Calm Reset Plan is ready.
+          {/* What's Inside Your Reset Plan Section */}
+          <div className="mt-12 mb-16 text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">What’s Inside Your Reset Plan</h2>
+            <p className="text-gray-700 mb-8 text-lg max-w-2xl mx-auto">
+              Your 7-Day Reset blends micro-tools that rewire your nervous system, gently and fast.
             </p>
-            <p className="text-gray-600 text-sm mb-6">
-              Access the first 7 days at no cost and start rewiring your anxiety response today.
-            </p>
-            
-            <div className="bg-gray-800 text-white px-4 py-2 rounded-full inline-block mb-6">
-              <span className="text-sm font-medium">You'll receive:</span>
+            <div className="flex flex-col gap-4 max-w-2xl mx-auto">
+              <div className="border-2 border-emerald-400 rounded-lg px-6 py-4 text-left bg-emerald-50 font-medium text-gray-900">
+                ✓ <span className="font-bold">4-Minute Exercise</span> — calms racing thoughts & heart within one song.
+              </div>
+              <div className="border-2 border-emerald-400 rounded-lg px-6 py-4 text-left bg-emerald-50 font-medium text-gray-900">
+                ✓ <span className="font-bold">Break free from hidden triggers</span> — learn a 3-step interrupt pattern.
+              </div>
+              <div className="border-2 border-emerald-400 rounded-lg px-6 py-4 text-left bg-emerald-50 font-medium text-gray-900">
+                ✓ <span className="font-bold">Rapid-relief tool</span> — activate your calm response on command.
+              </div>
+              <div className="border-2 border-emerald-400 rounded-lg px-6 py-4 text-left bg-emerald-50 font-medium text-gray-900">
+                ✓ <span className="font-bold">Rewire anxious thoughts</span> — swap catastrophising for clear decisions.
+              </div>
+              <div className="border-2 border-emerald-400 rounded-lg px-6 py-4 text-left bg-emerald-50 font-medium text-gray-900">
+                ✓ <span className="font-bold">Regain physical calm</span> — release tension & steady breathing in minutes.
+              </div>
+              <div className="border-2 border-emerald-400 rounded-lg px-6 py-4 text-left bg-emerald-50 font-medium text-gray-900">
+                ✓ <span className="font-bold">Track progress</span> — watch your anxiety index drop every day.
+              </div>
+              <div className="border-2 border-emerald-400 rounded-lg px-6 py-4 text-left bg-emerald-50 font-medium text-gray-900">
+                ✓ <span className="font-bold">Seven micro-moves</span> — follow daily or binge; all unlocked now.
+              </div>
             </div>
-            
-            <div className="max-w-sm mx-auto space-y-2 mb-8">
-              <div className="text-sm text-gray-700 text-left">• Daily MCT tools for overthinking release</div>
-              <div className="text-sm text-gray-700 text-left">• CBT-based action steps to reduce avoidance</div>
-              <div className="text-sm text-gray-700 text-left">• Soothing CBH audio tracks to calm your system</div>
-            </div>
-            
-            <button
-              onClick={() => window.open(buildPaymentUrl("https://www.linkedin.com"), "_blank")}
-              className="bg-flourishmint hover:bg-green-400 text-white px-8 py-3 rounded-full font-semibold transition-colors"
-            >
-              Start My Free 7 Day Trial
-            </button>
           </div>
+
+          {/* Why This Method Works So Well Section */}
+          <div className="mb-16 text-center">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Why This Method Works So Well</h2>
+            <p className="text-gray-700 mb-10 text-lg max-w-2xl mx-auto">
+              This reset blends 3 proven therapies for faster, deeper calm.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6 justify-center items-stretch max-w-4xl mx-auto">
+              {/* CBT Card */}
+              <div className="flex-1 border-2 border-emerald-100 rounded-xl bg-white px-6 py-8 shadow-sm flex flex-col items-center min-w-[260px]">
+                <img src="/QuizDesign/1.png" alt="CBT icon" className="w-12 h-12 mb-4" />
+                <div className="text-left w-full">
+                  <div className="font-bold text-lg text-gray-900 mb-1">CBT — Cognitive Behavioral Therapy</div>
+                  <div className="text-emerald-700 font-semibold mb-2 text-sm">70–75% success rate</div>
+                  <div className="text-gray-700 text-sm mb-1">Reframes unhelpful thoughts +<br/>rewires behavioral patterns that fuel anxiety.</div>
+                </div>
+              </div>
+              {/* MCT Card */}
+              <div className="flex-1 border-2 border-emerald-100 rounded-xl bg-white px-6 py-8 shadow-sm flex flex-col items-center min-w-[260px]">
+                <img src="/QuizDesign/2.png" alt="MCT icon" className="w-12 h-12 mb-4" />
+                <div className="text-left w-full">
+                  <div className="font-bold text-lg text-gray-900 mb-1">MCT — Metacognitive Therapy</div>
+                  <div className="text-emerald-700 font-semibold mb-2 text-sm">~80% success for worry + spirals</div>
+                  <div className="text-gray-700 text-sm mb-1">Teaches how to detach from obsessive loops and shift your relationship with thoughts.</div>
+                </div>
+              </div>
+              {/* CBH Card */}
+              <div className="flex-1 border-2 border-emerald-100 rounded-xl bg-white px-6 py-8 shadow-sm flex flex-col items-center min-w-[260px]">
+                <img src="/QuizDesign/3.png" alt="CBH icon" className="w-12 h-12 mb-4" />
+                <div className="text-left w-full">
+                  <div className="font-bold text-lg text-gray-900 mb-1">CBH — Cognitive Behavioral Hypnotherapy</div>
+                  <div className="italic text-emerald-700 font-semibold mb-2 text-sm">Reinforces calm through body + memory</div>
+                  <div className="text-gray-700 text-sm mb-1">Uses breath, imagery, and physical cues to retrain your nervous system to feel safe again.*</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <hr className="my-2 border-gray-300 border-t-4 mb-8" />
-          {/* Our Goals for You Section */}
-          <div className="text-center mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">
-              Our Goals for You
-            </h2>
-            <div className="max-w-sm mx-auto space-y-4">
-              <div className="flex items-center gap-3 text-left">
-                <div className="w-6 h-6 bg-flourishmint rounded-full flex items-center justify-center flex-shrink-0">
-                  <Check className="w-4 h-4 text-white" />
-                </div>
-                <span className="text-gray-700">Help you feel calmer throughout your day</span>
-              </div>
-              <div className="flex items-center gap-3 text-left">
-                <div className="w-6 h-6 bg-flourishmint rounded-full flex items-center justify-center flex-shrink-0">
-                  <Check className="w-4 h-4 text-white" />
-                </div>
-                <span className="text-gray-700">Stop the spiral before it begins</span>
-              </div>
-              <div className="flex items-center gap-3 text-left">
-                <div className="w-6 h-6 bg-flourishmint rounded-full flex items-center justify-center flex-shrink-0">
-                  <Check className="w-4 h-4 text-white" />
-                </div>
-                <span className="text-gray-700">Improve clarity, energy, and sleep</span>
-              </div>
-              <div className="flex items-center gap-3 text-left">
-                <div className="w-6 h-6 bg-flourishmint rounded-full flex items-center justify-center flex-shrink-0">
-                  <Check className="w-4 h-4 text-white" />
-                </div>
-                <span className="text-gray-700">Build emotional resilience with lasting strategies</span>
-              </div>
-              <div className="flex items-center gap-3 text-left">
-                <div className="w-6 h-6 bg-flourishmint rounded-full flex items-center justify-center flex-shrink-0">
-                  <Check className="w-4 h-4 text-white" />
-                </div>
-                <span className="text-gray-700">Support you without overwhelm</span>
-              </div>
-            </div>
-          </div>
-           <hr className="my-2 border-gray-300 border-t-4 mb-8" />
+
           {/* Therapy Results + Life Without vs. With Support Section */}
           <div className="text-center mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -614,63 +553,6 @@ const QuizPlan = () => {
           </div>
           <hr className="my-2 border-gray-300 border-t-4 mb-8" />
 
-          {/* Frequently Asked Questions Section */}
-          <div className="mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
-              Frequently Asked Questions
-            </h2>
-            
-            <div className="max-w-2xl mx-auto">
-              <Accordion type="single" collapsible className="space-y-4">
-                <AccordionItem value="diagnosis" className="border border-gray-200 rounded-lg">
-                  <AccordionTrigger className="bg-flourishgreen text-white px-4 py-3 rounded-lg hover:no-underline">
-                    <span className="font-medium">Q: Do I need a diagnosis?</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-4 py-3 bg-white rounded-b-lg">
-                    <p className="text-gray-700">A: No. This quiz and plan are designed to support anyone experiencing anxiety symptoms.</p>
-                  </AccordionContent>
-                </AccordionItem>
-                
-                <AccordionItem value="therapy" className="border border-gray-200 rounded-lg">
-                  <AccordionTrigger className="bg-flourishgreen text-white px-4 py-3 rounded-lg hover:no-underline">
-                    <span className="font-medium">Q: Is this therapy?</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-4 py-3 bg-white rounded-b-lg">
-                    <p className="text-gray-700">A: It's not formal therapy, but it is built on real clinical approaches used in therapy settings.</p>
-                  </AccordionContent>
-                </AccordionItem>
-                
-                <AccordionItem value="cbt" className="border border-gray-200 rounded-lg">
-                  <AccordionTrigger className="bg-flourishgreen text-white px-4 py-3 rounded-lg hover:no-underline">
-                    <span className="font-medium">Q: What if I've already tried CBT?</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-4 py-3 bg-white rounded-b-lg">
-                    <p className="text-gray-700">A: This combines CBT with other tools that address overthinking and subconscious reactions.</p>
-                  </AccordionContent>
-                </AccordionItem>
-                
-                <AccordionItem value="results" className="border border-gray-200 rounded-lg">
-                  <AccordionTrigger className="bg-flourishgreen text-white px-4 py-3 rounded-lg hover:no-underline">
-                    <span className="font-medium">Q: How fast can I feel results?</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-4 py-3 bg-white rounded-b-lg">
-                    <p className="text-gray-700">A: Some people feel a shift within 1–2 weeks. Most see significant change within 4–6 weeks.</p>
-                  </AccordionContent>
-                </AccordionItem>
-                
-                <AccordionItem value="daily" className="border border-gray-200 rounded-lg">
-                  <AccordionTrigger className="bg-flourishgreen text-white px-4 py-3 rounded-lg hover:no-underline">
-                    <span className="font-medium">Q: Do I have to use it every day?</span>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-4 py-3 bg-white rounded-b-lg">
-                    <p className="text-gray-700">A: No. You'll learn tools you can return to when needed. This is flexible, not rigid.</p>
-                  </AccordionContent>
-                </AccordionItem>
-              </Accordion>
-            </div>
-          </div>
-          <hr className="my-2 border-gray-300 border-t-4 mb-8" />
-
           {/* Testimonials Section */}
           <div className="text-center mb-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-8">
@@ -708,74 +590,28 @@ const QuizPlan = () => {
            <hr className="my-2 border-gray-300 border-t-4 mb-8" />
           {/* Final Pricing Section */}
           <div className="text-center mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">
-              Begin Your Calm Reset Plan
-            </h2>
-            
-            <div className="mb-16 max-w-md mx-auto space-y-4">
-            {paymentOptions.map((option) => (
-              <div key={option.id} className="relative">
-                {option.popular && (
-                  <div className="bg-flourishgreen text-white text-center py-2 rounded-t-lg">
-                    <span className="text-sm font-medium flex items-center justify-center gap-1">
-                      ★ Most Popular!
-                    </span>
-                  </div>
-                )}
-                <label
-                  htmlFor={option.id}
-                  className={`bg-white border border-gray-200 rounded-b-lg p-4 flex items-center justify-between cursor-pointer ${
-                    selectedPayment === option.id ? 'ring-2 ring-flourishmint' : ''
-                  }`}
-                >
-                  <div className="flex items-center gap-3">
-                    <input
-                      type="radio"
-                      id={option.id}
-                      name="payment"
-                     className="w-4 h-4 accent-green-700"
-                      checked={selectedPayment === option.id}
-                      onChange={() => setSelectedPayment(option.id)}
-                    />
-                    <span className="font-semibold text-gray-900">{option.label}</span>
-                  </div>
-                  <div className="text-right">
-                    <div className="bg-flourishmint text-white px-3 py-1 rounded text-sm font-bold">
-                      {option.price}
-                    </div>
-                    <div className="text-xs text-gray-500 mt-1">
-                      <span className="line-through">{option.originalPrice}</span>
-                    </div>
-                    <div className="text-xs text-flourishmint font-medium">{option.discount}</div>
-                  </div>
-                </label>
-              </div>
-            ))}
-          </div>
-            {/* Completion Message */}
-            <div className="mt-8 mb-6">
-              <p className="text-gray-800 font-semibold mb-2">
-                You've completed your anxiety profile.
-              </p>
-              <p className="text-gray-600 text-sm mb-1">
-                Your path to clarity, calm, and confidence begins right here.
-              </p>
-              <p className="text-gray-600 text-sm">
-                We've prepared your tools, based on what your system truly needs.
-              </p>
-            </div>
 
             {/* Start My Plan Button */}
-            <button 
-              className="bg-flourishmint hover:bg-green-400 text-white px-8 py-3 rounded-full font-semibold text-lg transition-colors"
+           <button 
+              className="w-full max-w-2xl mx-auto bg-emerald-400 hover:bg-emerald-500 text-white py-6 px-12 rounded-full font-bold text-xl tracking-wider text-center transition-colors"
               onClick={handleContinue}
-            >
-              Start My Plan Now
+            > 
+              Start My 7-Day Test-Drive – £0 Today
             </button>
+            <div className="flex justify-center items-center gap-2 mt-4 text-gray-700 text-lg font-medium">
+              <span>SSL Secure</span>
+              <span className="mx-1">|</span>
+              <span>PCI Compliant</span>
+              <span className="mx-1">|</span>
+              <span>GMC-Registered Clinician</span>
+            </div>
           </div>
+        </div>
         </div>
       </main>
     </div>
+ 
+    
   );
 };
 

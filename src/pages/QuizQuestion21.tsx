@@ -12,31 +12,18 @@ const QuizQuestion21 = () => {
   const question = "What consequences of anxiety do you feel the most?";
   
   const options = [
-    {
-      id: "overthinking_racing",
-      text: "Overthinking and racing thoughts",
-      icon: "/Icons/61.png"
-    },
-    {
-      id: "panic_attacks",
-      text: "Panic attacks",
-      icon: "/Icons/62.png"
-    },
-    {
-      id: "avoidance",
-      text: "Avoidance",
-      icon: "/Icons/63.png"
-    },
-    {
-      id: "fear_rejection",
-      text: "Fear of rejection",
-      icon: "/Icons/64.png"
-    },
-    {
-      id: "low_self_esteem",
-      text: "Low self-esteem",
-      icon: "/Icons/65.png"
-    }
+    // PANICKER
+    { id: "panic_attacks", text: "Panic attacks", icon: "/Icons/61.png" },
+    { id: "breathing_stuck", text: "Breathing feels stuck", icon: "/Icons/62.png" },
+    { id: "racing_thoughts_panic", text: "Racing thoughts", icon: "/Icons/63.png" },
+    // RUMINATOR
+    { id: "overthinking_racing", text: "Racing thoughts", icon: "/Icons/61.png" },
+    { id: "overthinking", text: "Overthinking", icon: "/Icons/62.png" },
+    { id: "mentally_stuck", text: "Mentally stuck", icon: "/Icons/63.png" },
+    // AVOIDER
+    { id: "avoidance", text: "Avoiding situations", icon: "/Icons/61.png" },
+    { id: "fear_rejection", text: "Fear of rejection", icon: "/Icons/62.png" },
+    { id: "low_self_esteem", text: "Low self-esteem", icon: "/Icons/63.png" },
   ];
 
   const handleOptionToggle = (optionId: string) => {

@@ -11,31 +11,18 @@ const QuizQuestion17 = () => {
   const question = "How do you want to feel 30 days from now?";
   
   const options = [
-    {
-      id: "clear_headed_control",
-      text: "Clear-headed and in control",
-      icon: "/Icons/44.png"
-    },
-    {
-      id: "less_reactive",
-      text: "Less reactive to stress",
-      icon: "/Icons/45.png"
-    },
-    {
-      id: "more_confident",
-      text: "More confident in everyday situations",
-      icon: "/Icons/46.png"
-    },
-    {
-      id: "more_present",
-      text: "More present and less in my head",
-      icon: "/Icons/47.png"
-    },
-    {
-      id: "calmer_busy",
-      text: "Calmer, even when life gets busy",
-      icon: "/Icons/48.png"
-    }
+    // PANICKER
+    { id: "grounded_steady", text: "Feel grounded and steady", icon: "/Icons/44.png" },
+    { id: "body_calm", text: "Body responds calmly", icon: "/Icons/45.png" },
+    { id: "confidence_daily", text: "Confidence in daily life", icon: "/Icons/46.png" },
+    // RUMINATOR
+    { id: "thoughts_calmer", text: "Thoughts feel calmer", icon: "/Icons/44.png" },
+    { id: "able_pause", text: "Able to pause", icon: "/Icons/45.png" },
+    { id: "mentally_clear", text: "Mentally clear", icon: "/Icons/46.png" },
+    // AVOIDER
+    { id: "empowered_action", text: "Taking empowered action", icon: "/Icons/44.png" },
+    { id: "safe_body", text: "Safe in your body", icon: "/Icons/45.png" },
+    { id: "trust_decisions", text: "Trust in decisions", icon: "/Icons/46.png" },
   ];
 
   const handleContinue = (selectedOptions: string[]) => {
