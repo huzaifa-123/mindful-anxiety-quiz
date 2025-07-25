@@ -1,33 +1,40 @@
-
-import Header from "../components/Header";
-import MultiSelectQuestion from "../components/MultiSelectQuestion";
-import { useQuizAnswers } from "../context/QuizAnswersContext";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Header";
+import { useQuizAnswers } from "../context/QuizAnswersContext";
 
 const QuizQuestion17 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
   const question = "How do you want to feel 30 days from now?";
-  
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+
   const options = [
-    // PANICKER
     { id: "grounded_steady", text: "Feel grounded and steady", icon: "/Icons/44.png" },
     { id: "body_calm", text: "Body responds calmly", icon: "/Icons/45.png" },
     { id: "confidence_daily", text: "Confidence in daily life", icon: "/Icons/46.png" },
-    // RUMINATOR
     { id: "thoughts_calmer", text: "Thoughts feel calmer", icon: "/Icons/44.png" },
     { id: "able_pause", text: "Able to pause", icon: "/Icons/45.png" },
     { id: "mentally_clear", text: "Mentally clear", icon: "/Icons/46.png" },
-    // AVOIDER
     { id: "empowered_action", text: "Taking empowered action", icon: "/Icons/44.png" },
     { id: "safe_body", text: "Safe in your body", icon: "/Icons/45.png" },
     { id: "trust_decisions", text: "Trust in decisions", icon: "/Icons/46.png" },
   ];
 
-  const handleContinue = (selectedOptions: string[]) => {
-    setAnswer("question17", selectedOptions);
-    navigate("/quiz/question18");
+  const handleOptionToggle = (id: string) => {
+    if (selectedOptions.includes(id)) {
+      setSelectedOptions(selectedOptions.filter((opt) => opt !== id));
+    } else if (selectedOptions.length < 3) {
+      setSelectedOptions([...selectedOptions, id]);
+    }
+  };
+
+  const handleContinue = () => {
+    if (selectedOptions.length > 0) {
+      setAnswer("question17", selectedOptions);
+      navigate("/quiz/question18");
+    }
   };
 
   return (
@@ -35,13 +42,64 @@ const QuizQuestion17 = () => {
       <div className="w-full sticky top-0 z-10">
         <Header withBack questionCount="17 / 22" />
       </div>
-      <main className="flex-1 flex flex-col items-center justify-center py-8">
-        <MultiSelectQuestion
-          question={question}
-          options={options}
-          onContinue={handleContinue}
-          questionNumber="17"
-        />
+      <main className="flex-1 flex flex-col items-center justify-center py-6 px-3 sm:px-0">
+        <div className="w-full max-w-2xl mx-auto flex flex-col items-center px-2">
+          <h1 className="font-semibold text-base sm:text-2xl text-flourishgreen mb-2 text-center tracking-tight">
+            {question}
+          </h1>
+
+          <p className="text-gray-600 text-xs sm:text-sm mb-8 text-center">
+            (Select up to 3)
+          </p>
+
+          <div className="w-full space-y-3 mb-12">
+            {options.map((option) => {
+              const isSelected = selectedOptions.includes(option.id);
+              const isDisabled = !isSelected && selectedOptions.length >= 3;
+
+              return (
+                <div
+                  key={option.id}
+                  className={`flex items-center p-3 sm:p-4 border-2 rounded-lg cursor-pointer transition-colors ${
+                    isSelected
+                      ? "border-flourishmint bg-flourishmint/10"
+                      : isDisabled
+                      ? "border-gray-200 bg-white opacity-50 cursor-not-allowed"
+                      : "border-gray-200 bg-white hover:border-flourishmint/50"
+                  }`}
+                  onClick={() => !isDisabled && handleOptionToggle(option.id)}
+                >
+                  <div className="w-8 h-8 mr-4 flex-shrink-0">
+                    <img
+                      src={option.icon}
+                      alt=""
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <span className="flex-1 text-gray-700 text-sm sm:text-base">
+                    {option.text}
+                  </span>
+                  <input
+                    type="checkbox"
+                    checked={isSelected}
+                    onChange={() => !isDisabled && handleOptionToggle(option.id)}
+                    className="ml-4"
+                  />
+                </div>
+              );
+            })}
+          </div>
+
+          <div className="w-full flex flex-col items-center">
+            <button
+              onClick={handleContinue}
+              disabled={selectedOptions.length === 0}
+              className="rounded-full bg-flourishmint text-flourishgreen text-base font-semibold px-10 py-2 shadow-md transition duration-150 disabled:opacity-50 hover:scale-105 hover:brightness-110"
+            >
+              Continue
+            </button>
+          </div>
+        </div>
       </main>
     </div>
   );

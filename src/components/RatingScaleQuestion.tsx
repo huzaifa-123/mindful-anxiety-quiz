@@ -54,7 +54,7 @@ const RatingScaleQuestion = ({
             onValueChange={handleSliderChange}
             onValueCommit={handleSliderCommit}
             max={10}
-            min={1}
+            min={0}
             step={1}
             className="w-full"
           />

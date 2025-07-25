@@ -125,9 +125,9 @@ const QuizCalmResetPlanBuilder = () => {
         <div className="w-full max-w-5xl mx-auto">
           
           {/* Progress Cards - Perfectly aligned */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+          <div className="grid grid-rows-3 gap-6 w-full">
             {steps.map((step, index) => (
-              <div key={index} className="rounded-xl border-2 border-gray-200 overflow-hidden bg-white h-40">
+              <div key={index} className="rounded-xl border-2 border-gray-200 overflow-hidden bg-white h-40 max-w-md mx-auto w-full">
                 {/* Header section with green background - Fixed height for alignment */}
                 <div className="h-20 p-4 bg-flourishgreen text-white flex flex-col justify-center">
                   <h3 className="font-semibold text-lg mb-1 text-white leading-tight">

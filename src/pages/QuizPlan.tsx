@@ -49,21 +49,18 @@ const QuizPlan = () => {
 
   // Mapping for bar/label data (should match answerTextMap keys and requirement doc)
   const barDataMap = {
-    // PANICKER
     panic_attacks: { label: 'FREQUENT', percent: 90 },
     breathing_stuck: { label: 'INTENSE', percent: 85 },
-    racing_thoughts_panic: { label: 'HIGH', percent: 80 },
+    racing_thought: { label: 'HIGH', percent: 80 },
     grounded_steady: { label: 'HIGH CONTROL', percent: 90 },
     body_calm: { label: 'CALM', percent: 80 },
     confidence_daily: { label: 'HIGH CONFIDENCE', percent: 85 },
-    // RUMINATOR
     overthinking_racing: { label: 'HIGH', percent: 85 },
     overthinking: { label: 'FREQUENT', percent: 80 },
     mentally_stuck: { label: 'INTENSE', percent: 80 },
     thoughts_calmer: { label: 'HIGH CONTROL', percent: 90 },
     able_pause: { label: 'CALM', percent: 80 },
     mentally_clear: { label: 'HIGH CONFIDENCE', percent: 85 },
-    // AVOIDER
     avoidance: { label: 'SEVERE', percent: 90 },
     fear_rejection: { label: 'INTENSE', percent: 85 },
     low_self_esteem: { label: 'LOW', percent: 35 },
@@ -74,21 +71,19 @@ const QuizPlan = () => {
 
   // Add this mapping at the top of the file or before the component
   const barTextMap = {
-    // PANICKER
+
     panic_attacks: { label: 'Racing thoughts', level: 'HIGH', percent: 85 },
     breathing_stuck: { label: 'Overthinking', level: 'FREQUENT', percent: 80 },
-    racing_thoughts_panic: { label: 'Mentally stuck', level: 'INTENSE', percent: 80 },
+    racing_thought: { label: 'Mentally stuck', level: 'INTENSE', percent: 80 },
     grounded_steady: { label: 'Thoughts feel calmer', level: 'HIGH CONTROL', percent: 90 },
     body_calm: { label: 'Able to pause', level: 'CALM', percent: 80 },
     confidence_daily: { label: 'Mentally clear', level: 'HIGH CONFIDENCE', percent: 85 },
-    // RUMINATOR
     overthinking_racing: { label: 'Racing thoughts', level: 'HIGH', percent: 85 },
     overthinking: { label: 'Overthinking', level: 'FREQUENT', percent: 80 },
     mentally_stuck: { label: 'Mentally stuck', level: 'INTENSE', percent: 80 },
     thoughts_calmer: { label: 'Thoughts feel calmer', level: 'HIGH CONTROL', percent: 90 },
     able_pause: { label: 'Able to pause', level: 'CALM', percent: 80 },
     mentally_clear: { label: 'Mentally clear', level: 'HIGH CONFIDENCE', percent: 85 },
-    // AVOIDER
     avoidance: { label: 'Avoiding situations', level: 'SEVERE', percent: 90 },
     fear_rejection: { label: 'Fear of rejection', level: 'INTENSE', percent: 85 },
     low_self_esteem: { label: 'Low self-esteem', level: 'LOW', percent: 35 },
@@ -124,11 +119,11 @@ const QuizPlan = () => {
 
   // Gather bar data for Q21 and Q17, filtered by anxiety type
   const barsQ21 = q21Arr
-    .filter(key => barKeyToType[key] === anxietyType)
-    .map(key => ({ key, ...barDataMap[key] }))
-    .filter(b => b.label);
+  .slice(0, 3)
+  .map(key => ({ key, ...barDataMap[key] }))
+  .filter(b => b.label); 
   const barsQ17 = q17Arr
-    .filter(key => barKeyToType[key] === anxietyType)
+    .slice(0, 3)
     .map(key => ({ key, ...barDataMap[key] }))
     .filter(b => b.label);
   console.log('[PLAN] Q21 bar data:', barsQ21);
@@ -418,7 +413,7 @@ const QuizPlan = () => {
                 )}
             </div>
           </div>
-          
+
           <hr className="my-8 border-gray-300 border-t-4 mb-8" />
 
           {/* What's Inside Your Reset Plan Section */}
@@ -489,7 +484,7 @@ const QuizPlan = () => {
             </div>
           </div>
 
-          <hr className="my-2 border-gray-300 border-t-4 mb-8" />
+           <hr className="my-2 border-gray-300 border-t-4 mb-8" />
 
           {/* Therapy Results + Life Without vs. With Support Section */}
           <div className="text-center mb-16">
@@ -592,10 +587,10 @@ const QuizPlan = () => {
           <div className="text-center mb-16">
 
             {/* Start My Plan Button */}
-           <button 
+            <button 
               className="w-full max-w-2xl mx-auto bg-emerald-400 hover:bg-emerald-500 text-white py-6 px-12 rounded-full font-bold text-xl tracking-wider text-center transition-colors"
               onClick={handleContinue}
-            > 
+            >
               Start My 7-Day Test-Drive – £0 Today
             </button>
             <div className="flex justify-center items-center gap-2 mt-4 text-gray-700 text-lg font-medium">
@@ -606,7 +601,7 @@ const QuizPlan = () => {
               <span>GMC-Registered Clinician</span>
             </div>
           </div>
-        </div>
+          </div>
         </div>
       </main>
     </div>

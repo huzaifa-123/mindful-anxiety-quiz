@@ -154,15 +154,12 @@ const answerTextMap: Record<string, string> = {
   take_control: "I want to take control of my anxiety for good",
 
   // Q21 — Where You Are Now (per type)
-  // PANICKER
+
   panic_attacks: "Panic attacks — FREQUENT (Bar: 90%)",
   breathing_stuck: "Breathing feels stuck — INTENSE (Bar: 85%)",
-  racing_thoughts_panic: "Racing thoughts — HIGH (Bar: 80%)",
-  // RUMINATOR
-  overthinking_racing: "Racing thoughts — HIGH (Bar: 85%)",
+  racing_thought: "Racing thoughts — HIGH (Bar: 80%)",
   overthinking: "Overthinking — FREQUENT (Bar: 80%)",
   mentally_stuck: "Mentally stuck — INTENSE (Bar: 80%)",
-  // AVOIDER
   avoidance: "Avoiding situations — SEVERE (Bar: 90%)",
   fear_rejection: "Fear of rejection — INTENSE (Bar: 85%)",
   low_self_esteem: "Low self-esteem — LOW (Bar: 35%)",
