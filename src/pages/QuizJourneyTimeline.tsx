@@ -15,14 +15,14 @@ const QuizJourneyTimeline = () => {
       console.log("🗓️ TIMELINE DEBUG: Starting date calculation");
       console.log("🗓️ TIMELINE DEBUG: All quiz answers:", JSON.stringify(answers, null, 2));
       
-      // Use question23 (when anxiety started) and question18 (time available daily)
-      const q23Value = answers.question23; // When anxiety started affecting daily life
-      const q18Value = answers.question18; // Time available daily 
+      // Use question22 (when anxiety started) and question17 (time available daily)
+      const q22Value = answers.question22; // When anxiety started affecting daily life
+      const q17Value = answers.question17; // Time available daily 
       
-      console.log("🗓️ TIMELINE DEBUG: Q23 answer (when anxiety started):", q23Value);
-      console.log("🗓️ TIMELINE DEBUG: Q18 answer (time available):", q18Value);
+      console.log("🗓️ TIMELINE DEBUG: Q22 answer (when anxiety started):", q22Value);
+      console.log("🗓️ TIMELINE DEBUG: Q17 answer (time available):", q17Value);
 
-      // Base days from Q23 (when anxiety started) - CORRECTED MAPPING
+      // Base days from Q22 (when anxiety started) - CORRECTED MAPPING
       const baseDaysMap: Record<string, number> = {
         "past_month": 10,      // Recent onset - faster progress
         "few_months": 14,      // Building up - moderate timeline  
@@ -31,7 +31,7 @@ const QuizJourneyTimeline = () => {
         "just_realized": 12,   // Just realized - moderate-fast timeline
       };
 
-      // Time multiplier from Q18 (daily time available) - CORRECTED MAPPING
+      // Time multiplier from Q17 (daily time available) - CORRECTED MAPPING
       const timeMultiplierMap: Record<string, number> = {
         "5_minutes": 1.5,      // Less time = longer timeline
         "10_minutes": 1.2,     // Moderate time = slight longer
@@ -39,16 +39,18 @@ const QuizJourneyTimeline = () => {
         "20_plus_minutes": 0.85 // More time = faster progress
       };
 
-      // Get Q23 answer (when anxiety started) - use default if undefined
-      const baseDays = q23Value ? baseDaysMap[q23Value] || 14 : 14;
+      // Get Q22 answer (when anxiety started) - use default if undefined
+      const baseDays = q22Value ? baseDaysMap[q22Value] || 14 : 14;
       
-      // Get Q18 answer (daily time available) - use default if undefined
-      const timeMultiplier = q18Value ? timeMultiplierMap[q18Value] || 1 : 1;
+      // Get Q17 answer (daily time available) - use default if undefined
+      // Handle case where Q17 might be an array (from multi-select) or string
+      const q17TimeValue = Array.isArray(q17Value) ? q17Value[0] : q17Value;
+      const timeMultiplier = q17TimeValue ? timeMultiplierMap[q17TimeValue] || 1 : 1;
       
-      console.log("🗓️ TIMELINE DEBUG: Base days:", baseDays, "for when started:", q23Value);
-      console.log("🗓️ TIMELINE DEBUG: Time multiplier:", timeMultiplier, "for time:", q18Value);
-      console.log("🗓️ TIMELINE DEBUG: Available mappings for Q23:", Object.keys(baseDaysMap));
-      console.log("🗓️ TIMELINE DEBUG: Available mappings for Q18:", Object.keys(timeMultiplierMap));
+      console.log("🗓️ TIMELINE DEBUG: Base days:", baseDays, "for when started:", q22Value);
+      console.log("🗓️ TIMELINE DEBUG: Time multiplier:", timeMultiplier, "for time:", q17TimeValue);
+      console.log("🗓️ TIMELINE DEBUG: Available mappings for Q22:", Object.keys(baseDaysMap));
+      console.log("🗓️ TIMELINE DEBUG: Available mappings for Q17:", Object.keys(timeMultiplierMap));
       
       // Apply the correct formula: estimated_days = base_days × multiplier
       const estimatedDays = Math.round(baseDays * timeMultiplier);
@@ -71,9 +73,9 @@ const QuizJourneyTimeline = () => {
       
       // Check if calculation is working correctly
       if (monthYear === "June 2025" && estimatedDays === 14) {
-        console.log("🚨 TIMELINE DEBUG: Still getting default calculation - check Q23/Q18 values");
-        console.log("🚨 TIMELINE DEBUG: Q23 exists in answers?", q23Value !== undefined);
-        console.log("🚨 TIMELINE DEBUG: Q18 exists in answers?", q18Value !== undefined);
+        console.log("🚨 TIMELINE DEBUG: Still getting default calculation - check Q22/Q17 values");
+        console.log("🚨 TIMELINE DEBUG: Q22 exists in answers?", q22Value !== undefined);
+        console.log("🚨 TIMELINE DEBUG: Q17 exists in answers?", q17Value !== undefined);
       } else {
         console.log("✅ TIMELINE DEBUG: Calculation appears to be working correctly");
       }
@@ -117,49 +119,51 @@ const QuizJourneyTimeline = () => {
           
           {/* Timeline visualization container */}
           <div className="w-full max-w-md mb-2 flex flex-col items-center">
-            <div className="w-full flex items-center justify-center mb-4">
-              <img
-                src="/QuizDesign/Final_Quiz Section Design (2).gif"
-                alt="Progress timeline showing journey from current state to goal integration"
-                className="w-full h-auto object-contain max-h-64"  // Increased from max-h-32 to max-h-64
-                draggable={false}
-              />
-            </div>
-            {/* Progress stages labels - properly aligned with chart elements */}
-            <div className="flex justify-center items-center w-full text-xs text-gray-600 px-2">
-              <div className="flex justify-between items-center w-full max-w-xs">
-                <div className="flex flex-col items-center text-center min-w-0">
-                  <span className="font-medium text-xs">Current</span>
-                  <span className="text-xs">State</span>
-                </div>
-                <div className="flex flex-col items-center text-center min-w-0">
-                  <span className="font-medium text-xs">Early</span>
-                  <span className="text-xs">Shifts</span>
-                </div>
-                <div className="flex flex-col items-center text-center min-w-0">
-                  <span className="font-medium text-xs">Ongoing</span>
-                  <span className="text-xs">Shift</span>
-                </div>
-                <div className="flex flex-col items-center text-center min-w-0">
-                  <span className="font-medium text-xs">Target</span>
-                  <span className="text-xs">Relief</span>
-                </div>
-                <div className="flex flex-col items-center text-center min-w-0">
-                  <span className="font-medium text-xs">Goal</span>
-                  <span className="text-xs">Integration</span>
-                </div>
+            <img
+              src="/QuizDesign/Final_Quiz Section Design (2).gif"
+              alt="Progress timeline showing journey from current state to goal integration"
+              className="w-full h-auto object-contain max-h-64 block m-0 p-0"
+              draggable={false}
+            />
+            {/* Labels under bars */}
+            <div className="grid grid-cols-5 text-center text-xs  leading-tight -mt-8">
+              <div>
+                <div>Current</div>
+                <div>State</div>
+              </div>
+              <div>
+                <div>Early</div>
+                <div>Shifts</div>
+              </div>
+              <div>
+                <div>Ongoing</div>
+                <div>Shift</div>
+              </div>
+              <div>
+                <div>Target</div>
+                <div>Relief</div>
+              </div>
+              <div>
+                <div>Goal</div>
+                <div>Integration</div>
               </div>
             </div>
+            <img
+              src="/QuizDesign/Progress bar after timeline.png"
+              alt="Progress bar showing stages of anxiety relief journey"
+              className="w-full h-auto object-contain max-h-64 block m-0 p-0 -mt-24"
+              draggable={false}
+            />
           </div>
-          
-          {/* Description paragraphs */}
-          <p className="text-gray-700 text-base mb-4 max-w-xl leading-relaxed mt-6">
-            This timeline is based on when anxiety started affecting you and how much time you can commit to your well-being each day. With consistent, intentional support, even small shifts create real momentum.
-          </p>
-          
-          <p className="text-gray-700 text-base mb-8 max-w-xl leading-relaxed">
-            This isn't a rigid schedule, it's an encouraging estimate that honors where you are and where you're headed.
-          </p>
+
+            {/* Description paragraphs */}
+           <p className="text-gray-700 text-base mb-4 max-w-xl leading-relaxed -mt-16">
+             This timeline is based on when anxiety started affecting you and how much time you can commit to your well-being each day. With consistent, intentional support, even small shifts create real momentum.
+           </p>
+           
+           <p className="text-gray-700 text-base mb-8 max-w-xl leading-relaxed">
+             This isn't a rigid schedule, it's an encouraging estimate that honors where you are and where you're headed.
+           </p>
           
           <button
             onClick={handleContinue}

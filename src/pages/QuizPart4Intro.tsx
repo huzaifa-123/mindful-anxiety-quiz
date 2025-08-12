@@ -6,7 +6,7 @@ const QuizPart4Intro = () => {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    navigate("/quiz/question14");
+    navigate("/quiz/question13");
   };
 
   return (

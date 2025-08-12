@@ -10,13 +10,13 @@ const QuizQuestion12 = () => {
 
   const handleRatingSelect = (rating: number) => {
     setAnswer("question12", rating);
-    navigate("/quiz/question13-cbt");
+    navigate("/quiz/part4-intro");
   };
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="12 / 22" />
+        <Header withBack questionCount="12 / 21" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center py-8">
         <RatingScaleQuestion

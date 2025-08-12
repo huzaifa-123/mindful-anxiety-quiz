@@ -8,42 +8,42 @@ const QuizCalmResetPlanBuilder = () => {
   const navigate = useNavigate();
   const { setAnswer } = useQuizAnswers();
   const [progressValues, setProgressValues] = useState([0, 0, 0]);
-  const [showPopup, setShowPopup] = useState(false);
-  const [currentPopup, setCurrentPopup] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [showQuestion, setShowQuestion] = useState(false);
 
   const steps = [
     {
       title: "Creating your",
       subtitle: "Personalized Calm Reset Plan...",
       progressText: "Setting your pace",
-      question: "Are you familiar with journaling as a tool for emotional self-awareness?",
+      question: "Ever tried Cognitive Behavioural Therapy (CBT) before? ",
       options: [
-        { id: "yes_used_before", text: "Yes, I've used it before" },
-        { id: "no_open_to_it", text: "No, but I'm open to it" }
+        { id: "yes", text: "Yes" },
+        { id: "no", text: "No" }
       ],
-      answerKey: "plan_journaling"
+      answerKey: "plan_cbt"
     },
     {
       title: "Customizing your",
       subtitle: "support tools...",
       progressText: "Building your foundation",
-      question: "Do you find it helpful to use breath or body-based tools when managing stress?",
+      question: "Have you heard of Metacognitive Therapy (MCT) before?",
       options: [
-        { id: "yes_respond_well", text: "Yes, I respond well to them" },
-        { id: "mentally_focused", text: "I'm more mentally focused" }
+        { id: "yes", text: "Yes" },
+        { id: "no", text: "No" }
       ],
-      answerKey: "plan_tools"
+      answerKey: "plan_mct"
     },
     {
       title: "Finalizing your",
       subtitle: "Personalized Plan...",
       progressText: "Aligning to your style",
-      question: "Are you someone who prefers guided support or independent tools?",
+      question: "Have you ever used Cognitive‑Behavioural Hypnotherapy (CBH) techniques?",
       options: [
-        { id: "prefer_guidance", text: "I prefer guidance and structure" },
-        { id: "own_pace", text: "I like to go at my own pace" }
+        { id: "yes", text: "Yes" },
+        { id: "no", text: "No" }
       ],
-      answerKey: "plan_support_style"
+      answerKey: "plan_cbh"
     }
   ];
 
@@ -57,10 +57,10 @@ const QuizCalmResetPlanBuilder = () => {
         
         if (progress >= 100) {
           clearInterval(interval);
-          // Show first popup after progress completes
+          // Show question in first progress bar after progress completes
           setTimeout(() => {
-            setShowPopup(true);
-            setCurrentPopup(0);
+            setShowQuestion(true);
+            setCurrentStep(0);
           }, 300);
         }
       }, 50); // 50ms * 50 iterations = 2.5 seconds
@@ -69,12 +69,12 @@ const QuizCalmResetPlanBuilder = () => {
     animateFirstProgress();
   }, []);
 
-  const handlePopupAnswer = (optionId: string) => {
-    const currentStepData = steps[currentPopup];
+  const handleAnswer = (optionId: string) => {
+    const currentStepData = steps[currentStep];
     setAnswer(currentStepData.answerKey as keyof typeof setAnswer, optionId);
-    setShowPopup(false);
+    setShowQuestion(false);
 
-    if (currentPopup === 0) {
+    if (currentStep === 0) {
       // Animate second progress bar
       setTimeout(() => {
         let progress = 0;
@@ -85,13 +85,13 @@ const QuizCalmResetPlanBuilder = () => {
           if (progress >= 100) {
             clearInterval(interval);
             setTimeout(() => {
-              setShowPopup(true);
-              setCurrentPopup(1);
+              setShowQuestion(true);
+              setCurrentStep(1);
             }, 300);
           }
         }, 50);
       }, 500);
-    } else if (currentPopup === 1) {
+    } else if (currentStep === 1) {
       // Animate third progress bar
       setTimeout(() => {
         let progress = 0;
@@ -102,8 +102,8 @@ const QuizCalmResetPlanBuilder = () => {
           if (progress >= 100) {
             clearInterval(interval);
             setTimeout(() => {
-              setShowPopup(true);
-              setCurrentPopup(2);
+              setShowQuestion(true);
+              setCurrentStep(2);
             }, 300);
           }
         }, 50);
@@ -122,13 +122,18 @@ const QuizCalmResetPlanBuilder = () => {
         <Header withBack />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center px-4 relative">
-        <div className="w-full max-w-5xl mx-auto">
+        <div className="w-full max-w-6xl mx-auto">
           
-          {/* Progress Cards - Perfectly aligned */}
-          <div className="grid grid-rows-3 gap-6 w-full">
+          {/* Progress Cards - Horizontal Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
             {steps.map((step, index) => (
-              <div key={index} className="rounded-xl border-2 border-gray-200 overflow-hidden bg-white h-40 max-w-md mx-auto w-full">
-                {/* Header section with green background - Fixed height for alignment */}
+              <div
+                key={index}
+                className={`rounded-xl border-2 border-gray-200 overflow-hidden bg-white transition-all duration-500 ${
+                  showQuestion && currentStep === index ? 'h-auto min-h-[280px]' : 'h-40'
+                } max-w-md mx-auto w-full`}
+              >
+                {/* Header section with green background */}
                 <div className="h-20 p-4 bg-flourishgreen text-white flex flex-col justify-center">
                   <h3 className="font-semibold text-lg mb-1 text-white leading-tight">
                     {step.title}
@@ -138,12 +143,10 @@ const QuizCalmResetPlanBuilder = () => {
                   </h4>
                 </div>
 
-                {/* Progress section with white background - Fixed height for alignment */}
+                {/* Progress section */}
                 <div className="h-20 p-4 bg-white flex flex-col justify-center">
                   <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm text-gray-600">
-                      {step.progressText}
-                    </span>
+                    <span className="text-sm text-gray-600">{step.progressText}</span>
                     <span className="text-sm text-gray-600">
                       {Math.round(progressValues[index])}%
                     </span>
@@ -155,35 +158,31 @@ const QuizCalmResetPlanBuilder = () => {
                     />
                   </div>
                 </div>
+
+                {/* Question section */}
+                {showQuestion && currentStep === index && (
+                  <div className="p-4 bg-white border-t border-gray-100">
+                    <h2 className="font-semibold text-lg text-flourishgreen mb-4 text-center">
+                      {step.question}
+                    </h2>
+
+                    <div className="space-y-3">
+                      {step.options.map((option) => (
+                        <button
+                          key={option.id}
+                          onClick={() => handleAnswer(option.id)}
+                          className="w-full p-3 text-left bg-white border-2 border-gray-200 rounded-xl hover:border-flourishmint hover:bg-flourishmint/5 transition-colors text-gray-700 text-sm"
+                        >
+                          {option.text}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             ))}
           </div>
         </div>
-
-        {/* Popup Modal */}
-        {showPopup && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-            <div className="bg-white rounded-2xl p-8 max-w-lg w-full mx-4 animate-scale-in">
-              <div className="text-center mb-6">
-                <h2 className="font-semibold text-xl text-flourishgreen mb-4">
-                  {steps[currentPopup].question}
-                </h2>
-              </div>
-              
-              <div className="space-y-3">
-                {steps[currentPopup].options.map((option) => (
-                  <button
-                    key={option.id}
-                    onClick={() => handlePopupAnswer(option.id)}
-                    className="w-full p-4 text-left bg-white border-2 border-gray-200 rounded-xl hover:border-flourishmint hover:bg-flourishmint/5 transition-colors text-gray-700"
-                  >
-                    {option.text}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
       </main>
     </div>
   );

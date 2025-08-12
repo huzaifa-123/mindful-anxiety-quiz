@@ -8,7 +8,7 @@ import { Card, CardContent } from "../components/ui/card";
 
 const QuizAnxietyProfile = () => {
   const navigate = useNavigate();
-  const { answers,resetAnswers } = useQuizAnswers();
+  const { answers } = useQuizAnswers();
   
   // Debug: Log all answers before calculation
   console.log("🔴 ANXIETY PROFILE DEBUG: All quiz answers:", JSON.stringify(answers, null, 2));
@@ -144,6 +144,12 @@ const QuizAnxietyProfile = () => {
 
   const secondaryType = typePercentages[0];
 
+  // Debug: Log secondary type calculation
+  console.log("🔴 ANXIETY PROFILE DEBUG: Type percentages:", results.typePercentages);
+  console.log("🔴 ANXIETY PROFILE DEBUG: Filtered type percentages:", typePercentages);
+  console.log("🔴 ANXIETY PROFILE DEBUG: Secondary type:", secondaryType);
+  console.log("🔴 ANXIETY PROFILE DEBUG: Secondary type percentage >= 20?", secondaryType?.percentage >= 20);
+
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite">
@@ -213,7 +219,7 @@ const QuizAnxietyProfile = () => {
           </Card>
 
           {/* Secondary style section - FIXED: Now always shows heading when condition is met */}
-          {secondaryType && secondaryType.percentage >= 20 && (
+          {secondaryType ? (
             <div className="mb-6">
               {/* FIXED: Added the styled heading for Secondary Style */}
               <div className="flex justify-center mb-4">
@@ -229,6 +235,14 @@ const QuizAnxietyProfile = () => {
                 <p className="text-sm leading-relaxed text-gray-600">
                   {getSecondaryTypeDescription(secondaryType.type, secondaryType.percentage)}
                 </p>
+              </div>
+            </div>
+          ) : (
+            <div className="mb-6">
+              <div className="flex justify-center mb-4">
+                <div className="bg-flourishgreen text-white px-6 py-2 rounded-full">
+                  <span className="font-semibold text-sm">Your Secondary Style</span>
+                </div>
               </div>
             </div>
           )}
@@ -266,7 +280,6 @@ const QuizAnxietyProfile = () => {
           <div className="flex justify-center">
             <button
               onClick={() => {
-                // resetAnswers(); // Removed this line to preserve answers
                 navigate("/quiz/plan");
               }}
               className="bg-flourishmint text-white px-8 py-3  mb-4 rounded-full font-semibold hover:bg-flourishmint/90 transition-colors"

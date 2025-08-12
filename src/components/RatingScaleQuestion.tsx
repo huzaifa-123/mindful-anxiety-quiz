@@ -62,7 +62,7 @@ const RatingScaleQuestion = ({
         
         {/* Number labels */}
         <div className="flex justify-between items-center mb-6 px-1">
-          {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((rating) => (
+          {["Start", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((rating) => (
             <span
               key={rating}
               className={`text-xs sm:text-sm font-medium transition-all ${

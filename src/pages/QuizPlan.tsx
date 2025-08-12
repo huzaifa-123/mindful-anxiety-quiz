@@ -40,8 +40,8 @@ const QuizPlan = () => {
   console.log('[PLAN] Selected before/after image:', beforeAfterImage);
 
   // Q17/Q21 answer keys for the user
-  const q17Answers = answers.question17 || [];
-  const q21Answers = answers.question21 || [];
+  const q17Answers = answers.question16 || [];
+  const q21Answers = answers.question20 || [];
   const q17Arr = Array.isArray(q17Answers) ? q17Answers : [q17Answers];
   const q21Arr = Array.isArray(q21Answers) ? q21Answers : [q21Answers];
   console.log('[PLAN] Q17 selected answers:', q17Arr);
@@ -92,30 +92,7 @@ const QuizPlan = () => {
     trust_decisions: { label: 'Trust in decisions', level: 'HIGH CONFIDENCE', percent: 90 },
   };
 
-  // Add this mapping above the component or near the barTextMap
-  const barKeyToType = {
-    // PANICKER
-    panic_attacks: 'panic',
-    breathing_stuck: 'panic',
-    racing_thoughts_panic: 'panic',
-    grounded_steady: 'panic',
-    body_calm: 'panic',
-    confidence_daily: 'panic',
-    // RUMINATOR
-    overthinking_racing: 'ruminator',
-    overthinking: 'ruminator',
-    mentally_stuck: 'ruminator',
-    thoughts_calmer: 'ruminator',
-    able_pause: 'ruminator',
-    mentally_clear: 'ruminator',
-    // AVOIDER
-    avoidance: 'avoidant',
-    fear_rejection: 'avoidant',
-    low_self_esteem: 'avoidant',
-    empowered_action: 'avoidant',
-    safe_body: 'avoidant',
-    trust_decisions: 'avoidant',
-  };
+  
 
   // Gather bar data for Q21 and Q17, filtered by anxiety type
   const barsQ21 = q21Arr
@@ -417,7 +394,7 @@ const QuizPlan = () => {
           <hr className="my-8 border-gray-300 border-t-4 mb-8" />
 
           {/* What's Inside Your Reset Plan Section */}
-          <div className="mt-12 mb-16 text-center">
+          {/* <div className="mt-12 mb-16 text-center">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">What’s Inside Your Reset Plan</h2>
             <p className="text-gray-700 mb-8 text-lg max-w-2xl mx-auto">
               Your 7-Day Reset blends micro-tools that rewire your nervous system, gently and fast.
@@ -445,7 +422,7 @@ const QuizPlan = () => {
                 ✓ <span className="font-bold">Seven micro-moves</span> — follow daily or binge; all unlocked now.
               </div>
             </div>
-          </div>
+          </div> */}
 
           {/* Why This Method Works So Well Section */}
           <div className="mb-16 text-center">
@@ -581,12 +558,80 @@ const QuizPlan = () => {
           </div>
 
           </div>
-          
-           <hr className="my-2 border-gray-300 border-t-4 mb-8" />
-          {/* Final Pricing Section */}
-          <div className="text-center mb-16">
+          <hr className="my-2 border-gray-300 border-t-4 mb-8" />
 
-            {/* Start My Plan Button */}
+          <div className="w-full max-w-3xl mx-auto">
+            <h2 className="text-center text-2xl font-semibold mb-6">Still Have Questions?</h2>
+            
+            <div className="space-y-3">
+              {/* FAQ Item */}
+              <details className="group border rounded-md overflow-hidden">
+                <summary className="bg-[#274C3A] text-white px-4 py-3 cursor-pointer flex justify-between items-center">
+                  <span className="font-semibold">Q: Is this the same as formal therapy?</span>
+                  <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="bg-white text-gray-800 p-4 border-t">
+                  <p><strong>A:</strong> No — this is a self-guided reset, built from the same tools used in therapy but designed for day-to-day calm. It can support you whether you're in therapy or not.</p>
+                </div>
+              </details>
+
+              <details className="group border rounded-md overflow-hidden">
+                <summary className="bg-[#274C3A] text-white px-4 py-3 cursor-pointer flex justify-between items-center">
+                  <span className="font-semibold">Q: Do I really get everything right away?</span>
+                  <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="bg-white text-gray-800 p-4 border-t">
+                  <p><strong>A:</strong> No — this is a self-guided reset, built from the same tools used in therapy but designed for day-to-day calm. It can support you whether you're in therapy or not.</p>
+                </div>
+              </details>
+
+              <details className="group border rounded-md overflow-hidden">
+                <summary className="bg-[#274C3A] text-white px-4 py-3 cursor-pointer flex justify-between items-center">
+                  <span className="font-semibold">Q: What if it doesn’t help me?</span>
+                  <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="bg-white text-gray-800 p-4 border-t">
+                  <p><strong>A:</strong> No — this is a self-guided reset, built from the same tools used in therapy but designed for day-to-day calm. It can support you whether you're in therapy or not.</p>
+                </div>
+              </details>
+
+              <details className="group border rounded-md overflow-hidden">
+                <summary className="bg-[#274C3A] text-white px-4 py-3 cursor-pointer flex justify-between items-center">
+                  <span className="font-semibold">Q: How long will I have access?</span>
+                  <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="bg-white text-gray-800 p-4 border-t">
+                  <p><strong>A:</strong> No — this is a self-guided reset, built from the same tools used in therapy but designed for day-to-day calm. It can support you whether you're in therapy or not.</p>
+                </div>
+              </details>
+
+              <details className="group border rounded-md overflow-hidden">
+                <summary className="bg-[#274C3A] text-white px-4 py-3 cursor-pointer flex justify-between items-center">
+                  <span className="font-semibold">Q: Can I use this alongside therapy or medication?</span>
+                  <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="bg-white text-gray-800 p-4 border-t">
+                  <p><strong>A:</strong> No — this is a self-guided reset, built from the same tools used in therapy but designed for day-to-day calm. It can support you whether you're in therapy or not.</p>
+                </div>
+              </details>
+            </div>
+          </div>
+          <hr className="my-2 border-gray-300 border-t-4 mb-8 mt-12" />
+
+          {/* Start Your 7-Day Plan Section */}
+          {/* Final Pricing Section */}
+          {/* <div className="text-center mb-16">
+
             <button 
               className="w-full max-w-2xl mx-auto bg-emerald-400 hover:bg-emerald-500 text-white py-6 px-12 rounded-full font-bold text-xl tracking-wider text-center transition-colors"
               onClick={handleContinue}
@@ -600,7 +645,7 @@ const QuizPlan = () => {
               <span className="mx-1">|</span>
               <span>GMC-Registered Clinician</span>
             </div>
-          </div>
+          </div> */}
           </div>
         </div>
       </main>

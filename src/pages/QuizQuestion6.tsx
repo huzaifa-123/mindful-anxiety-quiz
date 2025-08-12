@@ -54,7 +54,7 @@ const QuizQuestion6 = () => {
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="6 / 22" />
+        <Header withBack questionCount="6 / 21" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center py-6 px-3 sm:px-0">
         <div className="w-full text-base sm:text-lg">

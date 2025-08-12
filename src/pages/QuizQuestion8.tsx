@@ -7,59 +7,49 @@ const QuizQuestion8 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "When anxiety strikes, what do you feel most?";
+  const question = "Which techniques have you already tried?";
   
   const options = [
     {
       id: "racing_thoughts",
-      text: "Racing thoughts or mental overwhelm",
+      text: "Deep breathing exercises",
       icon: "/Icons/22.png"
     },
     {
       id: "chest_tightness",
-      text: "Chest tightness or shallow breathing",
+      text: "Positive affirmations",
       icon: "/Icons/23.png"
     },
     {
       id: "dread",
-      text: "Dread or a sense of impending doom",
+      text: "Thought reframing (challenging negative thoughts)",
       icon: "/Icons/24.png"
     },
     {
       id: "numbness",
-      text: "Numbness or disconnection from the body",
+      text: "Mindfulness or meditation",
       icon: "/Icons/25.png"
     },
     {
       id: "difficulty_concentrating",
-      text: "Difficulty concentrating or making decisions",
+      text: "Hypnosis or relaxation audios",
       icon: "/Icons/26.png"
     },
     {
       id: "urge_escape",
-      text: "Urge to escape or avoid the situation",
+      text: "Avoidance (staying away from triggers)",
       icon: "/Icons/27.png"
     },
     {
       id: "irritability",
-      text: "Irritability or emotional sensitivity",
+      text: "None / I’m not sure",
       icon: "/Icons/28.png"
-    },
-    {
-      id: "freeze",
-      text: "I freeze or feel stuck",
-      icon: "/Icons/29.png"
-    },
-    {
-      id: "not_sure",
-      text: "I'm not sure",
-      icon: "/Icons/30.png"
     }
   ];
 
   const handleContinue = (selectedOptions: string[]) => {
     setAnswer("question8", selectedOptions);
-    navigate("/quiz/part3-intro");
+    navigate("/quiz/question9");
   };
 
   return (

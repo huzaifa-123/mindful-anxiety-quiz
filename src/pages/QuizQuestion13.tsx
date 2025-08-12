@@ -3,49 +3,51 @@ import SingleSelectQuestion from "../components/SingleSelectQuestion";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
-const QuizQuestion24 = () => {
+const QuizQuestion13 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "If one part of your life could feel lighter or easier starting today, what would it be?";
+  const question = "How long has anxiety been affecting your daily life?";
   
   const options = [
     {
-      id: "calming_thoughts",
-      text: "Calming the nonstop thoughts or spirals",
-      icon: "/Icons/75.png"
+      id: "few_weeks",
+      text: "Just in the last month",
+      icon: "/Icons/31.png"
     },
     {
-      id: "safe_in_body",
-      text: "Feeling safe in my body again",
-      icon: "/Icons/76.png"
+      id: "few_months",
+      text: "About 1–6 months",
+      icon: "/Icons/32.png"
     },
     {
-      id: "restore_confidence",
-      text: "Restoring my confidence and inner trust",
-      icon: "/Icons/77.png"
+      id: "over_year",
+      text: "Over 6 months",
+      icon: "/Icons/33.png"
     },
     {
-      id: "reclaim_energy",
-      text: "Reclaiming my energy and focus",
-      icon: "/Icons/78.png"
+      id: "several_years",
+      text: "More than 2 years",
+      icon: "/Icons/34.png"
     },
     {
-      id: "sleep_better",
-      text: "Finally sleeping through the night",
-      icon: "/Icons/79.png"
+      id: "no_idea",
+      text: "Honestly, I can’t remember a time without it",
+      icon: "/Icons/28.png"
     }
   ];
 
   const handleSelect = (optionId: string) => {
-    setAnswer("question24", optionId);
-    navigate("/quiz/journey-timeline");
+    console.log(`🟢 Q13 COMPONENT DEBUG: Selected ID:`, optionId);
+    console.log(`🟢 Q13 COMPONENT DEBUG: Type:`, typeof optionId);
+    setAnswer("question13", optionId);
+    navigate("/quiz/question14");
   };
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="24 / 24" />
+        <Header withBack questionCount="13 / 21" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center py-6 px-3 sm:px-0">
         <div className="w-full text-base sm:text-lg">
@@ -53,8 +55,7 @@ const QuizQuestion24 = () => {
             question={question}
             options={options}
             onSelect={handleSelect}
-            questionNumber="24"
-            subtitle="(Choose one that resonates most)"
+            questionNumber="13"
           />
         </div>
       </main>
@@ -62,4 +63,6 @@ const QuizQuestion24 = () => {
   );
 };
 
-export default QuizQuestion24;
+export default QuizQuestion13;
+
+

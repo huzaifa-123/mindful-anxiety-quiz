@@ -4,7 +4,7 @@ import { useLocation, useNavigate,Link } from "react-router-dom";
 
 interface HeaderProps {
   withBack?: boolean;
-  questionCount?: string; // e.g. "1/22"
+  questionCount?: string; // e.g. "1/21"
   timer?: React.ReactNode; // For displaying timer
 }
 

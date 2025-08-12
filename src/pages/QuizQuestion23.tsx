@@ -8,54 +8,61 @@ const QuizQuestion23 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "When did you first notice anxiety starting to affect your daily life?";
+  const question = "Which change would give you the biggest sense of control today?";
   
   const options = [
     {
-      id: "past_month",
-      text: "It started recently, in the past month",
-      icon: "/Icons/70.png"
+      id: "calming_thoughts",
+      text: "A calm switch you can use anywhere",
+      icon: "/Icons/78.png"
     },
     {
-      id: "few_months",
-      text: "It's been building over the past few months",
-      icon: "/Icons/71.png"
+      id: "safe_in_body",
+      text: "A clear mind that stops over-thinking",
+      icon: "/Icons/25.png"
     },
     {
-      id: "years",
-      text: "It's been a part of my life for years",
-      icon: "/Icons/72.png"
+      id: "restore_confidence",
+      text: "Confidence to face the situations you now avoid",
+      icon: "/Icons/38.png"
     },
     {
-      id: "cant_remember",
-      text: "I honestly can't remember a time without it",
-      icon: "/Icons/73.png"
+      id: "reclaim_energy",
+      text: "Steady energy instead of anxiety fatigue",
+      icon: "/Icons/68.png"
     },
     {
-      id: "just_realized",
-      text: "I've only just realized it's been anxiety all along",
-      icon: "/Icons/74.png"
+      id: "sleep_better",
+      text: "Belief in yourself, no matter the trigger",
+      icon: "/Icons/23.png"
+    },
+    {
+      id: "safe_breathing",
+      text: "Safe, relaxed breathing when stress hits",
+      icon: "/Icons/75.png"
     }
   ];
 
   const handleSelect = (optionId: string) => {
-    setAnswer("question23", optionId);
-    navigate("/quiz/question24");
+    setAnswer("question22", optionId);
+    navigate("/quiz/journey-timeline");
   };
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="23 / 24" />
+        <Header withBack />
       </div>
-      <main className="flex-1 flex flex-col items-center justify-center py-8">
-        <SingleSelectQuestion
-          question={question}
-          options={options}
-          onSelect={handleSelect}
-          questionNumber="23"
-          subtitle="(Choose the option that feels most true)"
-        />
+      <main className="flex-1 flex flex-col items-center justify-center py-6 px-3 sm:px-0">
+        <div className="w-full text-base sm:text-lg">
+          <SingleSelectQuestion
+            question={question}
+            options={options}
+            onSelect={handleSelect}
+            questionNumber="22"
+            subtitle="(Choose one that resonates most)"
+          />
+        </div>
       </main>
     </div>
   );

@@ -7,55 +7,64 @@ const QuizQuestion22 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "What do you think needs to improve for you to feel more in control of anxiety?";
+  const question = "Which anxiety struggle hits you hardest right now?";
   
   const options = [
     {
-      id: "my_willpower",
-      text: "My willpower",
-      icon: "/Icons/66.png"
+      id: "past_month",
+      text: "Sudden panic or heart-racing moments",
+      icon: "/Icons/86.png"
     },
     {
-      id: "my_calm_state",
-      text: "My calm state",
-      icon: "/Icons/67.png"
+      id: "few_months",
+      text: "Over-thinking loops you can’t switch off",
+      icon: "/Icons/24.png"
     },
     {
-      id: "my_energy_levels",
-      text: "My energy levels",
-      icon: "/Icons/68.png"
+      id: "years",
+      text: "Avoiding places or situations you’d rather face",
+      icon: "/Icons/63.png"
     },
     {
-      id: "less_attachment_thoughts",
-      text: "Less attachment to thoughts",
-      icon: "/Icons/69.png"
+      id: "cant_remember",
+      text: "Chest tightness or breathing feels stuck",
+      icon: "/Icons/75.png"
     },
     {
-      id: "my_mental_strength",
-      text: "My mental strength",
-      icon: "/Icons/70.png"
+      id: "just_realized",
+      text: "Fear of being judged or rejected",
+      icon: "/Icons/3.png"
+    },
+    {
+      id: "feeling_frozen",
+      text: "Feeling frozen or mentally blank under pressure",
+      icon: "/Icons/29.png"
+    },
+    {
+      id: "low_confidence",
+      text: "Low confidence or self-worth",
+      icon: "/Icons/71.png"
     }
   ];
 
   const handleSelect = (optionId: string) => {
-    setAnswer("question22", optionId);
-    navigate("/quiz/analysis");
+    setAnswer("question21", optionId);
+    navigate("/quiz/question23");
   };
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="22 / 22" />
+        <Header withBack />
       </div>
-      <main className="flex-1 flex flex-col items-center justify-center py-6 px-3 sm:px-0">
-        <div className="w-full text-base sm:text-lg">
-          <SingleSelectQuestion
-            question={question}
-            options={options}
-            onSelect={handleSelect}
-            questionNumber="22"
-          />
-        </div>
+      <main className="flex-1 flex flex-col items-center justify-center py-8">
+        <SingleSelectQuestion
+          question={question}
+          options={options}
+          onSelect={handleSelect}
+            questionNumber="21"
+          subtitle="(Choose the option that feels most true)"
+        />
       </main>
     </div>
   );

@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import { useNavigate } from "react-router-dom";
 
@@ -6,7 +5,7 @@ const QuizResults = () => {
   const navigate = useNavigate();
 
   const handleContinue = () => {
-    navigate("/quiz/question23");
+    navigate("/quiz/question22");
   };
 
   return (

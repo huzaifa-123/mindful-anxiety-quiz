@@ -47,13 +47,13 @@ const QuizQuestion7 = () => {
     setAnswer("question7", optionId);
     
     console.log(`🟢 Q7 HANDLE SELECT: setAnswer called, now navigating to question8`);
-    navigate("/quiz/question8");
+    navigate("/quiz/part3-intro");
   };
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="7 / 22" />
+        <Header withBack questionCount="7 / 21" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center py-6 px-3 sm:px-0">
         <div className="w-full text-base sm:text-lg">

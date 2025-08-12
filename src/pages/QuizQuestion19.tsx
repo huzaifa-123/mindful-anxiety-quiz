@@ -7,28 +7,28 @@ const QuizQuestion19 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "Do you find it difficult to stop or control worrying?";
+  const question = "How often do you have trouble relaxing?";
   
   const options = [
     {
       id: "almost_always",
       text: "Almost always",
-      icon: "/Icons/53.png"
+      icon: "/Icons/57.png"
     },
     {
       id: "often",
       text: "Often",
-      icon: "/Icons/54.png"
+      icon: "/Icons/58.png"
     },
     {
       id: "sometimes",
       text: "Sometimes",
-      icon: "/Icons/55.png"
+      icon: "/Icons/59.png"
     },
     {
       id: "almost_never",
       text: "Almost never",
-      icon: "/Icons/56.png"
+      icon: "/Icons/60.png"
     }
   ];
 
@@ -40,7 +40,7 @@ const QuizQuestion19 = () => {
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="19 / 22" />
+        <Header withBack questionCount="19 / 21" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center py-6 px-3 sm:px-0">
         <div className="w-full text-base sm:text-lg">

@@ -15,16 +15,14 @@ type QuizAnswer = {
   question10?: number;
   question11?: number;
   question12?: number;
-  question13_cbt?: string;
-  question13_mct?: string;
-  question13_cbh?: string;
-  question13?: string;
-  question14?: string; // Duration of anxiety (formerly question13)
+  // Removed: question13_cbt, question13_mct, question13_cbh
+  question13?: string; // Duration of anxiety (renumbered from 14)
+  question14?: string[]; // What has held you back (renumbered from 15)
   question15?: string[];
   question16?: string;
   question17?: string[];
-  question18?: string; // Time available daily (formerly question17)
-  question19?: string; // Worry control (formerly question18)
+  question18?: string; // Time available daily
+  question19?: string; // Worry control
   question20?: string;
   question21?: string;
   question22?: string;
@@ -49,11 +47,9 @@ const questionTextMap: Record<keyof QuizAnswer, string> = {
   question10: "How much is anxiety affecting your daily life right now?",
   question11: "How often do you experience anxiety symptoms?",
   question12: "How distressed do you feel when the anxiety hits?",
-  question13_cbt: "CBT familiarity",
-  question13_mct: "MCT familiarity",
-  question13_cbh: "CBH familiarity",
-  question14: "How long have you been dealing with anxiety?",
-  question15: "What has held you back from managing your anxiety in the past?",
+  // Removed CBT/MCT/CBH familiarity pages
+  question13: "How long have you been dealing with anxiety?",
+  question14: "What has held you back from managing your anxiety in the past?",
   question16: "What’s your biggest motivation for taking this quiz today?",
   question17: "How do you want to feel 30 days from now?",
   question18: "How much time can you realistically dedicate each day to your mental wellbeing?",
