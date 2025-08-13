@@ -50,6 +50,7 @@ const questionTextMap: Record<keyof QuizAnswer, string> = {
   // Removed CBT/MCT/CBH familiarity pages
   question13: "How long have you been dealing with anxiety?",
   question14: "What has held you back from managing your anxiety in the past?",
+  question15: "What’s your biggest motivation for taking this quiz today?",
   question16: "What’s your biggest motivation for taking this quiz today?",
   question17: "How do you want to feel 30 days from now?",
   question18: "How much time can you realistically dedicate each day to your mental wellbeing?",
@@ -65,8 +66,7 @@ const questionTextMap: Record<keyof QuizAnswer, string> = {
   email_preference: "Email & SMS Preferences",
   gender: "",
   age: "",
-  name: "",
-  question13: ""
+  name: ""
 };
 
 const answerTextMap: Record<string, string> = {
@@ -152,10 +152,7 @@ const answerTextMap: Record<string, string> = {
   // Q21 — Where You Are Now (per type)
 
   panic_attacks: "Panic attacks — FREQUENT (Bar: 90%)",
-  breathing_stuck: "Breathing feels stuck — INTENSE (Bar: 85%)",
-  racing_thought: "Racing thoughts — HIGH (Bar: 80%)",
-  overthinking: "Overthinking — FREQUENT (Bar: 80%)",
-  mentally_stuck: "Mentally stuck — INTENSE (Bar: 80%)",
+  overthinking: "Overthinking and racing thoughts — FREQUENT (Bar: 80%)",
   avoidance: "Avoiding situations — SEVERE (Bar: 90%)",
   fear_rejection: "Fear of rejection — INTENSE (Bar: 85%)",
   low_self_esteem: "Low self-esteem — LOW (Bar: 35%)",

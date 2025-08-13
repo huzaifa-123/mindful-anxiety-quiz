@@ -46,7 +46,7 @@ const QuizQuestion16 = () => {
           </h1>
 
           <p className="text-gray-600 text-xs sm:text-sm mb-8 text-center">
-            (Select up to 3)
+            (Select all that apply)
           </p>
 
           <div className="w-full space-y-3 mb-12">

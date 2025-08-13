@@ -44,6 +44,9 @@ const QuizEmailPage = () => {
           <p className="text-gray-700 text-base mb-8 leading-snug max-w-2xl mx-auto">
             Enter your best email to instantly receive your customized plan plus calming tips and resources to support your transformation journey over the next 7 days.
           </p>
+          <p className="text-gray-700 text-base mb-8 leading-snug max-w-2xl mx-auto">
+            Your full results will be sent straight to your inbox
+          </p>
 
           <form onSubmit={handleSubmit} className="space-y-6 text-left max-w-xl mx-auto">
             <div>

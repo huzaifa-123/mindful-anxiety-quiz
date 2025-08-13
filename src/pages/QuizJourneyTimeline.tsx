@@ -119,6 +119,9 @@ const QuizJourneyTimeline = () => {
           
           {/* Timeline visualization container */}
           <div className="w-full max-w-md mb-2 flex flex-col items-center">
+            <h2 className="text-gray-800 font-semibold text-lg mb-4 tracking-wide">
+              30 DAYS TIMELINE
+            </h2>
             <img
               src="/QuizDesign/Final_Quiz Section Design (2).gif"
               alt="Progress timeline showing journey from current state to goal integration"
@@ -126,32 +129,33 @@ const QuizJourneyTimeline = () => {
               draggable={false}
             />
             {/* Labels under bars */}
-            <div className="grid grid-cols-5 text-center text-xs  leading-tight -mt-8">
-              <div>
-                <div>Current</div>
-                <div>State</div>
-              </div>
-              <div>
-                <div>Early</div>
-                <div>Shifts</div>
-              </div>
-              <div>
-                <div>Ongoing</div>
-                <div>Shift</div>
-              </div>
-              <div>
-                <div>Target</div>
-                <div>Relief</div>
-              </div>
-              <div>
-                <div>Goal</div>
-                <div>Integration</div>
-              </div>
+            <div className="grid grid-cols-5 text-center text-[9px] font-bold leading-none -mt-7 gap-x-1">
+            <div className="leading-tight">
+              <div>Current</div>
+              <div>State</div>
             </div>
+            <div className="leading-tight">
+              <div>Early</div>
+              <div>Shifts</div>
+            </div>
+            <div className="leading-tight">
+              <div>Ongoing</div>
+              <div>Shift</div>
+            </div>
+            <div className="leading-tight">
+              <div>Target</div>
+              <div>Relief</div>
+            </div>
+            <div className="leading-tight">
+              <div>Goal</div>
+              <div>Integration</div>
+            </div>
+          </div>
+
             <img
               src="/QuizDesign/Progress bar after timeline.png"
               alt="Progress bar showing stages of anxiety relief journey"
-              className="w-full h-auto object-contain max-h-64 block m-0 p-0 -mt-24"
+              className="w-full h-auto object-contain  max-h-64 block m-0 p-0 -mt-24"
               draggable={false}
             />
           </div>

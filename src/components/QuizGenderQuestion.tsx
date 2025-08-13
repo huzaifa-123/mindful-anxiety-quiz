@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { ArrowRight } from "lucide-react";
@@ -37,26 +36,28 @@ const QuizGenderQuestion: React.FC<QuizGenderQuestionProps> = ({ onAnswered }) =
         DISCOVER YOUR ANXIETY TYPE
       </h1>
       <p className="text-gray-700 font-inter mb-6 mt-2 text-center text-base md:text-lg px-2">
-        Understand what’s really happening underneath – and how to finally feel calmer.
+        Understand what's really happening underneath – and how to finally feel calmer.
       </p>
       <div className="flex flex-row gap-8 justify-center mb-8 flex-wrap">
         {AVATARS.map((a) => (
           <div
             key={a.value}
-            className="flex flex-col items-center w-44 sm:w-56 bg-white border-2 rounded-xl shadow-sm py-6 px-3"
+            className="flex flex-col w-44 sm:w-56 bg-white border-2 rounded-xl shadow-sm overflow-hidden"
           >
-            <img
-              src={a.img}
-              alt={a.label}
-              className="h-50 w-50 object-contain mb-4 overflow-auto"
-            />
+            <div className="flex-1 flex flex-col items-center justify-center pt-4 px-3">
+              <img
+                src={a.img}
+                alt={a.label}
+                className="h-40 w-40 object-contain"
+              />
+            </div>
             <button
               onClick={() => handleSelect(a.value as "male" | "female")}
-              className={`w-full mt-2 flex items-center justify-center rounded-md transition font-semibold py-3 text-base
+              className={`w-full flex items-center justify-center transition font-semibold py-3 text-base
                 ${
                   answers.gender === a.value
-                    ? "bg-flourishmint text-flourishgreen border-2 border-flourishmint"
-                    : "bg-flourishgreen text-flourishwhite border-2 border-flourishgreen hover:bg-flourishmint hover:text-flourishgreen"
+                    ? "bg-flourishmint text-flourishgreen border-t-2 border-flourishmint"
+                    : "bg-flourishgreen text-flourishwhite border-t-2 border-flourishgreen hover:bg-flourishmint hover:text-flourishgreen"
                 }
               `}
             >

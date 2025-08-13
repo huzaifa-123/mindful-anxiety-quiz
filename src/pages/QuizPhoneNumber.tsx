@@ -55,7 +55,8 @@ const QuizPhoneNumber = () => {
             Want a Free Hypnosis Track Sent Straight to Your Phone?
           </h1>
           <p className="text-gray-700 text-base mb-8 leading-relaxed">
-            Enter your phone number below, and we'll instantly text you a calming hypnosis audio designed specifically to ease anxiety, yours to keep.
+            Enter your mobile number below to download a calming hypnosis audio designed to
+            ease anxiety. Keep it on your phone and listen whenever you need a moment of calm.
           </p>
           <form onSubmit={handleSendTrack} className="space-y-6">
             <div className="text-left w-full max-w-md mx-auto">
@@ -70,7 +71,8 @@ const QuizPhoneNumber = () => {
                 className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 text-base"
                 placeholder=""
               />
-              <p className="text-gray-500 text-xs mt-2">We respect your privacy, no spam, just calm.</p>
+              <p className="text-gray-500 text-center text-xs mt-2">No spam, no calls. Just your free hypnosis track, tips, and offers.</p>
+              <p className="text-gray-500  text-center text-xs mt-2">– with the option to opt out anytime</p>
             </div>
             <button
               type="submit"

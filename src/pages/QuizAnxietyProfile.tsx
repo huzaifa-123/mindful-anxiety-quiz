@@ -166,17 +166,15 @@ const QuizAnxietyProfile = () => {
           
           {/* Dominant anxiety type badge */}
           <div className="flex justify-center mb-6">
-            <span className={`px-4 py-2 rounded-full text-sm font-medium ${typeStyles.badgeColor}`}>
-              Your Dominant Anxiety Style
-            </span>
+            <div className="border border-black rounded-lg px-6 py-4 text-center">
+              <p className="text-sm font-bold text-black mb-1">
+                Your Dominant Anxiety Style
+              </p>
+              <h2 className="text-xl font-bold text-black">
+                {getTypeTitle(results.dominantType)}
+              </h2>
+            </div>
           </div>
-          
-          <div className="text-center mb-4">
-            <h2 className="text-xl font-bold text-gray-800 mb-2">
-              {getTypeTitle(results.dominantType)}
-            </h2>
-          </div>
-
           {/* Character illustration - now anxiety type specific */}
           <div className="flex justify-center mb-6">
             <img 
@@ -284,7 +282,7 @@ const QuizAnxietyProfile = () => {
               }}
               className="bg-flourishmint text-white px-8 py-3  mb-4 rounded-full font-semibold hover:bg-flourishmint/90 transition-colors"
             >
-              Show My Best-Fit Techniques
+              Access My Personalised Plan
             </button>
           </div>
         </div>

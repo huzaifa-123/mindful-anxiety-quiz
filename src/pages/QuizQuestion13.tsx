@@ -7,7 +7,7 @@ const QuizQuestion13 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "How long has anxiety been affecting your daily life?";
+  const question = "How long has anxiety felt like a daily companion?";
   
   const options = [
     {

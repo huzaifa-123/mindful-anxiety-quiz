@@ -40,45 +40,42 @@ const QuizPlanCompletion = () => {
              <hr className="my-2 border-gray-300 border-t-4 mb-8" />
              <div className="space-y-3">
                 <div className="flex items-start">
-                  <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-black rounded-full mt-2 mr-3 flex-shrink-0"></span>
                   <div>
                     <span className="font-semibold text-gray-800">Cognitive Behavioral Therapy (CBT)</span>
                     <span className="text-gray-600"> - up to 70% success</span>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-black rounded-full mt-2 mr-3 flex-shrink-0"></span>
                   <div>
                     <span className="font-semibold text-gray-800">Metacognitive Therapy (MCT)</span>
                     <span className="text-gray-600"> - up to 80% success</span>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-black rounded-full mt-2 mr-3 flex-shrink-0"></span>
                   <div>
                     <span className="font-semibold text-gray-800">Cognitive Behavioral Hypnotherapy (CBH)</span>
                     <span className="text-gray-600"> - up to 75% success</span>
                   </div>
                 </div>
                 <div className="flex items-start">
-                  <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                  <span className="w-2 h-2 bg-black rounded-full mt-2 mr-3 flex-shrink-0"></span>
                   <div>
                     <span className="font-semibold text-gray-800">Combined Approach</span>
-                    <span className="text-gray-600"> – up to 100%* potential for long-term success</span>
+                    <span className="text-gray-600"> – delivers life-changing results for almost everyone who completes the
+                    programme.</span>
                   </div>
                 </div>
               </div>
 
             
             <div className="mt-4 pt-4 border-t border-gray-200">
-              <p className="text-gray-700">
-                Tayyaba Ali’s unique method combines these for faster and more lasting results.
+              <p className="font-bold text-black">
+                "Tayyaba Ali’s unique method combines these for faster and more lasting results.
                 By working on your thoughts, beliefs, and subconscious patterns at the same time, this method helps unlock deeper healing and sustained change.
-                While exact studies on the combined approach are ongoing, early evidence suggests it brings people closer to 100% success offering a more comprehensive and transformative path to well-being.
-
-              </p>
-              <p className="text-gray-500 text-sm mt-2">
-                *Long-term success rates of the combined approach are based on emerging evidence and current clinical best practices.
+                While exact studies on the combined approach are ongoing, early evidence suggests it brings people closer to 100% success offering a more comprehensive and transformative path to well-being."
               </p>
             </div>
           </div>

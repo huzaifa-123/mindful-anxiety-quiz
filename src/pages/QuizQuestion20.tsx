@@ -13,9 +13,9 @@ const QuizQuestion20 = () => {
   
   const options = [
 
-    { id: "breathing_stuck", text: "Overthinking and racing thoughts", icon: "/Icons/61.png" },
+    { id: "overthinking", text: "Overthinking and racing thoughts", icon: "/Icons/61.png" },
     { id: "panic_attacks", text: "Panic attacks", icon: "/Icons/62.png" },
-    { id: "racing_thought", text: "Avoidance", icon: "/Icons/63.png" },
+    { id: "avoidance", text: "Avoidance", icon: "/Icons/63.png" },
     { id: "fear_rejection", text: "Fear of rejection", icon: "/Icons/64.png" },
     { id: "low_self_esteem", text: "Low self-esteem", icon: "/Icons/65.png" },
     
@@ -25,7 +25,7 @@ const QuizQuestion20 = () => {
     setSelectedOptions(prev => {
       if (prev.includes(optionId)) {
         return prev.filter(id => id !== optionId);
-      } else if (prev.length < 4) {
+      } else if (prev.length < 3) {
         return [...prev, optionId];
       }
       return prev;

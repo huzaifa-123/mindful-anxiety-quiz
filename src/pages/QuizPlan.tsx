@@ -71,29 +71,17 @@ const QuizPlan = () => {
 
   // Add this mapping at the top of the file or before the component
   const barTextMap = {
-
-    panic_attacks: { label: 'Racing thoughts', level: 'HIGH', percent: 85 },
-    breathing_stuck: { label: 'Overthinking', level: 'FREQUENT', percent: 80 },
-    racing_thought: { label: 'Mentally stuck', level: 'INTENSE', percent: 80 },
-    grounded_steady: { label: 'Thoughts feel calmer', level: 'HIGH CONTROL', percent: 90 },
-    body_calm: { label: 'Able to pause', level: 'CALM', percent: 80 },
-    confidence_daily: { label: 'Mentally clear', level: 'HIGH CONFIDENCE', percent: 85 },
-    overthinking_racing: { label: 'Racing thoughts', level: 'HIGH', percent: 85 },
-    overthinking: { label: 'Overthinking', level: 'FREQUENT', percent: 80 },
-    mentally_stuck: { label: 'Mentally stuck', level: 'INTENSE', percent: 80 },
-    thoughts_calmer: { label: 'Thoughts feel calmer', level: 'HIGH CONTROL', percent: 90 },
-    able_pause: { label: 'Able to pause', level: 'CALM', percent: 80 },
-    mentally_clear: { label: 'Mentally clear', level: 'HIGH CONFIDENCE', percent: 85 },
-    avoidance: { label: 'Avoiding situations', level: 'SEVERE', percent: 90 },
+    overthinking: { label: 'Overthinking and racing thoughts', level: 'FREQUENT', percent: 80 },
+    panic_attacks: { label: 'Panic attacks', level: 'HIGH', percent: 85 },
+    avoidance: { label: 'Avoidance', level: 'SEVERE', percent: 90 },
     fear_rejection: { label: 'Fear of rejection', level: 'INTENSE', percent: 85 },
     low_self_esteem: { label: 'Low self-esteem', level: 'LOW', percent: 35 },
-    empowered_action: { label: 'Taking empowered action', level: 'HIGH CONTROL', percent: 90 },
-    safe_body: { label: 'Safe in your body', level: 'CALM', percent: 80 },
-    trust_decisions: { label: 'Trust in decisions', level: 'HIGH CONFIDENCE', percent: 90 },
+    grounded_steady: { label: 'Clear-headed and in control', level: 'HIGH CONTROL', percent: 90 },
+    body_calm: { label: 'Less reactive to stress', level: 'CALM', percent: 80 },
+    confidence_daily: { label: 'More confident in everyday situations', level: 'HIGH CONFIDENCE', percent: 85 },
+    thoughts_calmer: { label: 'More present and less in my head', level: 'HIGH CONTROL', percent: 90 },
+    able_pause: { label: 'Calmer, even when life gets busy', level: 'CALM', percent: 80 }
   };
-
-  
-
   // Gather bar data for Q21 and Q17, filtered by anxiety type
   const barsQ21 = q21Arr
   .slice(0, 3)
@@ -106,8 +94,57 @@ const QuizPlan = () => {
   console.log('[PLAN] Q21 bar data:', barsQ21);
   console.log('[PLAN] Q17 bar data:', barsQ17);
 
+  // const buildPaymentUrl = (baseUrl: string): string => {
+  // const params = new URLSearchParams({
+  //     name,
+  //     gender,
+  //     email,
+  //     phone,
+  //     anxietyType,
+  //     severity,
+  //   });
+  //   return `${baseUrl}?${params.toString()}`;
+  // };
+
+  // const paymentOptions = [
+  //   {
+  //     id: 'one-time',
+  //     label: 'ONE TIME PAYMENT',
+  //     price: '$70.00',
+  //     originalPrice: '$147.00',
+  //     discount: '52% Discount',
+  //     popular: true,
+  //     url: buildPaymentUrl('https://facebook.com'), // Replace with real URL
+  //   },
+  //   {
+  //     id: 'installment',
+  //     label: '3X INSTALLMENT PLAN',
+  //     price: '$25.00',
+  //     originalPrice: '$49.00',
+  //     discount: '49% Discount',
+  //     popular: false,
+  //     url: buildPaymentUrl('https://google.com'), // Replace with real URL
+  //   },
+  // ];
+
+  // Continue button handler
+  const handleContinue = () => {
+    let baseUrl = "";
+  
+    if (anxietyType === "panic") {
+      baseUrl = "https://facebook.com";
+    } else if (anxietyType === "avoidant") {
+      baseUrl = "https://google.com";
+    } else if (anxietyType === "ruminator") {
+      baseUrl = "https://google.com";
+    }
+  
+    const redirectUrl = buildPaymentUrl(baseUrl);
+    window.open(redirectUrl,"_blank");
+  };
+  
   const buildPaymentUrl = (baseUrl: string): string => {
-  const params = new URLSearchParams({
+    const params = new URLSearchParams({
       name,
       gender,
       email,
@@ -116,35 +153,6 @@ const QuizPlan = () => {
       severity,
     });
     return `${baseUrl}?${params.toString()}`;
-  };
-
-  const paymentOptions = [
-    {
-      id: 'one-time',
-      label: 'ONE TIME PAYMENT',
-      price: '$70.00',
-      originalPrice: '$147.00',
-      discount: '52% Discount',
-      popular: true,
-      url: buildPaymentUrl('https://facebook.com'), // Replace with real URL
-    },
-    {
-      id: 'installment',
-      label: '3X INSTALLMENT PLAN',
-      price: '$25.00',
-      originalPrice: '$49.00',
-      discount: '49% Discount',
-      popular: false,
-      url: buildPaymentUrl('https://google.com'), // Replace with real URL
-    },
-  ];
-
-  // Continue button handler
-  const handleContinue = () => {
-    const selectedOption = paymentOptions.find(opt => opt.id === selectedPayment);
-    if (selectedOption && selectedOption.url) {
-      window.open(selectedOption.url, '_blank');
-    }
   };
 
   useEffect(() => {
@@ -316,7 +324,7 @@ const QuizPlan = () => {
           {/* Now vs Goal Section */}
           <div className="mb-10 sm:mb-16">
             {/* Image with absolutely positioned headings */}
-            <div className="relative w-full sm:w-[900px] mx-auto mb-6 sm:mb-8 flex justify-center">
+            <div className="relative w-full sm:w-[900px] mx-auto mb-6 sm:mb-0 flex justify-center">
               {/* Headings for desktop */}
               <span className="hidden sm:block absolute top-[-32px] left-[18%] z-10">
                 <span className="bg-gray-800 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow relative">
@@ -342,11 +350,11 @@ const QuizPlan = () => {
               <img 
                 src={beforeAfterImage}
                 alt="Before and after transformation comparison" 
-                className="w-full sm:w-[900px] h-40 sm:h-[400px] object-contain mx-auto"
+                className="w-full sm:w-[850px] h-40 sm:h-[400px] object-contain mx-auto"
               />
             </div>
             {/* Dynamic Bars Section */}
-            <div className="flex flex-col sm:flex-row justify-center items-start gap-4 sm:gap-8 mt-6 w-full">
+            <div className="flex flex-col sm:flex-row justify-center items-start gap-4 sm:gap-4 mt-0 w-full">
               {/* Q21: Where You Are Now (Grey Card) */}
               <div className="w-full sm:w-96 bg-gradient-to-br from-gray-400 to-gray-700 rounded-xl p-6 shadow-md mb-4 sm:mb-0 min-h-[80px] overflow-visible">
                 {barsQ21.length > 0 ? (
@@ -390,39 +398,10 @@ const QuizPlan = () => {
                 )}
             </div>
           </div>
-
+          <p className="font-bold text-center text-2xl mt-8">
+            I want to take control of my anxiety for good
+          </p>
           <hr className="my-8 border-gray-300 border-t-4 mb-8" />
-
-          {/* What's Inside Your Reset Plan Section */}
-          {/* <div className="mt-12 mb-16 text-center">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">What’s Inside Your Reset Plan</h2>
-            <p className="text-gray-700 mb-8 text-lg max-w-2xl mx-auto">
-              Your 7-Day Reset blends micro-tools that rewire your nervous system, gently and fast.
-            </p>
-            <div className="flex flex-col gap-4 max-w-2xl mx-auto">
-              <div className="border-2 border-emerald-400 rounded-lg px-6 py-4 text-left bg-emerald-50 font-medium text-gray-900">
-                ✓ <span className="font-bold">4-Minute Exercise</span> — calms racing thoughts & heart within one song.
-              </div>
-              <div className="border-2 border-emerald-400 rounded-lg px-6 py-4 text-left bg-emerald-50 font-medium text-gray-900">
-                ✓ <span className="font-bold">Break free from hidden triggers</span> — learn a 3-step interrupt pattern.
-              </div>
-              <div className="border-2 border-emerald-400 rounded-lg px-6 py-4 text-left bg-emerald-50 font-medium text-gray-900">
-                ✓ <span className="font-bold">Rapid-relief tool</span> — activate your calm response on command.
-              </div>
-              <div className="border-2 border-emerald-400 rounded-lg px-6 py-4 text-left bg-emerald-50 font-medium text-gray-900">
-                ✓ <span className="font-bold">Rewire anxious thoughts</span> — swap catastrophising for clear decisions.
-              </div>
-              <div className="border-2 border-emerald-400 rounded-lg px-6 py-4 text-left bg-emerald-50 font-medium text-gray-900">
-                ✓ <span className="font-bold">Regain physical calm</span> — release tension & steady breathing in minutes.
-              </div>
-              <div className="border-2 border-emerald-400 rounded-lg px-6 py-4 text-left bg-emerald-50 font-medium text-gray-900">
-                ✓ <span className="font-bold">Track progress</span> — watch your anxiety index drop every day.
-              </div>
-              <div className="border-2 border-emerald-400 rounded-lg px-6 py-4 text-left bg-emerald-50 font-medium text-gray-900">
-                ✓ <span className="font-bold">Seven micro-moves</span> — follow daily or binge; all unlocked now.
-              </div>
-            </div>
-          </div> */}
 
           {/* Why This Method Works So Well Section */}
           <div className="mb-16 text-center">
@@ -432,7 +411,7 @@ const QuizPlan = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-stretch max-w-4xl mx-auto">
               {/* CBT Card */}
-              <div className="flex-1 border-2 border-emerald-100 rounded-xl bg-white px-6 py-8 shadow-sm flex flex-col items-center min-w-[260px]">
+              <div className="flex-1 border-2 border-emerald-100 rounded-xl bg-white px-6 py-8 shadow-2xl flex flex-col items-center min-w-[260px]">
                 <img src="/QuizDesign/1.png" alt="CBT icon" className="w-12 h-12 mb-4" />
                 <div className="text-left w-full">
                   <div className="font-bold text-lg text-gray-900 mb-1">CBT — Cognitive Behavioral Therapy</div>
@@ -441,7 +420,7 @@ const QuizPlan = () => {
                 </div>
               </div>
               {/* MCT Card */}
-              <div className="flex-1 border-2 border-emerald-100 rounded-xl bg-white px-6 py-8 shadow-sm flex flex-col items-center min-w-[260px]">
+              <div className="flex-1 border-2 border-emerald-100 rounded-xl bg-white px-6 py-8 shadow-2xl flex flex-col items-center min-w-[260px]">
                 <img src="/QuizDesign/2.png" alt="MCT icon" className="w-12 h-12 mb-4" />
                 <div className="text-left w-full">
                   <div className="font-bold text-lg text-gray-900 mb-1">MCT — Metacognitive Therapy</div>
@@ -450,7 +429,7 @@ const QuizPlan = () => {
                 </div>
               </div>
               {/* CBH Card */}
-              <div className="flex-1 border-2 border-emerald-100 rounded-xl bg-white px-6 py-8 shadow-sm flex flex-col items-center min-w-[260px]">
+              <div className="flex-1 border-2 border-emerald-100 rounded-xl bg-white px-6 py-8 shadow-2xl flex flex-col items-center min-w-[260px]">
                 <img src="/QuizDesign/3.png" alt="CBH icon" className="w-12 h-12 mb-4" />
                 <div className="text-left w-full">
                   <div className="font-bold text-lg text-gray-900 mb-1">CBH — Cognitive Behavioral Hypnotherapy</div>
@@ -461,43 +440,28 @@ const QuizPlan = () => {
             </div>
           </div>
 
-           <hr className="my-2 border-gray-300 border-t-4 mb-8" />
-
           {/* Therapy Results + Life Without vs. With Support Section */}
           <div className="text-center mb-16">
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">
-              Therapy Results + 
-            </h2>
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              "Life Without vs. With Support"
-            </h2>
-            
-            <p className="text-gray-700 text-sm mb-8">
-              Success rates from clinical methods:
-            </p>
-            
             {/* Graphic representation */}
-            <div className="flex justify-center items-center mb-8">
-              <div className="relative w-80 h-40">
-                {/* Image placeholders */}
-                <div className="absolute top-1/2 left-1/2 w-96 h-64 transform -translate-x-1/2 -translate-y-1/2">
-                  <img 
-                    src="/QuizDesign/with_without support (2).png" 
-                    alt="Without support illustration" 
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </div>
+            <div className="flex justify-center items-center mb-0">
+            <div className="w-96">
+              <img 
+                src="/QuizDesign/with_without support (2).png" 
+                alt="Without support illustration" 
+                className="w-full h-auto object-contain"
+              />
             </div>
-            
-            <p className="text-xs text-gray-600 mb-6 max-w-md mx-auto">
-              Research shows CBT can be effective for up to 70% of individuals. MCT and CBH have also demonstrated high success rates, especially when integrated. Our approach offers a more complete path with lasting results.
-            </p>
-            
-            <p className="text-sm font-semibold text-gray-800 mb-8">
-              Estimated combined approach success: up to 90%
-            </p>
-            
+          </div>
+          <p className="text-xs text-gray-600 mb-6 max-w-md mx-auto">
+            “Why we stack them: In Clinical Psychologist Tayyaba Ali, MSc’s practice,
+            combining these methods consistently delivers far higher success than any single
+            therapy, even for clients who’d plateaued elsewhere.†
+          </p>
+
+          <p className="text-[10px] text-gray-800 mb-8 text-center max-w-sm mx-auto">
+            *Kirsch etal., meta‑analysis, 18 studies, 577 participants.
+             †Practice audit, 142 clients (2023); independent study in planning.
+          </p>    
             {/* Comparison columns */}
             <div className="flex justify-center gap-8 max-w-2xl mx-auto">
               <div className="flex-1">
@@ -530,41 +494,91 @@ const QuizPlan = () => {
             <h2 className="text-2xl font-bold text-gray-900 mb-8">
               Testimonials
             </h2>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-            {[ 
-              "This is the first plan that actually matched how I think. It finally felt designed for someone like me.",
-              "I used to spiral every evening. Now I have a way to stop it before it starts.",
-              "I didn't think I'd ever feel calm again but this gave me back hope."
-            ].map((text, idx) => (
-              <div key={idx} className="bg-white border border-gray-400 rounded-lg p-8 text-left relative shadow-2xl">
-                {/* Comma image positioned half inside/outside top-left */}
-                <img
-                  src="/Icons/85.png"
-                  alt="Quotation mark"
-                  className="absolute top-0 left-9 -translate-x-1/2 -translate-y-1/2 w-10 h-10 opacity-70 pointer-events-none"
-                />
-                <p className="text-gray-700 text-sm leading-relaxed mb-6">
-                  {text}
-                </p>
-                 <hr className="my-2 border-gray-500" />
-                <div className="flex mb-0">
-                  {[...Array(5)].map((_, i) => (
-                    <span key={i} className="text-flourishmint text-lg">★</span>
-                  ))}
+              {[
+                  `“With her support,
+                  I’ve started to
+                  experience a genuine
+                  sense of calm and
+                  mental clarity.
+                  She helped me
+                  through the everyday
+                  struggles I thought I’d
+                  never escape.”
+
+
+
+
+
+
+
+
+                  — Verified Calm Reset Client`,
+                        `“I’ve tried many
+                        psychological
+                        services before but
+                        none of them seemed
+                        to work.
+                        With Tayyaba, it was
+                        very different.
+                        She gave me tools,
+                        space, and a rhythm I
+                        could actually stay
+                        with.”
+
+
+
+
+
+                 — Anonymous Clinical Participant`,
+                        `“With her support,
+                          I’ve started to
+                          experience a genuine
+                          sense of calm and
+                          mental clarity.
+                          She helped me
+                          through the everyday
+                          struggles I thought I’d
+                          never escape.”
+
+
+
+
+
+
+
+
+                  — Verified Calm Reset Client`
+              ].map((text, idx) => (
+                <div key={idx} className="bg-white border border-black rounded-lg p-8 text-left relative shadow-2xl">
+                  {/* Comma image */}
+                  <img
+                    src="/Icons/85.png"
+                    alt="Quotation mark"
+                    className="absolute top-0 left-9 -translate-x-1/2 -translate-y-1/2 w-10 h-10 opacity-70 pointer-events-none"
+                  />
+                  <p className="text-gray-700 text-sm leading-relaxed mb-6 whitespace-pre-line">
+                    {text}
+                  </p>
+                  <hr className="my-2 border-black" />
+                  <div className="flex mb-0">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-flourishmint text-lg">★</span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
 
-          </div>
           <hr className="my-2 border-gray-300 border-t-4 mb-8" />
 
           <div className="w-full max-w-3xl mx-auto">
             <h2 className="text-center text-2xl font-semibold mb-6">Still Have Questions?</h2>
             
             <div className="space-y-3">
-              {/* FAQ Item */}
+              {/* FAQ 1 */}
               <details className="group border rounded-md overflow-hidden">
                 <summary className="bg-[#274C3A] text-white px-4 py-3 cursor-pointer flex justify-between items-center">
                   <span className="font-semibold">Q: Is this the same as formal therapy?</span>
@@ -573,10 +587,24 @@ const QuizPlan = () => {
                   </svg>
                 </summary>
                 <div className="bg-white text-gray-800 p-4 border-t">
-                  <p><strong>A:</strong> No — this is a self-guided reset, built from the same tools used in therapy but designed for day-to-day calm. It can support you whether you're in therapy or not.</p>
+                  <p><strong>A:</strong> No, this is a self-guided reset, built from the same tools used in therapy but designed for day-to-day calm. It can support you whether you're in therapy or not.</p>
                 </div>
               </details>
 
+              {/* FAQ 2 */}
+              <details className="group border rounded-md overflow-hidden">
+                <summary className="bg-[#274C3A] text-white px-4 py-3 cursor-pointer flex justify-between items-center">
+                  <span className="font-semibold">Q: How fast can I feel results?</span>
+                  <svg className="w-5 h-5 transform group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="bg-white text-gray-800 p-4 border-t">
+                  <p><strong>A:</strong> Some people feel a shift within 1–2 weeks. Most see significant change within 4–6 weeks.</p>
+                </div>
+              </details>
+
+              {/* FAQ 3 */}
               <details className="group border rounded-md overflow-hidden">
                 <summary className="bg-[#274C3A] text-white px-4 py-3 cursor-pointer flex justify-between items-center">
                   <span className="font-semibold">Q: Do I really get everything right away?</span>
@@ -585,10 +613,11 @@ const QuizPlan = () => {
                   </svg>
                 </summary>
                 <div className="bg-white text-gray-800 p-4 border-t">
-                  <p><strong>A:</strong> No — this is a self-guided reset, built from the same tools used in therapy but designed for day-to-day calm. It can support you whether you're in therapy or not.</p>
+                  <p><strong>A:</strong> Yes, you get full access to all modules, tools, and resources from day one. You can start with the first step and move at your own pace, or explore the full library immediately.</p>
                 </div>
               </details>
 
+              {/* FAQ 4 */}
               <details className="group border rounded-md overflow-hidden">
                 <summary className="bg-[#274C3A] text-white px-4 py-3 cursor-pointer flex justify-between items-center">
                   <span className="font-semibold">Q: What if it doesn’t help me?</span>
@@ -597,10 +626,11 @@ const QuizPlan = () => {
                   </svg>
                 </summary>
                 <div className="bg-white text-gray-800 p-4 border-t">
-                  <p><strong>A:</strong> No — this is a self-guided reset, built from the same tools used in therapy but designed for day-to-day calm. It can support you whether you're in therapy or not.</p>
+                  <p><strong>A:</strong> The methods in the program are evidence-based and have helped thousands of people with anxiety. If you apply the tools consistently and don’t feel a difference, you can reach out for personal guidance on how to get better results.</p>
                 </div>
               </details>
 
+              {/* FAQ 5 */}
               <details className="group border rounded-md overflow-hidden">
                 <summary className="bg-[#274C3A] text-white px-4 py-3 cursor-pointer flex justify-between items-center">
                   <span className="font-semibold">Q: How long will I have access?</span>
@@ -609,10 +639,11 @@ const QuizPlan = () => {
                   </svg>
                 </summary>
                 <div className="bg-white text-gray-800 p-4 border-t">
-                  <p><strong>A:</strong> No — this is a self-guided reset, built from the same tools used in therapy but designed for day-to-day calm. It can support you whether you're in therapy or not.</p>
+                  <p><strong>A:</strong> You get lifetime access. Once you join, the program is yours to revisit whenever you need a reset or a refresher.</p>
                 </div>
               </details>
 
+              {/* FAQ 6 */}
               <details className="group border rounded-md overflow-hidden">
                 <summary className="bg-[#274C3A] text-white px-4 py-3 cursor-pointer flex justify-between items-center">
                   <span className="font-semibold">Q: Can I use this alongside therapy or medication?</span>
@@ -621,31 +652,22 @@ const QuizPlan = () => {
                   </svg>
                 </summary>
                 <div className="bg-white text-gray-800 p-4 border-t">
-                  <p><strong>A:</strong> No — this is a self-guided reset, built from the same tools used in therapy but designed for day-to-day calm. It can support you whether you're in therapy or not.</p>
+                  <p><strong>A:</strong> Yes, the tools complement other forms of treatment. Many members use the Reset alongside therapy or medication for faster progress and greater day-to-day calm.</p>
                 </div>
               </details>
             </div>
           </div>
           <hr className="my-2 border-gray-300 border-t-4 mb-8 mt-12" />
 
-          {/* Start Your 7-Day Plan Section */}
           {/* Final Pricing Section */}
-          {/* <div className="text-center mb-16">
-
+          <div className="text-center mb-16">
             <button 
               className="w-full max-w-2xl mx-auto bg-emerald-400 hover:bg-emerald-500 text-white py-6 px-12 rounded-full font-bold text-xl tracking-wider text-center transition-colors"
               onClick={handleContinue}
             >
-              Start My 7-Day Test-Drive – £0 Today
+              Get My Plan
             </button>
-            <div className="flex justify-center items-center gap-2 mt-4 text-gray-700 text-lg font-medium">
-              <span>SSL Secure</span>
-              <span className="mx-1">|</span>
-              <span>PCI Compliant</span>
-              <span className="mx-1">|</span>
-              <span>GMC-Registered Clinician</span>
-            </div>
-          </div> */}
+          </div>
           </div>
         </div>
       </main>
