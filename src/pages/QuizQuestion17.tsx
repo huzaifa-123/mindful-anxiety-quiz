@@ -7,7 +7,7 @@ const QuizQuestion17 = () => {
   const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  const question = "How much time can you realistically commit to your well-being each day?";
+  const question = "How much time can you realistically dedicate each day to your mental wellbeing?";
   
   const options = [
     {

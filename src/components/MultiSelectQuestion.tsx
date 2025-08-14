@@ -47,7 +47,9 @@ const MultiSelectQuestion = ({ question, options, onContinue, questionNumber }: 
       </h1>
       
       <p className="text-gray-600 text-sm mb-8 text-center">
-        (Select all that apply)
+        {questionNumber === "8"
+          ? "(Select all that apply – not scored)"
+          : "(Select all that apply)"}
       </p>
       
       <div className="w-full space-y-3 mb-12">

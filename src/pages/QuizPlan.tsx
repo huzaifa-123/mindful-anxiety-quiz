@@ -2,8 +2,6 @@ import Header from "../components/Header";
 import { useState, useEffect, useRef } from "react";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { calculateQuizResults } from "../utils/quizScoring";
-import { Check, ChevronDown } from "lucide-react";
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "../components/ui/accordion";
 
 
 const QuizPlan = () => {
@@ -12,6 +10,7 @@ const QuizPlan = () => {
   const { answers } = useQuizAnswers();
   const quizResults = calculateQuizResults(answers);
   const paymentRef = useRef(null);
+  const { resetAnswers } = useQuizAnswers();
 
   
   // Calculate user's anxiety type
@@ -36,16 +35,12 @@ const QuizPlan = () => {
   } else if (anxietyType === 'ruminator') {
     beforeAfterImage = '/QuizDesign/RUMINATOR CHECKOUT SECTION.png';
   }
-  console.log('[PLAN] Calculated anxiety type:', anxietyType);
-  console.log('[PLAN] Selected before/after image:', beforeAfterImage);
 
   // Q17/Q21 answer keys for the user
   const q17Answers = answers.question16 || [];
   const q21Answers = answers.question20 || [];
   const q17Arr = Array.isArray(q17Answers) ? q17Answers : [q17Answers];
   const q21Arr = Array.isArray(q21Answers) ? q21Answers : [q21Answers];
-  console.log('[PLAN] Q17 selected answers:', q17Arr);
-  console.log('[PLAN] Q21 selected answers:', q21Arr);
 
   // Mapping for bar/label data (should match answerTextMap keys and requirement doc)
   const barDataMap = {
@@ -138,7 +133,7 @@ const QuizPlan = () => {
     } else if (anxietyType === "ruminator") {
       baseUrl = "https://google.com";
     }
-  
+    resetAnswers();
     const redirectUrl = buildPaymentUrl(baseUrl);
     window.open(redirectUrl,"_blank");
   };
@@ -183,7 +178,7 @@ const QuizPlan = () => {
       </span>
       <button
         className="bg-flourishmint hover:bg-green-400 text-white w-full sm:w-auto px-4 sm:px-6 py-2 rounded-full text-sm font-semibold transition-colors"
-        onClick={() => paymentRef.current?.scrollIntoView({ behavior: 'smooth' })}
+        onClick={handleContinue}
       >
         GET MY PLAN
       </button>
@@ -303,6 +298,32 @@ const QuizPlan = () => {
         };
     }
   };
+  const testimonials = [
+    {
+      parts: [
+        "With her support,",
+        "I’ve started to experience a genuine sense of calm and mental clarity.",
+        "She helped me through the everyday struggles I thought I’d never escape.",
+      ],
+      author: "Verified Calm Reset Client",
+    },
+    {
+      parts: [
+        "I’ve tried many psychological services before but none of them seemed to work.",
+        "With Tayyaba, it was very different.",
+        "She gave me tools, space, and a rhythm I could actually stay with.",
+      ],
+      author: "Anonymous Clinical Participant",
+    },
+    {
+      parts: [
+        "With her support,",
+        "I’ve started to experience a genuine sense of calm and mental clarity.",
+        "She helped me through the everyday struggles I thought I’d never escape.",
+      ],
+      author: "Verified Calm Reset Client",
+    },
+  ];
 
   const content = getAnxietyContent();
 
@@ -354,9 +375,8 @@ const QuizPlan = () => {
               />
             </div>
             {/* Dynamic Bars Section */}
-            <div className="flex flex-col sm:flex-row justify-center items-start gap-4 sm:gap-4 mt-0 w-full">
-              {/* Q21: Where You Are Now (Grey Card) */}
-              <div className="w-full sm:w-96 bg-gradient-to-br from-gray-400 to-gray-700 rounded-xl p-6 shadow-md mb-4 sm:mb-0 min-h-[80px] overflow-visible">
+            <div className="flex flex-col sm:flex-row justify-center items-stretch gap-4 sm:gap-4 mt-0 w-full">
+              <div className="w-full sm:w-96 rounded-xl p-6 shadow-md overflow-visible bg-gradient-to-br from-gray-400 to-gray-700 mb-4 sm:mb-0 min-h-[260px]">
                 {barsQ21.length > 0 ? (
                   barsQ21.map((bar, idx) => (
                   <div key={bar.key} className="mb-6 last:mb-0">
@@ -377,7 +397,7 @@ const QuizPlan = () => {
                 )}
               </div>
               {/* Q17: 30 Days From Now (White Card) */}
-              <div className="w-full sm:w-96 bg-white rounded-xl p-6 shadow-md min-h-[80px] overflow-visible">
+              <div className="w-full sm:w-96 bg-white rounded-xl p-6 shadow-md overflow-visible mb-4 sm:mb-0 min-h-[260px]">
                 {barsQ17.length > 0 ? (
                   barsQ17.map((bar, idx) => (
                   <div key={bar.key} className="mb-6 last:mb-0">
@@ -496,78 +516,43 @@ const QuizPlan = () => {
             </h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              {[
-                  `“With her support,
-                  I’ve started to
-                  experience a genuine
-                  sense of calm and
-                  mental clarity.
-                  She helped me
-                  through the everyday
-                  struggles I thought I’d
-                  never escape.”
-
-
-
-
-
-
-
-
-                  — Verified Calm Reset Client`,
-                        `“I’ve tried many
-                        psychological
-                        services before but
-                        none of them seemed
-                        to work.
-                        With Tayyaba, it was
-                        very different.
-                        She gave me tools,
-                        space, and a rhythm I
-                        could actually stay
-                        with.”
-
-
-
-
-
-                 — Anonymous Clinical Participant`,
-                        `“With her support,
-                          I’ve started to
-                          experience a genuine
-                          sense of calm and
-                          mental clarity.
-                          She helped me
-                          through the everyday
-                          struggles I thought I’d
-                          never escape.”
-
-
-
-
-
-
-
-
-                  — Verified Calm Reset Client`
-              ].map((text, idx) => (
-                <div key={idx} className="bg-white border border-black rounded-lg p-8 text-left relative shadow-2xl">
-                  {/* Comma image */}
-                  <img
-                    src="/Icons/85.png"
-                    alt="Quotation mark"
-                    className="absolute top-0 left-9 -translate-x-1/2 -translate-y-1/2 w-10 h-10 opacity-70 pointer-events-none"
-                  />
-                  <p className="text-gray-700 text-sm leading-relaxed mb-6 whitespace-pre-line">
-                    {text}
-                  </p>
-                  <hr className="my-2 border-black" />
-                  <div className="flex mb-0">
+              {testimonials.map((t, idx) => (
+                <div
+                key={idx}
+                className="bg-white border border-black rounded-lg p-8 text-left relative shadow-2xl flex flex-col justify-between min-h-[320px]"
+              >
+                {/* Quotation mark icon */}
+                <img
+                  src="/Icons/85.png"
+                  alt="Quotation mark"
+                  className="absolute top-0 left-9 -translate-x-1/2 -translate-y-1/2 w-10 h-10 opacity-70 pointer-events-none"
+                />
+              
+                {/* Testimonial paragraphs */}
+                <div>
+                  {t.parts.map((part, pIdx) => (
+                    <p
+                      key={pIdx}
+                      className="text-gray-700 text-sm leading-relaxed mb-4 whitespace-pre-line"
+                    >
+                      {part}
+                    </p>
+                  ))}
+                </div>
+              
+                {/* Author and footer section */}
+                <div className="mt-8 flex flex-col gap-1 min-h-[80px]">
+                  <p className="  text-black m-0"> — {t.author}</p>
+                  <hr className="border-black" />
+                  <div className="flex">
                     {[...Array(5)].map((_, i) => (
-                      <span key={i} className="text-flourishmint text-lg">★</span>
+                      <span key={i} className="text-flourishmint text-lg">
+                        ★
+                      </span>
                     ))}
                   </div>
                 </div>
+              </div>       
               ))}
             </div>
           </div>
@@ -661,12 +646,12 @@ const QuizPlan = () => {
 
           {/* Final Pricing Section */}
           <div className="text-center mb-16">
-            <button 
-              className="w-full max-w-2xl mx-auto bg-emerald-400 hover:bg-emerald-500 text-white py-6 px-12 rounded-full font-bold text-xl tracking-wider text-center transition-colors"
-              onClick={handleContinue}
-            >
-              Get My Plan
-            </button>
+          <button
+            className="mx-auto bg-emerald-400 hover:bg-emerald-500 text-white py-4 px-8 rounded-full font-bold text-xl tracking-wider text-center transition-colors block max-w-xs"
+            onClick={handleContinue}
+          >
+            Get My Plan
+          </button> 
           </div>
           </div>
         </div>

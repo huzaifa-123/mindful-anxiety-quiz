@@ -22,7 +22,7 @@ const QuizQuestion16 = () => {
   const handleOptionToggle = (id: string) => {
     if (selectedOptions.includes(id)) {
       setSelectedOptions(selectedOptions.filter((opt) => opt !== id));
-    } else if (selectedOptions.length < 3) {
+    } else if (selectedOptions.length < 5) {
       setSelectedOptions([...selectedOptions, id]);
     }
   };
@@ -52,7 +52,6 @@ const QuizQuestion16 = () => {
           <div className="w-full space-y-3 mb-12">
             {options.map((option) => {
               const isSelected = selectedOptions.includes(option.id);
-              const isDisabled = !isSelected && selectedOptions.length >= 3;
 
               return (
                 <div
@@ -60,11 +59,9 @@ const QuizQuestion16 = () => {
                   className={`flex items-center p-3 sm:p-4 border-2 rounded-lg cursor-pointer transition-colors ${
                     isSelected
                       ? "border-flourishmint bg-flourishmint/10"
-                      : isDisabled
-                      ? "border-gray-200 bg-white opacity-50 cursor-not-allowed"
                       : "border-gray-200 bg-white hover:border-flourishmint/50"
                   }`}
-                  onClick={() => !isDisabled && handleOptionToggle(option.id)}
+                  onClick={() => handleOptionToggle(option.id)}
                 >
                   <div className="w-8 h-8 mr-4 flex-shrink-0">
                     <img
@@ -79,14 +76,13 @@ const QuizQuestion16 = () => {
                   <input
                     type="checkbox"
                     checked={isSelected}
-                    onChange={() => !isDisabled && handleOptionToggle(option.id)}
+                    onChange={() => handleOptionToggle(option.id)}
                     className="ml-4"
                   />
                 </div>
               );
             })}
           </div>
-
           <div className="w-full flex flex-col items-center">
             <button
               onClick={handleContinue}

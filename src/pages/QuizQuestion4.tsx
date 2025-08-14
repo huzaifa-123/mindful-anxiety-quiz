@@ -4,40 +4,50 @@ import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
 const QuizQuestion4 = () => {
-  const { setAnswer, answers } = useQuizAnswers();
+  const { setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
-  console.log(`🟢 Q4 COMPONENT MOUNT: Component mounted with current answers:`, JSON.stringify(answers, null, 2));
-
-  const question = "Which statement best describes your anxiety?";
+  const question = "When does your anxiety feel worse?";
   
   const options = [
     {
-      id: "panic1",
-      text: "I feel a sudden, overwhelming panic that seems to come out of nowhere",
-      icon: "/Icons/2.png"
+      id: "ruminator2",
+      text: "First thing in the morning",
+      icon: "/Icons/5.png"
     },
     {
-      id: "avoidant1", 
-      text: "I often avoid situations because of anxiety and fear",
-      icon: "/Icons/3.png"
+      id: "avoidant2",
+      text: "Before tasks or challenges",
+      icon: "/Icons/6.png"
     },
     {
-      id: "ruminator1",
-      text: "I get stuck in endless overthinking, doubts, and \"what if\" scenarios",
-      icon: "/Icons/4.png"
+      id: "avoidant3",
+      text: "In social situations",
+      icon: "/Icons/7.png"
+    },
+    {
+      id: "panic2",
+      text: "At random times without a clear cause",
+      icon: "/Icons/8.png"
+    },
+    {
+      id: "ruminator3",
+      text: "In the evening or before sleeping",
+      icon: "/Icons/9.png"
+    },
+    {
+      id: "panic3",
+      text: "When physical symptoms suddenly spike",
+      icon: "/Icons/10.png"
     }
   ];
 
   const handleContinue = (selectedIds: string[]) => {
-    console.log(`🟢 Q4 HANDLE CONTINUE: Called with selectedIds:`, selectedIds);
-    console.log(`🟢 Q4 HANDLE CONTINUE: Type:`, typeof selectedIds);
-    console.log(`🟢 Q4 HANDLE CONTINUE: Is array:`, Array.isArray(selectedIds));
-    console.log(`🟢 Q4 HANDLE CONTINUE: About to call setAnswer("question4", selectedIds)`);
+    console.log(`🟢 Q4 COMPONENT DEBUG: Selected IDs:`, selectedIds);
+    console.log(`🟢 Q4 COMPONENT DEBUG: Type:`, typeof selectedIds);
+    console.log(`🟢 Q4 COMPONENT DEBUG: Is array:`, Array.isArray(selectedIds));
     
     setAnswer("question4", selectedIds);
-    
-    console.log(`🟢 Q4 HANDLE CONTINUE: setAnswer called, now navigating to question5`);
     navigate("/quiz/question5");
   };
 

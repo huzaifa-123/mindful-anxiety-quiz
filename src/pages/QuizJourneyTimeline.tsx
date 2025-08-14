@@ -119,7 +119,7 @@ const QuizJourneyTimeline = () => {
           
           {/* Timeline visualization container */}
           <div className="w-full max-w-md mb-2 flex flex-col items-center">
-            <h2 className="text-gray-800 font-semibold text-lg mb-4 tracking-wide">
+            <h2 className="text-gray-800 font-semibold text-lg mt-8  tracking-wide">
               30 DAYS TIMELINE
             </h2>
             <img

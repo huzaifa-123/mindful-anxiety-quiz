@@ -56,8 +56,8 @@ const QuizGenderQuestion: React.FC<QuizGenderQuestionProps> = ({ onAnswered }) =
               className={`w-full flex items-center justify-center transition font-semibold py-3 text-base
                 ${
                   answers.gender === a.value
-                    ? "bg-flourishmint text-flourishgreen border-t-2 border-flourishmint"
-                    : "bg-flourishgreen text-flourishwhite border-t-2 border-flourishgreen hover:bg-flourishmint hover:text-flourishgreen"
+                    ? "bg-flourishmint text-flourishgreen  border-flourishmint"
+                    : "bg-flourishgreen text-flourishwhite  border-flourishgreen hover:bg-flourishmint hover:text-flourishgreen"
                 }
               `}
             >

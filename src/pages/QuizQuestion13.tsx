@@ -22,7 +22,7 @@ const QuizQuestion13 = () => {
     },
     {
       id: "over_year",
-      text: "Over 6 months",
+      text: "6–24 months",
       icon: "/Icons/33.png"
     },
     {
