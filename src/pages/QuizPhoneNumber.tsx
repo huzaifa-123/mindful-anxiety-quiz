@@ -25,13 +25,11 @@ const QuizPhoneNumber = () => {
     e.preventDefault();
 
     if (!isValidPhoneNumber(phone)) {
-      alert("Please enter a valid phone number (e.g., 0301-2345678)");
+      alert("Please enter a valid phone number (e.g., +44 7123 456789)");
       return;
     }
 
-    setAnswer("email_preference", {
-      phone: phone.trim() || null
-    });
+    setAnswer("phone", { phone });
     setShowPopup(true);
     setTimeout(() => {
       setShowPopup(false);
@@ -42,9 +40,7 @@ const QuizPhoneNumber = () => {
 
   // Handle the skip button
   const handleSkip = () => {
-    setAnswer("email_preference", {
-      phone: null
-    });
+    setAnswer("phone", phone);
     sendAnswersToAPI();
     navigate("/quiz/anxiety-profile");
   };

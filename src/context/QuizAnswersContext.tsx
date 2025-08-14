@@ -31,10 +31,9 @@ type QuizAnswer = {
   plan_journaling?: string;
   plan_tools?: string;
   plan_support_style?: string;
-  email_preference?: {
   email: string;
-  phone?: string | null;
-};
+  phone?: string;
+
   // More fields will be added for additional questions
 };
 const questionTextMap: Record<keyof QuizAnswer, string> = {
@@ -63,7 +62,8 @@ const questionTextMap: Record<keyof QuizAnswer, string> = {
   plan_journaling: "Familiarity with journaling",
   plan_tools: "Response to body-based tools",
   plan_support_style: "Preferred support style",
-  email_preference: "Email & SMS Preferences",
+  email:"",
+  phone:"",
   gender: "",
   age: "",
   name: ""

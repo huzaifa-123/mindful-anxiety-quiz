@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -11,22 +11,26 @@ const AVATARS = [
   {
     label: "I'm Male",
     value: "male",
-    img: "/QuizDesign/P1 - Male.png",
+    img: "/QuizDesign/P1-Male.png",
   },
   {
     label: "I'm Female",
     value: "female",
-    img: "/QuizDesign/P1 - Female.png",
+    img: "/QuizDesign/P1-Female.png",
   },
 ];
 
 const QuizGenderQuestion: React.FC<QuizGenderQuestionProps> = ({ onAnswered }) => {
-  const { answers, setAnswer } = useQuizAnswers();
+  const { setAnswer } = useQuizAnswers(); // do not destructure answers here
   const navigate = useNavigate();
 
+  // Local state to track selection just for this page load
+  const [selectedGender, setSelectedGender] = useState<"male" | "female" | null>(null);
+
   const handleSelect = (gender: "male" | "female") => {
-    setAnswer("gender", gender);
-    navigate("/quiz/age"); // Go to QuizAge page after selecting
+    setSelectedGender(gender);       // update local selected state
+    setAnswer("gender", gender);     // save to context
+    navigate("/quiz/age");           // go to next step
     if (onAnswered) onAnswered();
   };
 
@@ -42,9 +46,9 @@ const QuizGenderQuestion: React.FC<QuizGenderQuestionProps> = ({ onAnswered }) =
         {AVATARS.map((a) => (
           <div
             key={a.value}
-            className="flex flex-col w-44 sm:w-56 bg-white border-2 rounded-xl shadow-sm overflow-hidden"
+            className="flex flex-col w-44 sm:w-56 border-2 rounded-xl shadow-sm overflow-hidden"
           >
-            <div className="flex-1 flex flex-col items-center justify-center pt-4 px-3">
+            <div className="flex-1 flex flex-col bg-transparent items-center justify-center pt-4 px-3">
               <img
                 src={a.img}
                 alt={a.label}
@@ -55,9 +59,9 @@ const QuizGenderQuestion: React.FC<QuizGenderQuestionProps> = ({ onAnswered }) =
               onClick={() => handleSelect(a.value as "male" | "female")}
               className={`w-full flex items-center justify-center transition font-semibold py-3 text-base
                 ${
-                  answers.gender === a.value
-                    ? "bg-flourishmint text-flourishgreen  border-flourishmint"
-                    : "bg-flourishgreen text-flourishwhite  border-flourishgreen hover:bg-flourishmint hover:text-flourishgreen"
+                  selectedGender === a.value
+                    ? "bg-flourishmint text-flourishgreen border-flourishmint"
+                    : "bg-flourishgreen text-flourishwhite border-flourishgreen hover:bg-flourishmint hover:text-flourishgreen"
                 }
               `}
             >
@@ -67,7 +71,7 @@ const QuizGenderQuestion: React.FC<QuizGenderQuestionProps> = ({ onAnswered }) =
           </div>
         ))}
       </div>
-      <span className="font-inter text-lg text-gray-700 mt-2 mb-6 text-center">
+      <span className="font-semibold text-lg text-gray-700 mt-2 mb-6 text-center">
         Just 3 minutes to clarity
       </span>
     </div>

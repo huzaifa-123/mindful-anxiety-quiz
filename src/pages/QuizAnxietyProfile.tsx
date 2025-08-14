@@ -131,6 +131,26 @@ const QuizAnxietyProfile = () => {
         };
     }
   };
+  const getAnxietyTypeIcon = (type: string) => {
+    switch (type) {
+      case "panic":
+        return {
+          src: "/Icons/81.png",
+          alt: "Panic anxiety icon"
+        };
+      case "ruminator":
+        return {
+          src: "/Icons/82.png",
+          alt: "Ruminator anxiety icon"
+        };
+      case "avoidant":
+        return {
+          src: "/Icons/83.png",
+          alt: "Avoidant anxiety icon"
+        };
+    }
+  };
+  
 
   const anxietyImage = getAnxietyTypeImage(results.dominantType);
 
@@ -143,6 +163,9 @@ const QuizAnxietyProfile = () => {
    .sort((a, b) => b.percentage - a.percentage);
 
   const secondaryType = typePercentages[0];
+  const icon = getAnxietyTypeIcon(results.dominantType);
+  const title = getTypeTitle(results.dominantType);
+  const description = getTypeDescription(results.dominantType);
 
   // Debug: Log secondary type calculation
   console.log("🔴 ANXIETY PROFILE DEBUG: Type percentages:", results.typePercentages);
@@ -207,14 +230,25 @@ const QuizAnxietyProfile = () => {
           {/* Main type card */}
           <Card className={`mb-6 ${typeStyles.bgColor} ${typeStyles.borderColor} border-2`}>
             <CardContent className="p-6">
-              <h3 className={`font-bold text-lg mb-3 ${typeStyles.textColor}`}>
-                {getTypeTitle(results.dominantType)}
-              </h3>
+              {/* Row with Icon and Anxiety Type Title */}
+              <div className="flex items-center mb-3">
+                <img
+                  src={icon.src}
+                  alt={icon.alt}
+                  className="w-6 h-6 object-contain mr-2"
+                />
+                <h3 className={`font-bold text-lg ${typeStyles.textColor}`}>
+                  {title}
+                </h3>
+              </div>
+
+              {/* Description in next line */}
               <p className={`text-sm leading-relaxed ${typeStyles.textColor}`}>
-                {getTypeDescription(results.dominantType)}
+                {description}
               </p>
             </CardContent>
           </Card>
+
 
           {/* Secondary style section - FIXED: Now always shows heading when condition is met */}
           {secondaryType ? (

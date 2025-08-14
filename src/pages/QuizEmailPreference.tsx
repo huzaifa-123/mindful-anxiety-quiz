@@ -24,7 +24,7 @@ const QuizEmailPage = () => {
     }
 
     setEmailError("");
-    setAnswer("email_preference", { email });
+    setAnswer("email",  email );
 
     setTimeout(() => {
       navigate("/quiz/phone-number");

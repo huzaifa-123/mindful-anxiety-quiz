@@ -21,8 +21,8 @@ const QuizPlan = () => {
   const [selectedPayment, setSelectedPayment] = useState('one-time');
   const name = answers.name || "";
   const gender = answers.gender || "";
-  const email = answers.email_preference?.email || "";
-  const phone = answers.email_preference?.phone || "";
+  const email = answers.email || "";
+  const phone = answers.phone || "";
   const anxietyType = results.dominantType;
   const severity = results.severity;
 
@@ -89,39 +89,6 @@ const QuizPlan = () => {
   console.log('[PLAN] Q21 bar data:', barsQ21);
   console.log('[PLAN] Q17 bar data:', barsQ17);
 
-  // const buildPaymentUrl = (baseUrl: string): string => {
-  // const params = new URLSearchParams({
-  //     name,
-  //     gender,
-  //     email,
-  //     phone,
-  //     anxietyType,
-  //     severity,
-  //   });
-  //   return `${baseUrl}?${params.toString()}`;
-  // };
-
-  // const paymentOptions = [
-  //   {
-  //     id: 'one-time',
-  //     label: 'ONE TIME PAYMENT',
-  //     price: '$70.00',
-  //     originalPrice: '$147.00',
-  //     discount: '52% Discount',
-  //     popular: true,
-  //     url: buildPaymentUrl('https://facebook.com'), // Replace with real URL
-  //   },
-  //   {
-  //     id: 'installment',
-  //     label: '3X INSTALLMENT PLAN',
-  //     price: '$25.00',
-  //     originalPrice: '$49.00',
-  //     discount: '49% Discount',
-  //     popular: false,
-  //     url: buildPaymentUrl('https://google.com'), // Replace with real URL
-  //   },
-  // ];
-
   // Continue button handler
   const handleContinue = () => {
     let baseUrl = "";
@@ -185,119 +152,6 @@ const QuizPlan = () => {
     </div>
   );
 
-  // Content based on anxiety type
-  const getAnxietyContent = () => {
-    switch (anxietyType) {
-      case "panic":
-        return {
-          currentExperience: {
-            mainPoints: [
-              "Sudden body jolts, pounding heart, tight chest",
-              "Fear hits without warning or clear reason", 
-              "Breathing feels shallow or stuck"
-            ],
-            focusAreas: [
-              "Stuck in \"what if\" panic spirals",
-              "Hard to feel safe even when nothing's wrong",
-              "Can't seem to anchor or calm down"
-            ]
-          },
-          calmResetVision: {
-            mainPoints: [
-              "Early signals are noticed and softened",
-              "Body and breath begin responding with more ease",
-              "You feel grounded even when anxiety shows up"
-            ],
-            focusAreas: [
-              "CBT Focus: Exposure to physical cues, response flexibility",
-              "MCT Focus: Detached awareness of panic loops",
-              "CBH Focus: Anchored calm, breath-body safety memory"
-            ]
-          }
-        };
-      case "avoidant":
-        return {
-          currentExperience: {
-            mainPoints: [
-              "You avoid things that matter to you",
-              "Fear of discomfort stops you from starting",
-              "Even small tasks feel overwhelming"
-            ],
-            focusAreas: [
-              "Your mind jumps to the worst-case scenario",
-              "You freeze or stall instead of moving forward",
-              "Emotionally drained from constantly holding back"
-            ]
-          },
-          calmResetVision: {
-            mainPoints: [
-              "You start, even if it feels uncertain",
-              "You speak up without bracing for judgment",
-              "You choose presence over protection"
-            ],
-            focusAreas: [
-              "CBT Focus: Gradual re-engagement, structured action",
-              "MCT Focus: Unhooking meaning from fear triggers", 
-              "CBH Focus: Inner courage, grounded regulation in discomfort"
-            ]
-          }
-        };
-      case "ruminator":
-        return {
-          currentExperience: {
-            mainPoints: [
-              "Mind loops through \"what ifs\" and replays",
-              "Constant overthinking blocks decisions",
-              "Mental exhaustion builds from trying to figure it all out"
-            ],
-            focusAreas: [
-              "Thought-labeling, mental pattern rewiring",
-              "Over-attachment to thinking as control",
-              "No pause between thoughts, overstimulated system"
-            ]
-          },
-          calmResetVision: {
-            mainPoints: [
-              "Thoughts still come, but no longer spiral",
-              "Space returns between ideas, reactions, and clarity",
-              "You rest not because it's done, but because you've shifted your relationship with the loop"
-            ],
-            focusAreas: [
-              "CBT Focus: Journaling with thought distance",
-              "MCT Focus: Detached mindfulness, attention training",
-              "CBH Focus: Slower brainwave states, internal calm rituals"
-            ]
-          }
-        };
-      default:
-        return {
-          currentExperience: {
-            mainPoints: [
-              "Analyzing your specific anxiety patterns",
-              "Understanding your unique triggers",
-              "Identifying your response patterns"
-            ],
-            focusAreas: [
-              "Personalized assessment in progress",
-              "Custom recommendations being prepared",
-              "Tailored approach being developed"
-            ]
-          },
-          calmResetVision: {
-            mainPoints: [
-              "Customized calm strategies",
-              "Personalized coping techniques",
-              "Individual progress pathway"
-            ],
-            focusAreas: [
-              "CBT Focus: Personalized cognitive strategies",
-              "MCT Focus: Custom mindfulness approaches",
-              "CBH Focus: Individual nervous system regulation"
-            ]
-          }
-        };
-    }
-  };
   const testimonials = [
     {
       parts: [
@@ -325,7 +179,6 @@ const QuizPlan = () => {
     },
   ];
 
-  const content = getAnxietyContent();
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite">
@@ -419,7 +272,9 @@ const QuizPlan = () => {
             </div>
           </div>
           <p className="font-bold text-center text-2xl mt-8">
-            I want to take control of my anxiety for good
+            {anxietyType === "panic" && "I want to overcome panic attacks for good"}
+            {anxietyType === "ruminator" && "I want to stop spiraling and finally feel mentally clear."}
+            {anxietyType === "avoidant" && "I want to stop freezing and finally move forward with courage."}
           </p>
           <hr className="my-8 border-gray-300 border-t-4 mb-8" />
 
@@ -475,13 +330,13 @@ const QuizPlan = () => {
           <p className="text-xs text-gray-600 mb-6 max-w-md mx-auto">
             “Why we stack them: In Clinical Psychologist Tayyaba Ali, MSc’s practice,
             combining these methods consistently delivers far higher success than any single
-            therapy, even for clients who’d plateaued elsewhere.†
+            therapy, even for clients who’d plateaued elsewhere."
           </p>
 
           <p className="text-[10px] text-gray-800 mb-8 text-center max-w-sm mx-auto">
-            *Kirsch etal., meta‑analysis, 18 studies, 577 participants.
-             †Practice audit, 142 clients (2023); independent study in planning.
-          </p>    
+            *Kirsch etal., meta‑analysis, 18 studies, 577 participants.<br />
+            *Practice audit, 142 clients (2023); independent study in planning.
+          </p>   
             {/* Comparison columns */}
             <div className="flex justify-center gap-8 max-w-2xl mx-auto">
               <div className="flex-1">
@@ -530,16 +385,18 @@ const QuizPlan = () => {
               
                 {/* Testimonial paragraphs */}
                 <div>
-                  {t.parts.map((part, pIdx) => (
-                    <p
-                      key={pIdx}
-                      className="text-gray-700 text-sm leading-relaxed mb-4 whitespace-pre-line"
-                    >
-                      {part}
-                    </p>
-                  ))}
-                </div>
-              
+                  <p className="text-gray-700 text-sm leading-relaxed mb-4 whitespace-pre-line">
+                    &quot;
+                    {t.parts.map((part, idx) => (
+                      <span key={idx}>
+                        {part}
+                        {/* Add a line break after each part except the last */}
+                        {idx !== t.parts.length - 1 && <br />}
+                      </span>
+                    ))}
+                    &quot;
+                  </p>
+                </div>        
                 {/* Author and footer section */}
                 <div className="mt-8 flex flex-col gap-1 min-h-[80px]">
                   <p className="  text-black m-0"> — {t.author}</p>
@@ -653,6 +510,10 @@ const QuizPlan = () => {
             Get My Plan
           </button> 
           </div>
+          <hr className="my-2 border-gray-300 border-t-4 mb-8 mt-8" />
+          <p className="flex items-center justify-center gap-2 text-s text-gray-500 select-none mb-4">
+            <span>© 2025 MindFlourish | All Rights Reserved </span>
+          </p>
           </div>
         </div>
       </main>
