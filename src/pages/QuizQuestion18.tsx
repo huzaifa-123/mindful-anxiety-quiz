@@ -5,7 +5,7 @@ import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
 const QuizQuestion18 = () => {
-  const { setAnswer } = useQuizAnswers();
+  const { answers,setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
   const question = "Do you find it difficult to stop or control worrying?";
@@ -50,6 +50,7 @@ const QuizQuestion18 = () => {
             options={options}
             onSelect={handleSelect}
             questionNumber="18"
+            initialSelectedId={answers.question18 || ""}  
           />
         </div>
       </main>

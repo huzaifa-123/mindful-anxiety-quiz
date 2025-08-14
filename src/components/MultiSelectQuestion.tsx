@@ -1,5 +1,4 @@
-
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Checkbox } from "./ui/checkbox";
 
 interface Option {
@@ -14,16 +13,28 @@ interface MultiSelectQuestionProps {
   options: Option[];
   onContinue: (selectedOptions: string[]) => void;
   questionNumber: string;
+  initialSelectedOptions?: string[]; // NEW prop for initial selected values
 }
 
-const MultiSelectQuestion = ({ question, options, onContinue, questionNumber }: MultiSelectQuestionProps) => {
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+const MultiSelectQuestion = ({
+  question,
+  options,
+  onContinue,
+  questionNumber,
+  initialSelectedOptions = [], // default to empty array
+}: MultiSelectQuestionProps) => {
+  // Initialize selectedOptions from initialSelectedOptions prop on first render and sync if it changes
+  const [selectedOptions, setSelectedOptions] = useState<string[]>(initialSelectedOptions);
+
+  useEffect(() => {
+    setSelectedOptions(initialSelectedOptions);
+  }, [initialSelectedOptions]);
 
   const handleOptionToggle = (optionId: string) => {
     console.log(`🔵 MULTI-SELECT DEBUG: Toggling option ${optionId}`);
-    setSelectedOptions(prev => {
-      const newSelection = prev.includes(optionId) 
-        ? prev.filter(id => id !== optionId)
+    setSelectedOptions((prev) => {
+      const newSelection = prev.includes(optionId)
+        ? prev.filter((id) => id !== optionId)
         : [...prev, optionId];
       console.log(`🔵 MULTI-SELECT DEBUG: New selection:`, newSelection);
       return newSelection;
@@ -32,8 +43,6 @@ const MultiSelectQuestion = ({ question, options, onContinue, questionNumber }: 
 
   const handleContinue = () => {
     console.log(`🔵 MULTI-SELECT DEBUG: Continue button clicked with selections:`, selectedOptions);
-    console.log(`🔵 MULTI-SELECT DEBUG: Selected options length:`, selectedOptions.length);
-    console.log(`🔵 MULTI-SELECT DEBUG: About to call onContinue with:`, selectedOptions);
     onContinue(selectedOptions);
   };
 
@@ -45,13 +54,11 @@ const MultiSelectQuestion = ({ question, options, onContinue, questionNumber }: 
       <h1 className="font-semibold text-xl md:text-2xl text-flourishgreen mb-2 text-center tracking-tight">
         {question}
       </h1>
-      
+
       <p className="text-gray-600 text-sm mb-8 text-center">
-        {questionNumber === "8"
-          ? "(Select all that apply – not scored)"
-          : "(Select all that apply)"}
+        {questionNumber === "8" ? "(Select all that apply – not scored)" : "(Select all that apply)"}
       </p>
-      
+
       <div className="w-full space-y-3 mb-12">
         {options.map((option) => (
           <div
@@ -70,9 +77,7 @@ const MultiSelectQuestion = ({ question, options, onContinue, questionNumber }: 
                 className="w-full h-full object-contain"
               />
             </div>
-            <span className="flex-1 text-gray-700 text-base">
-              {option.text}
-            </span>
+            <span className="flex-1 text-gray-700 text-base">{option.text}</span>
             <Checkbox
               checked={selectedOptions.includes(option.id)}
               onChange={() => handleOptionToggle(option.id)}
@@ -81,7 +86,7 @@ const MultiSelectQuestion = ({ question, options, onContinue, questionNumber }: 
           </div>
         ))}
       </div>
-      
+
       <div className="w-full flex flex-col items-center">
         <button
           onClick={handleContinue}

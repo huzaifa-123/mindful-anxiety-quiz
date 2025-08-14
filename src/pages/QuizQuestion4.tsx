@@ -3,8 +3,9 @@ import MultiSelectQuestion from "../components/MultiSelectQuestion";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
+
 const QuizQuestion4 = () => {
-  const { setAnswer } = useQuizAnswers();
+  const { answers,setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
   const question = "When does your anxiety feel worse?";
@@ -63,6 +64,7 @@ const QuizQuestion4 = () => {
             options={options}
             onContinue={handleContinue}
             questionNumber="4"
+            initialSelectedOptions={answers.question4 || []} 
           />
         </div>
       </main>

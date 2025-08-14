@@ -62,6 +62,7 @@ const QuizQuestion7 = () => {
             options={options}
             onSelect={handleSelect}
             questionNumber="7"
+            initialSelectedId={answers.question7 || ""}  
             subtitle="(Choose the one that fits best)"
           />
         </div>

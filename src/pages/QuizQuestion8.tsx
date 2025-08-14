@@ -4,7 +4,7 @@ import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
 const QuizQuestion8 = () => {
-  const { setAnswer } = useQuizAnswers();
+  const { answers,setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
   const question = "Which techniques have you already tried?";
@@ -64,6 +64,7 @@ const QuizQuestion8 = () => {
             options={options}
             onContinue={handleContinue}
             questionNumber="8"
+            initialSelectedOptions={answers.question8 || []}  
           />
         </div>
       </main>

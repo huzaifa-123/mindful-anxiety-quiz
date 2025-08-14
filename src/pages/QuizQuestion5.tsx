@@ -53,6 +53,7 @@ const QuizQuestion5 = () => {
             options={options}
             onContinue={handleContinue}
             questionNumber="5"
+            initialSelectedOptions={answers.question5 || []}
           />
         </div>
       </main>

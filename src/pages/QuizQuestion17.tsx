@@ -4,7 +4,7 @@ import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
 const QuizQuestion17 = () => {
-  const { setAnswer } = useQuizAnswers();
+  const { answers,setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
   const question = "How much time can you realistically dedicate each day to your mental wellbeing?";
@@ -48,7 +48,8 @@ const QuizQuestion17 = () => {
           question={question}
           options={options}
           onSelect={handleSelect}
-            questionNumber="17"
+          questionNumber="17"
+          initialSelectedId={answers.question17 || ""}  
         />
       </main>
     </div>

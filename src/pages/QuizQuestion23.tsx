@@ -5,7 +5,7 @@ import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
 const QuizQuestion23 = () => {
-  const { setAnswer } = useQuizAnswers();
+  const { answers,setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
   const question = "Which change would give you the biggest sense of control today?";
@@ -44,7 +44,7 @@ const QuizQuestion23 = () => {
   ];
 
   const handleSelect = (optionId: string) => {
-    setAnswer("question22", optionId);
+    setAnswer("question23", optionId);
     navigate("/quiz/journey-timeline");
   };
 
@@ -60,6 +60,7 @@ const QuizQuestion23 = () => {
             options={options}
             onSelect={handleSelect}
             questionNumber="22"
+            initialSelectedId={answers.question23 || ""}  
             subtitle="(Choose one that resonates most)"
           />
         </div>

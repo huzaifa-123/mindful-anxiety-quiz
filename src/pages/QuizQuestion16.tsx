@@ -1,15 +1,13 @@
-
-import { useState } from "react";
+import { useState,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 
 const QuizQuestion16 = () => {
-  const { setAnswer } = useQuizAnswers();
+  const { answers, setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
   const question = "How do you want to feel 30 days from now?";
-  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
   const options = [
     { id: "grounded_steady", text: "Clear-headed and in control", icon: "/Icons/44.png" },
@@ -18,6 +16,17 @@ const QuizQuestion16 = () => {
     { id: "thoughts_calmer", text: "More present and less in my head", icon: "/Icons/47.png" },
     { id: "able_pause", text: "Calmer, even when life gets busy", icon: "/Icons/48.png" }
   ];
+
+  // Initialize selectedOptions as empty array, then sync with answers.question16 from context
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+
+  useEffect(() => {
+    if (Array.isArray(answers.question16)) {
+      setSelectedOptions(answers.question16);
+    } else {
+      setSelectedOptions([]);
+    }
+  }, [answers.question16]);
 
   const handleOptionToggle = (id: string) => {
     if (selectedOptions.includes(id)) {
@@ -77,7 +86,7 @@ const QuizQuestion16 = () => {
                     type="checkbox"
                     checked={isSelected}
                     onChange={() => handleOptionToggle(option.id)}
-                    className="ml-4"
+                    className="ml-4 accent-flourishmint" 
                   />
                 </div>
               );

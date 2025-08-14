@@ -18,9 +18,9 @@ type QuizAnswer = {
   // Removed: question13_cbt, question13_mct, question13_cbh
   question13?: string; // Duration of anxiety (renumbered from 14)
   question14?: string[]; // What has held you back (renumbered from 15)
-  question15?: string[];
+  question15?: string;
   question16?: string;
-  question17?: string[];
+  question17?: string;
   question18?: string; // Time available daily
   question19?: string; // Worry control
   question20?: string;

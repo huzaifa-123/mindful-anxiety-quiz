@@ -4,7 +4,7 @@ import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
 const QuizQuestion14 = () => {
-  const { setAnswer } = useQuizAnswers();
+  const { answers,setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
   const question = "What has held you back from managing your anxiety in the past?";
@@ -38,7 +38,7 @@ const QuizQuestion14 = () => {
   ];
 
   const handleContinue = (selectedOptions: string[]) => {
-    setAnswer("question13", selectedOptions);
+    setAnswer("question14", selectedOptions);
     navigate("/quiz/question15");
   };
 
@@ -53,6 +53,7 @@ const QuizQuestion14 = () => {
           options={options}
           onContinue={handleContinue}
           questionNumber="14"
+          initialSelectedOptions={answers.question14 || []}  
         />
       </main>
     </div>

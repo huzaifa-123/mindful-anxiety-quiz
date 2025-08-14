@@ -1,11 +1,11 @@
 import Header from "../components/Header";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Checkbox } from "../components/ui/checkbox";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
 const QuizQuestion20 = () => {
-  const { setAnswer } = useQuizAnswers();
+  const { answers,setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
 
@@ -20,6 +20,14 @@ const QuizQuestion20 = () => {
     { id: "low_self_esteem", text: "Low self-esteem", icon: "/Icons/65.png" },
     
   ];
+
+  useEffect(() => {
+    if (Array.isArray(answers.question20)) {
+      setSelectedOptions(answers.question20);
+    } else {
+      setSelectedOptions([]);
+    }
+  }, [answers.question20]);
 
   const handleOptionToggle = (optionId: string) => {
     setSelectedOptions(prev => {
