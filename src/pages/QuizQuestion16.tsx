@@ -2,6 +2,7 @@ import { useState,useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
+import { Checkbox } from "../components/ui/checkbox";
 
 const QuizQuestion16 = () => {
   const { answers, setAnswer } = useQuizAnswers();
@@ -64,31 +65,28 @@ const QuizQuestion16 = () => {
 
               return (
                 <div
-                  key={option.id}
-                  className={`flex items-center p-3 sm:p-4 border-2 rounded-lg cursor-pointer transition-colors ${
-                    isSelected
-                      ? "border-flourishmint bg-flourishmint/10"
-                      : "border-gray-200 bg-white hover:border-flourishmint/50"
-                  }`}
+                key={option.id}
+                className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-colors ${
+                  selectedOptions.includes(option.id)
+                    ? "border-flourishmint bg-flourishmint/10"
+                    : "border-gray-200 bg-white hover:border-flourishmint/50"
+                }`}
                   onClick={() => handleOptionToggle(option.id)}
                 >
                   <div className="w-8 h-8 mr-4 flex-shrink-0">
-                    <img
-                      src={option.icon}
-                      alt=""
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                  <span className="flex-1 text-gray-700 text-sm sm:text-base">
-                    {option.text}
-                  </span>
-                  <input
-                    type="checkbox"
-                    checked={isSelected}
-                    onChange={() => handleOptionToggle(option.id)}
-                    className="ml-4 accent-flourishmint" 
-                  />
-                </div>
+              <img
+                src={option.icon || "/dummy-icon.png"}
+                alt=""
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <span className="flex-1 text-gray-700 text-base">{option.text}</span>
+            <Checkbox
+              checked={selectedOptions.includes(option.id)}
+              onChange={() => handleOptionToggle(option.id)}
+              className="ml-4"
+            />
+          </div>
               );
             })}
           </div>

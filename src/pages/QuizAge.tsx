@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +21,9 @@ const QuizAge = () => {
     navigate("/quiz/name");
   };
 
+  // grab selected age from context answers
+  const selectedAge = answers.age || "";
+
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
@@ -33,17 +35,25 @@ const QuizAge = () => {
             What is your age range?
           </h1>
           <div className="w-full flex flex-col gap-3">
-            {AGE_OPTIONS.map(option => (
-              <button
-                key={option}
-                className={`w-full py-2 px-3 border rounded-md text-flourishgreen font-medium bg-white
-                  border-flourishmint hover:bg-flourishmint/10 transition
-                `}
-                onClick={() => handleSelect(option)}
-              >
-                {option}
-              </button>
-            ))}
+            {AGE_OPTIONS.map(option => {
+              const isSelected = option === selectedAge;
+              return (
+                <button
+                  key={option}
+                  onClick={() => handleSelect(option)}
+                  className={`
+                    w-full py-2 px-3 border rounded-md font-medium transition
+                    ${
+                      isSelected
+                        ? "bg-flourishmint text-flourishgreen border-flourishmint"
+                        : "bg-white text-flourishgreen border-flourishmint hover:bg-flourishmint/10"
+                    }
+                  `}
+                >
+                  {option}
+                </button>
+              );
+            })}
           </div>
         </div>
       </main>
