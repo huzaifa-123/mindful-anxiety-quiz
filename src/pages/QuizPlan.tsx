@@ -194,27 +194,41 @@ const QuizPlan = () => {
             Your Personalized Reset Journey:
             </h1>
           </div>
-
           {/* Now vs Goal Section */}
           <div className="mb-10 sm:mb-16">
             {/* Image with absolutely positioned headings */}
             <div className="w-full sm:max-w-[900px] mx-auto mb-6 sm:mb-0 flex justify-center">
-              <div className="relative w-full sm:w-[850px]">    
-                {/* Headings for desktop */}
-                <span className="hidden sm:block absolute top-[-32px] left-[18%] z-10">
+              {/* This wrapper is relative to the image itself */}
+              <div className="relative w-full sm:w-[850px]">
+                
+                {/* Desktop pointers */}
+                <span
+                  className="hidden sm:block absolute z-10"
+                  style={{
+                    top: "-32px",
+                    left: "18.5%", // % relative to image width
+                  }}
+                >
                   <span className="bg-gray-800 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow relative">
                     Where You Are Now
                     <span className="absolute left-1/2 -bottom-2 transform -translate-x-1/2 w-0 h-0 border-x-8 border-x-transparent border-t-8 border-t-gray-800"></span>
                   </span>
                 </span>
-                <span className="hidden sm:block absolute top-[-32px] left-[68%] z-10">
+
+                <span
+                  className="hidden sm:block absolute z-10"
+                  style={{
+                    top: "-32px",
+                    left: "72%", // % relative to image width
+                  }}
+                >
                   <span className="bg-emerald-400 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow relative">
                     30 Days From Now
                     <span className="absolute left-1/2 -bottom-2 transform -translate-x-1/2 w-0 h-0 border-x-8 border-x-transparent border-t-8 border-t-emerald-400"></span>
                   </span>
                 </span>
 
-                {/* Headings for mobile */}
+                {/* Mobile pointers */}
                 <div className="flex sm:hidden w-full justify-between absolute top-[-32px] left-0 px-4">
                   <span className="bg-gray-800 text-white text-xs font-semibold px-2 py-1 rounded-lg shadow">
                     Where You Are Now
@@ -228,10 +242,11 @@ const QuizPlan = () => {
                 <img
                   src={beforeAfterImage}
                   alt="Before and after transformation comparison"
-                  className="w-full h-40 sm:h-[400px] object-contain mx-auto"
+                  className="w-full h-auto object-contain"
                 />
               </div>
             </div>
+
             {/* Dynamic Bars Section */}
             <div className="flex flex-col sm:flex-row justify-center items-stretch gap-4 sm:gap-4 mt-0 w-full">
               <div className="w-full sm:w-96 rounded-xl p-6 shadow-md overflow-visible bg-gradient-to-br from-gray-400 to-gray-700 mb-4 sm:mb-0 min-h-[260px]">
