@@ -241,12 +241,12 @@ const QuizPlan = () => {
                 <img
                   src={beforeAfterImage}
                   alt="Before and after transformation comparison"
-                  className="w-full h-auto object-contain -mt-44"  
+                  className="w-full h-auto object-contain -mt-20 sm:-mt-44" 
                 />
               </div>
             </div>
             {/* Dynamic Bars Section */}
-            <div className="flex flex-col sm:flex-row justify-center items-stretch gap-4 sm:gap-4 -mt-44 w-full">
+            <div className="flex flex-col sm:flex-row justify-center items-stretch gap-4 sm:gap-4 -mt-20 sm:-mt-44 w-full">
               <div className="w-full sm:w-96 rounded-xl p-6 shadow-md overflow-visible bg-gradient-to-br from-gray-400 to-gray-700 mb-4 sm:mb-0 min-h-[260px]">
                 {barsQ21.length > 0 ? (
                   barsQ21.map((bar, idx) => (
