@@ -197,16 +197,15 @@ const QuizPlan = () => {
           {/* Now vs Goal Section */}
           <div className="mb-10 sm:mb-16">
             {/* Image with absolutely positioned headings */}
-            <div className="w-full sm:max-w-[900px] mx-auto mb-6 sm:mb-0 flex justify-center">
+            <div className="w-full sm:max-w-[900px] mx-auto sm:mb-0 flex justify-center">
               {/* This wrapper is relative to the image itself */}
-              <div className="relative w-full sm:w-[850px]">
-                
+              <div className="relative w-full sm:w-[850px]">     
                 {/* Desktop pointers */}
                 <span
                   className="hidden sm:block absolute"
                   style={{
                     top: "-32px",
-                    left: "18.5%", 
+                    left: "10.5%", 
                   }}
                 >
                   <span className="bg-gray-800 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow relative">
@@ -219,7 +218,7 @@ const QuizPlan = () => {
                   className="hidden sm:block absolute "
                   style={{
                     top: "-32px",
-                    left: "72%", 
+                    left: "73%", 
                   }}
                 >
                   <span className="bg-emerald-400 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow relative">
@@ -242,13 +241,12 @@ const QuizPlan = () => {
                 <img
                   src={beforeAfterImage}
                   alt="Before and after transformation comparison"
-                  className="w-full h-auto object-contain"
+                  className="w-full h-auto object-contain -mt-44"  
                 />
               </div>
             </div>
-
             {/* Dynamic Bars Section */}
-            <div className="flex flex-col sm:flex-row justify-center items-stretch gap-4 sm:gap-4 mt-0 w-full">
+            <div className="flex flex-col sm:flex-row justify-center items-stretch gap-4 sm:gap-4 -mt-44 w-full">
               <div className="w-full sm:w-96 rounded-xl p-6 shadow-md overflow-visible bg-gradient-to-br from-gray-400 to-gray-700 mb-4 sm:mb-0 min-h-[260px]">
                 {barsQ21.length > 0 ? (
                   barsQ21.map((bar, idx) => (
