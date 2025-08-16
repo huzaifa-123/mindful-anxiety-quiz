@@ -45,8 +45,8 @@ const QuizAge = () => {
                     w-full py-2 px-3 border rounded-md font-medium transition
                     ${
                       isSelected
-                        ? "bg-flourishmint text-flourishgreen border-flourishmint"
-                        : "bg-white text-flourishgreen border-flourishmint hover:bg-flourishmint/10"
+                       ? "border-flourishmint bg-flourishmint/10"
+                      : "border-gray-200 bg-white hover:border-flourishmint/50 hover:bg-flourishmint/5"
                     }
                   `}
                 >

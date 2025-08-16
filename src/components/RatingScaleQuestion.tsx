@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Slider } from "./ui/slider";
 
 interface RatingScaleQuestionProps {
@@ -8,6 +8,7 @@ interface RatingScaleQuestionProps {
   highLabel: string;
   onRatingSelect: (rating: number) => void;
   questionNumber: string;
+  storedValue?: number;   
 }
 
 const RatingScaleQuestion = ({ 
@@ -16,15 +17,18 @@ const RatingScaleQuestion = ({
   lowLabel, 
   highLabel, 
   onRatingSelect, 
-  questionNumber 
+  storedValue = 0    
 }: RatingScaleQuestionProps) => {
   const [selectedRating, setSelectedRating] = useState<number>(0);
-
+  
+  useEffect(() => {
+    setSelectedRating(storedValue);
+  }, [storedValue]);
   const handleSliderChange = (value: number[]) => {
     const rating = value[0];
     setSelectedRating(rating);
   };
-
+  
   const handleSliderCommit = (value: number[]) => {
     const rating = value[0];
     // Auto-navigate after selection with slight delay

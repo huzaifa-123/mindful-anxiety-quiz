@@ -94,11 +94,11 @@ const QuizPlan = () => {
     let baseUrl = "";
   
     if (anxietyType === "panic") {
-      baseUrl = "https://facebook.com";
+      baseUrl = "https://mindflourish.co/order-page-panic";
     } else if (anxietyType === "avoidant") {
-      baseUrl = "https://google.com";
+      baseUrl = "https://mindflourish.co/order-page-avoidant";
     } else if (anxietyType === "ruminator") {
-      baseUrl = "https://google.com";
+      baseUrl = "https://mindflourish.co/order-page-ruminator";
     }
     resetAnswers();
     const redirectUrl = buildPaymentUrl(baseUrl);
@@ -144,7 +144,7 @@ const QuizPlan = () => {
         Discount ends in {formatTime(timeLeft)}
       </span>
       <button
-        className="bg-flourishmint hover:bg-green-400 text-white w-full sm:w-auto px-4 sm:px-6 py-2 rounded-full text-sm font-semibold transition-colors"
+        className="bg-flourishmint hover:bg-green-400 text-white w-auto px-3 sm:px-5 py-1.5 rounded-full text-xs font-semibold transition-colors"
         onClick={handleContinue}
       >
         GET MY PLAN
@@ -203,10 +203,10 @@ const QuizPlan = () => {
                 
                 {/* Desktop pointers */}
                 <span
-                  className="hidden sm:block absolute z-10"
+                  className="hidden sm:block absolute"
                   style={{
                     top: "-32px",
-                    left: "18.5%", // % relative to image width
+                    left: "18.5%", 
                   }}
                 >
                   <span className="bg-gray-800 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow relative">
@@ -216,10 +216,10 @@ const QuizPlan = () => {
                 </span>
 
                 <span
-                  className="hidden sm:block absolute z-10"
+                  className="hidden sm:block absolute "
                   style={{
                     top: "-32px",
-                    left: "72%", // % relative to image width
+                    left: "72%", 
                   }}
                 >
                   <span className="bg-emerald-400 text-white text-xs font-semibold px-4 py-1 rounded-lg shadow relative">
@@ -292,7 +292,7 @@ const QuizPlan = () => {
             </div>
           </div>
           <p className="font-bold text-center text-2xl mt-8">
-            {anxietyType === "panic" && "I want to overcome panic attacks for good"}
+            {anxietyType === "panic" && "I want to take control of my anxiety for good"}
             {anxietyType === "ruminator" && "I want to stop spiraling and finally feel mentally clear."}
             {anxietyType === "avoidant" && "I want to stop freezing and finally move forward with courage."}
           </p>

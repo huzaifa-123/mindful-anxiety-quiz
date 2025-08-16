@@ -5,7 +5,7 @@ import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useNavigate } from "react-router-dom";
 
 const QuizQuestion12 = () => {
-  const { setAnswer } = useQuizAnswers();
+  const { answers,setAnswer } = useQuizAnswers();
   const navigate = useNavigate();
 
   const handleRatingSelect = (rating: number) => {
@@ -25,6 +25,7 @@ const QuizQuestion12 = () => {
           highLabel="It feels unbearable or terrifying"
           onRatingSelect={handleRatingSelect}
           questionNumber="12"
+          storedValue={answers.question11}  
         />
       </main>
     </div>
