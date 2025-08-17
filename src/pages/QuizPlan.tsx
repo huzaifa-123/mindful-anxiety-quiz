@@ -140,15 +140,27 @@ const QuizPlan = () => {
   // Timer component for header
   const TimerDisplay = () => (
     <div className="flex flex-col items-center gap-2 w-full sm:flex-row sm:justify-end sm:items-center sm:gap-4">
-      <span className="text-white text-xs sm:text-sm font-medium text-center sm:text-right w-full sm:w-auto whitespace-nowrap overflow-hidden text-ellipsis">
+      <span className="text-white text-xs sm:text-sm font-medium 
+                 w-full sm:w-auto 
+                 whitespace-nowrap overflow-hidden text-ellipsis 
+                 text-right 
+                 self-end sm:self-auto">
         Discount ends in {formatTime(timeLeft)}
       </span>
       <button
-        className="bg-flourishmint hover:bg-green-400 text-white w-auto px-3 sm:px-5 py-1.5 rounded-full text-xs font-semibold transition-colors"
+        className="bg-flourishmint hover:bg-green-400 text-white 
+        w-auto px-3 sm:px-6 md:px-8 
+        py-1.5 sm:py-2 
+        rounded-full 
+        text-xs sm:text-sm md:text-base 
+        font-semibold 
+        transition-colors 
+        ml-auto sm:ml-0"
         onClick={handleContinue}
       >
         GET MY PLAN
       </button>
+
     </div>
   );
 

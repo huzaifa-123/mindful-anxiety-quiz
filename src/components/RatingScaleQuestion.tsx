@@ -39,8 +39,11 @@ const RatingScaleQuestion = ({
 
   return (
     <div className="w-full max-w-2xl mx-auto flex flex-col items-center px-2 sm:px-4">
-      <h1 className="font-semibold text-lg sm:text-xl md:text-2xl text-flourishgreen mb-2 text-center tracking-tight">
-        {question}
+      <h1
+        className="font-semibold text-lg sm:text-xl md:text-2xl text-flourishgreen mb-2 
+                    text-center tracking-tight max-w-xs sm:max-w-lg break-words"
+        >
+          {question}
       </h1>
       
       {subtitle && (
