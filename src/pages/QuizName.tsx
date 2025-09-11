@@ -12,7 +12,7 @@ const QuizName = () => {
 
   const handleContinue = () => {
     setAnswer("name", name.trim());
-    navigate("/quiz/anxiety-stats");
+    navigate("/quiz/journey-timeline");
   };
 
   return (

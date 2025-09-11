@@ -381,6 +381,7 @@ const QuizPlan = () => {
                     className="w-full h-auto object-contain"
                     loading="lazy"
                   />
+                  </div>
                   {/* ===== Dynamic Bars Section (slightly overlaps under image) ===== */}
                   <div
                     className="
@@ -464,7 +465,6 @@ const QuizPlan = () => {
                     </div>
                   </div>
                 </div>
-              </div>
            </div>
             {/* ===== Caption ===== */}
             <p className="font-bold text-center text-2xl mt-10">

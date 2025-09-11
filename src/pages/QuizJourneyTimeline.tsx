@@ -87,7 +87,7 @@ const QuizJourneyTimeline = () => {
   }, [answers]);
 
   const handleContinue = () => {
-    navigate("/quiz/calm-reset-plan-builder");
+    navigate("/quiz/plan");
   };
 
   return (
