@@ -374,25 +374,24 @@ const QuizPlan = () => {
               {/* Scale wrapper (adjust values as needed) */}
               <div className="scale-90 sm:scale-75">
                 <div className="w-full aspect-square relative">
-                  {/* ===== Image ===== */}
-                  <img 
-                    src={beforeAfterImage}
-                    alt="Before and after transformation comparison"
-                    className="w-full h-auto object-contain"
-                    loading="lazy"
-                    style={{ display: "block" }}
-                  />
+  <img
+    src={beforeAfterImage}
+    alt="Before and after transformation comparison"
+    className="w-full h-full object-contain"
+    loading="lazy"
+    style={{ display: "block" }} // Prevents inline gap
+  />
+</div>
                   {/* ===== Dynamic Bars Section (slightly overlaps under image) ===== */}
-                  <div
-                    className="
+                 <div
+  className="
     flex flex-row justify-center gap-4
-    sm:absolute sm:bottom-0 sm:left-0 sm:right-0 sm:translate-y-1/3
-    relative -mt-20 sm:mt-0
+    mt-4
   "
-  style={{ zIndex: 2 }}
-                  >
+>
                     {/* Q21: Where You Are Now */}
-                     <div className="flex-1 min-w-[200px] rounded-xl p-6 shadow-md bg-gradient-to-br from-gray-400 to-gray-700 min-h-[260px] pointer-events-auto">
+                      <div className="flex-1 min-w-[200px] rounded-xl p-6 shadow-md bg-gradient-to-br from-gray-400 to-gray-700 min-h-[260px]">
+
                       {barsQ21.length > 0 ? (
                         barsQ21.map((bar) => (
                           <div key={bar.key} className="mb-6 last:mb-0">
@@ -430,7 +429,8 @@ const QuizPlan = () => {
                     </div>
 
                     {/* Q17: 30 Days From Now */}
-                    <div className="flex-1 min-w-[200px] rounded-xl p-6 shadow-md bg-white min-h-[260px] pointer-events-auto">
+                    <div className="flex-1 min-w-[200px] rounded-xl p-6 shadow-md bg-white min-h-[260px]">
+
                       {barsQ17.length > 0 ? (
                         barsQ17.map((bar) => (
                           <div key={bar.key} className="mb-6 last:mb-0">
@@ -463,7 +463,6 @@ const QuizPlan = () => {
                       ) : (
                         <div className="h-8"></div>
                       )}
-                    </div>
                   </div>
                 </div>
               </div>
