@@ -378,17 +378,15 @@ const QuizPlan = () => {
         src={beforeAfterImage}
         alt="Before and after transformation comparison"
         className="absolute inset-0 w-full h-full object-contain"
-        loading="eager"  // (force eager load if it's above the fold)
+        loading="lazy"  
       />
 
       {/* ===== Dynamic Bars Section ===== */}
       <div
-        className="
-          flex flex-row justify-center gap-4
-          sm:absolute sm:bottom-0 sm:left-0 sm:right-0 sm:translate-y-1/3
-          relative -mt-20 sm:mt-0
-        "
-      >
+  className="
+    flex flex-row justify-center gap-4  mt-0
+  "
+>
                     {/* Q21: Where You Are Now */}
                     <div className="flex-1 min-w-[200px] rounded-xl p-6 shadow-md bg-gradient-to-br from-gray-400 to-gray-700 min-h-[260px]">
                       {barsQ21.length > 0 ? (
