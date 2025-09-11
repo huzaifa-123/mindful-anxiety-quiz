@@ -380,6 +380,7 @@ const QuizPlan = () => {
         className="absolute inset-0 w-full h-full object-contain"
         loading="lazy"  
       />
+       </div>
 
       {/* ===== Dynamic Bars Section ===== */}
       <div
@@ -461,7 +462,6 @@ const QuizPlan = () => {
                       )}
                     </div>
                   </div>
-                </div>
               </div>
            </div>
             {/* ===== Caption ===== */}
