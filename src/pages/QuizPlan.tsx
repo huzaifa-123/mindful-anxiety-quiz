@@ -373,15 +373,17 @@ const QuizPlan = () => {
            <div className="w-full sm:max-w-[900px] mx-auto flex justify-center">
               {/* Scale wrapper (adjust values as needed) */}
               <div className="scale-90 sm:scale-75">
-                <div className="w-full aspect-square relative">
-                  {/* ===== Image ===== */}
-                  <img 
-                    src={beforeAfterImage}
-                    alt="Before and after transformation comparison"
-                    className="w-full h-auto object-contain"
-                    loading="lazy"
-                  />
-                  </div>
+                <div className="w-full aspect-square relative bg-gray-200">
+  {/* This div reserves the space */}
+  <div className="w-full h-full"></div>
+  {/* The image overlays the reserved space */}
+  <img
+    src={beforeAfterImage}
+    alt="Before and after transformation comparison"
+    className="absolute inset-0 w-full h-full object-contain"
+    loading="lazy"
+  />
+</div>
                   {/* ===== Dynamic Bars Section (slightly overlaps under image) ===== */}
                   <div
                     className="
