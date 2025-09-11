@@ -33,6 +33,9 @@ type QuizAnswer = {
   plan_support_style?: string;
   email: string;
   phone?: string;
+  dominant_anxiety_type?: string;
+  secondary_anxiety_type?: string;
+  severity?: string;
 
   // More fields will be added for additional questions
 };
@@ -62,6 +65,9 @@ const questionTextMap: Record<keyof QuizAnswer, string> = {
   plan_journaling: "Familiarity with journaling",
   plan_tools: "Response to body-based tools",
   plan_support_style: "Preferred support style",
+  dominant_anxiety_type: "Dominant Anxiety Type",
+  secondary_anxiety_type: "Secondary Anxiety Type",
+  severity: "Severity ",
   email:"",
   phone:"",
   gender: "",
@@ -193,6 +199,12 @@ const answerTextMap: Record<string, string> = {
   more_mental_focus: "I’m more mentally focused",
   prefer_guidance: "I prefer guidance and structure",
   go_own_pace: "I like to go at my own pace",
+
+  //Scores
+  dominant_type: "Dominant Anxiety Type",
+  secondary_type: "Secondary Anxiety Type",
+  severity: "Severity "
+
 };
 
 
@@ -270,32 +282,38 @@ export const QuizAnswersProvider = ({ children }: { children: ReactNode }) => {
       console.error(`🟡 CONTEXT ERROR: Failed to clear localStorage:`, error);
     }
   };
-  const readableAnswers: Record<string, { question: string; answer: string }> = {};
-
-  Object.entries(answers).forEach(([key, value]) => {
+  const readableAnswers: Record<string, string | string[]> = {};
+  for (const [key, value] of Object.entries(answers)) {
     const questionText = questionTextMap[key as keyof QuizAnswer] || key;
 
-    let answerString: string = "";
+    let answerString: string | string[];
 
-    if (typeof value === "string" || typeof value === "number") {
-      answerString = answerTextMap[value] || value.toString();
-    } else if (Array.isArray(value)) {
-      answerString = value
-        .map((item) => answerTextMap[item] || item)
-        .join(", ");
-    } else if (typeof value === "object" && value !== null) {
-      answerString = Object.entries(value)
-        .map(([k, v]) => `${k}: ${v}`)
-        .join(", ");
-    } else {
-      answerString = JSON.stringify(value);
+    switch (true) {
+      case typeof value === "string":
+      case typeof value === "number":
+        answerString = answerTextMap[value] || String(value);
+        break;
+
+      case Array.isArray(value):
+        answerString = value.map(
+          (item) => answerTextMap[item] || String(item)
+        );
+        break;
+
+      case typeof value === "object" && value !== null:
+        answerString = Object.entries(value).map(
+          ([k,v]) => `${k}: ${v}`
+        );
+        break;
+
+      default:
+        answerString = JSON.stringify(value);
+        break;
     }
 
-    readableAnswers[key] = {
-      question: questionText,
-      answer: answerString,
-    };
-  });
+    readableAnswers[questionText] = answerString;
+  }
+
   const sendAnswersToAPI = async () => {
     try {
       const response = await fetch("https://services.leadconnectorhq.com/hooks/eowSraffPUqh7LbVROw5/webhook-trigger/smCWSOp0FkuqsIoWx9f3", {

@@ -75,54 +75,54 @@ const QuizQuestion22 = () => {
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack/>
+        <Header withBack />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center py-6 px-3 sm:px-0">
         <div className="w-full max-w-2xl mx-auto flex flex-col items-center px-2">
           <h1 className="font-semibold text-base sm:text-2xl text-flourishgreen mb-2 text-center tracking-tight">
             {question}
           </h1>
-          
+
           <p className="text-gray-600 text-xs sm:text-sm mb-8 text-center">
-            (Select up to 3)
+            (Select up to 3 that feel true today)
           </p>
-          
+
           <div className="w-full space-y-3 mb-12">
             {options.map((option) => {
               const isSelected = selectedOptions.includes(option.id);
               const isDisabled = !isSelected && selectedOptions.length >= 3;
-              return(
-              <div
-                key={option.id}
-                className={`flex items-center p-3 sm:p-4 border-2 rounded-lg cursor-pointer transition-colors ${
-                  selectedOptions.includes(option.id)
-                    ? "border-flourishmint bg-flourishmint/10"
-                    : isDisabled
-                    ? "border-gray-200 bg-white opacity-50 cursor-not-allowed"
-                    : "border-gray-200 bg-white hover:border-flourishmint/50"
-                }`}
-                onClick={() => handleOptionToggle(option.id)}
-              >
-                <div className="w-8 h-8 mr-4 flex-shrink-0">
-                  <img
-                    src={option.icon}
-                    alt=""
-                    className="w-full h-full object-contain"
+              return (
+                <div
+                  key={option.id}
+                  className={`flex items-center p-3 sm:p-4 border-2 rounded-lg cursor-pointer transition-colors ${
+                    selectedOptions.includes(option.id)
+                      ? "border-flourishmint bg-flourishmint/10"
+                      : isDisabled
+                      ? "border-gray-200 bg-white opacity-50 cursor-not-allowed"
+                      : "border-gray-200 bg-white hover:border-flourishmint/50"
+                  }`}
+                  onClick={() => handleOptionToggle(option.id)}
+                >
+                  <div className="w-8 h-8 mr-4 flex-shrink-0">
+                    <img
+                      src={option.icon}
+                      alt=""
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <span className="flex-1 text-gray-700 text-sm sm:text-base">
+                    {option.text}
+                  </span>
+                  <Checkbox
+                    checked={selectedOptions.includes(option.id)}
+                    onChange={() => handleOptionToggle(option.id)}
+                    className="ml-4"
                   />
                 </div>
-                <span className="flex-1 text-gray-700 text-sm sm:text-base">
-                  {option.text}
-                </span>
-                <Checkbox
-                  checked={selectedOptions.includes(option.id)}
-                  onChange={() => handleOptionToggle(option.id)}
-                  className="ml-4"
-                />
-              </div>
               );
             })}
           </div>
-          
+
           <div className="w-full flex flex-col items-center">
             <button
               onClick={handleContinue}

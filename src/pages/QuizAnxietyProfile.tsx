@@ -8,7 +8,7 @@ import { Card, CardContent } from "../components/ui/card";
 
 const QuizAnxietyProfile = () => {
   const navigate = useNavigate();
-  const { answers } = useQuizAnswers();
+  const { answers,setAnswer, sendAnswersToAPI } = useQuizAnswers();
   
   // Debug: Log all answers before calculation
   console.log("🔴 ANXIETY PROFILE DEBUG: All quiz answers:", JSON.stringify(answers, null, 2));
@@ -172,7 +172,23 @@ const QuizAnxietyProfile = () => {
   console.log("🔴 ANXIETY PROFILE DEBUG: Filtered type percentages:", typePercentages);
   console.log("🔴 ANXIETY PROFILE DEBUG: Secondary type:", secondaryType);
   console.log("🔴 ANXIETY PROFILE DEBUG: Secondary type percentage >= 20?", secondaryType?.percentage >= 20);
+  setAnswer("dominant_anxiety_type", results.dominantType);
+  setAnswer("secondary_anxiety_type", secondaryType.type);
+  setAnswer("severity", results.severity);
 
+  const handleContinue = async () => {
+  try {
+    await sendAnswersToAPI(); // wait for API response
+
+    // Add a short delay (e.g., 1s) before navigating
+    setTimeout(() => {
+      navigate("/quiz/plan");
+    }, 1000);
+  } catch (error) {
+    console.error("Error sending answers:", error);
+    // optional: show error UI instead of navigating
+  }
+};
 
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite">
@@ -216,7 +232,7 @@ const QuizAnxietyProfile = () => {
                 className="absolute top-1/2 -translate-y-1/2 w-6 h-6 bg-white border border-gray-600 rounded-full shadow-lg transition-all duration-300"
                 style={{ 
                   left: `calc(${(results.severityScore / 40) * 100}% - 12px)`,
-                  zIndex: 10
+                  zIndex: 1
                 }}
               />
             </div>
@@ -250,16 +266,16 @@ const QuizAnxietyProfile = () => {
           </Card>
 
 
-          {/* Secondary style section - FIXED: Now always shows heading when condition is met */}
-          {secondaryType ? (
+          {/* Secondary style section - only show if percentage > 1 */}
+          {secondaryType && secondaryType.percentage > 1 && (
             <div className="mb-6">
-              {/* FIXED: Added the styled heading for Secondary Style */}
+              {/* Styled heading for Secondary Style */}
               <div className="flex justify-center mb-4">
                 <div className="bg-flourishgreen text-white px-6 py-2 rounded-full">
                   <span className="font-semibold text-sm">Your Secondary Style</span>
                 </div>
               </div>
-              
+
               <div className="bg-white border border-gray-200 rounded-lg p-6 text-center">
                 <h4 className="font-semibold text-lg mb-3 text-gray-800">
                   {getTypeTitle(secondaryType.type).replace("THE ", "The ")} ({secondaryType.percentage}%)
@@ -267,14 +283,6 @@ const QuizAnxietyProfile = () => {
                 <p className="text-sm leading-relaxed text-gray-600">
                   {getSecondaryTypeDescription(secondaryType.type, secondaryType.percentage)}
                 </p>
-              </div>
-            </div>
-          ) : (
-            <div className="mb-6">
-              <div className="flex justify-center mb-4">
-                <div className="bg-flourishgreen text-white px-6 py-2 rounded-full">
-                  <span className="font-semibold text-sm">Your Secondary Style</span>
-                </div>
               </div>
             </div>
           )}
@@ -312,7 +320,7 @@ const QuizAnxietyProfile = () => {
           <div className="flex justify-center">
             <button
               onClick={() => {
-                navigate("/quiz/plan");
+                handleContinue();
               }}
               className="bg-flourishmint text-white px-8 py-3  mb-4 rounded-full font-semibold hover:bg-flourishmint/90 transition-colors"
             >

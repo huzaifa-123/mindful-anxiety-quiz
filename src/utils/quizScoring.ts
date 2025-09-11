@@ -143,7 +143,6 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
 
   // Step 2: Calculate severity based on scale questions (9, 10, 11, 12)
   const scaleQuestions = [
-    answers.question9 || 0,   // How effective have techniques been
     answers.question10 || 0,  // How much anxiety affects daily life
     answers.question11 || 0,  // How often experience anxiety symptoms
     answers.question12 || 0   // How distressed when anxiety hits
@@ -164,9 +163,9 @@ export const calculateQuizResults = (answers: QuizAnswers): QuizResults => {
 
   // Classify severity based on total score (out of 40 max)
   let severity: "mild" | "moderate" | "severe";
-  if (severityScore <= 13) {
+  if (severityScore <= 10) {
     severity = "mild";
-  } else if (severityScore <= 26) {
+  } else if (severityScore <= 20) {
     severity = "moderate";
   } else {
     severity = "severe";

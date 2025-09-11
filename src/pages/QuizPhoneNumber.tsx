@@ -5,7 +5,7 @@ import Header from "../components/Header";
 
 const QuizPhoneNumber = () => {
   const navigate = useNavigate();
-  const { setAnswer, sendAnswersToAPI } = useQuizAnswers();
+  const { setAnswer } = useQuizAnswers();
   const [phone, setPhone] = useState("");
   const [showPopup, setShowPopup] = useState(false);
 
@@ -16,8 +16,10 @@ const QuizPhoneNumber = () => {
   
   // Validate number in E.164 format: +<country code><number>, up to 15 digits total
   const isValidPhoneNumber = (value: string): boolean => {
-    const regex = /^\+[1-9]\d{1,14}$/; 
-    return regex.test(value);
+    if (/[a-zA-Z]/.test(value)) {
+      return false;
+    }
+    return value.length >= 8;
   };
 
   // Handle the first button (send hypnosis track)
@@ -25,24 +27,21 @@ const QuizPhoneNumber = () => {
     e.preventDefault();
 
     if (!isValidPhoneNumber(phone)) {
-      alert("Please enter a valid phone number (e.g., +44 7123 456789)");
+      alert("Please enter a valid phone number (e.g., +00 7123 456789)");
       return;
     }
 
-    setAnswer("phone", { phone });
+    setAnswer("phone", phone );
     setShowPopup(true);
     setTimeout(() => {
       setShowPopup(false);
-      sendAnswersToAPI();
       navigate("/quiz/anxiety-profile");
     }, 3000);
   };
 
   // Handle the skip button
   const handleSkip = () => {
-    setAnswer("phone", phone);
-    sendAnswersToAPI();
-    navigate("/quiz/anxiety-profile");
+    setTimeout(() => navigate("/quiz/anxiety-profile"), 200);
   };
 
   return (
@@ -91,7 +90,7 @@ const QuizPhoneNumber = () => {
                 onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
                 maxLength={13} // Prevent typing beyond format
                 className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-400 text-base"
-                placeholder="+44 7123 456789"
+                placeholder="Enter phone number here"
               />
               <p className="text-gray-500 text-center text-xs mt-2">
                 No spam, no calls. Just your free hypnosis track, tips, and offers.

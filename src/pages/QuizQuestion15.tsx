@@ -41,7 +41,7 @@ const QuizQuestion15 = () => {
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="15 / 21" />
+        <Header withBack questionCount="13 / 19" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center py-8">
           <SingleSelectQuestion

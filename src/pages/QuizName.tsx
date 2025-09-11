@@ -1,4 +1,3 @@
-
 import Header from "../components/Header";
 import { useQuizAnswers } from "../context/QuizAnswersContext";
 import { useState } from "react";
@@ -19,7 +18,7 @@ const QuizName = () => {
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="3 / 21" />
+        <Header withBack questionCount="1 / 19" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center px-4">
         <div className="w-full max-w-md mx-auto flex flex-col items-center justify-center">
@@ -31,7 +30,7 @@ const QuizName = () => {
             className="mb-8 w-full border-2 border-flourishmint rounded-md py-2 px-4 text-base text-flourishgreen outline-none placeholder-gray-400 bg-white"
             placeholder="Enter your first name..."
             value={name}
-            onChange={e => setName(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             autoFocus
             maxLength={30}
           />

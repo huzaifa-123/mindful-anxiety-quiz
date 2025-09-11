@@ -72,7 +72,7 @@ const QuizPlanCompletion = () => {
 
             
             <div className="mt-4 pt-4 border-t border-gray-200">
-              <p className="font-bold text-black">
+              <p className="font-normal text-black">
                 "Tayyaba Ali’s unique method combines these for faster and more lasting results. By working
                 on your thoughts, beliefs, and subconscious patterns at the same time, this method helps
                 unlock deeper healing and sustained change

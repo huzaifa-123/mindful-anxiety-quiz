@@ -16,12 +16,11 @@ const QuizQuestion10 = () => {
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="10 / 21" />
+        <Header withBack questionCount="8 / 19" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center py-8">
         <RatingScaleQuestion
           question="How much is anxiety affecting your daily life right now?"
-          subtitle="(Rating Scale — scored for severity)"
           lowLabel="Barely affects me"
           highLabel="It's taking over my life"
           onRatingSelect={handleRatingSelect}

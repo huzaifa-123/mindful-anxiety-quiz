@@ -122,12 +122,15 @@ const QuizJourneyTimeline = () => {
             <h2 className="text-gray-800 font-semibold text-lg mt-8  tracking-wide">
               30 DAYS TIMELINE
             </h2>
-            <img
-              src="/QuizDesign/Final_Quiz Section Design (2).gif"
-              alt="Progress timeline showing journey from current state to goal integration"
-              className="w-full h-auto object-contain max-h-64 block m-0 p-0"
-              draggable={false}
-            />
+            <div>
+              <img
+                src="/QuizDesign/Final_Quiz Section Design (2).gif"
+                alt="Progress timeline showing journey from current state to goal integration"
+                className="w-full h-auto object-contain max-h-64 block m-0 p-0"
+                draggable={false}
+                loading="lazy"
+              />
+            </div>
             {/* Labels under bars */}
             <div className="grid grid-cols-5 text-center text-[9px] font-bold leading-none -mt-7 gap-x-1">
             <div className="leading-tight">

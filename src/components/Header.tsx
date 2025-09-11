@@ -41,25 +41,27 @@ const Header: React.FC<HeaderProps> = ({ withBack, questionCount, timer }) => {
           <ArrowLeft size={28} color="white" />
         </button>
       ) : null}
-      
-      <div className={`flex items-center gap-3 ${showFullBranding ? '' : 'absolute left-1/2 transform -translate-x-1/2'}`}>
-          <img
-            src="/Icons/1.png"
-            alt="Mind Flourish logo"
-            className="h-8 w-8 object-contain cursor-pointer"
-            onClick={() => window.open("https://www.linkedin.com", "_blank")}
-          />
+
+      <div
+        className={`flex items-center gap-3 ${
+          showFullBranding ? "" : "absolute left-1/2 transform -translate-x-1/2"
+        }`}
+      >
+        <img
+          src="/Icons/1.png"
+          alt="Mind Flourish logo"
+          className="h-11 w-11 object-contain cursor-pointer"
+          onClick={() => window.open("https://mindflourish.co", "_blank")}
+        />
         {showFullBranding && (
           <span className="text-flourishwhite text-2xl font-bold tracking-tight select-none leading-tight font-inter">
             Mind Flourish
           </span>
         )}
       </div>
-      
-      <div className="flex-1 flex justify-end">
-        {timer && timer}
-      </div>
-      
+
+      <div className="flex-1 flex justify-end">{timer && timer}</div>
+
       {questionCount && (
         <span className="absolute right-6 top-1/2 -translate-y-1/2 text-white text-lg font-bold font-inter">
           {questionCount}

@@ -16,7 +16,7 @@ const QuizQuestion12 = () => {
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="12 / 21" />
+        <Header withBack questionCount="10 / 19" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center py-8">
         <RatingScaleQuestion
@@ -25,7 +25,7 @@ const QuizQuestion12 = () => {
           highLabel="It feels unbearable or terrifying"
           onRatingSelect={handleRatingSelect}
           questionNumber="12"
-          storedValue={answers.question11}  
+          storedValue={answers.question12}  
         />
       </main>
     </div>

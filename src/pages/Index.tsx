@@ -28,7 +28,7 @@ const Index = () => {
           />
           <div className="flex flex-col items-center w-full">
             <p className="text-sm md:text-base text-gray-600 mt-0 mb-7 max-w-2xl font-inter ">
-              Take our 60-second anxiety pattern quiz designed by Clinical Psychologist Tayyaba Ali. Discover how your system reacts under pressure and the personalized strategy that actually fits your life.
+              Take our 3 minute anxiety pattern quiz designed by Clinical Psychologist Tayyaba Ali. Discover how your system reacts under pressure and the personalized strategy that actually fits your life.
             </p>
             <button
               onClick={() => navigate("/quiz/part1")}

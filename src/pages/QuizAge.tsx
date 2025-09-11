@@ -27,7 +27,7 @@ const QuizAge = () => {
   return (
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
       <div className="w-full sticky top-0 z-10">
-        <Header withBack questionCount="2 / 21" />
+        <Header withBack questionCount="2 / 19" />
       </div>
       <main className="flex-1 flex flex-col items-center justify-center">
         <div className="w-full max-w-md mx-auto flex flex-col items-center justify-center">
