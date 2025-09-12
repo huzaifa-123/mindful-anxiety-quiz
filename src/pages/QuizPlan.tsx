@@ -371,23 +371,25 @@ const QuizPlan = () => {
           <div>
             {/* Now vs Goal Section */}
            <div className="w-full sm:max-w-[900px] mx-auto flex justify-center">
-  <div className="scale-90 sm:scale-75">
-    <div className="w-full aspect-square relative">
-      {/* ===== Image ===== */}
-      <img
-        src={beforeAfterImage}
-        alt="Before and after transformation comparison"
-        className="absolute inset-0 w-full h-full object-contain"
-        loading="lazy"  
-      />
-       </div>
-
-      {/* ===== Dynamic Bars Section ===== */}
-      <div
-  className="
-    flex flex-row justify-center gap-4  mt-0
+              {/* Scale wrapper (adjust values as needed) */}
+              <div className="scale-90 sm:scale-75">
+                <div className="w-full aspect-square relative">
+                  {/* ===== Image ===== */}
+                  <img 
+                    src={beforeAfterImage}
+                    alt="Before and after transformation comparison"
+                    className="w-full h-auto object-contain"
+                    loading="lazy"
+                    
+                  />
+                  {/* ===== Dynamic Bars Section (slightly overlaps under image) ===== */}
+                  <div
+                    className="
+    flex flex-row justify-center gap-4
+    sm:absolute sm:bottom-0 sm:left-0 sm:right-0 sm:translate-y-1/3
+    relative -mt-20 sm:mt-0
   "
->
+                  >
                     {/* Q21: Where You Are Now */}
                     <div className="flex-1 min-w-[200px] rounded-xl p-6 shadow-md bg-gradient-to-br from-gray-400 to-gray-700 min-h-[260px]">
                       {barsQ21.length > 0 ? (
@@ -462,6 +464,7 @@ const QuizPlan = () => {
                       )}
                     </div>
                   </div>
+                </div>
               </div>
            </div>
             {/* ===== Caption ===== */}
