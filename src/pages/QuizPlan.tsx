@@ -371,97 +371,102 @@ const QuizPlan = () => {
           <div>
             {/* Now vs Goal Section */}
            <div className="w-full sm:max-w-[900px] mx-auto flex justify-center">
-  {/* Scale wrapper */}
-  <div className="scale-90 sm:scale-75 w-full">
-    {/* Fixed-ratio wrapper ensures space is reserved */}
-    <div className="relative w-full aspect-square">
-        <img
-          src={beforeAfterImage}
-          alt="Before and after transformation comparison"
-          className="absolute inset-0 w-full h-full object-contain"
-          loading="lazy"
-        />
-      </div>
+              {/* Scale wrapper (adjust values as needed) */}
+              <div className="scale-90 sm:scale-75">
+                <div className="relative w-full aspect-square">
+  <img
+    src={beforeAfterImage}
+    alt="Before and after transformation comparison"
+    className="absolute inset-0 w-full h-full object-contain"
+    loading="lazy"
+  />
+  
+  {/* Bars */}
+  <div
+    className="
+      flex flex-row justify-center gap-4
+      absolute bottom-0 left-0 right-0 translate-y-1/3
+      sm:flex-row
+      flex-col sm:flex-row
+    "
+  >
+                    {/* Q21: Where You Are Now */}
+                    <div className="flex-1 min-w-[200px] rounded-xl p-6 shadow-md bg-gradient-to-br from-gray-400 to-gray-700 min-h-[260px]">
+                      {barsQ21.length > 0 ? (
+                        barsQ21.map((bar) => (
+                          <div key={bar.key} className="mb-6 last:mb-0">
+                            <div className="flex justify-between items-center mb-1">
+                              <span className="text-white font-semibold text-base">
+                                {barTextMap[bar.key]?.label || ""}
+                              </span>
+                              <span className="text-xs text-gray-200 font-medium italic">
+                                {barTextMap[bar.key]?.level || ""}
+                              </span>
+                            </div>
+                            <div className="relative w-full h-2 bg-gray-300 rounded-full">
+                              <div
+                                className="absolute left-0 top-0 h-2 rounded-full"
+                                style={{
+                                  width: `${barTextMap[bar.key]?.percent || 0}%`,
+                                  background:
+                                    "linear-gradient(90deg, #fbbf24 0%, #f87171 100%)",
+                                }}
+                              />
+                              <div
+                                className="absolute top-1/2"
+                                style={{
+                                  left: `calc(${barTextMap[bar.key]?.percent || 0}% - 10px)`,
+                                }}
+                              >
+                                <div className="w-5 h-5 bg-white border-2 border-orange-400 rounded-full shadow -translate-y-1/2"></div>
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="h-8"></div>
+                      )}
+                    </div>
 
-    {/* Bars section - no absolute positioning, just margin overlap */}
-    <div className="flex flex-col sm:flex-row justify-center gap-4 -mt-20">
-      {/* Q21: Where You Are Now */}
-      <div className="flex-1 min-w-[200px] rounded-xl p-6 shadow-md bg-gradient-to-br from-gray-400 to-gray-700 min-h-[260px]">
-        {barsQ21.length > 0 ? (
-          barsQ21.map((bar) => (
-            <div key={bar.key} className="mb-6 last:mb-0">
-              <div className="flex justify-between items-center mb-1">
-                <span className="text-white font-semibold text-base">
-                  {barTextMap[bar.key]?.label || ""}
-                </span>
-                <span className="text-xs text-gray-200 font-medium italic">
-                  {barTextMap[bar.key]?.level || ""}
-                </span>
-              </div>
-              <div className="relative w-full h-2 bg-gray-300 rounded-full">
-                <div
-                  className="absolute left-0 top-0 h-2 rounded-full"
-                  style={{
-                    width: `${barTextMap[bar.key]?.percent || 0}%`,
-                    background:
-                      "linear-gradient(90deg, #fbbf24 0%, #f87171 100%)",
-                  }}
-                />
-                <div
-                  className="absolute top-1/2"
-                  style={{
-                    left: `calc(${barTextMap[bar.key]?.percent || 0}% - 10px)`,
-                  }}
-                >
-                  <div className="w-5 h-5 bg-white border-2 border-orange-400 rounded-full shadow -translate-y-1/2"></div>
+                    {/* Q17: 30 Days From Now */}
+                    <div className="flex-1 min-w-[200px] rounded-xl p-6 shadow-md bg-white min-h-[260px]">
+                      {barsQ17.length > 0 ? (
+                        barsQ17.map((bar) => (
+                          <div key={bar.key} className="mb-6 last:mb-0">
+                            <div className="flex justify-between items-center mb-1">
+                              <span className="text-gray-800 font-semibold text-base">
+                                {barTextMap[bar.key]?.label || ""}
+                              </span>
+                              <span className="text-xs text-emerald-500 font-medium italic">
+                                {barTextMap[bar.key]?.level || ""}
+                              </span>
+                            </div>
+                            <div className="relative w-full h-2 bg-gray-200 rounded-full">
+                              <div
+                                className="absolute left-0 top-0 h-2 rounded-full bg-emerald-400"
+                                style={{
+                                  width: `${barTextMap[bar.key]?.percent || 0}%`,
+                                }}
+                              />
+                              <div
+                                className="absolute top-1/2"
+                                style={{
+                                  left: `calc(${barTextMap[bar.key]?.percent || 0}% - 10px)`,
+                                }}
+                              >
+                                <div className="w-5 h-5 bg-white border-2 border-emerald-400 rounded-full shadow -translate-y-1/2"></div>
+                              </div>
+                            </div>
+                          </div>
+                        ))
+                      ) : (
+                        <div className="h-8"></div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))
-        ) : (
-          <div className="h-8"></div>
-        )}
-      </div>
-
-      {/* Q17: 30 Days From Now */}
-      <div className="flex-1 min-w-[200px] rounded-xl p-6 shadow-md bg-white min-h-[260px]">
-        {barsQ17.length > 0 ? (
-          barsQ17.map((bar) => (
-            <div key={bar.key} className="mb-6 last:mb-0">
-              <div className="flex justify-between items-center mb-1">
-                <span className="text-gray-800 font-semibold text-base">
-                  {barTextMap[bar.key]?.label || ""}
-                </span>
-                <span className="text-xs text-emerald-500 font-medium italic">
-                  {barTextMap[bar.key]?.level || ""}
-                </span>
-              </div>
-              <div className="relative w-full h-2 bg-gray-200 rounded-full">
-                <div
-                  className="absolute left-0 top-0 h-2 rounded-full bg-emerald-400"
-                  style={{
-                    width: `${barTextMap[bar.key]?.percent || 0}%`,
-                  }}
-                />
-                <div
-                  className="absolute top-1/2"
-                  style={{
-                    left: `calc(${barTextMap[bar.key]?.percent || 0}% - 10px)`,
-                  }}
-                >
-                  <div className="w-5 h-5 bg-white border-2 border-emerald-400 rounded-full shadow -translate-y-1/2"></div>
-                </div>
-              </div>
-            </div>
-          ))
-        ) : (
-          <div className="h-8"></div>
-        )}
-      </div>
-    </div>
-  </div>
-</div>
-
+           </div>
             {/* ===== Caption ===== */}
             <p className="font-bold text-center text-2xl mt-10">
               {anxietyType === "panic" &&
