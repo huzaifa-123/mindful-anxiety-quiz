@@ -375,16 +375,14 @@ const QuizPlan = () => {
               <div className="scale-90 sm:scale-75">
                 <div className="relative mt-[-6rem] sm:mt-[-10rem]">
                   {/* ===== Image ===== */}
-                  <div className="relative w-full aspect-[16/9]">
-  <img
-    src={beforeAfterImage}
-    alt="Before and after transformation comparison"
-    className="absolute inset-0 w-full h-full object-contain"
-    loading="lazy"
-    width={800}
-    height={450}
-  />
-</div>
+                  <img 
+                    src={beforeAfterImage}
+                    alt="Before and after transformation comparison"
+                    className="w-full h-auto object-contain"
+                    loading="lazy"
+                    width={beforeAfterImage}
+                    height={beforeAfterImage}
+                  />
                   {/* ===== Dynamic Bars Section (slightly overlaps under image) ===== */}
                   <div
                     className="
