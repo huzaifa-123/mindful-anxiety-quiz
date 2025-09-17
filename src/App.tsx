@@ -46,6 +46,7 @@ import QuizEmailPreference from "./pages/QuizEmailPreference";
 import QuizAnxietyProfile from "./pages/QuizAnxietyProfile";
 import QuizPlan from "./pages/QuizPlan";
 import QuizPhoneNumber from "./pages/QuizPhoneNumber";
+import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -60,6 +61,7 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+      <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/quiz/part1" element={<QuizPart1 />} />
