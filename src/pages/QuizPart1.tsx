@@ -29,7 +29,7 @@ const QuizPart1 = () => {
             Let's get to know you better.
           </p>
           <button
-            onClick={() => navigate("/quiz/journey-timeline")}
+            onClick={() => navigate("/quiz/name")}
             className="rounded-full bg-flourishmint text-white text-base font-semibold px-8 py-2 shadow-md hover:scale-105 hover:brightness-110 transition duration-150"
           >
             Continue

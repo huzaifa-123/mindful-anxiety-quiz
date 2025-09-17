@@ -87,21 +87,16 @@ const QuizJourneyTimeline = () => {
   }, [answers]);
 
   const handleContinue = () => {
-    navigate("/quiz/plan");
+    navigate("/quiz/calm-reset-plan-builder");
   };
+
   return (
-    // Root container: sets full height, flex column layout, background, and hidden overflow
     <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-hidden">
-      
-      {/* Sticky header at top */}
       <div className="w-full sticky top-0 z-10">
         <Header withBack />
       </div>
-
-      {/* Main content area */}
       <main className="flex-1 flex flex-col items-center justify-center px-4">
         <div className="w-full max-w-2xl mx-auto flex flex-col items-center justify-center text-center">
-          
           {/* Main heading */}
           <h1 className="font-semibold text-xl md:text-2xl text-gray-800 mb-4 tracking-tight">
             Your Journey Toward Relief Has Already Begun
@@ -112,7 +107,7 @@ const QuizJourneyTimeline = () => {
             Based on your answers, we estimate you could begin experiencing noticeable improvement by:
           </p>
           
-          {/* Estimated Date section */}
+          {/* Estimated Date */}
           <div className="mb-6">
             <p className="text-gray-800 text-lg font-semibold">
               {estimatedDate || "Calculating..."}
@@ -122,75 +117,64 @@ const QuizJourneyTimeline = () => {
             </p>
           </div>
           
-          {/* Timeline visualization */}
+          {/* Timeline visualization container */}
           <div className="w-full max-w-md mb-2 flex flex-col items-center">
-            
-            {/* Section heading */}
-            <h2 className="text-gray-800 font-semibold text-lg mt-8 tracking-wide">
+            <h2 className="text-gray-800 font-semibold text-lg mt-8  tracking-wide">
               30 DAYS TIMELINE
             </h2>
-            
-            {/* Timeline GIF with reserved space */}
-            <div className="w-full aspect-[16/9] max-h-64 mb-2">
+            <div className="w-full h-64 relative flex items-center justify-center">
               <img
                 src="/QuizDesign/Final_Quiz Section Design (2).gif"
                 alt="Progress timeline showing journey from current state to goal integration"
-                className="w-full h-full object-contain block m-0 p-0"
+                className="w-full h-auto object-contain max-h-64 block m-0 p-0"
                 draggable={false}
                 loading="lazy"
-                width={800}
-                height={450}
               />
             </div>
-
-            {/* Labels under timeline */}
+            {/* Labels under bars */}
             <div className="grid grid-cols-5 text-center text-[9px] font-bold leading-none -mt-7 gap-x-1">
-              <div className="leading-tight">
-                <div>Current</div>
-                <div>State</div>
-              </div>
-              <div className="leading-tight">
-                <div>Early</div>
-                <div>Shifts</div>
-              </div>
-              <div className="leading-tight">
-                <div>Ongoing</div>
-                <div>Shift</div>
-              </div>
-              <div className="leading-tight">
-                <div>Target</div>
-                <div>Relief</div>
-              </div>
-              <div className="leading-tight">
-                <div>Goal</div>
-                <div>Integration</div>
-              </div>
+            <div className="leading-tight">
+              <div>Current</div>
+              <div>State</div>
             </div>
+            <div className="leading-tight">
+              <div>Early</div>
+              <div>Shifts</div>
+            </div>
+            <div className="leading-tight">
+              <div>Ongoing</div>
+              <div>Shift</div>
+            </div>
+            <div className="leading-tight">
+              <div>Target</div>
+              <div>Relief</div>
+            </div>
+            <div className="leading-tight">
+              <div>Goal</div>
+              <div>Integration</div>
+            </div>
+          </div>
 
-            {/* Progress bar with reserved space */}
-            <div className="w-full aspect-[16/4] max-h-64 -mt-24">
+            <div className="w-full h-64 relative flex items-center justify-center -mt-24">
               <img
                 src="/QuizDesign/Progress bar after timeline.png"
                 alt="Progress bar showing stages of anxiety relief journey"
-                className="w-full h-full object-contain block m-0 p-0"
+                className="w-full h-auto object-contain max-h-64 block m-0 p-0"
                 draggable={false}
                 loading="lazy"
-                width={800}
-                height={200}
               />
             </div>
           </div>
 
-          {/* Description paragraphs */}
-          <p className="text-gray-700 text-base mb-4 max-w-xl leading-relaxed -mt-16">
-            This timeline is based on when anxiety started affecting you and how much time you can commit to your well-being each day. With consistent, intentional support, even small shifts create real momentum.
-          </p>
+            {/* Description paragraphs */}
+           <p className="text-gray-700 text-base mb-4 max-w-xl leading-relaxed -mt-16">
+             This timeline is based on when anxiety started affecting you and how much time you can commit to your well-being each day. With consistent, intentional support, even small shifts create real momentum.
+           </p>
+           
+           <p className="text-gray-700 text-base mb-8 max-w-xl leading-relaxed">
+             This isn't a rigid schedule, it's an encouraging estimate that honors where you are and where you're headed.
+           </p>
           
-          <p className="text-gray-700 text-base mb-8 max-w-xl leading-relaxed">
-            This isn't a rigid schedule, it's an encouraging estimate that honors where you are and where you're headed.
-          </p>
-          
-          {/* Continue button */}
           <button
             onClick={handleContinue}
             className="rounded-full bg-flourishmint text-white text-base font-semibold px-10 py-2 mb-6 shadow-md transition duration-150 hover:scale-105 hover:brightness-110"
