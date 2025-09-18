@@ -139,32 +139,21 @@ const QuizPlan = () => {
 
   // Timer component for header
   const TimerDisplay = () => (
-      <div className="flex w-full flex-col items-end gap-2 sm:flex-row sm:justify-end sm:items-center sm:gap-4">
-
-        <span className="text-white text-xs sm:text-sm font-medium 
-                  w-full sm:w-auto 
-                  whitespace-nowrap overflow-hidden text-ellipsis 
-                  text-right 
-                  self-end sm:self-auto">
-          Discount ends in {formatTime(timeLeft)}
-        </span>
-        <button
-          className="bg-flourishmint hover:bg-green-400 text-white 
-          w-auto px-3 sm:px-6 md:px-8 
-          py-1.5 sm:py-2 
-          rounded-full 
-          text-xs sm:text-sm md:text-base 
-          font-semibold 
-          transition-colors 
-          ml-auto sm:ml-0"
-          onClick={handleContinue}
-        >
-          GET MY PLAN
-        </button>
-
-      </div>
+    <div className="flex justify-end items-center gap-4">
+      <span className="text-white text-xs sm:text-sm font-medium whitespace-nowrap">
+        Discount ends in {formatTime(timeLeft)}
+      </span>
+      <button
+        className="bg-flourishmint hover:bg-green-400 text-white 
+                  px-3 sm:px-6 md:px-8 py-1.5 sm:py-2 
+                  rounded-full text-xs sm:text-sm md:text-base 
+                  font-semibold transition-colors"
+        onClick={handleContinue}
+      >
+        GET MY PLAN
+      </button>
+    </div>
   );
-
   const testimonials = [
     {
       parts: [
@@ -200,13 +189,15 @@ const QuizPlan = () => {
 
 
   return (
-    <div className="min-h-screen flex flex-col font-inter bg-flourishwhite overflow-x-hidden">
-      <div className="w-full sticky top-0 z-10 bg-flourishgreen">
-        <Header timer={<TimerDisplay />} />
+    <div className="min-h-screen flex flex-col font-inter bg-flourishgreen">
+      <div className="sticky top-0 z-10">
+        <div className="w-full max-w-6xl mx-auto bg-flourishgreen px-6 sm:px-10">
+          <Header timer={<TimerDisplay />} />
+        </div>
       </div>
-      <main className="flex-1 px-2 sm:px-4 py-6 sm:py-8 bg-flourishgreen">
-        <div className="relative w-full max-w-5xl mx-auto bg-white">
-           <div className="text-center mb-16 px-4 sm:px-8 bg-white ">
+      <main className="flex-1 px-2 bg-flourishgreen overflow-y-hidden">
+      <div className="relative w-full max-w-5xl mx-auto bg-white p-6 sm:p-10 min-h-screen flex flex-col">
+          <div className="text-center mb-16 px-4 sm:px-8 bg-white ">
           <h1 className="text-3xl sm:text-4xl font-bold mb-4">
             Your 7-Day Anxiety Reset is Ready — £0 Today
           </h1>
@@ -247,7 +238,7 @@ const QuizPlan = () => {
         </div>
           {/* Main Heading */}
           <div className="flex flex-col md:flex-row gap-8 justify-center">
-            <div className="bg-emerald-600 text-white rounded-lg p-6 shadow-lg flex-1 max-w-full sm:max-w-sm">
+            <div className="bg-emerald-600 text-white rounded-lg p-6 shadow-lg flex-1">
 
               <h3 className="text-xl font-bold mb-4 text-center">
                 Here's What Happens Next
@@ -296,7 +287,7 @@ const QuizPlan = () => {
                 </li>
               </ul>
             </div>
-            <div className="bg-emerald-100 border border-emerald-400 rounded-lg p-6 shadow-lg flex-1 max-w-full sm:max-w-sm">
+            <div className="bg-emerald-100 border border-emerald-400 rounded-lg p-6 shadow-lg flex-1">
               <ul className="space-y-4 text-gray-800">
                 <li className="flex items-start">
                   <svg
@@ -351,7 +342,7 @@ const QuizPlan = () => {
               </ul>
             </div>
           </div>
-          <hr className="w-screen -ml-[calc((100vw-100%)/2)] my-8 mb-16 border-none h-6 bg-flourishgreen" />
+          <hr className="w-[calc(100%+theme(space.12))] sm:w-[calc(100%+theme(space.20))] -ml-6 sm:-ml-10 my-8 mb-16 border-none h-6 bg-flourishgreen" />
 
           <div className="max-w-[900px] w-full mx-auto px-4 sm:px-0 flex flex-col">
             {/* Heading with minimal bottom margin and tight line height */}
@@ -450,7 +441,7 @@ const QuizPlan = () => {
               {anxietyType === "avoidant" &&
                 "I want to stop freezing and finally move forward with courage."}
             </p>
-            <hr className="w-screen -ml-[calc((100vw-100%)/2)] my-8 mb-16 border-none h-6 bg-flourishgreen" />
+            <hr className="w-[calc(100%+theme(space.12))] sm:w-[calc(100%+theme(space.20))] -ml-6 sm:-ml-10 my-8 mb-16 border-none h-6 bg-flourishgreen" />
 
             <div className="text-center mb-16 max-w-3xl mx-auto">
               <h2 className="text-3xl font-bold mb-2">
@@ -600,7 +591,7 @@ const QuizPlan = () => {
                 </div>
               </div>
             </div>
-            <hr className="w-screen -ml-[calc((100vw-100%)/2)] my-8 mb-16 border-none h-6 bg-flourishgreen" />
+            <hr className="w-[calc(100%+theme(space.12))] sm:w-[calc(100%+theme(space.20))] -ml-6 sm:-ml-10 my-8 mb-16 border-none h-6 bg-flourishgreen" />
 
             {/* Why This Method Works So Well Section */}
             <div className="mb-16 text-center">
@@ -728,7 +719,7 @@ const QuizPlan = () => {
                 </div>
               </div>
             </div>
-            <hr className="w-screen -ml-[calc((100vw-100%)/2)] my-8 mb-16 border-none h-6 bg-flourishgreen" />
+            <hr className="w-[calc(100%+theme(space.12))] sm:w-[calc(100%+theme(space.20))] -ml-6 sm:-ml-10 my-8 mb-16 border-none h-6 bg-flourishgreen" />
             {/* Testimonials Section */}
             <div className="text-center mb-16">
               <h2 className="text-2xl font-bold text-gray-900 mb-8">
@@ -779,7 +770,7 @@ const QuizPlan = () => {
               </div>
             </div>
 
-            <hr className="w-screen -ml-[calc((100vw-100%)/2)] my-8 mb-16 border-none h-6 bg-flourishgreen" />
+            <hr className="w-[calc(100%+theme(space.12))] sm:w-[calc(100%+theme(space.20))] -ml-6 sm:-ml-10 my-8 mb-16 border-none h-6 bg-flourishgreen" />
 
             <div className="w-full max-w-3xl mx-auto">
               <h2 className="text-center text-2xl font-semibold mb-6">
@@ -966,10 +957,10 @@ const QuizPlan = () => {
                 </details>
               </div>
             </div>
-            <hr className="w-screen -ml-[calc((100vw-100%)/2)] my-8 mb-16 border-none h-6 bg-flourishgreen" />
+            <hr className="w-[calc(100%+theme(space.12))] sm:w-[calc(100%+theme(space.20))] -ml-6 sm:-ml-10 my-8 mb-16 border-none h-6 bg-flourishgreen" />
 
             {/* Final Pricing Section */}
-            <div className="text-center mb-16 px-4 sm:px-8">
+            <div className="text-center mb-16 px-4 sm:px-8 ">
                             <button
                 className="mx-auto bg-flourishmint hover:bg-green-400 text-white py-4 px-15 rounded-full font-bold text-lg sm:text-xl tracking-wider text-center transition-colors block w-full max-w-md"
                 onClick={handleContinue}
