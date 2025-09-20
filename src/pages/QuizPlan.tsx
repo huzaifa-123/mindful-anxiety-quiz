@@ -29,7 +29,7 @@ const QuizPlan = () => {
   // Dynamic before/after image based on anxiety type
   let beforeAfterImage = '';
   if (anxietyType === 'panic') {
-    beforeAfterImage = '/QuizDesign/PANICKER CHECKOUT SECTION.png';
+    beforeAfterImage = '/QuizDesign/AVOIDER CHECKOUT SECTION.png';
   } else if (anxietyType === 'avoidant') {
     beforeAfterImage = '/QuizDesign/AVOIDER CHECKOUT SECTION.png';
   } else if (anxietyType === 'ruminator') {
@@ -347,7 +347,7 @@ const QuizPlan = () => {
           <div className="max-w-[900px] w-full mx-auto px-4 sm:px-0 flex flex-col">
             {/* Heading with minimal bottom margin and tight line height */}
             <div className="text-center mb-2">
-              <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 leading-none m-0">
+              <h1 className="text-2xl sm:text-4xl font-bold text-gray-900 leading-none mb-6">
                 Your Personalized Reset Journey
               </h1>
             </div>
@@ -360,7 +360,7 @@ const QuizPlan = () => {
                 <img
                   src={beforeAfterImage}
                   alt="Before and after transformation comparison"
-                  className="w-full h-auto object-contain  mb-0 block"
+                  className="w-full h-auto object-contain  mt-4 block"
                   loading="lazy"
                 />
               {/* Bars container - flex row with gap, zero vertical margin/padding */}
