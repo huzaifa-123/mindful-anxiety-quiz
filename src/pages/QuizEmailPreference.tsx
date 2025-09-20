@@ -27,7 +27,8 @@ const QuizEmailPage = () => {
     setAnswer("email",  email );
 
     setTimeout(() => {
-      navigate("/quiz/phone-number");
+      // navigate("/quiz/phone-number");
+      navigate("/quiz/anxiety-profile");
     }, 200);
   };
 
