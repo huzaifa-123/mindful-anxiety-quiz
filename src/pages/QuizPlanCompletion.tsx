@@ -17,20 +17,25 @@ const QuizPlanCompletion = () => {
           <h1 className="font-semibold text-2xl text-gray-800 mb-4">
             Your personalized plan has been created.
           </h1>
-          
+          <button
+            onClick={() => navigate("/quiz/email-preference")}
+            className="bg-flourishmint text-white px-20 py-3 rounded-full  mt-8 mb-8 font-semibold hover:bg-flourishmint/90 transition-colors"
+          >
+            Continue
+          </button>
           {/* Subheading */}
           <p className="text-gray-600 text-base mb-8 max-w-md mx-auto">
             Tayyaba Ali’s unique method brings together three clinically validated therapies, offering you a multi-angle solution designed to help you move forward faster and stay well longer.
           </p>
           
           {/* Illustration placeholder */}
-          <div className="mb-8 flex justify-center">
+          {/* <div className="mb-8 flex justify-center">
             <img 
               src="/QuizDesign/Personalized Plan.png" 
               alt="Therapist illustration" 
               className="w-48 h-48 object-contain"
             />
-          </div>
+          </div> */}
           
           {/* Plan details box */}
           <div className="bg-white rounded-xl border border-gray-400 p-6 mb-8 text-left shadow-2xl">
@@ -87,7 +92,7 @@ const QuizPlanCompletion = () => {
           {/* Continue button */}
           <button
             onClick={() => navigate("/quiz/email-preference")}
-            className="bg-flourishmint text-white px-8 py-3 rounded-full  mb-4 font-semibold hover:bg-flourishmint/90 transition-colors"
+            className="bg-flourishmint text-white px-20 py-3 rounded-full  mb-4 font-semibold hover:bg-flourishmint/90 transition-colors"
           >
             Continue
           </button>

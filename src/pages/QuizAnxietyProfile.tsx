@@ -202,7 +202,16 @@ const QuizAnxietyProfile = () => {
           <h1 className="font-semibold text-2xl text-gray-800 mb-6 text-center">
             Your Personalized Anxiety Profile
           </h1>
-          
+          <div className="flex justify-center">
+            <button
+              onClick={() => {
+                handleContinue();
+              }}
+              className="bg-flourishmint text-white px-8 py-3  mb-8 rounded-full font-semibold hover:bg-flourishmint/90 transition-colors"
+            >
+              Access My Personalised Plan
+            </button>
+          </div>
           {/* Dominant anxiety type badge */}
           <div className="flex justify-center mb-6">
             <div className="border border-black rounded-lg px-6 py-4 text-center">
@@ -215,13 +224,13 @@ const QuizAnxietyProfile = () => {
             </div>
           </div>
           {/* Character illustration - now anxiety type specific */}
-          <div className="flex justify-center mb-6">
+          {/* <div className="flex justify-center mb-6">
             <img 
               src={anxietyImage.src}
               alt={anxietyImage.alt}
               className="w-52 h-52 object-contain"
             />
-          </div>
+          </div> */}
 
           {/* Progress bar with proper visualization */}
           <div className="mb-6">

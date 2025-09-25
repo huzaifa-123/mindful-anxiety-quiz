@@ -366,7 +366,7 @@ const QuizPlan = () => {
               {/* Bars container - flex row with gap, zero vertical margin/padding */}
               <div className="flex flex-row gap-4 w-full">
                   {/* Bars Q21 */}
-                  <div className="flex-1 min-w-0 rounded-xl p-6 shadow-md bg-gradient-to-br from-gray-400 to-gray-700 min-h-[260px]">
+                  <div className="flex-1 min-w-0 rounded-xl p-6 shadow-md bg-gradient-to-br from-gray-400 to-gray-700">
                   {barsQ21.length ? (
                     barsQ21.map((bar) => (
                       <div key={bar.key} className="mb-6 last:mb-0">
@@ -399,7 +399,7 @@ const QuizPlan = () => {
                   )}
                 </div>
                 {/* Bars Q17 */}
-                <div className="flex-1 min-w-0 rounded-xl p-6 shadow-md bg-white min-h-[260px]">
+                <div className="flex-1 min-w-0 rounded-xl p-6 shadow-md bg-white">
                   {barsQ17.length ? (
                     barsQ17.map((bar) => (
                       <div key={bar.key} className="mb-6 last:mb-0">
