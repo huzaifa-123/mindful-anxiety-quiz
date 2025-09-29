@@ -29,11 +29,11 @@ const QuizPlan = () => {
   // Dynamic before/after image based on anxiety type
   let beforeAfterImage = '';
   if (anxietyType === 'panic') {
-    beforeAfterImage = '/QuizDesign/PANIC CHECKOUT SECTION.jpg';
+    beforeAfterImage = '/QuizDesign/PANICKER CHECKOUT SECTION.png';
   } else if (anxietyType === 'avoidant') {
     beforeAfterImage = '/QuizDesign/AVOIDER CHECKOUT SECTION.png';
   } else if (anxietyType === 'ruminator') {
-    beforeAfterImage = '/QuizDesign/RUMINATOR CHECKOUT SECTION.jpg';
+    beforeAfterImage = '/QuizDesign/RUMINATOR CHECKOUT SECTION.png';
   }
 
   // Q17/Q21 answer keys for the user
